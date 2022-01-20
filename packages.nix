@@ -75,13 +75,13 @@ rec {
     pname = "cl-threadpool";
     version = "3.0.0";
     src = builtins.fetchTarball {
-      url = https://github.com/Frechmatz/cl-threadpool/archive/refs/tags/v3.0.0.tar.gz;
+      url = "https://github.com/Frechmatz/cl-threadpool/archive/refs/tags/v3.0.0.tar.gz";
       sha256 = "0yg09fpzqbmga1vx0p956vx6fyjmrgczb108fr0djswfn1mdiq3j";
     };
     lispLibs = [ bordeaux-threads queues-simple-cqueue ];
   };
 
-  "babel" = build-asdf-system {
+  babel = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/babel/2020-09-25/babel-20200925-git.tgz";
       sha256 = "04frn19mngvsh8bh7fb1rfjm8mqk8bgzx5c43dg7z02nfsxkqqak";
@@ -94,7 +94,7 @@ rec {
     ];
   };
 
-  "bordeaux-threads" = build-asdf-system {
+  bordeaux-threads = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/bordeaux-threads/2020-06-10/bordeaux-threads-v0.8.8.tgz";
       sha256 = "19i443fz3488v1pbbr9x24y8h8vlyhny9vj6c9jk5prm702awrp6";
@@ -160,7 +160,7 @@ rec {
     nativeLibs = [ pkgs.libffi ];
   };
 
-  "chipz" = build-asdf-system {
+  chipz = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/chipz/2019-02-02/chipz-20190202-git.tgz";
       sha256 = "1l6cvks7slp5a0wag5vhbhn8972lfxamci59jd1ai4icv1vv1jsk";
@@ -171,7 +171,7 @@ rec {
     ];
   };
 
-  "chunga" = build-asdf-system {
+  chunga = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/chunga/2020-04-27/chunga-20200427-git.tgz";
       sha256 = "1m5mf0lks32k492gc1ys4ngy3vwgxlccg3966alrhy6q8m2jdcym";
@@ -183,7 +183,7 @@ rec {
     ];
   };
 
-  "cl-ssl" = build-asdf-system {
+  cl-ssl = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/cl+ssl/2021-04-11/cl+ssl-20210411-git.tgz";
       sha256 = "1501wg3353sd1fwichcbnk4lkmlsqdfk0ic9pnc13wlp22z2ffph";
@@ -203,7 +203,7 @@ rec {
     nativeLibs = [ pkgs.openssl ];
   };
 
-  "cl-base64" = build-asdf-system {
+  cl-base64 = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/cl-base64/2020-10-16/cl-base64-20201016-git.tgz";
       sha256 = "12jj54h0fs6n237cvnp8v6hn0imfksammq22ys6pi0gwz2w47rbj";
@@ -212,7 +212,7 @@ rec {
     pname = "cl-base64";
   };
 
-  "cl-cookie" = build-asdf-system {
+  cl-cookie = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/cl-cookie/2019-10-07/cl-cookie-20191007-git.tgz";
       sha256 = "1kphfjbh9hzjc95ad7mpfsb0x7d8f7xznlaskr8awymspbmck8cz";
@@ -228,7 +228,7 @@ rec {
     ];
   };
 
-  "cl-json" = build-asdf-system {
+  cl-json = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/cl-json/2014-12-17/cl-json-20141217-git.tgz";
       sha256 = "0fx3m3x3s5ji950yzpazz4s0img3l6b3d6l3jrfjv0lr702496lh";
@@ -237,7 +237,7 @@ rec {
     pname = "cl-json";
   };
 
-  "cl-unicode" = with builtins; let
+  cl-unicode = with builtins; let
     version = "0.1.6";
     # cl-unicode generates lisp source files during compilation.
     #
@@ -284,7 +284,7 @@ rec {
     ];
   };
 
-  "cl-ppcre" = build-asdf-system {
+  cl-ppcre = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/cl-ppcre/2019-05-21/cl-ppcre-20190521-git.tgz";
       sha256 = "0dwvr29diqzcg5n6jvbk2rnd90i05l7n828hhw99khmqd0kz7xsi";
@@ -296,7 +296,7 @@ rec {
     ];
   };
 
-  "cl-ppcre-unicode" = build-asdf-system {
+  cl-ppcre-unicode = build-asdf-system {
     inherit (cl-ppcre) src version;
     pname = "cl-ppcre-unicode";
     lispLibs = [
@@ -308,7 +308,7 @@ rec {
     ];
   };
 
-  "cl-reexport" = build-asdf-system {
+  cl-reexport = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/cl-reexport/2021-02-28/cl-reexport-20210228-git.tgz";
       sha256 = "02la6z3ickhmh2m87ymm2ijh9nkn7l6slskj99l8a1rhps394qqc";
@@ -320,7 +320,7 @@ rec {
     ];
   };
 
-  "cl-selenium" = build-asdf-system {
+  cl-selenium = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/cl-selenium-webdriver/2018-03-28/cl-selenium-webdriver-20180328-git.tgz";
       sha256 = "0216vqg1ax5gcqahclii7ifqpc92rbi86rfcf1qn8bdahmfjccbb";
@@ -336,7 +336,7 @@ rec {
     ];
   };
 
-  "cl-utilities" = build-asdf-system {
+  cl-utilities = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/cl-utilities/2010-10-06/cl-utilities-1.2.4.tgz";
       sha256 = "1dmbkdr8xm2jw5yx1makqbf1ypqbm0hpkd7zyknxv3cblvz0a87w";
@@ -345,7 +345,7 @@ rec {
     pname = "cl-utilities";
   };
 
-  "dexador" = build-asdf-system {
+  dexador = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/dexador/2021-04-11/dexador-20210411-git.tgz";
       sha256 = "0xcbsn29rcvnihkjy2gzykbim0484crvgx62j41g2ps7m8ihp9g1";
@@ -373,7 +373,7 @@ rec {
     ];
   };
 
-  "fast-http" = build-asdf-system {
+  fast-http = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/fast-http/2019-10-07/fast-http-20191007-git.tgz";
     };
@@ -389,7 +389,7 @@ rec {
     ];
   };
 
-  "fast-io" = build-asdf-system {
+  fast-io = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/fast-io/2020-09-25/fast-io-20200925-git.tgz";
       sha256 = "131cqlf84md6kgw2slrpgmksz2j3w1rx4a0cwfrkd8kdvwbh16rd";
@@ -403,7 +403,7 @@ rec {
     ];
   };
 
-  "flexi-streams" = build-asdf-system {
+  flexi-streams = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/flexi-streams/2020-09-25/flexi-streams-20200925-git.tgz";
       sha256 = "18r78sb19wwg6zywq3yj202zix2m2ghpm12sa8z8z4vxd7918k6y";
@@ -415,7 +415,7 @@ rec {
     ];
   };
 
-  "local-time" = build-asdf-system {
+  local-time = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/local-time/2021-01-24/local-time-20210124-git.tgz";
       sha256 = "0wld28xx20k0ysgg6akic5lg4vkjd0iyhv86m388xfrv8xh87wii";
@@ -424,7 +424,7 @@ rec {
     pname = "local-time";
   };
 
-  "proc-parse" = build-asdf-system {
+  proc-parse = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/proc-parse/2019-08-13/proc-parse-20190813-git.tgz";
       sha256 = "07vbj26bfq4ywlcmamsqyac29rsdsa8lamjqx1ycla1bcvgmi4w2";
@@ -437,7 +437,7 @@ rec {
     ];
   };
 
-  "quri" = build-asdf-system {
+  quri = build-asdf-system {
     src = pkgs.stdenv.mkDerivation {
       pname = "patched";
       version = "source";
@@ -465,7 +465,7 @@ rec {
     ];
   };
 
-  "smart-buffer" = build-asdf-system {
+  smart-buffer = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/smart-buffer/2016-06-28/smart-buffer-20160628-git.tgz";
       sha256 = "0qz1zzxx0wm5ff7gpgsq550a59p0qj594zfmm2rglj97dahj54l7";
@@ -478,7 +478,7 @@ rec {
     ];
   };
 
-  "split-sequence" = build-asdf-system {
+  split-sequence = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/split-sequence/2019-05-21/split-sequence-v2.0.0.tgz";
       sha256 = "0jcpnx21hkfwqj5fvp7kc6pn1qcz9hk7g2s5x8h0349x1j2irln0";
@@ -487,7 +487,7 @@ rec {
     pname = "split-sequence";
   };
 
-  "static-vectors" = build-asdf-system {
+  static-vectors = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "https://github.com/sionescu/static-vectors/archive/refs/tags/v1.8.9.tar.gz";
       sha256 = "079qa20lhanzsz1qf4iags91n0ziylbjgbcymm5a5qj7yryas4fw";
@@ -501,7 +501,7 @@ rec {
     ];
   };
 
-  "trivial-features" = build-asdf-system {
+  trivial-features = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/trivial-features/2021-04-11/trivial-features-20210411-git.tgz";
       sha256 = "0jsqah1znzqilxnw5vannb083ayk0d7phkackqzwwqkyg5hpn6pq";
@@ -510,7 +510,7 @@ rec {
     pname = "trivial-features";
   };
 
-  "trivial-garbage" = build-asdf-system {
+  trivial-garbage = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/trivial-garbage/2020-09-25/trivial-garbage-20200925-git.tgz";
       sha256 = "0kr2nck3n2krsvlcxsxl92n5rh6qs13fnbwr3pw9p5w6yzb4w6pi";
@@ -519,7 +519,7 @@ rec {
     pname = "trivial-garbage";
   };
 
-  "trivial-gray-streams" = build-asdf-system {
+  trivial-gray-streams = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/trivial-gray-streams/2021-01-24/trivial-gray-streams-20210124-git.tgz";
       sha256 = "1hipqwwd5ylskybd173rvlsk7ds4w4nq1cmh9952ivm6dgh7pwzn";
@@ -528,7 +528,7 @@ rec {
     pname = "trivial-gray-streams";
   };
 
-  "trivial-mimes" = build-asdf-system {
+  trivial-mimes = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/trivial-mimes/2020-07-15/trivial-mimes-20200715-git.tgz";
       sha256 = "00kcm17q5plpzdj1qwg83ldhxksilgpcdkf3m9azxcdr968xs9di";
@@ -537,7 +537,7 @@ rec {
     pname = "trivial-mimes";
   };
 
-  "usocket" = build-asdf-system {
+  usocket = build-asdf-system {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/usocket/2019-12-27/usocket-0.8.3.tgz";
       sha256 = "0x746wr2324l6bn7skqzgkzcbj5kd0zp2ck0c8rldrw0rzabg826";
@@ -549,7 +549,7 @@ rec {
     ];
   };
 
-  "xsubseq" = build-asdf-system {
+  xsubseq = build-asdf-system {
     src =   builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/xsubseq/2017-08-30/xsubseq-20170830-git.tgz";
       sha256 = "1xz79q0p2mclf3sqjiwf6izdpb6xrsr350bv4mlmdlm6rg5r99px";
@@ -700,7 +700,7 @@ rec {
     pname = "cl-murmurhash";
     version = "5433f5e95f";
     src = builtins.fetchTarball {
-      url = https://github.com/ruricolist/cl-murmurhash/archive/5433f5e95f1cce63a81259a471150834c6a59364.tar.gz;
+      url = "https://github.com/ruricolist/cl-murmurhash/archive/5433f5e95f1cce63a81259a471150834c6a59364.tar.gz";
       sha256 = "0251r0mpjm0y3qsm4lm7ncvrkxvgwc53spdm1p2mpayhvkkqqsws";
     };
     lispLibs = [ babel ];
@@ -710,7 +710,7 @@ rec {
     pname = "cl-hamt";
     version = "7a99eaaca1";
     src = builtins.fetchTarball {
-      url = https://github.com/danshapero/cl-hamt/archive/7a99eaaca1f952029def9ad5a2b80a612a712208.tar.gz;
+      url = "https://github.com/danshapero/cl-hamt/archive/7a99eaaca1f952029def9ad5a2b80a612a712208.tar.gz";
       sha256 = "1ycbd73ykfj5j9sdhlzamyv18qbjj6xqf7fhm4fa0nsyr6sr3rf5";
     };
     lispLibs = [ cl-murmurhash ];
@@ -720,7 +720,7 @@ rec {
     pname = "trivial-indent";
     version = "1.2.0-98630dd5f7";
     src = builtins.fetchTarball {
-      url = https://github.com/Shinmera/trivial-indent/archive/8d92e94756475d67fa1db2a9b5be77bc9c64d96c.tar.gz;
+      url = "https://github.com/Shinmera/trivial-indent/archive/8d92e94756475d67fa1db2a9b5be77bc9c64d96c.tar.gz";
       sha256 = "0j8ip54v0w49hi8y3cd52r4ayy3fz8zqsm6jl88xwa6v3lh05rhv";
     };
   };
@@ -729,7 +729,7 @@ rec {
     pname = "documentation-utils";
     version = "1.2.0-98630dd5f7";
     src = builtins.fetchTarball {
-      url = https://github.com/Shinmera/documentation-utils/archive/98630dd5f7e36ae057fa09da3523f42ccb5d1f55.tar.gz;
+      url = "https://github.com/Shinmera/documentation-utils/archive/98630dd5f7e36ae057fa09da3523f42ccb5d1f55.tar.gz";
       sha256 = "098qhkqskmmrh4wix34mawf7p5c87yql28r51r75yjxj577k5idq";
     };
     lispLibs = [ trivial-indent ];
@@ -739,7 +739,7 @@ rec {
     pname = "atomics";
     version = "1.0.0-9ee0bdebcd";
     src = builtins.fetchTarball {
-      url = https://github.com/Shinmera/atomics/archive/9ee0bdebcd2bb9b242671a75460db13fbf45454c.tar.gz;
+      url = "https://github.com/Shinmera/atomics/archive/9ee0bdebcd2bb9b242671a75460db13fbf45454c.tar.gz";
       sha256 = "0mp5jdqq0aamdhgnvw149cqqi3zg7dkkibp25qi4rafw1fnpd40z";
     };
     lispLibs = [ documentation-utils ];
@@ -749,7 +749,7 @@ rec {
     pname = "lparallel";
     version = "2.8.4";
     src = builtins.fetchTarball {
-      url = https://github.com/lmj/lparallel/archive/lparallel-2.8.4.tar.gz;
+      url = "https://github.com/lmj/lparallel/archive/lparallel-2.8.4.tar.gz";
       sha256 = "0g0aylrbbrqsz0ahmwhvnk4cmc2931fllbpcfgzsprwnqqd7vwq9";
     };
     lispLibs = [ bordeaux-threads alexandria ];
@@ -759,7 +759,7 @@ rec {
     pname = "asdf-flv";
     version = "2.1";
     src = builtins.fetchTarball {
-      url = https://github.com/didierverna/asdf-flv/archive/fc5b7399767ca35bfb420bbeb9e08494e441dc69.tar.gz;
+      url = "https://github.com/didierverna/asdf-flv/archive/fc5b7399767ca35bfb420bbeb9e08494e441dc69.tar.gz";
       sha256 = "10094avq2whg8j5dnvla5wzqk5h36bx74lxbdbhdchv0wvn5x0g4";
     };
     lispLibs = [ bordeaux-threads alexandria ];
@@ -770,7 +770,7 @@ rec {
     pname = "fiveam";
     version = "1.4.1";
     src = builtins.fetchTarball {
-      url = https://github.com/lispci/fiveam/archive/v1.4.2.tar.gz;
+      url = "https://github.com/lispci/fiveam/archive/v1.4.2.tar.gz";
       sha256 = "04mh5plmlb15jbq3dkd8b9jl1dmbbg4hnd3k7859vpf6s12k5p4j";
     };
     lispLibs = [ alexandria trivial-backtrace asdf-flv ];
@@ -780,7 +780,7 @@ rec {
     pname = "cl-rabbit";
     version = "9603204715";
     src = builtins.fetchTarball {
-      url = https://github.com/uthar/cl-rabbit/archive/deedde4506c5f9d30d113157a6c304be05729851.tar.gz;
+      url = "https://github.com/uthar/cl-rabbit/archive/deedde4506c5f9d30d113157a6c304be05729851.tar.gz";
       sha256 = "0hwnhbxcjkji011pz0bb6l07g346qkavahzzq2ajd0yfl673vcq4";
     };
     lispLibs = [
@@ -799,7 +799,7 @@ rec {
     pname = "log4cl";
     version = "1.1.3";
     src = builtins.fetchTarball {
-      url = https://github.com/sharplispers/log4cl/archive/ee39b187a082ef554ba0053a66ba8be59b9cc35c.tar.gz;
+      url = "https://github.com/sharplispers/log4cl/archive/ee39b187a082ef554ba0053a66ba8be59b9cc35c.tar.gz";
       sha256 = "1za405sqy71f7w4lnrd1gjqkkbhqmsa7cbm7hy483z3fsdxq3y2l";
     };
     lispLibs = [
