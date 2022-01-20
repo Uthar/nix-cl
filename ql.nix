@@ -64,6 +64,11 @@ let
     osicat = pkg: {
       LD_LIBRARY_PATH = "${pkg}/posix/";
     };
+    iolib = pkg: {
+      nativeBuildInputs = [ libfixposix ];
+      nativeLibs = [ libfixposix ];
+      systems = [ "iolib" "iolib/os" "iolib/pathnames" ];
+    };
   };
 
   # NOTE:
