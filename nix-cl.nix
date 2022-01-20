@@ -132,13 +132,22 @@ let
       '';
 
       # Copy compiled files to store
-      installPhase = ''
+      installPhase =
+        let
+          mkSystemsRegex = systems:
+            concatMapStringsSep "|"
+              # Make sure to include $ in regex to prevent skipping
+              # stuff like 'system.asdf.asd' - such as in `iolib.asdf`
+              (x: (removeSuffix "\"" (escapeNixString (x + ".asd"))) + "$\"")
+              systems;
+        in
+      ''
         mkdir -pv $out
         cp -r * $out
 
         # Remove all .asd files except for those in `systems`.
         find $out -name "*.asd" \
-        | grep -v "${escapeRegex (concatMapStringsSep "|" (x: escapeNixString (x+".asd")) systems)}"\
+        | grep -v "${escapeRegex (mkSystemsRegex systems)}"\
         | xargs rm -fv || true
       '';
 
