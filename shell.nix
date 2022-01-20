@@ -1,6 +1,6 @@
 let
   pkgs = import <nixpkgs> {};
-  nix-cl = import ./nix-cl.nix { inherit (pkgs) pkgs lib stdenv; };
+  nix-cl = import ./. { inherit pkgs; };
 in
 
 pkgs.mkShell {
