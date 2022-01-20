@@ -36,6 +36,8 @@ rec {
     systems = [ "asdf" "uiop" ];
   };
 
+  uiop = asdf;
+
   alexandria = build-asdf-system {
     pname = "alexandria";
     version = "1.4-20210903";
