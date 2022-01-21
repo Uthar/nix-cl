@@ -48,9 +48,9 @@ bordeaux-threads = {
 
 ### building lisp wrappers
 
-Lisp wrappers are built with `${lisp}WithPackages`. For example, to open a shell with SBCL + hunchentoot + cl-sqlite in PATH:
+Lisp wrappers are built with `${lisp}WithPackages`. For example, to open a shell with SBCL + hunchentoot + sqlite in PATH:
 ```
-nix-shell -p 'with import <nix-cl> {}; sbclWithPackages (ps: [ ps.hunchentoot ps.cl-sqlite ])'
+nix-shell -p 'with import <nix-cl> {}; sbclWithPackages (ps: [ ps.hunchentoot ps.sqlite ])'
 ```
 
 Then, inside `sbcl`, it's possible to load the libraries:
