@@ -8,10 +8,54 @@ with builtins;
 let createAsd = { url, sha256, asd, system }:
    let
      src = fetchTarball { inherit url sha256; };
+
+     #
+     # FIXME: instead of a crazy regex and modify asd, maybe simply
+     # order them in the right order in the load command:
+     # (low-on-the-dependency-graph -> high-on-the-dependency-graph)
+     #
+     # So that ASDF reads the right definitions from the right .asd's
+     #
    in pkgs.runCommand "source" {} ''
       mkdir -pv $out
       cp -r ${src}/* $out
+
+      # Ensures that for any system, `system.asd` exists.
+      # Life is easier when `system` can ONLY be loaded from `system.asd`.
       find $out -name "${asd}.asd" | while read f; do mv -fv $f $(dirname $f)/${system}.asd || true; done
+
+      # ASDF seems to remember system definitions from previously
+      # loaded asd's. This is a problem if loading a bunch of packages
+      # in a row. There is a possibility, that even with the
+      # one-asd-per-system rule, that asd contains definitions of
+      # other systems, which breaks us by attempting to compile into
+      # nix store.
+      #
+      # To help achieve purity, delete defsystem forms other than
+      # `system`'s from the file.
+      #
+      # This naive algorithm won't help if someone declares their
+      # system using some custom macro. Hope that there is not much of
+      # such libraries.
+      #
+      # Even more fun is the fact that we can;t touch slashy systems,
+      # as they are fine.
+      #
+      # In addition, the case has to be handled where some libraries
+      # have a couple of same-named asd files in different dirs (e.g. fset).
+      #
+      # One of the special asdf-like macros is defsystem-connection
+      # used by cl-containers. In this case we match everything with a
+      # defsystem.*
+      #
+      # But, to not break macros, we check for a ',' and do nothing then.
+      for f in `find $out -name "${system}.asd"`; do
+        cp -f $f .
+        sed -i '/([a-zA-Z:]*defsystem.*[#":]*${system}\([/].*\)\?[." ]*$/I! s/\(([a-zA-Z:]*defsystem[^,]*${system}\)/#+(or)\1/g' "${system}.asd"
+        chmod a+w $(dirname $f)/${system}.asd
+        cat "${system}.asd" > $(dirname $f)/${system}.asd
+      done
+
   '';
 in
 
