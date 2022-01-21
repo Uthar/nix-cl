@@ -1,6 +1,10 @@
-{ build-asdf-system, pkgs, ... }:
+{ build-asdf-system, lisp, quicklispPackagesFor, fixupFor, pkgs, ... }:
 
-rec {
+let
+
+  ql = quicklispPackagesFor { inherit lisp; fixup = fixupFor packages; };
+
+  packages = rec {
 
   asdf = with builtins; let
     version = "3.3.5.3";
@@ -872,4 +876,6 @@ rec {
     lispLibs = [ alexandria trivial-with-current-source-form ];
   };
 
-}
+  };
+
+in packages

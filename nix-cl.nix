@@ -160,36 +160,66 @@ let
 
 
   # Build the set of lisp packages using `lisp`
+  # These packages are defined manually for one reason or another:
+  # - The library is not in quicklisp
+  # - The library that is in quicklisp is broken
+  # - Special build procedure such as cl-unicode, asdf
+  #
+  # These Probably could be done even in ql.nix
+  # - Want to pin a specific commit
+  # - Want to apply custom patches
+  #
+  # They can use the auto-imported quicklisp packages as dependencies,
+  # but some of those don't work out of the box.
+  #
+  # E.g if a QL package depends on cl-unicode it won't build out of
+  # the box. The dependency has to be rewritten using the manually
+  # fixed cl-unicode.
+  #
+  # This is done by generating a 'fixed' set of Quicklisp packages by
+  # calling quicklispPackagesFor with the right `fixup`.
+  #
+  # For now this prevents reuse of generated derivation attrs because
+  # of an infinite recursion. Could it be fixed by making lispLibs a
+  # function?
   commonLispPackagesFor = lisp:
     let
       build-asdf-system' = body: build-asdf-system (body // { inherit lisp; });
     in import ./packages.nix {
       inherit pkgs;
+      inherit lisp;
+      inherit quicklispPackagesFor;
+      inherit fixupFor;
       build-asdf-system = build-asdf-system';
     };
 
   # Build the set of packages imported from quicklisp using `lisp`
-  quicklispPackagesFor = lisp:
+  quicklispPackagesFor = { lisp, fixup ? lib.id }:
     let
-      manualPackages = commonLispPackagesFor lisp;
       build-asdf-system' = body: build-asdf-system (body // {
         inherit lisp;
-
-        # Rewrite dependencies of imported packages to use the manually
-        # defined ones instead
-        lispLibs = map
-          (pkg:
-            if (lib.hasAttr pkg.pname manualPackages)
-            then manualPackages.${pkg.pname}
-            else pkg
-          )
-          body.lispLibs;
       });
     in import ./ql.nix {
       inherit pkgs;
       inherit flattenedDeps;
+      inherit fixup;
       build-asdf-system = build-asdf-system';
     };
+
+  # Rewrite deps of pkg to use manually defined packages
+  #
+  # The purpose of manual packages is to customize one package, but
+  # then it has to be propagated everywhere for it to make sense and
+  # have consistency in the package tree.
+  fixupFor = manualPackages: qlPkg:
+    assert (lib.isAttrs qlPkg && !lib.isDerivation qlPkg);
+    let
+      substituteLib = pkg:
+        if (lib.hasAttr pkg.pname manualPackages)
+        then manualPackages.${pkg.pname}
+        else pkg;
+      pkg = substituteLib qlPkg;
+    in pkg // { lispLibs = map substituteLib pkg.lispLibs; };
 
   # Creates a lisp wrapper with `packages` installed
   #
@@ -242,11 +272,11 @@ let
     cclManualPackages   = commonLispPackagesFor ccl;
     claspManualPackages = commonLispPackagesFor clasp;
 
-    sbclQlPackages  = quicklispPackagesFor sbcl;
-    eclQlPackages   = quicklispPackagesFor ecl;
-    abclQlPackages  = quicklispPackagesFor abcl;
-    cclQlPackages   = quicklispPackagesFor ccl;
-    claspQlPackages = quicklispPackagesFor clasp;
+    sbclQlPackages  = quicklispPackagesFor { lisp = sbcl;  fixup = fixupFor sbclManualPackages;  };
+    eclQlPackages   = quicklispPackagesFor { lisp = ecl;   fixup = fixupFor eclManualPackages;   };
+    abclQlPackages  = quicklispPackagesFor { lisp = abcl;  fixup = fixupFor abclManualPackages;  };
+    cclQlPackages   = quicklispPackagesFor { lisp = ccl;   fixup = fixupFor cclManualPackages;   };
+    claspQlPackages = quicklispPackagesFor { lisp = clasp; fixup = fixupFor claspManualPackages; };
 
     # Manually defined packages shadow the ones imported from quicklisp
 

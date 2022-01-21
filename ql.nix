@@ -1,4 +1,4 @@
-{ pkgs, build-asdf-system, flattenedDeps, ... }:
+{ pkgs, build-asdf-system, flattenedDeps, fixup ? pkgs.lib.id, ... }:
 
 with pkgs;
 with lib;
@@ -108,6 +108,7 @@ let
                    (optionalAttrs
                      (hasAttr pkg.pname extras)
                      (extras.${pkg.pname} builtPkg));
-    in build-asdf-system withExtras;
+      fixedUp = fixup withExtras;
+    in build-asdf-system fixedUp;
 
 in mapAttrs (n: v: build v) qlpkgs
