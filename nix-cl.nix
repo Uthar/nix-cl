@@ -178,10 +178,6 @@ let
   #
   # This is done by generating a 'fixed' set of Quicklisp packages by
   # calling quicklispPackagesFor with the right `fixup`.
-  #
-  # For now this prevents reuse of generated derivation attrs because
-  # of an infinite recursion. Could it be fixed by making lispLibs a
-  # function?
   commonLispPackagesFor = lisp:
     let
       build-asdf-system' = body: build-asdf-system (body // { inherit lisp; });
@@ -214,9 +210,11 @@ let
   fixupFor = manualPackages: qlPkg:
     assert (lib.isAttrs qlPkg && !lib.isDerivation qlPkg);
     let
+      # Make it possible to reuse generated attrs without recursing into oblivion
+      packages = (lib.filterAttrs (n: v: n != qlPkg.pname) manualPackages);
       substituteLib = pkg:
-        if (lib.hasAttr pkg.pname manualPackages)
-        then manualPackages.${pkg.pname}
+        if lib.hasAttr pkg.pname packages
+        then packages.${pkg.pname}
         else pkg;
       pkg = substituteLib qlPkg;
     in pkg // { lispLibs = map substituteLib pkg.lispLibs; };
