@@ -31,7 +31,20 @@ Use cases include:
 
 ### packaging systems
 
-Packages are declared using `build-asdf-system` - its API is documented in `nix-cl.nix`. Lots of examples are provided in `packages.nix`: for example, `cffi`, `cl-sqlite`, `hunchentoot` are packaged.
+Packages are declared using `build-asdf-system` - its API is documented in `nix-cl.nix`. A simple example of packaging `bordeaux-threads` would be:
+
+```
+bordeaux-threads = {
+  pname = "bordeaux-threads";
+  version = "0.8.8";
+  src = builtins.fetchTarball {
+    url = "http://github.com/sionescu/bordeaux-threads/archive/v0.8.8.tar.gz";
+    sha256 = "19i443fz3488v1pbbr9x24y8h8vlyhny9vj6c9jk5prm702awrp6";
+  };
+  lispLibs = [ alexandria ];
+};
+```
+
 
 ### building lisp wrappers
 
