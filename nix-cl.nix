@@ -100,10 +100,18 @@ let
       #
       # `lisp` must evaluate this file then exit immediately. For
       # example, SBCL's --script flag does just that.
+      #
+      # NOTE:
+      # Every other library worked fine with asdf:compile-system in
+      # buildScript.
+      #
+      # cl-syslog, for some reason, signals that CL-SYSLOG::VALID-SD-ID-P
+      # is undefined with compile-system, but works perfectly with
+      # load-system. Strange.
       buildScript = pkgs.writeText "build-${pname}.lisp" ''
         (require :asdf)
         (dolist (s '(${concatStringsSep " " systems}))
-          (asdf:compile-system s))
+          (asdf:load-system s))
       '';
 
       buildPhase = optionalString (src != null) ''
