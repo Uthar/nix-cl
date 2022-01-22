@@ -13,6 +13,42 @@ let
     "cl+ssl" = pkg: {
       nativeLibs = [ openssl ];
     };
+    cl-cffi-gtk-glib = pkg: {
+      nativeLibs = [ glib ];
+    };
+    cl-cffi-gtk-cairo = pkg: {
+      nativeLibs = [ cairo ];
+    };
+    cl-cffi-gtk-gdk = pkg: {
+      nativeLibs = [ gtk3 ];
+    };
+    cl-cffi-gtk-gdk-pixbuf = pkg: {
+      nativeLibs = [ gdk-pixbuf ];
+    };
+    cl-cffi-gtk-pango = pkg: {
+      nativeLibs = [ pango ];
+    };
+    cl-gobject-introspection = pkg: {
+      nativeLibs = [ glib gobject-introspection ];
+    };
+    cl-mysql = pkg: {
+      nativeLibs = [ mysql-client ];
+    };
+    clsql-postgresql = pkg: {
+      nativeLibs = [ postgresql.lib ];
+    };
+    clsql-sqlite3 = pkg: {
+      nativeLibs = [ sqlite ];
+    };
+    cl-webkit2 = pkg: {
+      nativeLibs = [ webkitgtk ];
+    };
+    dbd-mysql = pkg: {
+      nativeLibs = [ mysql-client ];
+    };
+    lla = pkg: {
+      nativeLibs = [ openblas ];
+    };
     cffi-libffi = pkg: {
       nativeBuildInputs = [ libffi ];
       nativeLibs = [ libffi ];
