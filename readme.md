@@ -117,6 +117,11 @@ So, if you experience stack overflow with nix <=2.3, try again with `ulimit -s 6
 
 In particular I had such problems with `cl-ana`, `generic-cl`, among others.
 
+## Quirks
+
+- `.` and `+` in names are converted to `_`. (`cl+ssl`->`cl_ssl`)
+- names starting with a number have a `_` prepended (`3d-vectors`->`_3d-vectors`)
+
 ## other nix+CL projects
 
 - https://github.com/SquircleSpace/ql2nix
