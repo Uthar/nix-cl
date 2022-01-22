@@ -115,7 +115,7 @@ To instantiate some of the imported expressions, you might need https://github.c
 
 So, if you experience stack overflow with nix <=2.3, try again with `ulimit -s 65536`
 
-In particular I had such problems with `cl-ana`, among others.
+In particular I had such problems with `cl-ana`, `generic-cl`, among others.
 
 ## other nix+CL projects
 
