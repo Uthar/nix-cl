@@ -140,45 +140,10 @@ let
     ];
   };
 
-
-  cl-fuse-meta-fs = build-with-compile-into-pwd {
-    inherit (ql.cl-fuse-meta-fs) pname version src lispLibs;
-  };
-
   cl-fuse = build-with-compile-into-pwd {
     inherit (ql.cl-fuse) pname version src lispLibs;
     nativeBuildInputs = [ pkgs.fuse ];
     nativeLibs = [ pkgs.fuse ];
-  };
-
-  mgl-pax = build-asdf-system {
-    inherit (ql.mgl-pax) pname version src lispLibs;
-    preConfigure = "export HOME=$(pwd)";
-  };
-
-  css-selectors = build-asdf-system {
-    inherit (ql.css-selectors) pname version src lispLibs;
-    preConfigure = "export HOME=$(pwd)";
-  };
-
-  css-selectors-simple-tree = build-asdf-system {
-    inherit (ql.css-selectors-simple-tree) pname version src lispLibs;
-    preConfigure = "export HOME=$(pwd)";
-  };
-
-  css-selectors-stp = build-asdf-system {
-    inherit (ql.css-selectors-stp) pname version src lispLibs;
-    preConfigure = "export HOME=$(pwd)";
-  };
-
-  buildnode = build-asdf-system {
-    inherit (ql.buildnode) pname version src lispLibs;
-    preConfigure = "export HOME=$(pwd)";
-  };
-
-  swank = build-asdf-system {
-    inherit (ql.swank) pname version src lispLibs;
-    preConfigure = "export HOME=$(pwd)";
   };
 
   cl-containers = build-asdf-system {
