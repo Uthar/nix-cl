@@ -140,14 +140,15 @@ let
       '';
 
       # Copy compiled files to store
+      #
+      # Make sure to include '$' in regex to prevent skipping
+      # stuff like 'iolib.asdf.asd' for system 'iolib.asd'
+      #
+      # Same with '/': `local-time.asd` for system `cl-postgres+local-time.asd`
       installPhase =
         let
           mkSystemsRegex = systems:
-            concatMapStringsSep "|"
-              # Make sure to include $ in regex to prevent skipping
-              # stuff like 'system.asdf.asd' - such as in `iolib.asdf`
-              (x: (removeSuffix "\"" (escapeNixString (x + ".asd"))) + "$\"")
-              systems;
+            concatMapStringsSep "\\|" (replaceStrings ["." "+"] ["[.]" "[+]"]) systems;
         in
       ''
         mkdir -pv $out
@@ -155,7 +156,7 @@ let
 
         # Remove all .asd files except for those in `systems`.
         find $out -name "*.asd" \
-        | grep -v "${escapeRegex (mkSystemsRegex systems)}"\
+        | grep -v "/\(${mkSystemsRegex systems}\)\.asd$" \
         | xargs rm -fv || true
       '';
 
