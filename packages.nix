@@ -36,37 +36,13 @@ let
 
   packages = rec {
 
-  asdf = with builtins; let
-    version = "3.3.5.3";
-    asdf-build = (build-asdf-system {
-      inherit version;
-      pname = "asdf-build";
-
-      src = builtins.fetchTarball {
-        url = "https://gitlab.common-lisp.net/asdf/asdf/-/archive/3.3.5.3/asdf-3.3.5.3.tar.gz";
-        sha256 = "0aw200awhg58smmbdmz80bayzmbm1a6547gv0wmc8yv89gjqldbv";
-      };
-
-      systems = [ "asdf" "uiop" ];
-
-    }).overrideAttrs(o: {
-      buildPhase = ''
-        mkdir __fasls
-        export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$(pwd)//
-        export ASDF_OUTPUT_TRANSLATIONS="$(pwd):$(pwd)/__fasls:${storeDir}:${storeDir}"
-        ${o.lisp} ${o.buildScript}
-      '';
-      installPhase = ''
-        mkdir -pv $out
-        rm -rf __fasls
-        cp -r * $out
-      '';
-    });
-
-  in build-asdf-system {
-    inherit version;
+  asdf = build-with-compile-into-pwd {
     pname = "asdf";
-    src = asdf-build.out;
+    version = "3.3.5.3";
+    src = builtins.fetchTarball {
+      url = "https://gitlab.common-lisp.net/asdf/asdf/-/archive/3.3.5.3/asdf-3.3.5.3.tar.gz";
+      sha256 = "0aw200awhg58smmbdmz80bayzmbm1a6547gv0wmc8yv89gjqldbv";
+    };
     systems = [ "asdf" "uiop" ];
   };
 
@@ -94,50 +70,17 @@ let
     javaLibs = [ jna ];
   };
 
-  cl-unicode = let
-    version = "0.1.6";
-    # cl-unicode generates lisp source files during compilation.
-    #
-    # Normally this fails because of an attempt to write to
-    # storeDir. A workaround is to run the compilation first with
-    # CL_SOURCE_REGISTRY set to pwd, discard the fasls, then use $out
-    # of that as the $src of the next compilation
-    cl-unicode-build = (build-asdf-system {
-      inherit version;
-      pname = "cl-unicode-build";
-
-      src =  builtins.fetchTarball {
-        url = "https://github.com/edicl/cl-unicode/archive/refs/tags/v0.1.6.tar.gz";
-        sha256 = "0ykx2s9lqfl74p1px0ik3l2izd1fc9jd1b4ra68s5x34rvjy0hza";
-      };
-
-      systems = [ "cl-unicode" ];
-
-      lispLibs = with ql; [
-        cl-ppcre
-        flexi-streams
-      ];
-    }).overrideAttrs(o: {
-      buildPhase = with builtins; ''
-        mkdir __fasls
-        export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$(pwd)//
-        export ASDF_OUTPUT_TRANSLATIONS="$(pwd):$(pwd)/__fasls:${storeDir}:${storeDir}"
-        ${o.lisp} ${o.buildScript}
-      '';
-      installPhase = ''
-        mkdir -pv $out
-        rm -rf __fasls
-        cp -r * $out
-      '';
-    });
-
-  in build-asdf-system {
-    inherit version;
+  cl-unicode = build-with-compile-into-pwd {
     pname = "cl-unicode";
-    src = cl-unicode-build.out;
-    lispLibs = [
-      ql.cl-ppcre
-      # flexi-streams is only needed for cl-unicode/build
+    version = "0.1.6";
+    src =  builtins.fetchTarball {
+      url = "https://github.com/edicl/cl-unicode/archive/refs/tags/v0.1.6.tar.gz";
+      sha256 = "0ykx2s9lqfl74p1px0ik3l2izd1fc9jd1b4ra68s5x34rvjy0hza";
+    };
+    systems = [ "cl-unicode" ];
+    lispLibs = with ql; [
+      cl-ppcre
+      flexi-streams
     ];
   };
 
