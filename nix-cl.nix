@@ -33,6 +33,7 @@ let
     { pname,
       version,
       src ? null,
+      patches ? [],
 
       # Native libraries, will be appended to the library path
       nativeLibs ? [],
@@ -64,7 +65,11 @@ let
     } @ args:
 
     stdenv.mkDerivation (rec {
-      inherit pname version src nativeLibs javaLibs lispLibs lisp systems;
+      inherit pname version nativeLibs javaLibs lispLibs lisp systems;
+
+      src = if builtins.length patches > 0
+            then apply-patches args
+            else args.src;
 
       # When src is null, we are building a lispWithPackages and only
       # want to make use of the dependency environment variables
@@ -167,6 +172,22 @@ let
 
     } // args);
 
+  # Need to do that because we always want to compile straight from
+  # `src` for go-to-definition to work in SLIME.
+  apply-patches = { patches, src, ... }:
+    stdenv.mkDerivation {
+      inherit patches src;
+      pname = "source";
+      version = "patched";
+      dontConfigure = true;
+      dontBuild = true;
+      dontStrip = true;
+      dontFixup = true;
+      installPhase = ''
+        mkdir -pv $out
+        cp -r * $out
+      '';
+    };
 
   # Build the set of lisp packages using `lisp`
   # These packages are defined manually for one reason or another:
