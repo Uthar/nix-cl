@@ -7,10 +7,24 @@
 (defun nix-string (object)
   (format nil "\"~a\"" object))
 
+(defun replace-regexes (from to str)
+  (assert (= (length from) (length to)))
+  (if (null from)
+      str
+      (replace-regexes
+       (rest from)
+       (rest to)
+       (ppcre:regex-replace-all (first from) str (first to)))))
+
 (defun nixify-symbol (string)
-  (if (ppcre:scan "^[0-9]" string)
-      (str:concat "_" (ppcre:regex-replace-all "[.+]" string "_"))
-      (ppcre:regex-replace-all "[.+]" string "_")))
+  (flet ((fix-special-chars (str)
+           (replace-regexes '("[+]$" "[+]" "[.]")
+                            '("_plus" "_plus_" "_dot_")
+                            str)))
+    (if (ppcre:scan "^[0-9]" string)
+        (str:concat "_" (fix-special-chars string))
+        (fix-special-chars string))))
+
 
 (defun nix-symbol (object)
   (nixify-symbol (format nil "~a" object)))

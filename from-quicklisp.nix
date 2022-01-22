@@ -601,7 +601,7 @@ rec {
     systems = [ "alexandria-tests" ];
     lispLibs = [ alexandria ];
   };
-  alexandria_ = {
+  alexandria_plus = {
     pname = "alexandria+";
     createAsd = false;
     version = "20211230-git";
@@ -848,7 +848,7 @@ rec {
     systems = [ "april" ];
     lispLibs = [ alexandria aplesque array-operations cl-cpus cl-ppcre decimals lparallel parse-number prove simple-date-time symbol-munger trivia vex ];
   };
-  april-demo_cnn = {
+  april-demo_dot_cnn = {
     pname = "april-demo.cnn";
     createAsd = false;
     version = "20211020-git";
@@ -861,7 +861,7 @@ rec {
     systems = [ "april-demo.cnn" ];
     lispLibs = [ april lisp-binary ];
   };
-  april-demo_dfns_array = {
+  april-demo_dot_dfns_dot_array = {
     pname = "april-demo.dfns.array";
     createAsd = false;
     version = "20211020-git";
@@ -874,7 +874,7 @@ rec {
     systems = [ "april-demo.dfns.array" ];
     lispLibs = [ april ];
   };
-  april-demo_dfns_graph = {
+  april-demo_dot_dfns_dot_graph = {
     pname = "april-demo.dfns.graph";
     createAsd = false;
     version = "20211020-git";
@@ -926,7 +926,7 @@ rec {
     systems = [ "arc-compat" ];
     lispLibs = [ babel bordeaux-threads cl-fad fiveam ironclad named-readtables ];
   };
-  architecture_builder-protocol = {
+  architecture_dot_builder-protocol = {
     pname = "architecture.builder-protocol";
     createAsd = false;
     version = "20211020-git";
@@ -939,7 +939,7 @@ rec {
     systems = [ "architecture.builder-protocol" ];
     lispLibs = [ alexandria ];
   };
-  architecture_builder-protocol_json = {
+  architecture_dot_builder-protocol_dot_json = {
     pname = "architecture.builder-protocol.json";
     createAsd = false;
     version = "20211020-git";
@@ -950,9 +950,9 @@ rec {
       asd = "architecture.builder-protocol.json";
     });
     systems = [ "architecture.builder-protocol.json" ];
-    lispLibs = [ alexandria architecture_builder-protocol cl-json ];
+    lispLibs = [ alexandria architecture_dot_builder-protocol cl-json ];
   };
-  architecture_builder-protocol_universal-builder = {
+  architecture_dot_builder-protocol_dot_universal-builder = {
     pname = "architecture.builder-protocol.universal-builder";
     createAsd = false;
     version = "20211020-git";
@@ -963,9 +963,9 @@ rec {
       asd = "architecture.builder-protocol.universal-builder";
     });
     systems = [ "architecture.builder-protocol.universal-builder" ];
-    lispLibs = [ alexandria architecture_builder-protocol closer-mop ];
+    lispLibs = [ alexandria architecture_dot_builder-protocol closer-mop ];
   };
-  architecture_builder-protocol_xpath = {
+  architecture_dot_builder-protocol_dot_xpath = {
     pname = "architecture.builder-protocol.xpath";
     createAsd = false;
     version = "20211020-git";
@@ -976,7 +976,7 @@ rec {
       asd = "architecture.builder-protocol.xpath";
     });
     systems = [ "architecture.builder-protocol.xpath" ];
-    lispLibs = [ alexandria architecture_builder-protocol xpath ];
+    lispLibs = [ alexandria architecture_dot_builder-protocol xpath ];
   };
   cl-hooks = {
     pname = "cl-hooks";
@@ -991,7 +991,7 @@ rec {
     systems = [ "cl-hooks" ];
     lispLibs = [ alexandria closer-mop let-plus trivial-garbage ];
   };
-  architecture_service-provider = {
+  architecture_dot_service-provider = {
     pname = "architecture.service-provider";
     createAsd = false;
     version = "20191007-git";
@@ -1002,9 +1002,9 @@ rec {
       asd = "architecture.service-provider";
     });
     systems = [ "architecture.service-provider" ];
-    lispLibs = [ alexandria let-plus more-conditions utilities_print-items ];
+    lispLibs = [ alexandria let-plus more-conditions utilities_dot_print-items ];
   };
-  architecture_service-provider-and-hooks = {
+  architecture_dot_service-provider-and-hooks = {
     pname = "architecture.service-provider-and-hooks";
     createAsd = false;
     version = "20191007-git";
@@ -1015,7 +1015,7 @@ rec {
       asd = "architecture.service-provider-and-hooks";
     });
     systems = [ "architecture.service-provider-and-hooks" ];
-    lispLibs = [ architecture_service-provider cl-hooks ];
+    lispLibs = [ architecture_dot_service-provider cl-hooks ];
   };
   archive = {
     pname = "archive";
@@ -1106,7 +1106,7 @@ rec {
       asd = "arrival";
     });
     systems = [ "arrival" ];
-    lispLibs = [ alexandria iterate log4cl trivia trivia_quasiquote ];
+    lispLibs = [ alexandria iterate log4cl trivia trivia_dot_quasiquote ];
   };
   arrow-macros = {
     pname = "arrow-macros";
@@ -1236,7 +1236,7 @@ rec {
       asd = "asdf-finalizers-test";
     });
     systems = [ "asdf-finalizers-test" ];
-    lispLibs = [ asdf-finalizers fare-utils hu_dwim_stefil list-of ];
+    lispLibs = [ asdf-finalizers fare-utils hu_dot_dwim_dot_stefil list-of ];
   };
   list-of = {
     pname = "list-of";
@@ -1251,7 +1251,7 @@ rec {
     systems = [ "list-of" ];
     lispLibs = [ asdf-finalizers ];
   };
-  net_didierverna_asdf-flv = {
+  net_dot_didierverna_dot_asdf-flv = {
     pname = "net.didierverna.asdf-flv";
     createAsd = false;
     version = "version-2.1";
@@ -1691,7 +1691,7 @@ rec {
       asd = "babel-tests";
     });
     systems = [ "babel-tests" ];
-    lispLibs = [ babel hu_dwim_stefil ];
+    lispLibs = [ babel hu_dot_dwim_dot_stefil ];
   };
   base-blobs = {
     pname = "base-blobs";
@@ -1979,7 +1979,7 @@ rec {
     systems = [ "birch" ];
     lispLibs = [ alexandria flexi-streams split-sequence usocket ];
   };
-  birch_test = {
+  birch_dot_test = {
     pname = "birch.test";
     createAsd = false;
     version = "20160318-git";
@@ -2005,7 +2005,7 @@ rec {
     systems = [ "bit-ops" ];
     lispLibs = [ alexandria immutable-struct iterate lisp-namespace trivia ];
   };
-  bit-ops_test = {
+  bit-ops_dot_test = {
     pname = "bit-ops.test";
     createAsd = false;
     version = "20180228-git";
@@ -2083,7 +2083,7 @@ rec {
     systems = [ "bk-tree" ];
     lispLibs = [  ];
   };
-  bknr_data_impex = {
+  bknr_dot_data_dot_impex = {
     pname = "bknr.data.impex";
     createAsd = false;
     version = "20191227-git";
@@ -2094,9 +2094,9 @@ rec {
       asd = "bknr.data.impex";
     });
     systems = [ "bknr.data.impex" ];
-    lispLibs = [ bknr_datastore bknr_impex bknr_indices bknr_utils cl-interpol unit-test ];
+    lispLibs = [ bknr_dot_datastore bknr_dot_impex bknr_dot_indices bknr_dot_utils cl-interpol unit-test ];
   };
-  bknr_datastore = {
+  bknr_dot_datastore = {
     pname = "bknr.datastore";
     createAsd = false;
     version = "20191227-git";
@@ -2107,9 +2107,9 @@ rec {
       asd = "bknr.datastore";
     });
     systems = [ "bknr.datastore" ];
-    lispLibs = [ alexandria bknr_indices bknr_utils cl-interpol closer-mop trivial-utf-8 unit-test yason ];
+    lispLibs = [ alexandria bknr_dot_indices bknr_dot_utils cl-interpol closer-mop trivial-utf-8 unit-test yason ];
   };
-  bknr_impex = {
+  bknr_dot_impex = {
     pname = "bknr.impex";
     createAsd = false;
     version = "20191227-git";
@@ -2120,9 +2120,9 @@ rec {
       asd = "bknr.impex";
     });
     systems = [ "bknr.impex" ];
-    lispLibs = [ bknr_indices bknr_utils bknr_xml cl-interpol closer-mop cxml ];
+    lispLibs = [ bknr_dot_indices bknr_dot_utils bknr_dot_xml cl-interpol closer-mop cxml ];
   };
-  bknr_indices = {
+  bknr_dot_indices = {
     pname = "bknr.indices";
     createAsd = false;
     version = "20191227-git";
@@ -2133,9 +2133,9 @@ rec {
       asd = "bknr.indices";
     });
     systems = [ "bknr.indices" ];
-    lispLibs = [ bknr_skip-list bknr_utils cl-interpol closer-mop ];
+    lispLibs = [ bknr_dot_skip-list bknr_dot_utils cl-interpol closer-mop ];
   };
-  bknr_skip-list = {
+  bknr_dot_skip-list = {
     pname = "bknr.skip-list";
     createAsd = false;
     version = "20191227-git";
@@ -2148,7 +2148,7 @@ rec {
     systems = [ "bknr.skip-list" ];
     lispLibs = [  ];
   };
-  bknr_skip-list_test = {
+  bknr_dot_skip-list_dot_test = {
     pname = "bknr.skip-list.test";
     createAsd = "bknr.skip-list";
     version = "20191227-git";
@@ -2159,9 +2159,9 @@ rec {
       asd = "bknr.skip-list";
     });
     systems = [ "bknr.skip-list.test" ];
-    lispLibs = [ bknr_skip-list unit-test ];
+    lispLibs = [ bknr_dot_skip-list unit-test ];
   };
-  bknr_utils = {
+  bknr_dot_utils = {
     pname = "bknr.utils";
     createAsd = false;
     version = "20191227-git";
@@ -2174,7 +2174,7 @@ rec {
     systems = [ "bknr.utils" ];
     lispLibs = [ alexandria bordeaux-threads cl-interpol cl-ppcre flexi-streams md5 ];
   };
-  bknr_xml = {
+  bknr_dot_xml = {
     pname = "bknr.xml";
     createAsd = false;
     version = "20191227-git";
@@ -2187,7 +2187,7 @@ rec {
     systems = [ "bknr.xml" ];
     lispLibs = [ cl-interpol cxml ];
   };
-  bknr_modules = {
+  bknr_dot_modules = {
     pname = "bknr.modules";
     createAsd = false;
     version = "20140713-git";
@@ -2198,9 +2198,9 @@ rec {
       asd = "bknr.modules";
     });
     systems = [ "bknr.modules" ];
-    lispLibs = [ bknr_utils bknr_web cl-gd cl-interpol cl-ppcre cl-smtp closer-mop cxml md5 parenscript puri stem unit-test ];
+    lispLibs = [ bknr_dot_utils bknr_dot_web cl-gd cl-interpol cl-ppcre cl-smtp closer-mop cxml md5 parenscript puri stem unit-test ];
   };
-  bknr_web = {
+  bknr_dot_web = {
     pname = "bknr.web";
     createAsd = false;
     version = "20140713-git";
@@ -2211,7 +2211,7 @@ rec {
       asd = "bknr.web";
     });
     systems = [ "bknr.web" ];
-    lispLibs = [ alexandria bknr_data_impex bknr_datastore bknr_utils bknr_xml cl-gd cl-interpol cl-ppcre cxml drakma hunchentoot md5 parenscript puri unit-test usocket xhtmlgen yason ];
+    lispLibs = [ alexandria bknr_dot_data_dot_impex bknr_dot_datastore bknr_dot_utils bknr_dot_xml cl-gd cl-interpol cl-ppcre cxml drakma hunchentoot md5 parenscript puri unit-test usocket xhtmlgen yason ];
   };
   html-match = {
     pname = "html-match";
@@ -2226,7 +2226,7 @@ rec {
     systems = [ "html-match" ];
     lispLibs = [ cl-ppcre unit-test ];
   };
-  html-match_test = {
+  html-match_dot_test = {
     pname = "html-match.test";
     createAsd = "html-match";
     version = "20140713-git";
@@ -2304,7 +2304,7 @@ rec {
     systems = [ "bnf" ];
     lispLibs = [ trestrul uiop ];
   };
-  bnf_test = {
+  bnf_dot_test = {
     pname = "bnf.test";
     createAsd = false;
     version = "20211020-git";
@@ -2796,7 +2796,7 @@ rec {
       asd = "burgled-batteries";
     });
     systems = [ "burgled-batteries" ];
-    lispLibs = [ alexandria cffi cffi-grovel cl-fad parse-declarations-1_0 trivial-garbage ];
+    lispLibs = [ alexandria cffi cffi-grovel cl-fad parse-declarations-1_dot_0 trivial-garbage ];
   };
   burgled-batteries-tests = {
     pname = "burgled-batteries-tests";
@@ -2811,7 +2811,7 @@ rec {
     systems = [ "burgled-batteries-tests" ];
     lispLibs = [ burgled-batteries cl-quickcheck lift ];
   };
-  burgled-batteries_syntax = {
+  burgled-batteries_dot_syntax = {
     pname = "burgled-batteries.syntax";
     createAsd = false;
     version = "20210531-git";
@@ -2824,7 +2824,7 @@ rec {
     systems = [ "burgled-batteries.syntax" ];
     lispLibs = [ burgled-batteries esrap named-readtables ];
   };
-  burgled-batteries_syntax-test = {
+  burgled-batteries_dot_syntax-test = {
     pname = "burgled-batteries.syntax-test";
     createAsd = false;
     version = "20210531-git";
@@ -2835,9 +2835,9 @@ rec {
       asd = "burgled-batteries.syntax-test";
     });
     systems = [ "burgled-batteries.syntax-test" ];
-    lispLibs = [ burgled-batteries_syntax lift ];
+    lispLibs = [ burgled-batteries_dot_syntax lift ];
   };
-  bytecurry_asdf-ext = {
+  bytecurry_dot_asdf-ext = {
     pname = "bytecurry.asdf-ext";
     createAsd = false;
     version = "20150505-git";
@@ -2850,7 +2850,7 @@ rec {
     systems = [ "bytecurry.asdf-ext" ];
     lispLibs = [ asdf-package-system ];
   };
-  bytecurry_mocks = {
+  bytecurry_dot_mocks = {
     pname = "bytecurry.mocks";
     createAsd = false;
     version = "20200325-git";
@@ -2861,7 +2861,7 @@ rec {
       asd = "bytecurry.mocks";
     });
     systems = [ "bytecurry.mocks" ];
-    lispLibs = [ asdf-package-system bytecurry_asdf-ext ];
+    lispLibs = [ asdf-package-system bytecurry_dot_asdf-ext ];
   };
   c2ffi-blob = {
     pname = "c2ffi-blob";
@@ -3342,9 +3342,9 @@ rec {
       asd = "cepl";
     });
     systems = [ "cepl" ];
-    lispLibs = [ alexandria bordeaux-threads cepl_build cffi cl-opengl cl-ppcre documentation-utils float-features ieee-floats split-sequence uiop varjo ];
+    lispLibs = [ alexandria bordeaux-threads cepl_dot_build cffi cl-opengl cl-ppcre documentation-utils float-features ieee-floats split-sequence uiop varjo ];
   };
-  cepl_build = {
+  cepl_dot_build = {
     pname = "cepl.build";
     createAsd = false;
     version = "release-quicklisp-d1a10b6c-git";
@@ -3357,7 +3357,7 @@ rec {
     systems = [ "cepl.build" ];
     lispLibs = [ alexandria ];
   };
-  cepl_camera = {
+  cepl_dot_camera = {
     pname = "cepl.camera";
     createAsd = false;
     version = "release-quicklisp-1292212a-git";
@@ -3368,9 +3368,9 @@ rec {
       asd = "cepl.camera";
     });
     systems = [ "cepl.camera" ];
-    lispLibs = [ cepl cepl_spaces rtg-math ];
+    lispLibs = [ cepl cepl_dot_spaces rtg-math ];
   };
-  cepl_devil = {
+  cepl_dot_devil = {
     pname = "cepl.devil";
     createAsd = false;
     version = "release-quicklisp-ea5f8514-git";
@@ -3383,7 +3383,7 @@ rec {
     systems = [ "cepl.devil" ];
     lispLibs = [ cepl cl-devil ];
   };
-  cepl_drm-gbm = {
+  cepl_dot_drm-gbm = {
     pname = "cepl.drm-gbm";
     createAsd = false;
     version = "20190521-git";
@@ -3396,7 +3396,7 @@ rec {
     systems = [ "cepl.drm-gbm" ];
     lispLibs = [ cepl cl-drm cl-egl cl-gbm osicat ];
   };
-  cepl_glop = {
+  cepl_dot_glop = {
     pname = "cepl.glop";
     createAsd = false;
     version = "release-quicklisp-8ec09801-git";
@@ -3409,7 +3409,7 @@ rec {
     systems = [ "cepl.glop" ];
     lispLibs = [ cepl glop ];
   };
-  cepl_sdl2 = {
+  cepl_dot_sdl2 = {
     pname = "cepl.sdl2";
     createAsd = false;
     version = "release-quicklisp-6da5a030-git";
@@ -3422,7 +3422,7 @@ rec {
     systems = [ "cepl.sdl2" ];
     lispLibs = [ cepl sdl2 ];
   };
-  cepl_sdl2-image = {
+  cepl_dot_sdl2-image = {
     pname = "cepl.sdl2-image";
     createAsd = false;
     version = "release-quicklisp-94a77649-git";
@@ -3435,7 +3435,7 @@ rec {
     systems = [ "cepl.sdl2-image" ];
     lispLibs = [ cepl sdl2 sdl2-image ];
   };
-  cepl_sdl2-ttf = {
+  cepl_dot_sdl2-ttf = {
     pname = "cepl.sdl2-ttf";
     createAsd = false;
     version = "release-quicklisp-11b498a3-git";
@@ -3446,9 +3446,9 @@ rec {
       asd = "cepl.sdl2-ttf";
     });
     systems = [ "cepl.sdl2-ttf" ];
-    lispLibs = [ cepl_sdl2 rtg-math sdl2-ttf ];
+    lispLibs = [ cepl_dot_sdl2 rtg-math sdl2-ttf ];
   };
-  cepl_skitter_glop = {
+  cepl_dot_skitter_dot_glop = {
     pname = "cepl.skitter.glop";
     createAsd = false;
     version = "release-quicklisp-f52b9240-git";
@@ -3459,9 +3459,9 @@ rec {
       asd = "cepl.skitter.glop";
     });
     systems = [ "cepl.skitter.glop" ];
-    lispLibs = [ cepl_glop skitter_glop ];
+    lispLibs = [ cepl_dot_glop skitter_dot_glop ];
   };
-  cepl_skitter_sdl2 = {
+  cepl_dot_skitter_dot_sdl2 = {
     pname = "cepl.skitter.sdl2";
     createAsd = false;
     version = "release-quicklisp-f52b9240-git";
@@ -3472,9 +3472,9 @@ rec {
       asd = "cepl.skitter.sdl2";
     });
     systems = [ "cepl.skitter.sdl2" ];
-    lispLibs = [ cepl_sdl2 skitter_sdl2 ];
+    lispLibs = [ cepl_dot_sdl2 skitter_dot_sdl2 ];
   };
-  cepl_spaces = {
+  cepl_dot_spaces = {
     pname = "cepl.spaces";
     createAsd = false;
     version = "release-quicklisp-c7f83f26-git";
@@ -3485,7 +3485,7 @@ rec {
       asd = "cepl.spaces";
     });
     systems = [ "cepl.spaces" ];
-    lispLibs = [ cepl documentation-utils fn rtg-math rtg-math_vari varjo ];
+    lispLibs = [ cepl documentation-utils fn rtg-math rtg-math_dot_vari varjo ];
   };
   ceramic = {
     pname = "ceramic";
@@ -3708,7 +3708,7 @@ rec {
     systems = [ "chancery" ];
     lispLibs = [ named-readtables ];
   };
-  chancery_test = {
+  chancery_dot_test = {
     pname = "chancery.test";
     createAsd = false;
     version = "20201016-hg";
@@ -3734,7 +3734,7 @@ rec {
     systems = [ "changed-stream" ];
     lispLibs = [  ];
   };
-  changed-stream_test = {
+  changed-stream_dot_test = {
     pname = "changed-stream.test";
     createAsd = false;
     version = "20130128-git";
@@ -3784,9 +3784,9 @@ rec {
       asd = "check-bnf";
     });
     systems = [ "check-bnf" ];
-    lispLibs = [ alexandria closer-mop jingoh_documentizer matrix-case millet ];
+    lispLibs = [ alexandria closer-mop jingoh_dot_documentizer matrix-case millet ];
   };
-  check-bnf_test = {
+  check-bnf_dot_test = {
     pname = "check-bnf.test";
     createAsd = false;
     version = "20211209-git";
@@ -3888,9 +3888,9 @@ rec {
       asd = "chillax";
     });
     systems = [ "chillax" ];
-    lispLibs = [ chillax_core chillax_yason ];
+    lispLibs = [ chillax_dot_core chillax_dot_yason ];
   };
-  chillax_core = {
+  chillax_dot_core = {
     pname = "chillax.core";
     createAsd = false;
     version = "20150302-git";
@@ -3903,7 +3903,7 @@ rec {
     systems = [ "chillax.core" ];
     lispLibs = [ alexandria drakma flexi-streams ];
   };
-  chillax_jsown = {
+  chillax_dot_jsown = {
     pname = "chillax.jsown";
     createAsd = false;
     version = "20150302-git";
@@ -3914,9 +3914,9 @@ rec {
       asd = "chillax.jsown";
     });
     systems = [ "chillax.jsown" ];
-    lispLibs = [ chillax_core jsown ];
+    lispLibs = [ chillax_dot_core jsown ];
   };
-  chillax_view-server = {
+  chillax_dot_view-server = {
     pname = "chillax.view-server";
     createAsd = false;
     version = "20150302-git";
@@ -3929,7 +3929,7 @@ rec {
     systems = [ "chillax.view-server" ];
     lispLibs = [ alexandria yason ];
   };
-  chillax_yason = {
+  chillax_dot_yason = {
     pname = "chillax.yason";
     createAsd = false;
     version = "20150302-git";
@@ -3940,7 +3940,7 @@ rec {
       asd = "chillax.yason";
     });
     systems = [ "chillax.yason" ];
-    lispLibs = [ chillax_core yason ];
+    lispLibs = [ chillax_dot_core yason ];
   };
   chipmunk-blob = {
     pname = "chipmunk-blob";
@@ -4148,7 +4148,7 @@ rec {
       asd = "city-hash";
     });
     systems = [ "city-hash" ];
-    lispLibs = [ com_google_base nibbles swap-bytes ];
+    lispLibs = [ com_dot_google_dot_base nibbles swap-bytes ];
   };
   city-hash-test = {
     pname = "city-hash-test";
@@ -4161,9 +4161,9 @@ rec {
       asd = "city-hash-test";
     });
     systems = [ "city-hash-test" ];
-    lispLibs = [ city-hash hu_dwim_stefil ];
+    lispLibs = [ city-hash hu_dot_dwim_dot_stefil ];
   };
-  cl_ssl = {
+  cl_plus_ssl = {
     pname = "cl+ssl";
     createAsd = false;
     version = "20211230-git";
@@ -4176,7 +4176,7 @@ rec {
     systems = [ "cl+ssl" ];
     lispLibs = [ alexandria bordeaux-threads cffi flexi-streams trivial-features trivial-garbage trivial-gray-streams uiop usocket ];
   };
-  cl_ssl_test = {
+  cl_plus_ssl_dot_test = {
     pname = "cl+ssl.test";
     createAsd = false;
     version = "20211230-git";
@@ -4187,7 +4187,7 @@ rec {
       asd = "cl+ssl.test";
     });
     systems = [ "cl+ssl.test" ];
-    lispLibs = [ cl_ssl cl-coveralls fiveam usocket ];
+    lispLibs = [ cl_plus_ssl cl-coveralls fiveam usocket ];
   };
   cl-6502 = {
     pname = "cl-6502";
@@ -4293,7 +4293,7 @@ rec {
     systems = [ "cl-amqp" ];
     lispLibs = [ alexandria cl-interpol collectors fast-io local-time log4cl nibbles trivial-utf-8 wu-decimal ];
   };
-  cl-amqp_test = {
+  cl-amqp_dot_test = {
     pname = "cl-amqp.test";
     createAsd = false;
     version = "v0.4.1";
@@ -4317,9 +4317,9 @@ rec {
       asd = "cl-ana";
     });
     systems = [ "cl-ana" ];
-    lispLibs = [ cl-ana_array-utils cl-ana_binary-tree cl-ana_calculus cl-ana_clos-utils cl-ana_columnar-table cl-ana_csv-table cl-ana_error-propogation cl-ana_file-utils cl-ana_fitting cl-ana_generic-math cl-ana_hash-table-utils cl-ana_hdf-table cl-ana_histogram cl-ana_int-char cl-ana_linear-algebra cl-ana_list-utils cl-ana_lorentz cl-ana_makeres cl-ana_makeres-block cl-ana_makeres-branch cl-ana_makeres-graphviz cl-ana_makeres-macro cl-ana_makeres-progress cl-ana_makeres-table cl-ana_makeres-utils cl-ana_map cl-ana_math-functions cl-ana_ntuple-table cl-ana_package-utils cl-ana_pathname-utils cl-ana_plotting cl-ana_quantity cl-ana_reusable-table cl-ana_serialization cl-ana_spline cl-ana_statistical-learning cl-ana_statistics cl-ana_table cl-ana_table-utils cl-ana_table-viewing cl-ana_tensor ];
+    lispLibs = [ cl-ana_dot_array-utils cl-ana_dot_binary-tree cl-ana_dot_calculus cl-ana_dot_clos-utils cl-ana_dot_columnar-table cl-ana_dot_csv-table cl-ana_dot_error-propogation cl-ana_dot_file-utils cl-ana_dot_fitting cl-ana_dot_generic-math cl-ana_dot_hash-table-utils cl-ana_dot_hdf-table cl-ana_dot_histogram cl-ana_dot_int-char cl-ana_dot_linear-algebra cl-ana_dot_list-utils cl-ana_dot_lorentz cl-ana_dot_makeres cl-ana_dot_makeres-block cl-ana_dot_makeres-branch cl-ana_dot_makeres-graphviz cl-ana_dot_makeres-macro cl-ana_dot_makeres-progress cl-ana_dot_makeres-table cl-ana_dot_makeres-utils cl-ana_dot_map cl-ana_dot_math-functions cl-ana_dot_ntuple-table cl-ana_dot_package-utils cl-ana_dot_pathname-utils cl-ana_dot_plotting cl-ana_dot_quantity cl-ana_dot_reusable-table cl-ana_dot_serialization cl-ana_dot_spline cl-ana_dot_statistical-learning cl-ana_dot_statistics cl-ana_dot_table cl-ana_dot_table-utils cl-ana_dot_table-viewing cl-ana_dot_tensor ];
   };
-  cl-ana_array-utils = {
+  cl-ana_dot_array-utils = {
     pname = "cl-ana.array-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4332,7 +4332,7 @@ rec {
     systems = [ "cl-ana.array-utils" ];
     lispLibs = [ alexandria ];
   };
-  cl-ana_binary-tree = {
+  cl-ana_dot_binary-tree = {
     pname = "cl-ana.binary-tree";
     createAsd = false;
     version = "20211230-git";
@@ -4343,9 +4343,9 @@ rec {
       asd = "cl-ana.binary-tree";
     });
     systems = [ "cl-ana.binary-tree" ];
-    lispLibs = [ cl-ana_functional-utils cl-ana_list-utils cl-ana_macro-utils ];
+    lispLibs = [ cl-ana_dot_functional-utils cl-ana_dot_list-utils cl-ana_dot_macro-utils ];
   };
-  cl-ana_calculus = {
+  cl-ana_dot_calculus = {
     pname = "cl-ana.calculus";
     createAsd = false;
     version = "20211230-git";
@@ -4356,9 +4356,9 @@ rec {
       asd = "cl-ana.calculus";
     });
     systems = [ "cl-ana.calculus" ];
-    lispLibs = [ cl-ana_generic-math cl-ana_linear-algebra ];
+    lispLibs = [ cl-ana_dot_generic-math cl-ana_dot_linear-algebra ];
   };
-  cl-ana_clos-utils = {
+  cl-ana_dot_clos-utils = {
     pname = "cl-ana.clos-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4369,9 +4369,9 @@ rec {
       asd = "cl-ana.clos-utils";
     });
     systems = [ "cl-ana.clos-utils" ];
-    lispLibs = [ cl-ana_list-utils cl-ana_symbol-utils cl-ana_tensor closer-mop ];
+    lispLibs = [ cl-ana_dot_list-utils cl-ana_dot_symbol-utils cl-ana_dot_tensor closer-mop ];
   };
-  cl-ana_columnar-table = {
+  cl-ana_dot_columnar-table = {
     pname = "cl-ana.columnar-table";
     createAsd = false;
     version = "20211230-git";
@@ -4382,9 +4382,9 @@ rec {
       asd = "cl-ana.columnar-table";
     });
     systems = [ "cl-ana.columnar-table" ];
-    lispLibs = [ cl-ana_reusable-table cl-ana_table ];
+    lispLibs = [ cl-ana_dot_reusable-table cl-ana_dot_table ];
   };
-  cl-ana_csv-table = {
+  cl-ana_dot_csv-table = {
     pname = "cl-ana.csv-table";
     createAsd = false;
     version = "20211230-git";
@@ -4395,9 +4395,9 @@ rec {
       asd = "cl-ana.csv-table";
     });
     systems = [ "cl-ana.csv-table" ];
-    lispLibs = [ alexandria antik cl-ana_list-utils cl-ana_table cl-csv iterate ];
+    lispLibs = [ alexandria antik cl-ana_dot_list-utils cl-ana_dot_table cl-csv iterate ];
   };
-  cl-ana_error-propogation = {
+  cl-ana_dot_error-propogation = {
     pname = "cl-ana.error-propogation";
     createAsd = false;
     version = "20211230-git";
@@ -4408,9 +4408,9 @@ rec {
       asd = "cl-ana.error-propogation";
     });
     systems = [ "cl-ana.error-propogation" ];
-    lispLibs = [ cl-ana_generic-math cl-ana_math-functions ];
+    lispLibs = [ cl-ana_dot_generic-math cl-ana_dot_math-functions ];
   };
-  cl-ana_file-utils = {
+  cl-ana_dot_file-utils = {
     pname = "cl-ana.file-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4423,7 +4423,7 @@ rec {
     systems = [ "cl-ana.file-utils" ];
     lispLibs = [ external-program split-sequence ];
   };
-  cl-ana_fitting = {
+  cl-ana_dot_fitting = {
     pname = "cl-ana.fitting";
     createAsd = false;
     version = "20211230-git";
@@ -4434,9 +4434,9 @@ rec {
       asd = "cl-ana.fitting";
     });
     systems = [ "cl-ana.fitting" ];
-    lispLibs = [ alexandria cl-ana_error-propogation cl-ana_generic-math cl-ana_map cl-ana_math-functions gsll ];
+    lispLibs = [ alexandria cl-ana_dot_error-propogation cl-ana_dot_generic-math cl-ana_dot_map cl-ana_dot_math-functions gsll ];
   };
-  cl-ana_functional-utils = {
+  cl-ana_dot_functional-utils = {
     pname = "cl-ana.functional-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4449,7 +4449,7 @@ rec {
     systems = [ "cl-ana.functional-utils" ];
     lispLibs = [  ];
   };
-  cl-ana_generic-math = {
+  cl-ana_dot_generic-math = {
     pname = "cl-ana.generic-math";
     createAsd = false;
     version = "20211230-git";
@@ -4460,9 +4460,9 @@ rec {
       asd = "cl-ana.generic-math";
     });
     systems = [ "cl-ana.generic-math" ];
-    lispLibs = [ cl-ana_list-utils cl-ana_package-utils ];
+    lispLibs = [ cl-ana_dot_list-utils cl-ana_dot_package-utils ];
   };
-  cl-ana_gnuplot-interface = {
+  cl-ana_dot_gnuplot-interface = {
     pname = "cl-ana.gnuplot-interface";
     createAsd = false;
     version = "20211230-git";
@@ -4475,7 +4475,7 @@ rec {
     systems = [ "cl-ana.gnuplot-interface" ];
     lispLibs = [ external-program ];
   };
-  cl-ana_gsl-cffi = {
+  cl-ana_dot_gsl-cffi = {
     pname = "cl-ana.gsl-cffi";
     createAsd = false;
     version = "20211230-git";
@@ -4488,7 +4488,7 @@ rec {
     systems = [ "cl-ana.gsl-cffi" ];
     lispLibs = [ cffi ];
   };
-  cl-ana_hash-table-utils = {
+  cl-ana_dot_hash-table-utils = {
     pname = "cl-ana.hash-table-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4501,7 +4501,7 @@ rec {
     systems = [ "cl-ana.hash-table-utils" ];
     lispLibs = [  ];
   };
-  cl-ana_hdf-cffi = {
+  cl-ana_dot_hdf-cffi = {
     pname = "cl-ana.hdf-cffi";
     createAsd = false;
     version = "20211230-git";
@@ -4514,7 +4514,7 @@ rec {
     systems = [ "cl-ana.hdf-cffi" ];
     lispLibs = [ cffi cffi-grovel ];
   };
-  cl-ana_hdf-table = {
+  cl-ana_dot_hdf-table = {
     pname = "cl-ana.hdf-table";
     createAsd = false;
     version = "20211230-git";
@@ -4525,9 +4525,9 @@ rec {
       asd = "cl-ana.hdf-table";
     });
     systems = [ "cl-ana.hdf-table" ];
-    lispLibs = [ alexandria cl-ana_binary-tree cl-ana_hdf-typespec cl-ana_hdf-utils cl-ana_list-utils cl-ana_memoization cl-ana_table cl-ana_typed-table cl-ana_typespec ];
+    lispLibs = [ alexandria cl-ana_dot_binary-tree cl-ana_dot_hdf-typespec cl-ana_dot_hdf-utils cl-ana_dot_list-utils cl-ana_dot_memoization cl-ana_dot_table cl-ana_dot_typed-table cl-ana_dot_typespec ];
   };
-  cl-ana_hdf-typespec = {
+  cl-ana_dot_hdf-typespec = {
     pname = "cl-ana.hdf-typespec";
     createAsd = false;
     version = "20211230-git";
@@ -4538,9 +4538,9 @@ rec {
       asd = "cl-ana.hdf-typespec";
     });
     systems = [ "cl-ana.hdf-typespec" ];
-    lispLibs = [ alexandria cffi cl-ana_hdf-cffi cl-ana_list-utils cl-ana_memoization cl-ana_string-utils cl-ana_symbol-utils cl-ana_typespec ];
+    lispLibs = [ alexandria cffi cl-ana_dot_hdf-cffi cl-ana_dot_list-utils cl-ana_dot_memoization cl-ana_dot_string-utils cl-ana_dot_symbol-utils cl-ana_dot_typespec ];
   };
-  cl-ana_hdf-utils = {
+  cl-ana_dot_hdf-utils = {
     pname = "cl-ana.hdf-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4551,9 +4551,9 @@ rec {
       asd = "cl-ana.hdf-utils";
     });
     systems = [ "cl-ana.hdf-utils" ];
-    lispLibs = [ alexandria cffi cl-ana_hdf-cffi cl-ana_hdf-typespec cl-ana_macro-utils cl-ana_memoization cl-ana_pathname-utils cl-ana_string-utils cl-ana_typespec ];
+    lispLibs = [ alexandria cffi cl-ana_dot_hdf-cffi cl-ana_dot_hdf-typespec cl-ana_dot_macro-utils cl-ana_dot_memoization cl-ana_dot_pathname-utils cl-ana_dot_string-utils cl-ana_dot_typespec ];
   };
-  cl-ana_histogram = {
+  cl-ana_dot_histogram = {
     pname = "cl-ana.histogram";
     createAsd = false;
     version = "20211230-git";
@@ -4564,9 +4564,9 @@ rec {
       asd = "cl-ana.histogram";
     });
     systems = [ "cl-ana.histogram" ];
-    lispLibs = [ alexandria cl-ana_binary-tree cl-ana_clos-utils cl-ana_fitting cl-ana_functional-utils cl-ana_generic-math cl-ana_hash-table-utils cl-ana_list-utils cl-ana_macro-utils cl-ana_map cl-ana_symbol-utils cl-ana_tensor iterate ];
+    lispLibs = [ alexandria cl-ana_dot_binary-tree cl-ana_dot_clos-utils cl-ana_dot_fitting cl-ana_dot_functional-utils cl-ana_dot_generic-math cl-ana_dot_hash-table-utils cl-ana_dot_list-utils cl-ana_dot_macro-utils cl-ana_dot_map cl-ana_dot_symbol-utils cl-ana_dot_tensor iterate ];
   };
-  cl-ana_int-char = {
+  cl-ana_dot_int-char = {
     pname = "cl-ana.int-char";
     createAsd = false;
     version = "20211230-git";
@@ -4579,7 +4579,7 @@ rec {
     systems = [ "cl-ana.int-char" ];
     lispLibs = [  ];
   };
-  cl-ana_linear-algebra = {
+  cl-ana_dot_linear-algebra = {
     pname = "cl-ana.linear-algebra";
     createAsd = false;
     version = "20211230-git";
@@ -4590,9 +4590,9 @@ rec {
       asd = "cl-ana.linear-algebra";
     });
     systems = [ "cl-ana.linear-algebra" ];
-    lispLibs = [ cl-ana_generic-math cl-ana_list-utils cl-ana_math-functions cl-ana_tensor gsll ];
+    lispLibs = [ cl-ana_dot_generic-math cl-ana_dot_list-utils cl-ana_dot_math-functions cl-ana_dot_tensor gsll ];
   };
-  cl-ana_list-utils = {
+  cl-ana_dot_list-utils = {
     pname = "cl-ana.list-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4603,9 +4603,9 @@ rec {
       asd = "cl-ana.list-utils";
     });
     systems = [ "cl-ana.list-utils" ];
-    lispLibs = [ alexandria cl-ana_functional-utils cl-ana_string-utils ];
+    lispLibs = [ alexandria cl-ana_dot_functional-utils cl-ana_dot_string-utils ];
   };
-  cl-ana_lorentz = {
+  cl-ana_dot_lorentz = {
     pname = "cl-ana.lorentz";
     createAsd = false;
     version = "20211230-git";
@@ -4616,9 +4616,9 @@ rec {
       asd = "cl-ana.lorentz";
     });
     systems = [ "cl-ana.lorentz" ];
-    lispLibs = [ cl-ana_generic-math cl-ana_linear-algebra cl-ana_tensor iterate ];
+    lispLibs = [ cl-ana_dot_generic-math cl-ana_dot_linear-algebra cl-ana_dot_tensor iterate ];
   };
-  cl-ana_macro-utils = {
+  cl-ana_dot_macro-utils = {
     pname = "cl-ana.macro-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4629,9 +4629,9 @@ rec {
       asd = "cl-ana.macro-utils";
     });
     systems = [ "cl-ana.macro-utils" ];
-    lispLibs = [ alexandria cl-ana_list-utils cl-ana_string-utils cl-ana_symbol-utils split-sequence ];
+    lispLibs = [ alexandria cl-ana_dot_list-utils cl-ana_dot_string-utils cl-ana_dot_symbol-utils split-sequence ];
   };
-  cl-ana_makeres = {
+  cl-ana_dot_makeres = {
     pname = "cl-ana.makeres";
     createAsd = false;
     version = "20211230-git";
@@ -4642,9 +4642,9 @@ rec {
       asd = "cl-ana.makeres";
     });
     systems = [ "cl-ana.makeres" ];
-    lispLibs = [ alexandria cl-ana_error-propogation cl-ana_file-utils cl-ana_functional-utils cl-ana_generic-math cl-ana_hash-table-utils cl-ana_hdf-utils cl-ana_histogram cl-ana_list-utils cl-ana_macro-utils cl-ana_map cl-ana_memoization cl-ana_pathname-utils cl-ana_plotting cl-ana_reusable-table cl-ana_serialization cl-ana_string-utils cl-ana_symbol-utils cl-ana_table cl-fad external-program uiop ];
+    lispLibs = [ alexandria cl-ana_dot_error-propogation cl-ana_dot_file-utils cl-ana_dot_functional-utils cl-ana_dot_generic-math cl-ana_dot_hash-table-utils cl-ana_dot_hdf-utils cl-ana_dot_histogram cl-ana_dot_list-utils cl-ana_dot_macro-utils cl-ana_dot_map cl-ana_dot_memoization cl-ana_dot_pathname-utils cl-ana_dot_plotting cl-ana_dot_reusable-table cl-ana_dot_serialization cl-ana_dot_string-utils cl-ana_dot_symbol-utils cl-ana_dot_table cl-fad external-program uiop ];
   };
-  cl-ana_makeres-block = {
+  cl-ana_dot_makeres-block = {
     pname = "cl-ana.makeres-block";
     createAsd = false;
     version = "20211230-git";
@@ -4655,9 +4655,9 @@ rec {
       asd = "cl-ana.makeres-block";
     });
     systems = [ "cl-ana.makeres-block" ];
-    lispLibs = [ alexandria cl-ana_list-utils cl-ana_macro-utils cl-ana_makeres ];
+    lispLibs = [ alexandria cl-ana_dot_list-utils cl-ana_dot_macro-utils cl-ana_dot_makeres ];
   };
-  cl-ana_makeres-branch = {
+  cl-ana_dot_makeres-branch = {
     pname = "cl-ana.makeres-branch";
     createAsd = false;
     version = "20211230-git";
@@ -4668,9 +4668,9 @@ rec {
       asd = "cl-ana.makeres-branch";
     });
     systems = [ "cl-ana.makeres-branch" ];
-    lispLibs = [ alexandria cl-ana_generic-math cl-ana_hash-table-utils cl-ana_list-utils cl-ana_makeres cl-ana_map ];
+    lispLibs = [ alexandria cl-ana_dot_generic-math cl-ana_dot_hash-table-utils cl-ana_dot_list-utils cl-ana_dot_makeres cl-ana_dot_map ];
   };
-  cl-ana_makeres-graphviz = {
+  cl-ana_dot_makeres-graphviz = {
     pname = "cl-ana.makeres-graphviz";
     createAsd = false;
     version = "20211230-git";
@@ -4681,9 +4681,9 @@ rec {
       asd = "cl-ana.makeres-graphviz";
     });
     systems = [ "cl-ana.makeres-graphviz" ];
-    lispLibs = [ cl-ana_makeres external-program ];
+    lispLibs = [ cl-ana_dot_makeres external-program ];
   };
-  cl-ana_makeres-macro = {
+  cl-ana_dot_makeres-macro = {
     pname = "cl-ana.makeres-macro";
     createAsd = false;
     version = "20211230-git";
@@ -4694,9 +4694,9 @@ rec {
       asd = "cl-ana.makeres-macro";
     });
     systems = [ "cl-ana.makeres-macro" ];
-    lispLibs = [ cl-ana_list-utils cl-ana_makeres ];
+    lispLibs = [ cl-ana_dot_list-utils cl-ana_dot_makeres ];
   };
-  cl-ana_makeres-progress = {
+  cl-ana_dot_makeres-progress = {
     pname = "cl-ana.makeres-progress";
     createAsd = false;
     version = "20211230-git";
@@ -4707,9 +4707,9 @@ rec {
       asd = "cl-ana.makeres-progress";
     });
     systems = [ "cl-ana.makeres-progress" ];
-    lispLibs = [ alexandria cl-ana_generic-math cl-ana_makeres ];
+    lispLibs = [ alexandria cl-ana_dot_generic-math cl-ana_dot_makeres ];
   };
-  cl-ana_makeres-table = {
+  cl-ana_dot_makeres-table = {
     pname = "cl-ana.makeres-table";
     createAsd = false;
     version = "20211230-git";
@@ -4720,9 +4720,9 @@ rec {
       asd = "cl-ana.makeres-table";
     });
     systems = [ "cl-ana.makeres-table" ];
-    lispLibs = [ cl-ana_csv-table cl-ana_hash-table-utils cl-ana_hdf-table cl-ana_hdf-utils cl-ana_list-utils cl-ana_macro-utils cl-ana_makeres cl-ana_makeres-macro cl-ana_memoization cl-ana_ntuple-table cl-ana_reusable-table cl-ana_string-utils cl-ana_table ];
+    lispLibs = [ cl-ana_dot_csv-table cl-ana_dot_hash-table-utils cl-ana_dot_hdf-table cl-ana_dot_hdf-utils cl-ana_dot_list-utils cl-ana_dot_macro-utils cl-ana_dot_makeres cl-ana_dot_makeres-macro cl-ana_dot_memoization cl-ana_dot_ntuple-table cl-ana_dot_reusable-table cl-ana_dot_string-utils cl-ana_dot_table ];
   };
-  cl-ana_makeres-utils = {
+  cl-ana_dot_makeres-utils = {
     pname = "cl-ana.makeres-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4733,9 +4733,9 @@ rec {
       asd = "cl-ana.makeres-utils";
     });
     systems = [ "cl-ana.makeres-utils" ];
-    lispLibs = [ alexandria cl-ana_file-utils cl-ana_fitting cl-ana_functional-utils cl-ana_generic-math cl-ana_histogram cl-ana_list-utils cl-ana_macro-utils cl-ana_makeres cl-ana_map cl-ana_pathname-utils cl-ana_plotting cl-ana_reusable-table cl-ana_string-utils cl-ana_symbol-utils cl-ana_table ];
+    lispLibs = [ alexandria cl-ana_dot_file-utils cl-ana_dot_fitting cl-ana_dot_functional-utils cl-ana_dot_generic-math cl-ana_dot_histogram cl-ana_dot_list-utils cl-ana_dot_macro-utils cl-ana_dot_makeres cl-ana_dot_map cl-ana_dot_pathname-utils cl-ana_dot_plotting cl-ana_dot_reusable-table cl-ana_dot_string-utils cl-ana_dot_symbol-utils cl-ana_dot_table ];
   };
-  cl-ana_map = {
+  cl-ana_dot_map = {
     pname = "cl-ana.map";
     createAsd = false;
     version = "20211230-git";
@@ -4746,9 +4746,9 @@ rec {
       asd = "cl-ana.map";
     });
     systems = [ "cl-ana.map" ];
-    lispLibs = [ cl-ana_hash-table-utils ];
+    lispLibs = [ cl-ana_dot_hash-table-utils ];
   };
-  cl-ana_math-functions = {
+  cl-ana_dot_math-functions = {
     pname = "cl-ana.math-functions";
     createAsd = false;
     version = "20211230-git";
@@ -4759,9 +4759,9 @@ rec {
       asd = "cl-ana.math-functions";
     });
     systems = [ "cl-ana.math-functions" ];
-    lispLibs = [ cl-ana_generic-math gsll ];
+    lispLibs = [ cl-ana_dot_generic-math gsll ];
   };
-  cl-ana_memoization = {
+  cl-ana_dot_memoization = {
     pname = "cl-ana.memoization";
     createAsd = false;
     version = "20211230-git";
@@ -4774,7 +4774,7 @@ rec {
     systems = [ "cl-ana.memoization" ];
     lispLibs = [ alexandria ];
   };
-  cl-ana_ntuple-table = {
+  cl-ana_dot_ntuple-table = {
     pname = "cl-ana.ntuple-table";
     createAsd = false;
     version = "20211230-git";
@@ -4785,9 +4785,9 @@ rec {
       asd = "cl-ana.ntuple-table";
     });
     systems = [ "cl-ana.ntuple-table" ];
-    lispLibs = [ alexandria cffi cl-ana_gsl-cffi cl-ana_list-utils cl-ana_table cl-ana_typed-table cl-ana_typespec gsll ];
+    lispLibs = [ alexandria cffi cl-ana_dot_gsl-cffi cl-ana_dot_list-utils cl-ana_dot_table cl-ana_dot_typed-table cl-ana_dot_typespec gsll ];
   };
-  cl-ana_package-utils = {
+  cl-ana_dot_package-utils = {
     pname = "cl-ana.package-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4800,7 +4800,7 @@ rec {
     systems = [ "cl-ana.package-utils" ];
     lispLibs = [ alexandria ];
   };
-  cl-ana_pathname-utils = {
+  cl-ana_dot_pathname-utils = {
     pname = "cl-ana.pathname-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4813,7 +4813,7 @@ rec {
     systems = [ "cl-ana.pathname-utils" ];
     lispLibs = [  ];
   };
-  cl-ana_plotting = {
+  cl-ana_dot_plotting = {
     pname = "cl-ana.plotting";
     createAsd = false;
     version = "20211230-git";
@@ -4824,9 +4824,9 @@ rec {
       asd = "cl-ana.plotting";
     });
     systems = [ "cl-ana.plotting" ];
-    lispLibs = [ alexandria cl-ana_error-propogation cl-ana_functional-utils cl-ana_generic-math cl-ana_gnuplot-interface cl-ana_histogram cl-ana_list-utils cl-ana_macro-utils cl-ana_map cl-ana_math-functions cl-ana_pathname-utils cl-ana_string-utils cl-ana_tensor external-program split-sequence uiop ];
+    lispLibs = [ alexandria cl-ana_dot_error-propogation cl-ana_dot_functional-utils cl-ana_dot_generic-math cl-ana_dot_gnuplot-interface cl-ana_dot_histogram cl-ana_dot_list-utils cl-ana_dot_macro-utils cl-ana_dot_map cl-ana_dot_math-functions cl-ana_dot_pathname-utils cl-ana_dot_string-utils cl-ana_dot_tensor external-program split-sequence uiop ];
   };
-  cl-ana_quantity = {
+  cl-ana_dot_quantity = {
     pname = "cl-ana.quantity";
     createAsd = false;
     version = "20211230-git";
@@ -4837,9 +4837,9 @@ rec {
       asd = "cl-ana.quantity";
     });
     systems = [ "cl-ana.quantity" ];
-    lispLibs = [ alexandria cl-ana_error-propogation cl-ana_generic-math cl-ana_list-utils cl-ana_macro-utils cl-ana_math-functions cl-ana_symbol-utils ];
+    lispLibs = [ alexandria cl-ana_dot_error-propogation cl-ana_dot_generic-math cl-ana_dot_list-utils cl-ana_dot_macro-utils cl-ana_dot_math-functions cl-ana_dot_symbol-utils ];
   };
-  cl-ana_reusable-table = {
+  cl-ana_dot_reusable-table = {
     pname = "cl-ana.reusable-table";
     createAsd = false;
     version = "20211230-git";
@@ -4850,9 +4850,9 @@ rec {
       asd = "cl-ana.reusable-table";
     });
     systems = [ "cl-ana.reusable-table" ];
-    lispLibs = [ alexandria cl-ana_table ];
+    lispLibs = [ alexandria cl-ana_dot_table ];
   };
-  cl-ana_serialization = {
+  cl-ana_dot_serialization = {
     pname = "cl-ana.serialization";
     createAsd = false;
     version = "20211230-git";
@@ -4863,9 +4863,9 @@ rec {
       asd = "cl-ana.serialization";
     });
     systems = [ "cl-ana.serialization" ];
-    lispLibs = [ cl-ana_error-propogation cl-ana_hdf-table cl-ana_hdf-utils cl-ana_histogram cl-ana_int-char cl-ana_macro-utils cl-ana_typespec ];
+    lispLibs = [ cl-ana_dot_error-propogation cl-ana_dot_hdf-table cl-ana_dot_hdf-utils cl-ana_dot_histogram cl-ana_dot_int-char cl-ana_dot_macro-utils cl-ana_dot_typespec ];
   };
-  cl-ana_spline = {
+  cl-ana_dot_spline = {
     pname = "cl-ana.spline";
     createAsd = false;
     version = "20211230-git";
@@ -4876,9 +4876,9 @@ rec {
       asd = "cl-ana.spline";
     });
     systems = [ "cl-ana.spline" ];
-    lispLibs = [ cffi cl-ana_fitting cl-ana_generic-math cl-ana_list-utils cl-ana_macro-utils cl-ana_math-functions cl-ana_tensor gsll ];
+    lispLibs = [ cffi cl-ana_dot_fitting cl-ana_dot_generic-math cl-ana_dot_list-utils cl-ana_dot_macro-utils cl-ana_dot_math-functions cl-ana_dot_tensor gsll ];
   };
-  cl-ana_statistical-learning = {
+  cl-ana_dot_statistical-learning = {
     pname = "cl-ana.statistical-learning";
     createAsd = false;
     version = "20211230-git";
@@ -4889,9 +4889,9 @@ rec {
       asd = "cl-ana.statistical-learning";
     });
     systems = [ "cl-ana.statistical-learning" ];
-    lispLibs = [ cl-ana_functional-utils cl-ana_generic-math cl-ana_histogram cl-ana_linear-algebra cl-ana_list-utils cl-ana_macro-utils cl-ana_map cl-ana_math-functions cl-ana_statistics ];
+    lispLibs = [ cl-ana_dot_functional-utils cl-ana_dot_generic-math cl-ana_dot_histogram cl-ana_dot_linear-algebra cl-ana_dot_list-utils cl-ana_dot_macro-utils cl-ana_dot_map cl-ana_dot_math-functions cl-ana_dot_statistics ];
   };
-  cl-ana_statistics = {
+  cl-ana_dot_statistics = {
     pname = "cl-ana.statistics";
     createAsd = false;
     version = "20211230-git";
@@ -4902,9 +4902,9 @@ rec {
       asd = "cl-ana.statistics";
     });
     systems = [ "cl-ana.statistics" ];
-    lispLibs = [ cl-ana_generic-math cl-ana_histogram cl-ana_list-utils cl-ana_macro-utils cl-ana_map cl-ana_math-functions ];
+    lispLibs = [ cl-ana_dot_generic-math cl-ana_dot_histogram cl-ana_dot_list-utils cl-ana_dot_macro-utils cl-ana_dot_map cl-ana_dot_math-functions ];
   };
-  cl-ana_string-utils = {
+  cl-ana_dot_string-utils = {
     pname = "cl-ana.string-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4917,7 +4917,7 @@ rec {
     systems = [ "cl-ana.string-utils" ];
     lispLibs = [ split-sequence ];
   };
-  cl-ana_symbol-utils = {
+  cl-ana_dot_symbol-utils = {
     pname = "cl-ana.symbol-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4928,9 +4928,9 @@ rec {
       asd = "cl-ana.symbol-utils";
     });
     systems = [ "cl-ana.symbol-utils" ];
-    lispLibs = [ cl-ana_list-utils ];
+    lispLibs = [ cl-ana_dot_list-utils ];
   };
-  cl-ana_table = {
+  cl-ana_dot_table = {
     pname = "cl-ana.table";
     createAsd = false;
     version = "20211230-git";
@@ -4941,9 +4941,9 @@ rec {
       asd = "cl-ana.table";
     });
     systems = [ "cl-ana.table" ];
-    lispLibs = [ alexandria cl-ana_functional-utils cl-ana_list-utils cl-ana_macro-utils cl-ana_string-utils cl-ana_symbol-utils ];
+    lispLibs = [ alexandria cl-ana_dot_functional-utils cl-ana_dot_list-utils cl-ana_dot_macro-utils cl-ana_dot_string-utils cl-ana_dot_symbol-utils ];
   };
-  cl-ana_table-utils = {
+  cl-ana_dot_table-utils = {
     pname = "cl-ana.table-utils";
     createAsd = false;
     version = "20211230-git";
@@ -4954,9 +4954,9 @@ rec {
       asd = "cl-ana.table-utils";
     });
     systems = [ "cl-ana.table-utils" ];
-    lispLibs = [ cl-ana_generic-math cl-ana_hash-table-utils cl-ana_statistics cl-ana_string-utils cl-ana_symbol-utils cl-ana_table ];
+    lispLibs = [ cl-ana_dot_generic-math cl-ana_dot_hash-table-utils cl-ana_dot_statistics cl-ana_dot_string-utils cl-ana_dot_symbol-utils cl-ana_dot_table ];
   };
-  cl-ana_table-viewing = {
+  cl-ana_dot_table-viewing = {
     pname = "cl-ana.table-viewing";
     createAsd = false;
     version = "20211230-git";
@@ -4967,9 +4967,9 @@ rec {
       asd = "cl-ana.table-viewing";
     });
     systems = [ "cl-ana.table-viewing" ];
-    lispLibs = [ alexandria cl-ana_generic-math cl-ana_histogram cl-ana_macro-utils cl-ana_plotting cl-ana_string-utils cl-ana_table ];
+    lispLibs = [ alexandria cl-ana_dot_generic-math cl-ana_dot_histogram cl-ana_dot_macro-utils cl-ana_dot_plotting cl-ana_dot_string-utils cl-ana_dot_table ];
   };
-  cl-ana_tensor = {
+  cl-ana_dot_tensor = {
     pname = "cl-ana.tensor";
     createAsd = false;
     version = "20211230-git";
@@ -4980,9 +4980,9 @@ rec {
       asd = "cl-ana.tensor";
     });
     systems = [ "cl-ana.tensor" ];
-    lispLibs = [ alexandria cl-ana_generic-math cl-ana_list-utils cl-ana_macro-utils cl-ana_symbol-utils ];
+    lispLibs = [ alexandria cl-ana_dot_generic-math cl-ana_dot_list-utils cl-ana_dot_macro-utils cl-ana_dot_symbol-utils ];
   };
-  cl-ana_typed-table = {
+  cl-ana_dot_typed-table = {
     pname = "cl-ana.typed-table";
     createAsd = false;
     version = "20211230-git";
@@ -4993,9 +4993,9 @@ rec {
       asd = "cl-ana.typed-table";
     });
     systems = [ "cl-ana.typed-table" ];
-    lispLibs = [ alexandria cl-ana_list-utils cl-ana_string-utils cl-ana_symbol-utils cl-ana_table cl-ana_typespec ];
+    lispLibs = [ alexandria cl-ana_dot_list-utils cl-ana_dot_string-utils cl-ana_dot_symbol-utils cl-ana_dot_table cl-ana_dot_typespec ];
   };
-  cl-ana_typespec = {
+  cl-ana_dot_typespec = {
     pname = "cl-ana.typespec";
     createAsd = false;
     version = "20211230-git";
@@ -5006,7 +5006,7 @@ rec {
       asd = "cl-ana.typespec";
     });
     systems = [ "cl-ana.typespec" ];
-    lispLibs = [ alexandria cffi cl-ana_int-char cl-ana_list-utils cl-ana_memoization cl-ana_string-utils cl-ana_symbol-utils cl-ana_tensor ];
+    lispLibs = [ alexandria cffi cl-ana_dot_int-char cl-ana_dot_list-utils cl-ana_dot_memoization cl-ana_dot_string-utils cl-ana_dot_symbol-utils cl-ana_dot_tensor ];
   };
   cl-annot = {
     pname = "cl-annot";
@@ -5086,7 +5086,7 @@ rec {
     systems = [ "cl-ansi-text" ];
     lispLibs = [ alexandria cl-colors2 ];
   };
-  cl-ansi-text_test = {
+  cl-ansi-text_dot_test = {
     pname = "cl-ansi-text.test";
     createAsd = false;
     version = "20211020-git";
@@ -5515,7 +5515,7 @@ rec {
     systems = [ "cl-bcrypt" ];
     lispLibs = [ binascii cl-ppcre ironclad ];
   };
-  cl-bcrypt_test = {
+  cl-bcrypt_dot_test = {
     pname = "cl-bcrypt.test";
     createAsd = false;
     version = "20200925-git";
@@ -5565,7 +5565,7 @@ rec {
       asd = "bencode";
     });
     systems = [ "bencode-test" ];
-    lispLibs = [ bencode check-it hu_dwim_stefil ];
+    lispLibs = [ bencode check-it hu_dot_dwim_dot_stefil ];
   };
   bert = {
     pname = "bert";
@@ -6228,9 +6228,9 @@ rec {
       asd = "advanced";
     });
     systems = [ "advanced" ];
-    lispLibs = [ net_didierverna_clon ];
+    lispLibs = [ net_dot_didierverna_dot_clon ];
   };
-  net_didierverna_clon = {
+  net_dot_didierverna_dot_clon = {
     pname = "net.didierverna.clon";
     createAsd = false;
     version = "clon-1.0b25";
@@ -6241,9 +6241,9 @@ rec {
       asd = "net.didierverna.clon";
     });
     systems = [ "net.didierverna.clon" ];
-    lispLibs = [ net_didierverna_clon_core net_didierverna_clon_setup ];
+    lispLibs = [ net_dot_didierverna_dot_clon_dot_core net_dot_didierverna_dot_clon_dot_setup ];
   };
-  net_didierverna_clon_core = {
+  net_dot_didierverna_dot_clon_dot_core = {
     pname = "net.didierverna.clon.core";
     createAsd = false;
     version = "clon-1.0b25";
@@ -6254,9 +6254,9 @@ rec {
       asd = "net.didierverna.clon.core";
     });
     systems = [ "net.didierverna.clon.core" ];
-    lispLibs = [ net_didierverna_clon_setup ];
+    lispLibs = [ net_dot_didierverna_dot_clon_dot_setup ];
   };
-  net_didierverna_clon_setup = {
+  net_dot_didierverna_dot_clon_dot_setup = {
     pname = "net.didierverna.clon.setup";
     createAsd = false;
     version = "clon-1.0b25";
@@ -6280,7 +6280,7 @@ rec {
       asd = "simple";
     });
     systems = [ "simple" ];
-    lispLibs = [ net_didierverna_clon ];
+    lispLibs = [ net_dot_didierverna_dot_clon ];
   };
   closure-template = {
     pname = "closure-template";
@@ -6423,7 +6423,7 @@ rec {
       asd = "cl-conllu";
     });
     systems = [ "cl-conllu" ];
-    lispLibs = [ alexandria cl-log cl-markup cl-ppcre lispbuilder-lexer optima_ppcre split-sequence uuid wilbur xmls yason ];
+    lispLibs = [ alexandria cl-log cl-markup cl-ppcre lispbuilder-lexer optima_dot_ppcre split-sequence uuid wilbur xmls yason ];
   };
   cl-conspack = {
     pname = "cl-conspack";
@@ -6592,7 +6592,7 @@ rec {
       asd = "cl-covid19";
     });
     systems = [ "cl-covid19" ];
-    lispLibs = [ alexandria cl-ascii-table cl-csv cl-migratum cl-migratum_driver_sql cl-migratum_provider_local-path dexador djula jonathan quri tmpdir ];
+    lispLibs = [ alexandria cl-ascii-table cl-csv cl-migratum cl-migratum_dot_driver_dot_sql cl-migratum_dot_provider_dot_local-path dexador djula jonathan quri tmpdir ];
   };
   cl-cpus = {
     pname = "cl-cpus";
@@ -6839,7 +6839,7 @@ rec {
       asd = "cl-custom-hash-table-test";
     });
     systems = [ "cl-custom-hash-table-test" ];
-    lispLibs = [ cl-custom-hash-table hu_dwim_stefil ];
+    lispLibs = [ cl-custom-hash-table hu_dot_dwim_dot_stefil ];
   };
   cl-cut = {
     pname = "cl-cut";
@@ -6854,7 +6854,7 @@ rec {
     systems = [ "cl-cut" ];
     lispLibs = [  ];
   };
-  cl-cut_test = {
+  cl-cut_dot_test = {
     pname = "cl-cut.test";
     createAsd = false;
     version = "20180131-git";
@@ -7296,7 +7296,7 @@ rec {
     systems = [ "cl-digraph" ];
     lispLibs = [  ];
   };
-  cl-digraph_dot = {
+  cl-digraph_dot_dot = {
     pname = "cl-digraph.dot";
     createAsd = false;
     version = "20211020-hg";
@@ -7309,7 +7309,7 @@ rec {
     systems = [ "cl-digraph.dot" ];
     lispLibs = [ cl-digraph cl-dot ];
   };
-  cl-digraph_test = {
+  cl-digraph_dot_test = {
     pname = "cl-digraph.test";
     createAsd = false;
     version = "20211020-hg";
@@ -7697,7 +7697,7 @@ rec {
       asd = "cl-environments";
     });
     systems = [ "cl-environments" ];
-    lispLibs = [ alexandria anaphora collectors optima parse-declarations-1_0 ];
+    lispLibs = [ alexandria anaphora collectors optima parse-declarations-1_dot_0 ];
   };
   epmd = {
     pname = "epmd";
@@ -7710,7 +7710,7 @@ rec {
       asd = "epmd";
     });
     systems = [ "epmd" ];
-    lispLibs = [ com_gigamonkeys_binary-data usocket ];
+    lispLibs = [ com_dot_gigamonkeys_dot_binary-data usocket ];
   };
   epmd-test = {
     pname = "epmd-test";
@@ -7803,7 +7803,7 @@ rec {
     systems = [ "cl-events" ];
     lispLibs = [ alexandria blackbird iterate log4cl lparallel ];
   };
-  cl-events_test = {
+  cl-events_dot_test = {
     pname = "cl-events.test";
     createAsd = false;
     version = "20160318-git";
@@ -8141,7 +8141,7 @@ rec {
     systems = [ "cl-forms" ];
     lispLibs = [ alexandria cl-ppcre clavier fmt hunchentoot ironclad uuid ];
   };
-  cl-forms_demo = {
+  cl-forms_dot_demo = {
     pname = "cl-forms.demo";
     createAsd = false;
     version = "20211020-git";
@@ -8152,9 +8152,9 @@ rec {
       asd = "cl-forms.demo";
     });
     systems = [ "cl-forms.demo" ];
-    lispLibs = [ cl-css cl-forms cl-forms_djula cl-forms_test cl-forms_who cl-forms_who_bootstrap cl-who djula hunchentoot ];
+    lispLibs = [ cl-css cl-forms cl-forms_dot_djula cl-forms_dot_test cl-forms_dot_who cl-forms_dot_who_dot_bootstrap cl-who djula hunchentoot ];
   };
-  cl-forms_djula = {
+  cl-forms_dot_djula = {
     pname = "cl-forms.djula";
     createAsd = false;
     version = "20211020-git";
@@ -8165,9 +8165,9 @@ rec {
       asd = "cl-forms.djula";
     });
     systems = [ "cl-forms.djula" ];
-    lispLibs = [ cl-forms cl-forms_who djula ];
+    lispLibs = [ cl-forms cl-forms_dot_who djula ];
   };
-  cl-forms_peppol = {
+  cl-forms_dot_peppol = {
     pname = "cl-forms.peppol";
     createAsd = false;
     version = "20211020-git";
@@ -8180,7 +8180,7 @@ rec {
     systems = [ "cl-forms.peppol" ];
     lispLibs = [ cl-forms peppol ];
   };
-  cl-forms_test = {
+  cl-forms_dot_test = {
     pname = "cl-forms.test";
     createAsd = false;
     version = "20211020-git";
@@ -8193,7 +8193,7 @@ rec {
     systems = [ "cl-forms.test" ];
     lispLibs = [ cl-forms fiveam ];
   };
-  cl-forms_who = {
+  cl-forms_dot_who = {
     pname = "cl-forms.who";
     createAsd = false;
     version = "20211020-git";
@@ -8206,7 +8206,7 @@ rec {
     systems = [ "cl-forms.who" ];
     lispLibs = [ cl-forms cl-who ];
   };
-  cl-forms_who_bootstrap = {
+  cl-forms_dot_who_dot_bootstrap = {
     pname = "cl-forms.who.bootstrap";
     createAsd = false;
     version = "20211020-git";
@@ -8217,7 +8217,7 @@ rec {
       asd = "cl-forms.who.bootstrap";
     });
     systems = [ "cl-forms.who.bootstrap" ];
-    lispLibs = [ cl-forms_who ];
+    lispLibs = [ cl-forms_dot_who ];
   };
   cl-freeimage = {
     pname = "cl-freeimage";
@@ -13341,7 +13341,7 @@ rec {
     systems = [ "cl-graph" ];
     lispLibs = [ asdf-system-connections cl-containers metabang-bind metatilities-base ];
   };
-  cl-graph_hu_dwim_graphviz = {
+  cl-graph_plus_hu_dot_dwim_dot_graphviz = {
     pname = "cl-graph+hu.dwim.graphviz";
     createAsd = false;
     version = "20171227-git";
@@ -13352,7 +13352,7 @@ rec {
       asd = "cl-graph+hu.dwim.graphviz";
     });
     systems = [ "cl-graph+hu.dwim.graphviz" ];
-    lispLibs = [ cl-graph hu_dwim_graphviz ];
+    lispLibs = [ cl-graph hu_dot_dwim_dot_graphviz ];
   };
   gravatar = {
     pname = "gravatar";
@@ -13963,7 +13963,7 @@ rec {
       asd = "cl-inotify";
     });
     systems = [ "cl-inotify" ];
-    lispLibs = [ binary-types cffi cffi-grovel iolib iolib_asdf iolib_base iolib_conf osicat trivial-utf-8 ];
+    lispLibs = [ binary-types cffi cffi-grovel iolib iolib_dot_asdf iolib_dot_base iolib_dot_conf osicat trivial-utf-8 ];
   };
   cl-inotify-tests = {
     pname = "cl-inotify-tests";
@@ -14238,7 +14238,7 @@ rec {
     systems = [ "cl-json" ];
     lispLibs = [  ];
   };
-  cl-json_test = {
+  cl-json_dot_test = {
     pname = "cl-json.test";
     createAsd = "cl-json";
     version = "20141217-git";
@@ -14355,7 +14355,7 @@ rec {
     systems = [ "cl-junit-xml" ];
     lispLibs = [ alexandria cxml iterate ];
   };
-  cl-junit-xml_lisp-unit = {
+  cl-junit-xml_dot_lisp-unit = {
     pname = "cl-junit-xml.lisp-unit";
     createAsd = false;
     version = "20150113-git";
@@ -14368,7 +14368,7 @@ rec {
     systems = [ "cl-junit-xml.lisp-unit" ];
     lispLibs = [ alexandria cl-junit-xml cl-ppcre iterate lisp-unit ];
   };
-  cl-junit-xml_lisp-unit2 = {
+  cl-junit-xml_dot_lisp-unit2 = {
     pname = "cl-junit-xml.lisp-unit2";
     createAsd = false;
     version = "20150113-git";
@@ -14381,7 +14381,7 @@ rec {
     systems = [ "cl-junit-xml.lisp-unit2" ];
     lispLibs = [ alexandria cl-junit-xml cl-ppcre iterate lisp-unit2 ];
   };
-  cl-junit-xml_test = {
+  cl-junit-xml_dot_test = {
     pname = "cl-junit-xml.test";
     createAsd = "cl-junit-xml";
     version = "20150113-git";
@@ -14808,9 +14808,9 @@ rec {
       asd = "libssh2";
     });
     systems = [ "libssh2" ];
-    lispLibs = [ babel cffi cffi-grovel cl-fad hu_dwim_logger split-sequence trivial-gray-streams usocket ];
+    lispLibs = [ babel cffi cffi-grovel cl-fad hu_dot_dwim_dot_logger split-sequence trivial-gray-streams usocket ];
   };
-  libssh2_test = {
+  libssh2_dot_test = {
     pname = "libssh2.test";
     createAsd = false;
     version = "20160531-git";
@@ -14821,7 +14821,7 @@ rec {
       asd = "libssh2.test";
     });
     systems = [ "libssh2.test" ];
-    lispLibs = [ hu_dwim_stefil libssh2 ];
+    lispLibs = [ hu_dot_dwim_dot_stefil libssh2 ];
   };
   cl-liblinear = {
     pname = "cl-liblinear";
@@ -15198,7 +15198,7 @@ rec {
       asd = "cl-m4-test";
     });
     systems = [ "cl-m4-test" ];
-    lispLibs = [ cl-heredoc cl-m4 hu_dwim_stefil ];
+    lispLibs = [ cl-heredoc cl-m4 hu_dot_dwim_dot_stefil ];
   };
   cl-mango = {
     pname = "cl-mango";
@@ -15538,7 +15538,7 @@ rec {
     systems = [ "cl-maxsat" ];
     lispLibs = [ alexandria cl-sat iterate trivia ];
   };
-  cl-maxsat_test = {
+  cl-maxsat_dot_test = {
     pname = "cl-maxsat.test";
     createAsd = false;
     version = "20200218-git";
@@ -15720,7 +15720,7 @@ rec {
     systems = [ "cl-migratum" ];
     lispLibs = [ cl-ascii-table local-time log4cl ];
   };
-  cl-migratum_driver_sql = {
+  cl-migratum_dot_driver_dot_sql = {
     pname = "cl-migratum.driver.sql";
     createAsd = false;
     version = "20210807-git";
@@ -15733,7 +15733,7 @@ rec {
     systems = [ "cl-migratum.driver.sql" ];
     lispLibs = [ cl-dbi cl-migratum cl-ppcre log4cl ];
   };
-  cl-migratum_provider_local-path = {
+  cl-migratum_dot_provider_dot_local-path = {
     pname = "cl-migratum.provider.local-path";
     createAsd = false;
     version = "20210807-git";
@@ -15746,7 +15746,7 @@ rec {
     systems = [ "cl-migratum.provider.local-path" ];
     lispLibs = [ cl-migratum cl-ppcre log4cl ];
   };
-  cl-migratum_test = {
+  cl-migratum_dot_test = {
     pname = "cl-migratum.test";
     createAsd = false;
     version = "20210807-git";
@@ -15757,7 +15757,7 @@ rec {
       asd = "cl-migratum.test";
     });
     systems = [ "cl-migratum.test" ];
-    lispLibs = [ cl-migratum cl-migratum_driver_sql cl-migratum_provider_local-path dbd-sqlite3 rove tmpdir ];
+    lispLibs = [ cl-migratum cl-migratum_dot_driver_dot_sql cl-migratum_dot_provider_dot_local-path dbd-sqlite3 rove tmpdir ];
   };
   cl-mime = {
     pname = "cl-mime";
@@ -16394,7 +16394,7 @@ rec {
       asd = "cl-mtgnet";
     });
     systems = [ "cl-mtgnet" ];
-    lispLibs = [ blackbird cl-json cl-netstring_ trivial-utf-8 ];
+    lispLibs = [ blackbird cl-json cl-netstring_plus trivial-utf-8 ];
   };
   cl-mtgnet-async = {
     pname = "cl-mtgnet-async";
@@ -16485,9 +16485,9 @@ rec {
       asd = "cl-mw";
     });
     systems = [ "cl-mw" ];
-    lispLibs = [ alexandria cffi cl-ppcre hu_dwim_serializer iolib ];
+    lispLibs = [ alexandria cffi cl-ppcre hu_dot_dwim_dot_serializer iolib ];
   };
-  cl-mw_examples_argument-processing = {
+  cl-mw_dot_examples_dot_argument-processing = {
     pname = "cl-mw.examples.argument-processing";
     createAsd = false;
     version = "20150407-git";
@@ -16500,7 +16500,7 @@ rec {
     systems = [ "cl-mw.examples.argument-processing" ];
     lispLibs = [ cl-mw ];
   };
-  cl-mw_examples_hello-world = {
+  cl-mw_dot_examples_dot_hello-world = {
     pname = "cl-mw.examples.hello-world";
     createAsd = false;
     version = "20150407-git";
@@ -16513,7 +16513,7 @@ rec {
     systems = [ "cl-mw.examples.hello-world" ];
     lispLibs = [ cl-mw ];
   };
-  cl-mw_examples_higher-order = {
+  cl-mw_dot_examples_dot_higher-order = {
     pname = "cl-mw.examples.higher-order";
     createAsd = false;
     version = "20150407-git";
@@ -16526,7 +16526,7 @@ rec {
     systems = [ "cl-mw.examples.higher-order" ];
     lispLibs = [ cl-mw ];
   };
-  cl-mw_examples_monte-carlo-pi = {
+  cl-mw_dot_examples_dot_monte-carlo-pi = {
     pname = "cl-mw.examples.monte-carlo-pi";
     createAsd = false;
     version = "20150407-git";
@@ -16539,7 +16539,7 @@ rec {
     systems = [ "cl-mw.examples.monte-carlo-pi" ];
     lispLibs = [ cl-mw ];
   };
-  cl-mw_examples_ping = {
+  cl-mw_dot_examples_dot_ping = {
     pname = "cl-mw.examples.ping";
     createAsd = false;
     version = "20150407-git";
@@ -16552,7 +16552,7 @@ rec {
     systems = [ "cl-mw.examples.ping" ];
     lispLibs = [ cl-mw ];
   };
-  cl-mw_examples_with-task-policy = {
+  cl-mw_dot_examples_dot_with-task-policy = {
     pname = "cl-mw.examples.with-task-policy";
     createAsd = false;
     version = "20150407-git";
@@ -16602,9 +16602,9 @@ rec {
       asd = "cl-naive-store";
     });
     systems = [ "cl-naive-store" ];
-    lispLibs = [ cl-naive-store_document-type-defs cl-naive-store_document-types cl-naive-store_naive-core cl-naive-store_naive-documents cl-naive-store_naive-indexed cl-naive-store_naive-merkle ];
+    lispLibs = [ cl-naive-store_dot_document-type-defs cl-naive-store_dot_document-types cl-naive-store_dot_naive-core cl-naive-store_dot_naive-documents cl-naive-store_dot_naive-indexed cl-naive-store_dot_naive-merkle ];
   };
-  cl-naive-store_document-type-defs = {
+  cl-naive-store_dot_document-type-defs = {
     pname = "cl-naive-store.document-type-defs";
     createAsd = false;
     version = "20210630-git";
@@ -16615,9 +16615,9 @@ rec {
       asd = "cl-naive-store.document-type-defs";
     });
     systems = [ "cl-naive-store.document-type-defs" ];
-    lispLibs = [ cl-naive-store_document-types cl-naive-store_naive-core ];
+    lispLibs = [ cl-naive-store_dot_document-types cl-naive-store_dot_naive-core ];
   };
-  cl-naive-store_document-types = {
+  cl-naive-store_dot_document-types = {
     pname = "cl-naive-store.document-types";
     createAsd = false;
     version = "20210630-git";
@@ -16628,9 +16628,9 @@ rec {
       asd = "cl-naive-store.document-types";
     });
     systems = [ "cl-naive-store.document-types" ];
-    lispLibs = [ cl-naive-store_naive-core ];
+    lispLibs = [ cl-naive-store_dot_naive-core ];
   };
-  cl-naive-store_naive-core = {
+  cl-naive-store_dot_naive-core = {
     pname = "cl-naive-store.naive-core";
     createAsd = false;
     version = "20210630-git";
@@ -16643,7 +16643,7 @@ rec {
     systems = [ "cl-naive-store.naive-core" ];
     lispLibs = [ bordeaux-threads cl-cpus cl-fad cl-getx cl-murmurhash ironclad local-time lparallel split-sequence uuid ];
   };
-  cl-naive-store_naive-documents = {
+  cl-naive-store_dot_naive-documents = {
     pname = "cl-naive-store.naive-documents";
     createAsd = false;
     version = "20210630-git";
@@ -16654,9 +16654,9 @@ rec {
       asd = "cl-naive-store.naive-documents";
     });
     systems = [ "cl-naive-store.naive-documents" ];
-    lispLibs = [ cl-naive-store_document-type-defs cl-naive-store_document-types cl-naive-store_naive-core cl-naive-store_naive-indexed ];
+    lispLibs = [ cl-naive-store_dot_document-type-defs cl-naive-store_dot_document-types cl-naive-store_dot_naive-core cl-naive-store_dot_naive-indexed ];
   };
-  cl-naive-store_naive-indexed = {
+  cl-naive-store_dot_naive-indexed = {
     pname = "cl-naive-store.naive-indexed";
     createAsd = false;
     version = "20210630-git";
@@ -16667,9 +16667,9 @@ rec {
       asd = "cl-naive-store.naive-indexed";
     });
     systems = [ "cl-naive-store.naive-indexed" ];
-    lispLibs = [ cl-naive-store_naive-core ];
+    lispLibs = [ cl-naive-store_dot_naive-core ];
   };
-  cl-naive-store_naive-merkle = {
+  cl-naive-store_dot_naive-merkle = {
     pname = "cl-naive-store.naive-merkle";
     createAsd = false;
     version = "20210630-git";
@@ -16680,9 +16680,9 @@ rec {
       asd = "cl-naive-store.naive-merkle";
     });
     systems = [ "cl-naive-store.naive-merkle" ];
-    lispLibs = [ cl-naive-store_naive-documents ];
+    lispLibs = [ cl-naive-store_dot_naive-documents ];
   };
-  cl-naive-store_test = {
+  cl-naive-store_dot_test = {
     pname = "cl-naive-store.test";
     createAsd = false;
     version = "20210630-git";
@@ -16721,7 +16721,7 @@ rec {
     systems = [ "cl-neo4j" ];
     lispLibs = [ alexandria anaphora babel cl-json cl-ppcre drakma split-sequence ];
   };
-  cl-neo4j_tests = {
+  cl-neo4j_dot_tests = {
     pname = "cl-neo4j.tests";
     createAsd = "cl-neo4j";
     version = "release-b8ad637a-git";
@@ -16760,7 +16760,7 @@ rec {
     systems = [ "cl-netpbm" ];
     lispLibs = [  ];
   };
-  cl-netstring_ = {
+  cl-netstring_plus = {
     pname = "cl-netstring+";
     createAsd = false;
     version = "20150709-git";
@@ -17033,7 +17033,7 @@ rec {
     systems = [ "cl-oauth" ];
     lispLibs = [ alexandria anaphora babel cl-base64 closer-mop drakma f-underscore hunchentoot ironclad puri split-sequence trivial-garbage ];
   };
-  cl-oauth_tests = {
+  cl-oauth_dot_tests = {
     pname = "cl-oauth.tests";
     createAsd = "cl-oauth";
     version = "20150804-git";
@@ -17590,7 +17590,7 @@ rec {
       asd = "parser-combinators-tests";
     });
     systems = [ "parser-combinators-tests" ];
-    lispLibs = [ alexandria hu_dwim_stefil infix iterate parser-combinators ];
+    lispLibs = [ alexandria hu_dot_dwim_dot_stefil infix iterate parser-combinators ];
   };
   cl-pass = {
     pname = "cl-pass";
@@ -17668,7 +17668,7 @@ rec {
       asd = "cl-paymill";
     });
     systems = [ "cl-paymill" ];
-    lispLibs = [ cl_ssl drakma st-json ];
+    lispLibs = [ cl_plus_ssl drakma st-json ];
   };
   cl-paypal = {
     pname = "cl-paypal";
@@ -17696,7 +17696,7 @@ rec {
     systems = [ "cl-pcg" ];
     lispLibs = [  ];
   };
-  cl-pcg_test = {
+  cl-pcg_dot_test = {
     pname = "cl-pcg.test";
     createAsd = false;
     version = "20201016-hg";
@@ -18253,9 +18253,9 @@ rec {
       asd = "cl-prolog2";
     });
     systems = [ "cl-prolog2" ];
-    lispLibs = [ alexandria external-program trivia trivia_quasiquote trivial-garbage ];
+    lispLibs = [ alexandria external-program trivia trivia_dot_quasiquote trivial-garbage ];
   };
-  cl-prolog2_bprolog = {
+  cl-prolog2_dot_bprolog = {
     pname = "cl-prolog2.bprolog";
     createAsd = false;
     version = "20211209-git";
@@ -18268,7 +18268,7 @@ rec {
     systems = [ "cl-prolog2.bprolog" ];
     lispLibs = [ cl-prolog2 ];
   };
-  cl-prolog2_bprolog_test = {
+  cl-prolog2_dot_bprolog_dot_test = {
     pname = "cl-prolog2.bprolog.test";
     createAsd = false;
     version = "20211209-git";
@@ -18279,9 +18279,9 @@ rec {
       asd = "cl-prolog2.bprolog.test";
     });
     systems = [ "cl-prolog2.bprolog.test" ];
-    lispLibs = [ cl-prolog2_bprolog cl-prolog2_test ];
+    lispLibs = [ cl-prolog2_dot_bprolog cl-prolog2_dot_test ];
   };
-  cl-prolog2_gprolog = {
+  cl-prolog2_dot_gprolog = {
     pname = "cl-prolog2.gprolog";
     createAsd = false;
     version = "20211209-git";
@@ -18294,7 +18294,7 @@ rec {
     systems = [ "cl-prolog2.gprolog" ];
     lispLibs = [ cl-prolog2 ];
   };
-  cl-prolog2_gprolog_test = {
+  cl-prolog2_dot_gprolog_dot_test = {
     pname = "cl-prolog2.gprolog.test";
     createAsd = false;
     version = "20211209-git";
@@ -18305,9 +18305,9 @@ rec {
       asd = "cl-prolog2.gprolog.test";
     });
     systems = [ "cl-prolog2.gprolog.test" ];
-    lispLibs = [ cl-prolog2_gprolog cl-prolog2_test ];
+    lispLibs = [ cl-prolog2_dot_gprolog cl-prolog2_dot_test ];
   };
-  cl-prolog2_swi = {
+  cl-prolog2_dot_swi = {
     pname = "cl-prolog2.swi";
     createAsd = false;
     version = "20211209-git";
@@ -18320,7 +18320,7 @@ rec {
     systems = [ "cl-prolog2.swi" ];
     lispLibs = [ cl-prolog2 ];
   };
-  cl-prolog2_swi_test = {
+  cl-prolog2_dot_swi_dot_test = {
     pname = "cl-prolog2.swi.test";
     createAsd = false;
     version = "20211209-git";
@@ -18331,9 +18331,9 @@ rec {
       asd = "cl-prolog2.swi.test";
     });
     systems = [ "cl-prolog2.swi.test" ];
-    lispLibs = [ cl-prolog2_swi cl-prolog2_test ];
+    lispLibs = [ cl-prolog2_dot_swi cl-prolog2_dot_test ];
   };
-  cl-prolog2_test = {
+  cl-prolog2_dot_test = {
     pname = "cl-prolog2.test";
     createAsd = false;
     version = "20211209-git";
@@ -18346,7 +18346,7 @@ rec {
     systems = [ "cl-prolog2.test" ];
     lispLibs = [ cl-prolog2 fiveam iterate ];
   };
-  cl-prolog2_xsb = {
+  cl-prolog2_dot_xsb = {
     pname = "cl-prolog2.xsb";
     createAsd = false;
     version = "20211209-git";
@@ -18359,7 +18359,7 @@ rec {
     systems = [ "cl-prolog2.xsb" ];
     lispLibs = [ cl-prolog2 ];
   };
-  cl-prolog2_xsb_test = {
+  cl-prolog2_dot_xsb_dot_test = {
     pname = "cl-prolog2.xsb.test";
     createAsd = false;
     version = "20211209-git";
@@ -18370,9 +18370,9 @@ rec {
       asd = "cl-prolog2.xsb.test";
     });
     systems = [ "cl-prolog2.xsb.test" ];
-    lispLibs = [ cl-prolog2_test cl-prolog2_xsb ];
+    lispLibs = [ cl-prolog2_dot_test cl-prolog2_dot_xsb ];
   };
-  cl-prolog2_yap = {
+  cl-prolog2_dot_yap = {
     pname = "cl-prolog2.yap";
     createAsd = false;
     version = "20211209-git";
@@ -18385,7 +18385,7 @@ rec {
     systems = [ "cl-prolog2.yap" ];
     lispLibs = [ cl-prolog2 ];
   };
-  cl-prolog2_yap_test = {
+  cl-prolog2_dot_yap_dot_test = {
     pname = "cl-prolog2.yap.test";
     createAsd = false;
     version = "20211209-git";
@@ -18396,7 +18396,7 @@ rec {
       asd = "cl-prolog2.yap.test";
     });
     systems = [ "cl-prolog2.yap.test" ];
-    lispLibs = [ cl-prolog2_test cl-prolog2_yap ];
+    lispLibs = [ cl-prolog2_dot_test cl-prolog2_dot_yap ];
   };
   cl-protobufs = {
     pname = "cl-protobufs";
@@ -18658,7 +18658,7 @@ rec {
     systems = [ "cl-random-forest-test" ];
     lispLibs = [ cl-random-forest prove prove-asdf trivial-garbage uiop ];
   };
-  com_dvlsoft_rcfiles = {
+  com_dot_dvlsoft_dot_rcfiles = {
     pname = "com.dvlsoft.rcfiles";
     createAsd = false;
     version = "20111203-http";
@@ -18853,7 +18853,7 @@ rec {
     systems = [ "cl-rfc4251" ];
     lispLibs = [ trivial-gray-streams uiop ];
   };
-  cl-rfc4251_test = {
+  cl-rfc4251_dot_test = {
     pname = "cl-rfc4251.test";
     createAsd = false;
     version = "20210531-git";
@@ -18957,7 +18957,7 @@ rec {
     systems = [ "cl-rrt" ];
     lispLibs = [ alexandria anaphora cl-syntax-annot iterate ];
   };
-  cl-rrt_benchmark = {
+  cl-rrt_dot_benchmark = {
     pname = "cl-rrt.benchmark";
     createAsd = false;
     version = "20200925-git";
@@ -18968,9 +18968,9 @@ rec {
       asd = "cl-rrt.benchmark";
     });
     systems = [ "cl-rrt.benchmark" ];
-    lispLibs = [ cl-rrt cl-rrt_rtree cl-rrt_test fiveam vecto ];
+    lispLibs = [ cl-rrt cl-rrt_dot_rtree cl-rrt_dot_test fiveam vecto ];
   };
-  cl-rrt_rtree = {
+  cl-rrt_dot_rtree = {
     pname = "cl-rrt.rtree";
     createAsd = false;
     version = "20200925-git";
@@ -18981,9 +18981,9 @@ rec {
       asd = "cl-rrt.rtree";
     });
     systems = [ "cl-rrt.rtree" ];
-    lispLibs = [ alexandria anaphora cl-rrt cl-syntax-annot iterate spatial-trees spatial-trees_nns trivia ];
+    lispLibs = [ alexandria anaphora cl-rrt cl-syntax-annot iterate spatial-trees spatial-trees_dot_nns trivia ];
   };
-  cl-rrt_test = {
+  cl-rrt_dot_test = {
     pname = "cl-rrt.test";
     createAsd = false;
     version = "20200925-git";
@@ -18994,7 +18994,7 @@ rec {
       asd = "cl-rrt.test";
     });
     systems = [ "cl-rrt.test" ];
-    lispLibs = [ cl-rrt cl-rrt_rtree fiveam vecto ];
+    lispLibs = [ cl-rrt cl-rrt_dot_rtree fiveam vecto ];
   };
   rss = {
     pname = "rss";
@@ -19191,7 +19191,7 @@ rec {
     systems = [ "cl-sat" ];
     lispLibs = [ alexandria iterate trivia trivial-features ];
   };
-  cl-sat_test = {
+  cl-sat_dot_test = {
     pname = "cl-sat.test";
     createAsd = false;
     version = "20200715-git";
@@ -19204,7 +19204,7 @@ rec {
     systems = [ "cl-sat.test" ];
     lispLibs = [ cl-sat fiveam ];
   };
-  cl-sat_glucose = {
+  cl-sat_dot_glucose = {
     pname = "cl-sat.glucose";
     createAsd = false;
     version = "20210124-git";
@@ -19217,7 +19217,7 @@ rec {
     systems = [ "cl-sat.glucose" ];
     lispLibs = [ alexandria cl-sat iterate trivia trivial-package-manager ];
   };
-  cl-sat_glucose_test = {
+  cl-sat_dot_glucose_dot_test = {
     pname = "cl-sat.glucose.test";
     createAsd = false;
     version = "20210124-git";
@@ -19228,9 +19228,9 @@ rec {
       asd = "cl-sat.glucose.test";
     });
     systems = [ "cl-sat.glucose.test" ];
-    lispLibs = [ cl-sat_glucose fiveam ];
+    lispLibs = [ cl-sat_dot_glucose fiveam ];
   };
-  cl-sat_minisat = {
+  cl-sat_dot_minisat = {
     pname = "cl-sat.minisat";
     createAsd = false;
     version = "20190813-git";
@@ -19243,7 +19243,7 @@ rec {
     systems = [ "cl-sat.minisat" ];
     lispLibs = [ alexandria cl-sat iterate trivia trivial-package-manager ];
   };
-  cl-sat_minisat_test = {
+  cl-sat_dot_minisat_dot_test = {
     pname = "cl-sat.minisat.test";
     createAsd = false;
     version = "20190813-git";
@@ -19254,7 +19254,7 @@ rec {
       asd = "cl-sat.minisat.test";
     });
     systems = [ "cl-sat.minisat.test" ];
-    lispLibs = [ cl-sat_minisat fiveam ];
+    lispLibs = [ cl-sat_dot_minisat fiveam ];
   };
   cl-schedule = {
     pname = "cl-schedule";
@@ -19800,7 +19800,7 @@ rec {
       asd = "cl-smtp";
     });
     systems = [ "cl-smtp" ];
-    lispLibs = [ cl_ssl cl-base64 flexi-streams trivial-gray-streams usocket ];
+    lispLibs = [ cl_plus_ssl cl-base64 flexi-streams trivial-gray-streams usocket ];
   };
   cl-soil = {
     pname = "cl-soil";
@@ -20075,7 +20075,7 @@ rec {
     systems = [ "cl-ssh-keys" ];
     lispLibs = [ alexandria binascii cl-rfc4251 ironclad uiop ];
   };
-  cl-ssh-keys_test = {
+  cl-ssh-keys_dot_test = {
     pname = "cl-ssh-keys.test";
     createAsd = false;
     version = "20210531-git";
@@ -20101,7 +20101,7 @@ rec {
     systems = [ "cl-statsd" ];
     lispLibs = [ alexandria bordeaux-threads cl-interpol local-time log4cl safe-queue trivial-utf-8 usocket ];
   };
-  cl-statsd_test = {
+  cl-statsd_dot_test = {
     pname = "cl-statsd.test";
     createAsd = false;
     version = "20170124-git";
@@ -20218,7 +20218,7 @@ rec {
     systems = [ "str" ];
     lispLibs = [ cl-change-case cl-ppcre cl-ppcre-unicode ];
   };
-  str_test = {
+  str_dot_test = {
     pname = "str.test";
     createAsd = false;
     version = "20210531-git";
@@ -20736,7 +20736,7 @@ rec {
       asd = "cl-threadpool";
     });
     systems = [ "cl-threadpool" ];
-    lispLibs = [ bordeaux-threads queues_simple-cqueue ];
+    lispLibs = [ bordeaux-threads queues_dot_simple-cqueue ];
   };
   cl-tidy = {
     pname = "cl-tidy";
@@ -21141,7 +21141,7 @@ rec {
     systems = [ "unix-sockets" ];
     lispLibs = [ cffi flexi-streams log4cl trivial-garbage trivial-gray-streams uffi ];
   };
-  unix-sockets_tests = {
+  unix-sockets_dot_tests = {
     pname = "unix-sockets.tests";
     createAsd = false;
     version = "20201220-git";
@@ -21178,7 +21178,7 @@ rec {
       asd = "gt";
     });
     systems = [ "gt" ];
-    lispLibs = [ alexandria asdf-package-system bordeaux-threads cl-ppcre closer-mop curry-compose-reader-macros fset functional-trees iterate misc-extensions named-readtables serapeum split-sequence trivia trivia_ppcre ];
+    lispLibs = [ alexandria asdf-package-system bordeaux-threads cl-ppcre closer-mop curry-compose-reader-macros fset functional-trees iterate misc-extensions named-readtables serapeum split-sequence trivia trivia_dot_ppcre ];
   };
   cl-variates = {
     pname = "cl-variates";
@@ -21737,7 +21737,7 @@ rec {
       asd = "cl-xmpp-tls";
     });
     systems = [ "cl-xmpp-tls" ];
-    lispLibs = [ cl_ssl cl-xmpp-sasl ];
+    lispLibs = [ cl_plus_ssl cl-xmpp-sasl ];
   };
   cl-xul = {
     pname = "cl-xul";
@@ -21867,7 +21867,7 @@ rec {
       asd = "yxorp";
     });
     systems = [ "yxorp" ];
-    lispLibs = [ binding-arrows chipz chunga cl_ssl flexi-streams rutils salza2 str trivial-garbage usocket usocket-server ];
+    lispLibs = [ binding-arrows chipz chunga cl_plus_ssl flexi-streams rutils salza2 str trivial-garbage usocket usocket-server ];
   };
   cl-zipper = {
     pname = "cl-zipper";
@@ -21908,7 +21908,7 @@ rec {
     systems = [ "zeromq" ];
     lispLibs = [ cffi cffi-grovel trivial-garbage ];
   };
-  zeromq_tests = {
+  zeromq_dot_tests = {
     pname = "zeromq.tests";
     createAsd = "zeromq";
     version = "20160318-git";
@@ -22389,7 +22389,7 @@ rec {
     systems = [ "clavier" ];
     lispLibs = [ alexandria chronicity cl-fad cl-ppcre closer-mop ];
   };
-  clavier_test = {
+  clavier_dot_test = {
     pname = "clavier.test";
     createAsd = false;
     version = "20210531-git";
@@ -22556,7 +22556,7 @@ rec {
       asd = "cleric";
     });
     systems = [ "cleric" ];
-    lispLibs = [ alexandria com_gigamonkeys_binary-data epmd erlang-term md5 usocket ];
+    lispLibs = [ alexandria com_dot_gigamonkeys_dot_binary-data epmd erlang-term md5 usocket ];
   };
   clerk = {
     pname = "clerk";
@@ -22857,7 +22857,7 @@ rec {
     systems = [ "clingon" ];
     lispLibs = [ bobbin cl-reexport split-sequence uiop with-user-abort ];
   };
-  clingon_demo = {
+  clingon_dot_demo = {
     pname = "clingon.demo";
     createAsd = false;
     version = "20211230-git";
@@ -22870,7 +22870,7 @@ rec {
     systems = [ "clingon.demo" ];
     lispLibs = [ clingon ];
   };
-  clingon_intro = {
+  clingon_dot_intro = {
     pname = "clingon.intro";
     createAsd = false;
     version = "20211230-git";
@@ -22883,7 +22883,7 @@ rec {
     systems = [ "clingon.intro" ];
     lispLibs = [ clingon ];
   };
-  clingon_test = {
+  clingon_dot_test = {
     pname = "clingon.test";
     createAsd = false;
     version = "20211230-git";
@@ -23013,7 +23013,7 @@ rec {
     systems = [ "clj-re-test" ];
     lispLibs = [ clj-re fiveam ];
   };
-  clml_association-rule = {
+  clml_dot_association-rule = {
     pname = "clml.association-rule";
     createAsd = false;
     version = "20211020-git";
@@ -23024,9 +23024,9 @@ rec {
       asd = "clml.association-rule";
     });
     systems = [ "clml.association-rule" ];
-    lispLibs = [ clml_hjs ];
+    lispLibs = [ clml_dot_hjs ];
   };
-  clml_blas = {
+  clml_dot_blas = {
     pname = "clml.blas";
     createAsd = false;
     version = "20211020-git";
@@ -23037,9 +23037,9 @@ rec {
       asd = "clml.blas";
     });
     systems = [ "clml.blas" ];
-    lispLibs = [ clml_blas_complex clml_blas_hompack clml_blas_real ];
+    lispLibs = [ clml_dot_blas_dot_complex clml_dot_blas_dot_hompack clml_dot_blas_dot_real ];
   };
-  clml_blas_complex = {
+  clml_dot_blas_dot_complex = {
     pname = "clml.blas.complex";
     createAsd = "clml.blas";
     version = "20211020-git";
@@ -23052,7 +23052,7 @@ rec {
     systems = [ "clml.blas.complex" ];
     lispLibs = [ f2cl-lib ];
   };
-  clml_blas_hompack = {
+  clml_dot_blas_dot_hompack = {
     pname = "clml.blas.hompack";
     createAsd = "clml.blas";
     version = "20211020-git";
@@ -23065,7 +23065,7 @@ rec {
     systems = [ "clml.blas.hompack" ];
     lispLibs = [ f2cl-lib ];
   };
-  clml_blas_real = {
+  clml_dot_blas_dot_real = {
     pname = "clml.blas.real";
     createAsd = "clml.blas";
     version = "20211020-git";
@@ -23078,7 +23078,7 @@ rec {
     systems = [ "clml.blas.real" ];
     lispLibs = [ f2cl-lib ];
   };
-  clml_classifiers = {
+  clml_dot_classifiers = {
     pname = "clml.classifiers";
     createAsd = false;
     version = "20211020-git";
@@ -23089,9 +23089,9 @@ rec {
       asd = "clml.classifiers";
     });
     systems = [ "clml.classifiers" ];
-    lispLibs = [ clml_clustering clml_hjs clml_svm ];
+    lispLibs = [ clml_dot_clustering clml_dot_hjs clml_dot_svm ];
   };
-  clml_clustering = {
+  clml_dot_clustering = {
     pname = "clml.clustering";
     createAsd = false;
     version = "20211020-git";
@@ -23102,9 +23102,9 @@ rec {
       asd = "clml.clustering";
     });
     systems = [ "clml.clustering" ];
-    lispLibs = [ clml_blas clml_hjs clml_nearest-search iterate ];
+    lispLibs = [ clml_dot_blas clml_dot_hjs clml_dot_nearest-search iterate ];
   };
-  clml_data = {
+  clml_dot_data = {
     pname = "clml.data";
     createAsd = false;
     version = "20211020-git";
@@ -23115,9 +23115,9 @@ rec {
       asd = "clml.data";
     });
     systems = [ "clml.data" ];
-    lispLibs = [ clml_data_r-datasets ];
+    lispLibs = [ clml_dot_data_dot_r-datasets ];
   };
-  clml_data_r-datasets = {
+  clml_dot_data_dot_r-datasets = {
     pname = "clml.data.r-datasets";
     createAsd = false;
     version = "20211020-git";
@@ -23128,9 +23128,9 @@ rec {
       asd = "clml.data.r-datasets";
     });
     systems = [ "clml.data.r-datasets" ];
-    lispLibs = [ cl-ppcre clml_data_r-datasets-package clml_hjs clml_utility drakma ];
+    lispLibs = [ cl-ppcre clml_dot_data_dot_r-datasets-package clml_dot_hjs clml_dot_utility drakma ];
   };
-  clml_decision-tree = {
+  clml_dot_decision-tree = {
     pname = "clml.decision-tree";
     createAsd = false;
     version = "20211020-git";
@@ -23141,9 +23141,9 @@ rec {
       asd = "clml.decision-tree";
     });
     systems = [ "clml.decision-tree" ];
-    lispLibs = [ clml_hjs lparallel ];
+    lispLibs = [ clml_dot_hjs lparallel ];
   };
-  clml_hjs = {
+  clml_dot_hjs = {
     pname = "clml.hjs";
     createAsd = false;
     version = "20211020-git";
@@ -23154,9 +23154,9 @@ rec {
       asd = "clml.hjs";
     });
     systems = [ "clml.hjs" ];
-    lispLibs = [ alexandria clml_blas clml_lapack clml_statistics clml_utility future introspect-environment iterate ];
+    lispLibs = [ alexandria clml_dot_blas clml_dot_lapack clml_dot_statistics clml_dot_utility future introspect-environment iterate ];
   };
-  clml_lapack = {
+  clml_dot_lapack = {
     pname = "clml.lapack";
     createAsd = false;
     version = "20211020-git";
@@ -23167,9 +23167,9 @@ rec {
       asd = "clml.lapack";
     });
     systems = [ "clml.lapack" ];
-    lispLibs = [ clml_blas clml_lapack-real f2cl-lib ];
+    lispLibs = [ clml_dot_blas clml_dot_lapack-real f2cl-lib ];
   };
-  clml_lapack-real = {
+  clml_dot_lapack-real = {
     pname = "clml.lapack-real";
     createAsd = "clml.lapack";
     version = "20211020-git";
@@ -23180,9 +23180,9 @@ rec {
       asd = "clml.lapack";
     });
     systems = [ "clml.lapack-real" ];
-    lispLibs = [ clml_blas f2cl-lib ];
+    lispLibs = [ clml_dot_blas f2cl-lib ];
   };
-  clml_nearest-search = {
+  clml_dot_nearest-search = {
     pname = "clml.nearest-search";
     createAsd = false;
     version = "20211020-git";
@@ -23193,9 +23193,9 @@ rec {
       asd = "clml.nearest-search";
     });
     systems = [ "clml.nearest-search" ];
-    lispLibs = [ clml_hjs clml_nonparametric clml_pca ];
+    lispLibs = [ clml_dot_hjs clml_dot_nonparametric clml_dot_pca ];
   };
-  clml_nonparametric = {
+  clml_dot_nonparametric = {
     pname = "clml.nonparametric";
     createAsd = false;
     version = "20211020-git";
@@ -23206,9 +23206,9 @@ rec {
       asd = "clml.nonparametric";
     });
     systems = [ "clml.nonparametric" ];
-    lispLibs = [ clml_hjs ];
+    lispLibs = [ clml_dot_hjs ];
   };
-  clml_numeric = {
+  clml_dot_numeric = {
     pname = "clml.numeric";
     createAsd = false;
     version = "20211020-git";
@@ -23219,9 +23219,9 @@ rec {
       asd = "clml.numeric";
     });
     systems = [ "clml.numeric" ];
-    lispLibs = [ clml_hjs ];
+    lispLibs = [ clml_dot_hjs ];
   };
-  clml_pca = {
+  clml_dot_pca = {
     pname = "clml.pca";
     createAsd = false;
     version = "20211020-git";
@@ -23232,9 +23232,9 @@ rec {
       asd = "clml.pca";
     });
     systems = [ "clml.pca" ];
-    lispLibs = [ clml_decision-tree clml_hjs ];
+    lispLibs = [ clml_dot_decision-tree clml_dot_hjs ];
   };
-  clml_pca_examples = {
+  clml_dot_pca_dot_examples = {
     pname = "clml.pca.examples";
     createAsd = "clml.pca";
     version = "20211020-git";
@@ -23245,9 +23245,9 @@ rec {
       asd = "clml.pca";
     });
     systems = [ "clml.pca.examples" ];
-    lispLibs = [ clml_hjs clml_pca ];
+    lispLibs = [ clml_dot_hjs clml_dot_pca ];
   };
-  clml_statistics = {
+  clml_dot_statistics = {
     pname = "clml.statistics";
     createAsd = false;
     version = "20211020-git";
@@ -23258,9 +23258,9 @@ rec {
       asd = "clml.statistics";
     });
     systems = [ "clml.statistics" ];
-    lispLibs = [ clml_statistics_rand ];
+    lispLibs = [ clml_dot_statistics_dot_rand ];
   };
-  clml_statistics_rand = {
+  clml_dot_statistics_dot_rand = {
     pname = "clml.statistics.rand";
     createAsd = false;
     version = "20211020-git";
@@ -23273,7 +23273,7 @@ rec {
     systems = [ "clml.statistics.rand" ];
     lispLibs = [  ];
   };
-  clml_svm = {
+  clml_dot_svm = {
     pname = "clml.svm";
     createAsd = false;
     version = "20211020-git";
@@ -23284,9 +23284,9 @@ rec {
       asd = "clml.svm";
     });
     systems = [ "clml.svm" ];
-    lispLibs = [ clml_decision-tree clml_hjs future lparallel ];
+    lispLibs = [ clml_dot_decision-tree clml_dot_hjs future lparallel ];
   };
-  clml_svm_examples = {
+  clml_dot_svm_dot_examples = {
     pname = "clml.svm.examples";
     createAsd = "clml.svm";
     version = "20211020-git";
@@ -23297,9 +23297,9 @@ rec {
       asd = "clml.svm";
     });
     systems = [ "clml.svm.examples" ];
-    lispLibs = [ clml_hjs clml_svm ];
+    lispLibs = [ clml_dot_hjs clml_dot_svm ];
   };
-  clml_text = {
+  clml_dot_text = {
     pname = "clml.text";
     createAsd = false;
     version = "20211020-git";
@@ -23310,9 +23310,9 @@ rec {
       asd = "clml.text";
     });
     systems = [ "clml.text" ];
-    lispLibs = [ clml_hjs clml_nonparametric split-sequence ];
+    lispLibs = [ clml_dot_hjs clml_dot_nonparametric split-sequence ];
   };
-  clml_utility = {
+  clml_dot_utility = {
     pname = "clml.utility";
     createAsd = false;
     version = "20211020-git";
@@ -23453,7 +23453,7 @@ rec {
       asd = "clonsigna";
     });
     systems = [ "clonsigna" ];
-    lispLibs = [ alexandria babel cl_ssl cl-base64 cl-ppcre iolib split-sequence ];
+    lispLibs = [ alexandria babel cl_plus_ssl cl-base64 cl-ppcre iolib split-sequence ];
   };
   clos-diff = {
     pname = "clos-diff";
@@ -24404,7 +24404,7 @@ rec {
     systems = [ "com-on-test" ];
     lispLibs = [ com-on parachute ];
   };
-  com_clearly-useful_generic-collection-interface = {
+  com_dot_clearly-useful_dot_generic-collection-interface = {
     pname = "com.clearly-useful.generic-collection-interface";
     createAsd = false;
     version = "20190710-git";
@@ -24415,9 +24415,9 @@ rec {
       asd = "com.clearly-useful.generic-collection-interface";
     });
     systems = [ "com.clearly-useful.generic-collection-interface" ];
-    lispLibs = [ bordeaux-threads com_clearly-useful_protocols lparallel ];
+    lispLibs = [ bordeaux-threads com_dot_clearly-useful_dot_protocols lparallel ];
   };
-  com_clearly-useful_generic-collection-interface_test = {
+  com_dot_clearly-useful_dot_generic-collection-interface_dot_test = {
     pname = "com.clearly-useful.generic-collection-interface.test";
     createAsd = false;
     version = "20190710-git";
@@ -24428,9 +24428,9 @@ rec {
       asd = "com.clearly-useful.generic-collection-interface.test";
     });
     systems = [ "com.clearly-useful.generic-collection-interface.test" ];
-    lispLibs = [ com_clearly-useful_generic-collection-interface ];
+    lispLibs = [ com_dot_clearly-useful_dot_generic-collection-interface ];
   };
-  com_clearly-useful_iterate_ = {
+  com_dot_clearly-useful_dot_iterate_plus = {
     pname = "com.clearly-useful.iterate+";
     createAsd = false;
     version = "20121013-git";
@@ -24441,9 +24441,9 @@ rec {
       asd = "com.clearly-useful.iterate+";
     });
     systems = [ "com.clearly-useful.iterate+" ];
-    lispLibs = [ com_clearly-useful_generic-collection-interface com_clearly-useful_iterator-protocol com_clearly-useful_protocols iterate ];
+    lispLibs = [ com_dot_clearly-useful_dot_generic-collection-interface com_dot_clearly-useful_dot_iterator-protocol com_dot_clearly-useful_dot_protocols iterate ];
   };
-  com_clearly-useful_iterator-protocol = {
+  com_dot_clearly-useful_dot_iterator-protocol = {
     pname = "com.clearly-useful.iterator-protocol";
     createAsd = false;
     version = "20130312-git";
@@ -24454,9 +24454,9 @@ rec {
       asd = "com.clearly-useful.iterator-protocol";
     });
     systems = [ "com.clearly-useful.iterator-protocol" ];
-    lispLibs = [ com_clearly-useful_generic-collection-interface com_clearly-useful_protocols ];
+    lispLibs = [ com_dot_clearly-useful_dot_generic-collection-interface com_dot_clearly-useful_dot_protocols ];
   };
-  com_clearly-useful_protocols = {
+  com_dot_clearly-useful_dot_protocols = {
     pname = "com.clearly-useful.protocols";
     createAsd = false;
     version = "20130312-git";
@@ -24469,7 +24469,7 @@ rec {
     systems = [ "com.clearly-useful.protocols" ];
     lispLibs = [ iterate ];
   };
-  com_google_base = {
+  com_dot_google_dot_base = {
     pname = "com.google.base";
     createAsd = false;
     version = "20200925-git";
@@ -24716,7 +24716,7 @@ rec {
     systems = [ "qt" ];
     lispLibs = [ alexandria cffi cl-ppcre closer-mop iterate named-readtables trivial-features trivial-garbage ];
   };
-  qt_libs = {
+  qt_plus_libs = {
     pname = "qt+libs";
     createAsd = false;
     version = "20200925-git";
@@ -24898,7 +24898,7 @@ rec {
     systems = [ "concrete-syntax-tree-source-info" ];
     lispLibs = [  ];
   };
-  org_tfeb_conduit-packages = {
+  org_dot_tfeb_dot_conduit-packages = {
     pname = "org.tfeb.conduit-packages";
     createAsd = false;
     version = "20201220-git";
@@ -24924,7 +24924,7 @@ rec {
     systems = [ "conf" ];
     lispLibs = [ cl-fad ];
   };
-  configuration_options = {
+  configuration_dot_options = {
     pname = "configuration.options";
     createAsd = false;
     version = "20210531-git";
@@ -24935,9 +24935,9 @@ rec {
       asd = "configuration.options";
     });
     systems = [ "configuration.options" ];
-    lispLibs = [ alexandria architecture_service-provider cl-hooks esrap let-plus log4cl more-conditions split-sequence utilities_print-items utilities_print-tree ];
+    lispLibs = [ alexandria architecture_dot_service-provider cl-hooks esrap let-plus log4cl more-conditions split-sequence utilities_dot_print-items utilities_dot_print-tree ];
   };
-  configuration_options-and-mop = {
+  configuration_dot_options-and-mop = {
     pname = "configuration.options-and-mop";
     createAsd = false;
     version = "20210531-git";
@@ -24948,9 +24948,9 @@ rec {
       asd = "configuration.options-and-mop";
     });
     systems = [ "configuration.options-and-mop" ];
-    lispLibs = [ alexandria closer-mop configuration_options let-plus ];
+    lispLibs = [ alexandria closer-mop configuration_dot_options let-plus ];
   };
-  configuration_options-and-puri = {
+  configuration_dot_options-and-puri = {
     pname = "configuration.options-and-puri";
     createAsd = false;
     version = "20210531-git";
@@ -24961,9 +24961,9 @@ rec {
       asd = "configuration.options-and-puri";
     });
     systems = [ "configuration.options-and-puri" ];
-    lispLibs = [ alexandria configuration_options let-plus puri ];
+    lispLibs = [ alexandria configuration_dot_options let-plus puri ];
   };
-  configuration_options-and-quri = {
+  configuration_dot_options-and-quri = {
     pname = "configuration.options-and-quri";
     createAsd = false;
     version = "20210531-git";
@@ -24974,9 +24974,9 @@ rec {
       asd = "configuration.options-and-quri";
     });
     systems = [ "configuration.options-and-quri" ];
-    lispLibs = [ alexandria configuration_options let-plus quri ];
+    lispLibs = [ alexandria configuration_dot_options let-plus quri ];
   };
-  configuration_options-and-service-provider = {
+  configuration_dot_options-and-service-provider = {
     pname = "configuration.options-and-service-provider";
     createAsd = false;
     version = "20210531-git";
@@ -24987,9 +24987,9 @@ rec {
       asd = "configuration.options-and-service-provider";
     });
     systems = [ "configuration.options-and-service-provider" ];
-    lispLibs = [ alexandria architecture_service-provider architecture_service-provider-and-hooks configuration_options configuration_options-and-mop let-plus log4cl ];
+    lispLibs = [ alexandria architecture_dot_service-provider architecture_dot_service-provider-and-hooks configuration_dot_options configuration_dot_options-and-mop let-plus log4cl ];
   };
-  configuration_options-syntax-ini = {
+  configuration_dot_options-syntax-ini = {
     pname = "configuration.options-syntax-ini";
     createAsd = false;
     version = "20210531-git";
@@ -25000,9 +25000,9 @@ rec {
       asd = "configuration.options-syntax-ini";
     });
     systems = [ "configuration.options-syntax-ini" ];
-    lispLibs = [ alexandria configuration_options let-plus parser_ini ];
+    lispLibs = [ alexandria configuration_dot_options let-plus parser_dot_ini ];
   };
-  configuration_options-syntax-xml = {
+  configuration_dot_options-syntax-xml = {
     pname = "configuration.options-syntax-xml";
     createAsd = false;
     version = "20210531-git";
@@ -25013,7 +25013,7 @@ rec {
       asd = "configuration.options-syntax-xml";
     });
     systems = [ "configuration.options-syntax-xml" ];
-    lispLibs = [ alexandria configuration_options let-plus xml_location ];
+    lispLibs = [ alexandria configuration_dot_options let-plus xml_dot_location ];
   };
   conium = {
     pname = "conium";
@@ -25067,7 +25067,7 @@ rec {
     systems = [ "constantfold" ];
     lispLibs = [ alexandria iterate lisp-namespace trivia ];
   };
-  constantfold_test = {
+  constantfold_dot_test = {
     pname = "constantfold.test";
     createAsd = false;
     version = "20191227-git";
@@ -25171,7 +25171,7 @@ rec {
     systems = [ "core-reader" ];
     lispLibs = [ uiop ];
   };
-  core-reader_test = {
+  core-reader_dot_test = {
     pname = "core-reader.test";
     createAsd = false;
     version = "20211020-git";
@@ -25262,7 +25262,7 @@ rec {
     systems = [ "cricket" ];
     lispLibs = [ arrow-macros cl-cpus golden-utils lparallel seedable-rng uiop zpng ];
   };
-  cricket_test = {
+  cricket_dot_test = {
     pname = "cricket.test";
     createAsd = false;
     version = "20210411-git";
@@ -25509,7 +25509,7 @@ rec {
     systems = [ "curly" ];
     lispLibs = [  ];
   };
-  curly_test = {
+  curly_dot_test = {
     pname = "curly.test";
     createAsd = "curly";
     version = "20120407-git";
@@ -25535,7 +25535,7 @@ rec {
     systems = [ "curry-compose-reader-macros" ];
     lispLibs = [ alexandria named-readtables ];
   };
-  com_elbeno_curve = {
+  com_dot_elbeno_dot_curve = {
     pname = "com.elbeno.curve";
     createAsd = false;
     version = "20130128-git";
@@ -25546,7 +25546,7 @@ rec {
       asd = "com.elbeno.curve";
     });
     systems = [ "com.elbeno.curve" ];
-    lispLibs = [ com_elbeno_vector vecto ];
+    lispLibs = [ com_dot_elbeno_dot_vector vecto ];
   };
   cxml = {
     pname = "cxml";
@@ -25702,9 +25702,9 @@ rec {
       asd = "priority-queue-benchmark";
     });
     systems = [ "priority-queue-benchmark" ];
-    lispLibs = [ alexandria bodge-heap cl-heap damn-fast-priority-queue damn-fast-stable-priority-queue heap minheap pettomato-indexed-priority-queue pileup priority-queue queues_priority-queue trivial-garbage ];
+    lispLibs = [ alexandria bodge-heap cl-heap damn-fast-priority-queue damn-fast-stable-priority-queue heap minheap pettomato-indexed-priority-queue pileup priority-queue queues_dot_priority-queue trivial-garbage ];
   };
-  darts_lib_email-address = {
+  darts_dot_lib_dot_email-address = {
     pname = "darts.lib.email-address";
     createAsd = false;
     version = "quicklisp-release-48464635-git";
@@ -25717,7 +25717,7 @@ rec {
     systems = [ "darts.lib.email-address" ];
     lispLibs = [  ];
   };
-  darts_lib_email-address-test = {
+  darts_dot_lib_dot_email-address-test = {
     pname = "darts.lib.email-address-test";
     createAsd = false;
     version = "quicklisp-release-48464635-git";
@@ -25728,9 +25728,9 @@ rec {
       asd = "darts.lib.email-address-test";
     });
     systems = [ "darts.lib.email-address-test" ];
-    lispLibs = [ darts_lib_email-address stefil ];
+    lispLibs = [ darts_dot_lib_dot_email-address stefil ];
   };
-  darts_lib_hashtree-test = {
+  darts_dot_lib_dot_hashtree-test = {
     pname = "darts.lib.hashtree-test";
     createAsd = false;
     version = "20211230-git";
@@ -25741,9 +25741,9 @@ rec {
       asd = "darts.lib.hashtree-test";
     });
     systems = [ "darts.lib.hashtree-test" ];
-    lispLibs = [ darts_lib_hashtrie darts_lib_wbtree stefil ];
+    lispLibs = [ darts_dot_lib_dot_hashtrie darts_dot_lib_dot_wbtree stefil ];
   };
-  darts_lib_hashtrie = {
+  darts_dot_lib_dot_hashtrie = {
     pname = "darts.lib.hashtrie";
     createAsd = false;
     version = "20211230-git";
@@ -25756,7 +25756,7 @@ rec {
     systems = [ "darts.lib.hashtrie" ];
     lispLibs = [  ];
   };
-  darts_lib_wbtree = {
+  darts_dot_lib_dot_wbtree = {
     pname = "darts.lib.wbtree";
     createAsd = false;
     version = "20211230-git";
@@ -25769,7 +25769,7 @@ rec {
     systems = [ "darts.lib.wbtree" ];
     lispLibs = [  ];
   };
-  darts_lib_message-pack = {
+  darts_dot_lib_dot_message-pack = {
     pname = "darts.lib.message-pack";
     createAsd = false;
     version = "20200325-git";
@@ -25782,7 +25782,7 @@ rec {
     systems = [ "darts.lib.message-pack" ];
     lispLibs = [ babel ieee-floats ];
   };
-  darts_lib_message-pack-test = {
+  darts_dot_lib_dot_message-pack-test = {
     pname = "darts.lib.message-pack-test";
     createAsd = false;
     version = "20200325-git";
@@ -25793,9 +25793,9 @@ rec {
       asd = "darts.lib.message-pack-test";
     });
     systems = [ "darts.lib.message-pack-test" ];
-    lispLibs = [ darts_lib_message-pack stefil trivial-octet-streams ];
+    lispLibs = [ darts_dot_lib_dot_message-pack stefil trivial-octet-streams ];
   };
-  darts_lib_sequence-metrics = {
+  darts_dot_lib_dot_sequence-metrics = {
     pname = "darts.lib.sequence-metrics";
     createAsd = false;
     version = "20130312-git";
@@ -25808,7 +25808,7 @@ rec {
     systems = [ "darts.lib.sequence-metrics" ];
     lispLibs = [  ];
   };
-  darts_lib_tools = {
+  darts_dot_lib_dot_tools = {
     pname = "darts.lib.tools";
     createAsd = false;
     version = "20201220-git";
@@ -25821,7 +25821,7 @@ rec {
     systems = [ "darts.lib.tools" ];
     lispLibs = [ atomics ];
   };
-  darts_lib_tools_test = {
+  darts_dot_lib_dot_tools_dot_test = {
     pname = "darts.lib.tools.test";
     createAsd = false;
     version = "20201220-git";
@@ -25832,9 +25832,9 @@ rec {
       asd = "darts.lib.tools.test";
     });
     systems = [ "darts.lib.tools.test" ];
-    lispLibs = [ bordeaux-threads darts_lib_tools fiveam ];
+    lispLibs = [ bordeaux-threads darts_dot_lib_dot_tools fiveam ];
   };
-  darts_lib_uuid = {
+  darts_dot_lib_dot_uuid = {
     pname = "darts.lib.uuid";
     createAsd = false;
     version = "20210807-git";
@@ -25847,7 +25847,7 @@ rec {
     systems = [ "darts.lib.uuid" ];
     lispLibs = [ cl-ppcre ironclad trivial-utf-8 ];
   };
-  darts_lib_uuid-test = {
+  darts_dot_lib_dot_uuid-test = {
     pname = "darts.lib.uuid-test";
     createAsd = false;
     version = "20210807-git";
@@ -25858,7 +25858,7 @@ rec {
       asd = "darts.lib.uuid-test";
     });
     systems = [ "darts.lib.uuid-test" ];
-    lispLibs = [ darts_lib_uuid stefil ];
+    lispLibs = [ darts_dot_lib_dot_uuid stefil ];
   };
   data-frame = {
     pname = "data-frame";
@@ -25871,7 +25871,7 @@ rec {
       asd = "data-frame";
     });
     systems = [ "data-frame" ];
-    lispLibs = [ alexandria alexandria_ anaphora array-operations let-plus num-utils select ];
+    lispLibs = [ alexandria alexandria_plus anaphora array-operations let-plus num-utils select ];
   };
   data-lens = {
     pname = "data-lens";
@@ -26003,7 +26003,7 @@ rec {
     systems = [ "dataloader" ];
     lispLibs = [ alexandria cl-csv cl-jpeg cl-wav iterate magicffi numcl numpy-file-format png retrospectiff trivia ];
   };
-  dataloader_test = {
+  dataloader_dot_test = {
     pname = "dataloader.test";
     createAsd = false;
     version = "20210531-git";
@@ -26081,7 +26081,7 @@ rec {
     systems = [ "wilbur" ];
     lispLibs = [ usocket ];
   };
-  net_didierverna_declt = {
+  net_dot_didierverna_dot_declt = {
     pname = "net.didierverna.declt";
     createAsd = false;
     version = "3.0";
@@ -26092,9 +26092,9 @@ rec {
       asd = "net.didierverna.declt";
     });
     systems = [ "net.didierverna.declt" ];
-    lispLibs = [ net_didierverna_declt_core net_didierverna_declt_setup ];
+    lispLibs = [ net_dot_didierverna_dot_declt_dot_core net_dot_didierverna_dot_declt_dot_setup ];
   };
-  net_didierverna_declt_core = {
+  net_dot_didierverna_dot_declt_dot_core = {
     pname = "net.didierverna.declt.core";
     createAsd = false;
     version = "3.0";
@@ -26105,9 +26105,9 @@ rec {
       asd = "net.didierverna.declt.core";
     });
     systems = [ "net.didierverna.declt.core" ];
-    lispLibs = [ net_didierverna_declt_setup ];
+    lispLibs = [ net_dot_didierverna_dot_declt_dot_setup ];
   };
-  net_didierverna_declt_setup = {
+  net_dot_didierverna_dot_declt_dot_setup = {
     pname = "net.didierverna.declt.setup";
     createAsd = false;
     version = "3.0";
@@ -26287,7 +26287,7 @@ rec {
       asd = "defmain";
     });
     systems = [ "defmain" ];
-    lispLibs = [ _40ants-doc alexandria cl-inflector cl-strings docs-config named-readtables net_didierverna_clon_core pythonic-string-reader ];
+    lispLibs = [ _40ants-doc alexandria cl-inflector cl-strings docs-config named-readtables net_dot_didierverna_dot_clon_dot_core pythonic-string-reader ];
   };
   defmain-test = {
     pname = "defmain-test";
@@ -26367,7 +26367,7 @@ rec {
     systems = [ "defrest" ];
     lispLibs = [ cl-ppcre hunchentoot quri split-sequence ];
   };
-  defrest_test = {
+  defrest_dot_test = {
     pname = "defrest.test";
     createAsd = "defrest";
     version = "20210531-git";
@@ -26482,9 +26482,9 @@ rec {
       asd = "dendrite";
     });
     systems = [ "dendrite" ];
-    lispLibs = [ dendrite_micro-l-system dendrite_primitives ];
+    lispLibs = [ dendrite_dot_micro-l-system dendrite_dot_primitives ];
   };
-  dendrite_micro-l-system = {
+  dendrite_dot_micro-l-system = {
     pname = "dendrite.micro-l-system";
     createAsd = false;
     version = "release-quicklisp-409b1061-git";
@@ -26497,7 +26497,7 @@ rec {
     systems = [ "dendrite.micro-l-system" ];
     lispLibs = [  ];
   };
-  dendrite_primitives = {
+  dendrite_dot_primitives = {
     pname = "dendrite.primitives";
     createAsd = false;
     version = "release-quicklisp-409b1061-git";
@@ -26729,9 +26729,9 @@ rec {
       asd = "descriptions-test";
     });
     systems = [ "descriptions-test" ];
-    lispLibs = [ descriptions descriptions_serialization descriptions_validation stefil ];
+    lispLibs = [ descriptions descriptions_dot_serialization descriptions_dot_validation stefil ];
   };
-  descriptions_serialization = {
+  descriptions_dot_serialization = {
     pname = "descriptions.serialization";
     createAsd = false;
     version = "20150302-git";
@@ -26744,7 +26744,7 @@ rec {
     systems = [ "descriptions.serialization" ];
     lispLibs = [ cl-json descriptions ];
   };
-  descriptions_validation = {
+  descriptions_dot_validation = {
     pname = "descriptions.validation";
     createAsd = false;
     version = "20150302-git";
@@ -26781,7 +26781,7 @@ rec {
       asd = "dexador";
     });
     systems = [ "dexador" ];
-    lispLibs = [ alexandria babel bordeaux-threads chipz chunga cl_ssl cl-base64 cl-cookie cl-ppcre fast-http fast-io quri trivial-features trivial-gray-streams trivial-mimes uiop usocket ];
+    lispLibs = [ alexandria babel bordeaux-threads chipz chunga cl_plus_ssl cl-base64 cl-cookie cl-ppcre fast-http fast-io quri trivial-features trivial-gray-streams trivial-mimes uiop usocket ];
   };
   dexador-test = {
     pname = "dexador-test";
@@ -27171,7 +27171,7 @@ rec {
       asd = "doplus";
     });
     systems = [ "doplus" ];
-    lispLibs = [ parse-declarations-1_0 ];
+    lispLibs = [ parse-declarations-1_dot_0 ];
   };
   doplus-fset = {
     pname = "doplus-fset";
@@ -27223,7 +27223,7 @@ rec {
       asd = "drakma";
     });
     systems = [ "drakma" ];
-    lispLibs = [ chipz chunga cl_ssl cl-base64 cl-ppcre flexi-streams puri usocket ];
+    lispLibs = [ chipz chunga cl_plus_ssl cl-base64 cl-ppcre flexi-streams puri usocket ];
   };
   drakma-test = {
     pname = "drakma-test";
@@ -27327,7 +27327,7 @@ rec {
       asd = "dweet";
     });
     systems = [ "dweet" ];
-    lispLibs = [ babel com_gigamonkeys_json drakma ];
+    lispLibs = [ babel com_dot_gigamonkeys_dot_json drakma ];
   };
   dynamic-classes = {
     pname = "dynamic-classes";
@@ -27394,7 +27394,7 @@ rec {
     systems = [ "eager-future" ];
     lispLibs = [ bordeaux-threads ];
   };
-  eager-future_test = {
+  eager-future_dot_test = {
     pname = "eager-future.test";
     createAsd = "eager-future";
     version = "20101006-darcs";
@@ -27420,7 +27420,7 @@ rec {
     systems = [ "eager-future2" ];
     lispLibs = [ bordeaux-threads trivial-garbage ];
   };
-  test_eager-future2 = {
+  test_dot_eager-future2 = {
     pname = "test.eager-future2";
     createAsd = false;
     version = "20191130-git";
@@ -27511,7 +27511,7 @@ rec {
     systems = [ "easy-routes" ];
     lispLibs = [ hunchentoot routes ];
   };
-  easy-routes_djula = {
+  easy-routes_plus_djula = {
     pname = "easy-routes+djula";
     createAsd = false;
     version = "20211020-git";
@@ -27524,7 +27524,7 @@ rec {
     systems = [ "easy-routes+djula" ];
     lispLibs = [ djula easy-routes ];
   };
-  easy-routes_errors = {
+  easy-routes_plus_errors = {
     pname = "easy-routes+errors";
     createAsd = false;
     version = "20211020-git";
@@ -27548,7 +27548,7 @@ rec {
       asd = "eazy-documentation";
     });
     systems = [ "eazy-documentation" ];
-    lispLibs = [ alexandria cl-ppcre cl-who common-doc common-doc-split-paragraphs common-html iterate trivia trivia_ppcre ];
+    lispLibs = [ alexandria cl-ppcre cl-who common-doc common-doc-split-paragraphs common-html iterate trivia trivia_dot_ppcre ];
   };
   eazy-gnuplot = {
     pname = "eazy-gnuplot";
@@ -27563,7 +27563,7 @@ rec {
     systems = [ "eazy-gnuplot" ];
     lispLibs = [ alexandria iterate trivia uiop ];
   };
-  eazy-gnuplot_test = {
+  eazy-gnuplot_dot_test = {
     pname = "eazy-gnuplot.test";
     createAsd = false;
     version = "20180831-git";
@@ -27587,9 +27587,9 @@ rec {
       asd = "eazy-process";
     });
     systems = [ "eazy-process" ];
-    lispLibs = [ alexandria cffi cl-ppcre cl-rlimit iolib iterate trivia trivia_ppcre trivial-garbage ];
+    lispLibs = [ alexandria cffi cl-ppcre cl-rlimit iolib iterate trivia trivia_dot_ppcre trivial-garbage ];
   };
-  eazy-process_test = {
+  eazy-process_dot_test = {
     pname = "eazy-process.test";
     createAsd = false;
     version = "20200925-git";
@@ -27615,7 +27615,7 @@ rec {
     systems = [ "eazy-project" ];
     lispLibs = [ bordeaux-threads cl-emb cl-ppcre cl-syntax cl-syntax-annot introspect-environment iterate lisp-namespace local-time trivia ];
   };
-  eazy-project_autoload = {
+  eazy-project_dot_autoload = {
     pname = "eazy-project.autoload";
     createAsd = false;
     version = "20190710-git";
@@ -27628,7 +27628,7 @@ rec {
     systems = [ "eazy-project.autoload" ];
     lispLibs = [ eazy-project ];
   };
-  eazy-project_test = {
+  eazy-project_dot_test = {
     pname = "eazy-project.test";
     createAsd = false;
     version = "20190710-git";
@@ -27795,7 +27795,7 @@ rec {
       asd = "elf";
     });
     systems = [ "elf" ];
-    lispLibs = [ alexandria cl-ppcre com_gigamonkeys_binary-data flexi-streams metabang-bind split-sequence trivial-shell ];
+    lispLibs = [ alexandria cl-ppcre com_dot_gigamonkeys_dot_binary-data flexi-streams metabang-bind split-sequence trivial-shell ];
   };
   enhanced-boolean = {
     pname = "enhanced-boolean";
@@ -28328,7 +28328,7 @@ rec {
       asd = "exscribe";
     });
     systems = [ "exscribe" ];
-    lispLibs = [ alexandria fare-memoization fare-scripts fare-utils quri scribble trivia_quasiquote ];
+    lispLibs = [ alexandria fare-memoization fare-scripts fare-utils quri scribble trivia_dot_quasiquote ];
   };
   ext-blog = {
     pname = "ext-blog";
@@ -28341,7 +28341,7 @@ rec {
       asd = "ext-blog";
     });
     systems = [ "ext-blog" ];
-    lispLibs = [ cl-fad cl-store closure-template image kl-verify local-time restas restas_file-publisher s-xml-rpc ];
+    lispLibs = [ cl-fad cl-store closure-template image kl-verify local-time restas restas_dot_file-publisher s-xml-rpc ];
   };
   extended-reals = {
     pname = "extended-reals";
@@ -28770,7 +28770,7 @@ rec {
       asd = "fare-quasiquote-optima";
     });
     systems = [ "fare-quasiquote-optima" ];
-    lispLibs = [ trivia_quasiquote ];
+    lispLibs = [ trivia_dot_quasiquote ];
   };
   fare-quasiquote-readtable = {
     pname = "fare-quasiquote-readtable";
@@ -28796,7 +28796,7 @@ rec {
       asd = "fare-scripts";
     });
     systems = [ "fare-scripts" ];
-    lispLibs = [ babel binascii cl-launch cl-mime cl-ppcre cl-scripting cl-unicode command-line-arguments fare-utils inferior-shell optima optima_ppcre swank ];
+    lispLibs = [ babel binascii cl-launch cl-mime cl-ppcre cl-scripting cl-unicode command-line-arguments fare-utils inferior-shell optima optima_dot_ppcre swank ];
   };
   fare-utils = {
     pname = "fare-utils";
@@ -28822,7 +28822,7 @@ rec {
       asd = "fare-utils-test";
     });
     systems = [ "fare-utils-test" ];
-    lispLibs = [ fare-utils hu_dwim_stefil ];
+    lispLibs = [ fare-utils hu_dot_dwim_dot_stefil ];
   };
   fast-generic-functions = {
     pname = "fast-generic-functions";
@@ -29071,7 +29071,7 @@ rec {
     systems = [ "infix" ];
     lispLibs = [  ];
   };
-  net_scipolis_graphs = {
+  net_dot_scipolis_dot_graphs = {
     pname = "net.scipolis.graphs";
     createAsd = false;
     version = "20210411-git";
@@ -29175,7 +29175,7 @@ rec {
     systems = [ "file-local-variable" ];
     lispLibs = [ alexandria iterate trivia ];
   };
-  file-local-variable_test = {
+  file-local-variable_dot_test = {
     pname = "file-local-variable.test";
     createAsd = false;
     version = "20160318-git";
@@ -29290,7 +29290,7 @@ rec {
       asd = "firephp-tests";
     });
     systems = [ "firephp-tests" ];
-    lispLibs = [ cl-json firephp hu_dwim_stefil hunchentoot ];
+    lispLibs = [ cl-json firephp hu_dot_dwim_dot_stefil hunchentoot ];
   };
   first-time-value = {
     pname = "first-time-value";
@@ -29329,7 +29329,7 @@ rec {
       asd = "fiveam";
     });
     systems = [ "fiveam" ];
-    lispLibs = [ alexandria net_didierverna_asdf-flv trivial-backtrace ];
+    lispLibs = [ alexandria net_dot_didierverna_dot_asdf-flv trivial-backtrace ];
   };
   fiveam-asdf = {
     pname = "fiveam-asdf";
@@ -29617,7 +29617,7 @@ rec {
     systems = [ "fn" ];
     lispLibs = [ named-readtables ];
   };
-  net_didierverna_focus = {
+  net_dot_didierverna_dot_focus = {
     pname = "net.didierverna.focus";
     createAsd = false;
     version = "20170403-git";
@@ -29628,9 +29628,9 @@ rec {
       asd = "net.didierverna.focus";
     });
     systems = [ "net.didierverna.focus" ];
-    lispLibs = [ net_didierverna_focus_core net_didierverna_focus_flv net_didierverna_focus_setup ];
+    lispLibs = [ net_dot_didierverna_dot_focus_dot_core net_dot_didierverna_dot_focus_dot_flv net_dot_didierverna_dot_focus_dot_setup ];
   };
-  net_didierverna_focus_core = {
+  net_dot_didierverna_dot_focus_dot_core = {
     pname = "net.didierverna.focus.core";
     createAsd = false;
     version = "20170403-git";
@@ -29641,9 +29641,9 @@ rec {
       asd = "net.didierverna.focus.core";
     });
     systems = [ "net.didierverna.focus.core" ];
-    lispLibs = [ net_didierverna_focus_setup ];
+    lispLibs = [ net_dot_didierverna_dot_focus_dot_setup ];
   };
-  net_didierverna_focus_demos_quotation = {
+  net_dot_didierverna_dot_focus_dot_demos_dot_quotation = {
     pname = "net.didierverna.focus.demos.quotation";
     createAsd = false;
     version = "20170403-git";
@@ -29654,9 +29654,9 @@ rec {
       asd = "net.didierverna.focus.demos.quotation";
     });
     systems = [ "net.didierverna.focus.demos.quotation" ];
-    lispLibs = [ net_didierverna_focus_flv ];
+    lispLibs = [ net_dot_didierverna_dot_focus_dot_flv ];
   };
-  net_didierverna_focus_flv = {
+  net_dot_didierverna_dot_focus_dot_flv = {
     pname = "net.didierverna.focus.flv";
     createAsd = false;
     version = "20170403-git";
@@ -29667,9 +29667,9 @@ rec {
       asd = "net.didierverna.focus.flv";
     });
     systems = [ "net.didierverna.focus.flv" ];
-    lispLibs = [ net_didierverna_asdf-flv net_didierverna_focus_core net_didierverna_focus_setup ];
+    lispLibs = [ net_dot_didierverna_dot_asdf-flv net_dot_didierverna_dot_focus_dot_core net_dot_didierverna_dot_focus_dot_setup ];
   };
-  net_didierverna_focus_setup = {
+  net_dot_didierverna_dot_focus_dot_setup = {
     pname = "net.didierverna.focus.setup";
     createAsd = false;
     version = "20170403-git";
@@ -29693,7 +29693,7 @@ rec {
       asd = "fof";
     });
     systems = [ "fof" ];
-    lispLibs = [ alexandria hu_dwim_defclass-star local-time magicffi named-readtables osicat serapeum str trivia trivial-package-local-nicknames ];
+    lispLibs = [ alexandria hu_dot_dwim_dot_defclass-star local-time magicffi named-readtables osicat serapeum str trivia trivial-package-local-nicknames ];
   };
   folio = {
     pname = "folio";
@@ -29706,9 +29706,9 @@ rec {
       asd = "folio";
     });
     systems = [ "folio" ];
-    lispLibs = [ folio_as folio_boxes folio_collections folio_functions ];
+    lispLibs = [ folio_dot_as folio_dot_boxes folio_dot_collections folio_dot_functions ];
   };
-  folio_as = {
+  folio_dot_as = {
     pname = "folio.as";
     createAsd = false;
     version = "20130128-git";
@@ -29721,7 +29721,7 @@ rec {
     systems = [ "folio.as" ];
     lispLibs = [  ];
   };
-  folio_boxes = {
+  folio_dot_boxes = {
     pname = "folio.boxes";
     createAsd = false;
     version = "20130128-git";
@@ -29734,7 +29734,7 @@ rec {
     systems = [ "folio.boxes" ];
     lispLibs = [  ];
   };
-  folio_collections = {
+  folio_dot_collections = {
     pname = "folio.collections";
     createAsd = false;
     version = "20130128-git";
@@ -29745,9 +29745,9 @@ rec {
       asd = "folio.collections";
     });
     systems = [ "folio.collections" ];
-    lispLibs = [ folio_as folio_functions fset ];
+    lispLibs = [ folio_dot_as folio_dot_functions fset ];
   };
-  folio_functions = {
+  folio_dot_functions = {
     pname = "folio.functions";
     createAsd = false;
     version = "20130128-git";
@@ -30278,7 +30278,7 @@ rec {
       asd = "fs-watcher";
     });
     systems = [ "fs-watcher" ];
-    lispLibs = [ alexandria com_gigamonkeys_pathnames ];
+    lispLibs = [ alexandria com_dot_gigamonkeys_dot_pathnames ];
   };
   fset = {
     pname = "fset";
@@ -30486,7 +30486,7 @@ rec {
       asd = "gcm";
     });
     systems = [ "gcm" ];
-    lispLibs = [ babel com_gigamonkeys_json drakma ];
+    lispLibs = [ babel com_dot_gigamonkeys_dot_json drakma ];
   };
   geco = {
     pname = "geco";
@@ -30824,9 +30824,9 @@ rec {
       asd = "generic-cl";
     });
     systems = [ "generic-cl" ];
-    lispLibs = [ agutil generic-cl_arithmetic generic-cl_collector generic-cl_comparison generic-cl_container generic-cl_iterator generic-cl_lazy-seq generic-cl_map generic-cl_math generic-cl_object generic-cl_sequence generic-cl_set ];
+    lispLibs = [ agutil generic-cl_dot_arithmetic generic-cl_dot_collector generic-cl_dot_comparison generic-cl_dot_container generic-cl_dot_iterator generic-cl_dot_lazy-seq generic-cl_dot_map generic-cl_dot_math generic-cl_dot_object generic-cl_dot_sequence generic-cl_dot_set ];
   };
-  generic-cl_arithmetic = {
+  generic-cl_dot_arithmetic = {
     pname = "generic-cl.arithmetic";
     createAsd = false;
     version = "20211020-git";
@@ -30837,9 +30837,9 @@ rec {
       asd = "generic-cl.arithmetic";
     });
     systems = [ "generic-cl.arithmetic" ];
-    lispLibs = [ generic-cl_comparison generic-cl_internal static-dispatch trivia ];
+    lispLibs = [ generic-cl_dot_comparison generic-cl_dot_internal static-dispatch trivia ];
   };
-  generic-cl_collector = {
+  generic-cl_dot_collector = {
     pname = "generic-cl.collector";
     createAsd = false;
     version = "20211020-git";
@@ -30850,9 +30850,9 @@ rec {
       asd = "generic-cl.collector";
     });
     systems = [ "generic-cl.collector" ];
-    lispLibs = [ alexandria anaphora arrows generic-cl_iterator generic-cl_object static-dispatch ];
+    lispLibs = [ alexandria anaphora arrows generic-cl_dot_iterator generic-cl_dot_object static-dispatch ];
   };
-  generic-cl_comparison = {
+  generic-cl_dot_comparison = {
     pname = "generic-cl.comparison";
     createAsd = false;
     version = "20211020-git";
@@ -30863,9 +30863,9 @@ rec {
       asd = "generic-cl.comparison";
     });
     systems = [ "generic-cl.comparison" ];
-    lispLibs = [ alexandria generic-cl_internal static-dispatch ];
+    lispLibs = [ alexandria generic-cl_dot_internal static-dispatch ];
   };
-  generic-cl_container = {
+  generic-cl_dot_container = {
     pname = "generic-cl.container";
     createAsd = false;
     version = "20211020-git";
@@ -30876,9 +30876,9 @@ rec {
       asd = "generic-cl.container";
     });
     systems = [ "generic-cl.container" ];
-    lispLibs = [ generic-cl_object static-dispatch ];
+    lispLibs = [ generic-cl_dot_object static-dispatch ];
   };
-  generic-cl_internal = {
+  generic-cl_dot_internal = {
     pname = "generic-cl.internal";
     createAsd = false;
     version = "20211020-git";
@@ -30891,7 +30891,7 @@ rec {
     systems = [ "generic-cl.internal" ];
     lispLibs = [ alexandria cl-form-types static-dispatch trivia ];
   };
-  generic-cl_iterator = {
+  generic-cl_dot_iterator = {
     pname = "generic-cl.iterator";
     createAsd = false;
     version = "20211020-git";
@@ -30902,9 +30902,9 @@ rec {
       asd = "generic-cl.iterator";
     });
     systems = [ "generic-cl.iterator" ];
-    lispLibs = [ agutil alexandria anaphora arrows cl-form-types generic-cl_container generic-cl_internal generic-cl_object parse-declarations-1_0 static-dispatch trivia ];
+    lispLibs = [ agutil alexandria anaphora arrows cl-form-types generic-cl_dot_container generic-cl_dot_internal generic-cl_dot_object parse-declarations-1_dot_0 static-dispatch trivia ];
   };
-  generic-cl_lazy-seq = {
+  generic-cl_dot_lazy-seq = {
     pname = "generic-cl.lazy-seq";
     createAsd = false;
     version = "20211020-git";
@@ -30915,9 +30915,9 @@ rec {
       asd = "generic-cl.lazy-seq";
     });
     systems = [ "generic-cl.lazy-seq" ];
-    lispLibs = [ agutil arrows cl-custom-hash-table generic-cl_collector generic-cl_comparison generic-cl_container generic-cl_iterator generic-cl_map generic-cl_object generic-cl_sequence static-dispatch trivia ];
+    lispLibs = [ agutil arrows cl-custom-hash-table generic-cl_dot_collector generic-cl_dot_comparison generic-cl_dot_container generic-cl_dot_iterator generic-cl_dot_map generic-cl_dot_object generic-cl_dot_sequence static-dispatch trivia ];
   };
-  generic-cl_map = {
+  generic-cl_dot_map = {
     pname = "generic-cl.map";
     createAsd = false;
     version = "20211020-git";
@@ -30928,9 +30928,9 @@ rec {
       asd = "generic-cl.map";
     });
     systems = [ "generic-cl.map" ];
-    lispLibs = [ agutil alexandria anaphora arrows cl-custom-hash-table generic-cl_collector generic-cl_comparison generic-cl_container generic-cl_internal generic-cl_iterator generic-cl_object static-dispatch trivia ];
+    lispLibs = [ agutil alexandria anaphora arrows cl-custom-hash-table generic-cl_dot_collector generic-cl_dot_comparison generic-cl_dot_container generic-cl_dot_internal generic-cl_dot_iterator generic-cl_dot_object static-dispatch trivia ];
   };
-  generic-cl_math = {
+  generic-cl_dot_math = {
     pname = "generic-cl.math";
     createAsd = false;
     version = "20211020-git";
@@ -30941,9 +30941,9 @@ rec {
       asd = "generic-cl.math";
     });
     systems = [ "generic-cl.math" ];
-    lispLibs = [ agutil alexandria anaphora arrows generic-cl_arithmetic static-dispatch trivia ];
+    lispLibs = [ agutil alexandria anaphora arrows generic-cl_dot_arithmetic static-dispatch trivia ];
   };
-  generic-cl_object = {
+  generic-cl_dot_object = {
     pname = "generic-cl.object";
     createAsd = false;
     version = "20211020-git";
@@ -30954,9 +30954,9 @@ rec {
       asd = "generic-cl.object";
     });
     systems = [ "generic-cl.object" ];
-    lispLibs = [ alexandria arrows generic-cl_comparison static-dispatch ];
+    lispLibs = [ alexandria arrows generic-cl_dot_comparison static-dispatch ];
   };
-  generic-cl_sequence = {
+  generic-cl_dot_sequence = {
     pname = "generic-cl.sequence";
     createAsd = false;
     version = "20211020-git";
@@ -30967,9 +30967,9 @@ rec {
       asd = "generic-cl.sequence";
     });
     systems = [ "generic-cl.sequence" ];
-    lispLibs = [ alexandria anaphora arrows cl-custom-hash-table cl-form-types generic-cl_collector generic-cl_comparison generic-cl_container generic-cl_internal generic-cl_iterator generic-cl_map generic-cl_object static-dispatch ];
+    lispLibs = [ alexandria anaphora arrows cl-custom-hash-table cl-form-types generic-cl_dot_collector generic-cl_dot_comparison generic-cl_dot_container generic-cl_dot_internal generic-cl_dot_iterator generic-cl_dot_map generic-cl_dot_object static-dispatch ];
   };
-  generic-cl_set = {
+  generic-cl_dot_set = {
     pname = "generic-cl.set";
     createAsd = false;
     version = "20211020-git";
@@ -30980,9 +30980,9 @@ rec {
       asd = "generic-cl.set";
     });
     systems = [ "generic-cl.set" ];
-    lispLibs = [ anaphora generic-cl_arithmetic generic-cl_collector generic-cl_comparison generic-cl_container generic-cl_iterator generic-cl_map generic-cl_object generic-cl_sequence static-dispatch ];
+    lispLibs = [ anaphora generic-cl_dot_arithmetic generic-cl_dot_collector generic-cl_dot_comparison generic-cl_dot_container generic-cl_dot_iterator generic-cl_dot_map generic-cl_dot_object generic-cl_dot_sequence static-dispatch ];
   };
-  generic-cl_util = {
+  generic-cl_dot_util = {
     pname = "generic-cl.util";
     createAsd = false;
     version = "20211020-git";
@@ -31890,9 +31890,9 @@ rec {
       asd = "gtype";
     });
     systems = [ "gtype" ];
-    lispLibs = [ alexandria iterate trivia trivial-cltl2 trivialib_type-unify type-r ];
+    lispLibs = [ alexandria iterate trivia trivial-cltl2 trivialib_dot_type-unify type-r ];
   };
-  gtype_test = {
+  gtype_dot_test = {
     pname = "gtype.test";
     createAsd = false;
     version = "20200610-git";
@@ -31994,9 +31994,9 @@ rec {
       asd = "hash-table-ext";
     });
     systems = [ "hash-table-ext" ];
-    lispLibs = [ alexandria jingoh_documentizer ];
+    lispLibs = [ alexandria jingoh_dot_documentizer ];
   };
-  hash-table-ext_test = {
+  hash-table-ext_dot_test = {
     pname = "hash-table-ext.test";
     createAsd = false;
     version = "20211020-git";
@@ -32048,7 +32048,7 @@ rec {
     systems = [ "hdf5-cffi" ];
     lispLibs = [ cffi cffi-grovel ];
   };
-  hdf5-cffi_examples = {
+  hdf5-cffi_dot_examples = {
     pname = "hdf5-cffi.examples";
     createAsd = false;
     version = "20180228-git";
@@ -32061,7 +32061,7 @@ rec {
     systems = [ "hdf5-cffi.examples" ];
     lispLibs = [ hdf5-cffi ];
   };
-  hdf5-cffi_test = {
+  hdf5-cffi_dot_test = {
     pname = "hdf5-cffi.test";
     createAsd = false;
     version = "20180228-git";
@@ -32072,7 +32072,7 @@ rec {
       asd = "hdf5-cffi.test";
     });
     systems = [ "hdf5-cffi.test" ];
-    lispLibs = [ cffi cffi-grovel fiveam hdf5-cffi hdf5-cffi_examples ];
+    lispLibs = [ cffi cffi-grovel fiveam hdf5-cffi hdf5-cffi_dot_examples ];
   };
   heap = {
     pname = "heap";
@@ -32386,7 +32386,7 @@ rec {
     systems = [ "http-parse-test" ];
     lispLibs = [ babel eos http-parse ];
   };
-  hu_dwim_asdf = {
+  hu_dot_dwim_dot_asdf = {
     pname = "hu.dwim.asdf";
     createAsd = false;
     version = "stable-git";
@@ -32399,7 +32399,7 @@ rec {
     systems = [ "hu.dwim.asdf" ];
     lispLibs = [ uiop ];
   };
-  hu_dwim_asdf_documentation = {
+  hu_dot_dwim_dot_asdf_dot_documentation = {
     pname = "hu.dwim.asdf.documentation";
     createAsd = false;
     version = "stable-git";
@@ -32410,9 +32410,9 @@ rec {
       asd = "hu.dwim.asdf.documentation";
     });
     systems = [ "hu.dwim.asdf.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_presentation ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation ];
   };
-  hu_dwim_bluez = {
+  hu_dot_dwim_dot_bluez = {
     pname = "hu.dwim.bluez";
     createAsd = false;
     version = "stable-git";
@@ -32423,9 +32423,9 @@ rec {
       asd = "hu.dwim.bluez";
     });
     systems = [ "hu.dwim.bluez" ];
-    lispLibs = [ alexandria cffi cffi-libffi hu_dwim_asdf ];
+    lispLibs = [ alexandria cffi cffi-libffi hu_dot_dwim_dot_asdf ];
   };
-  hu_dwim_common = {
+  hu_dot_dwim_dot_common = {
     pname = "hu.dwim.common";
     createAsd = false;
     version = "20150709-darcs";
@@ -32436,9 +32436,9 @@ rec {
       asd = "hu.dwim.common";
     });
     systems = [ "hu.dwim.common" ];
-    lispLibs = [ alexandria anaphora closer-mop hu_dwim_asdf hu_dwim_common-lisp iterate metabang-bind ];
+    lispLibs = [ alexandria anaphora closer-mop hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common-lisp iterate metabang-bind ];
   };
-  hu_dwim_common_documentation = {
+  hu_dot_dwim_dot_common_dot_documentation = {
     pname = "hu.dwim.common.documentation";
     createAsd = false;
     version = "20150709-darcs";
@@ -32449,9 +32449,9 @@ rec {
       asd = "hu.dwim.common.documentation";
     });
     systems = [ "hu.dwim.common.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_common hu_dwim_presentation ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_presentation ];
   };
-  hu_dwim_common-lisp = {
+  hu_dot_dwim_dot_common-lisp = {
     pname = "hu.dwim.common-lisp";
     createAsd = false;
     version = "stable-git";
@@ -32462,9 +32462,9 @@ rec {
       asd = "hu.dwim.common-lisp";
     });
     systems = [ "hu.dwim.common-lisp" ];
-    lispLibs = [ hu_dwim_asdf ];
+    lispLibs = [ hu_dot_dwim_dot_asdf ];
   };
-  hu_dwim_common-lisp_documentation = {
+  hu_dot_dwim_dot_common-lisp_dot_documentation = {
     pname = "hu.dwim.common-lisp.documentation";
     createAsd = false;
     version = "stable-git";
@@ -32475,9 +32475,9 @@ rec {
       asd = "hu.dwim.common-lisp.documentation";
     });
     systems = [ "hu.dwim.common-lisp.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_common-lisp hu_dwim_presentation ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common-lisp hu_dot_dwim_dot_presentation ];
   };
-  hu_dwim_computed-class = {
+  hu_dot_dwim_dot_computed-class = {
     pname = "hu.dwim.computed-class";
     createAsd = false;
     version = "20200427-darcs";
@@ -32488,9 +32488,9 @@ rec {
       asd = "hu.dwim.computed-class";
     });
     systems = [ "hu.dwim.computed-class" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_def_hu_dwim_common hu_dwim_defclass-star_hu_dwim_def hu_dwim_syntax-sugar hu_dwim_util ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_util ];
   };
-  hu_dwim_computed-class_hu_dwim_logger = {
+  hu_dot_dwim_dot_computed-class_plus_hu_dot_dwim_dot_logger = {
     pname = "hu.dwim.computed-class+hu.dwim.logger";
     createAsd = false;
     version = "20200427-darcs";
@@ -32501,9 +32501,9 @@ rec {
       asd = "hu.dwim.computed-class+hu.dwim.logger";
     });
     systems = [ "hu.dwim.computed-class+hu.dwim.logger" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_computed-class hu_dwim_logger ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_computed-class hu_dot_dwim_dot_logger ];
   };
-  hu_dwim_computed-class_swank = {
+  hu_dot_dwim_dot_computed-class_plus_swank = {
     pname = "hu.dwim.computed-class+swank";
     createAsd = false;
     version = "20200427-darcs";
@@ -32514,9 +32514,9 @@ rec {
       asd = "hu.dwim.computed-class+swank";
     });
     systems = [ "hu.dwim.computed-class+swank" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_computed-class swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_computed-class swank ];
   };
-  hu_dwim_computed-class_documentation = {
+  hu_dot_dwim_dot_computed-class_dot_documentation = {
     pname = "hu.dwim.computed-class.documentation";
     createAsd = false;
     version = "20200427-darcs";
@@ -32527,9 +32527,9 @@ rec {
       asd = "hu.dwim.computed-class.documentation";
     });
     systems = [ "hu.dwim.computed-class.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_computed-class_test hu_dwim_presentation ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_computed-class_dot_test hu_dot_dwim_dot_presentation ];
   };
-  hu_dwim_computed-class_test = {
+  hu_dot_dwim_dot_computed-class_dot_test = {
     pname = "hu.dwim.computed-class.test";
     createAsd = false;
     version = "20200427-darcs";
@@ -32540,9 +32540,9 @@ rec {
       asd = "hu.dwim.computed-class.test";
     });
     systems = [ "hu.dwim.computed-class.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_computed-class_hu_dwim_logger hu_dwim_stefil_hu_dwim_def ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_computed-class_plus_hu_dot_dwim_dot_logger hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def ];
   };
-  hu_dwim_debug = {
+  hu_dot_dwim_dot_debug = {
     pname = "hu.dwim.debug";
     createAsd = false;
     version = "20190107-darcs";
@@ -32553,9 +32553,9 @@ rec {
       asd = "hu.dwim.debug";
     });
     systems = [ "hu.dwim.debug" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_common hu_dwim_def_swank hu_dwim_defclass-star hu_dwim_util hu_dwim_walker swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_defclass-star hu_dot_dwim_dot_util hu_dot_dwim_dot_walker swank ];
   };
-  hu_dwim_debug_documentation = {
+  hu_dot_dwim_dot_debug_dot_documentation = {
     pname = "hu.dwim.debug.documentation";
     createAsd = false;
     version = "20190107-darcs";
@@ -32566,9 +32566,9 @@ rec {
       asd = "hu.dwim.debug.documentation";
     });
     systems = [ "hu.dwim.debug.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_debug_test hu_dwim_presentation ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_debug_dot_test hu_dot_dwim_dot_presentation ];
   };
-  hu_dwim_debug_test = {
+  hu_dot_dwim_dot_debug_dot_test = {
     pname = "hu.dwim.debug.test";
     createAsd = false;
     version = "20190107-darcs";
@@ -32579,9 +32579,9 @@ rec {
       asd = "hu.dwim.debug.test";
     });
     systems = [ "hu.dwim.debug.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_debug hu_dwim_stefil_hu_dwim_def_swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_debug hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank ];
   };
-  hu_dwim_def = {
+  hu_dot_dwim_dot_def = {
     pname = "hu.dwim.def";
     createAsd = false;
     version = "stable-git";
@@ -32592,9 +32592,9 @@ rec {
       asd = "hu.dwim.def";
     });
     systems = [ "hu.dwim.def" ];
-    lispLibs = [ alexandria anaphora hu_dwim_asdf iterate metabang-bind ];
+    lispLibs = [ alexandria anaphora hu_dot_dwim_dot_asdf iterate metabang-bind ];
   };
-  hu_dwim_def_cl-l10n = {
+  hu_dot_dwim_dot_def_plus_cl-l10n = {
     pname = "hu.dwim.def+cl-l10n";
     createAsd = false;
     version = "stable-git";
@@ -32605,9 +32605,9 @@ rec {
       asd = "hu.dwim.def+cl-l10n";
     });
     systems = [ "hu.dwim.def+cl-l10n" ];
-    lispLibs = [ cl-l10n hu_dwim_asdf hu_dwim_def ];
+    lispLibs = [ cl-l10n hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def ];
   };
-  hu_dwim_def_contextl = {
+  hu_dot_dwim_dot_def_plus_contextl = {
     pname = "hu.dwim.def+contextl";
     createAsd = false;
     version = "stable-git";
@@ -32618,9 +32618,9 @@ rec {
       asd = "hu.dwim.def+contextl";
     });
     systems = [ "hu.dwim.def+contextl" ];
-    lispLibs = [ contextl hu_dwim_asdf hu_dwim_def ];
+    lispLibs = [ contextl hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def ];
   };
-  hu_dwim_def_hu_dwim_common = {
+  hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common = {
     pname = "hu.dwim.def+hu.dwim.common";
     createAsd = false;
     version = "stable-git";
@@ -32631,9 +32631,9 @@ rec {
       asd = "hu.dwim.def+hu.dwim.common";
     });
     systems = [ "hu.dwim.def+hu.dwim.common" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_common hu_dwim_def ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_def ];
   };
-  hu_dwim_def_hu_dwim_delico = {
+  hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_delico = {
     pname = "hu.dwim.def+hu.dwim.delico";
     createAsd = false;
     version = "stable-git";
@@ -32644,9 +32644,9 @@ rec {
       asd = "hu.dwim.def+hu.dwim.delico";
     });
     systems = [ "hu.dwim.def+hu.dwim.delico" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_def hu_dwim_delico ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_delico ];
   };
-  hu_dwim_def_swank = {
+  hu_dot_dwim_dot_def_plus_swank = {
     pname = "hu.dwim.def+swank";
     createAsd = false;
     version = "stable-git";
@@ -32657,9 +32657,9 @@ rec {
       asd = "hu.dwim.def+swank";
     });
     systems = [ "hu.dwim.def+swank" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_def swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def swank ];
   };
-  hu_dwim_defclass-star = {
+  hu_dot_dwim_dot_defclass-star = {
     pname = "hu.dwim.defclass-star";
     createAsd = false;
     version = "stable-git";
@@ -32670,9 +32670,9 @@ rec {
       asd = "hu.dwim.defclass-star";
     });
     systems = [ "hu.dwim.defclass-star" ];
-    lispLibs = [ hu_dwim_asdf ];
+    lispLibs = [ hu_dot_dwim_dot_asdf ];
   };
-  hu_dwim_defclass-star_contextl = {
+  hu_dot_dwim_dot_defclass-star_plus_contextl = {
     pname = "hu.dwim.defclass-star+contextl";
     createAsd = false;
     version = "stable-git";
@@ -32683,9 +32683,9 @@ rec {
       asd = "hu.dwim.defclass-star+contextl";
     });
     systems = [ "hu.dwim.defclass-star+contextl" ];
-    lispLibs = [ contextl hu_dwim_asdf hu_dwim_defclass-star ];
+    lispLibs = [ contextl hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star ];
   };
-  hu_dwim_defclass-star_hu_dwim_def = {
+  hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def = {
     pname = "hu.dwim.defclass-star+hu.dwim.def";
     createAsd = false;
     version = "stable-git";
@@ -32696,9 +32696,9 @@ rec {
       asd = "hu.dwim.defclass-star+hu.dwim.def";
     });
     systems = [ "hu.dwim.defclass-star+hu.dwim.def" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_def hu_dwim_defclass-star ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star ];
   };
-  hu_dwim_defclass-star_hu_dwim_def_contextl = {
+  hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def_plus_contextl = {
     pname = "hu.dwim.defclass-star+hu.dwim.def+contextl";
     createAsd = false;
     version = "stable-git";
@@ -32709,9 +32709,9 @@ rec {
       asd = "hu.dwim.defclass-star+hu.dwim.def+contextl";
     });
     systems = [ "hu.dwim.defclass-star+hu.dwim.def+contextl" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_defclass-star_contextl hu_dwim_defclass-star_hu_dwim_def ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_contextl hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def ];
   };
-  hu_dwim_defclass-star_swank = {
+  hu_dot_dwim_dot_defclass-star_plus_swank = {
     pname = "hu.dwim.defclass-star+swank";
     createAsd = false;
     version = "stable-git";
@@ -32722,9 +32722,9 @@ rec {
       asd = "hu.dwim.defclass-star+swank";
     });
     systems = [ "hu.dwim.defclass-star+swank" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_defclass-star swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star swank ];
   };
-  hu_dwim_delico = {
+  hu_dot_dwim_dot_delico = {
     pname = "hu.dwim.delico";
     createAsd = false;
     version = "20200925-darcs";
@@ -32735,9 +32735,9 @@ rec {
       asd = "hu.dwim.delico";
     });
     systems = [ "hu.dwim.delico" ];
-    lispLibs = [ contextl hu_dwim_asdf hu_dwim_def_hu_dwim_common hu_dwim_walker ];
+    lispLibs = [ contextl hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_walker ];
   };
-  hu_dwim_graphviz = {
+  hu_dot_dwim_dot_graphviz = {
     pname = "hu.dwim.graphviz";
     createAsd = false;
     version = "stable-git";
@@ -32748,9 +32748,9 @@ rec {
       asd = "hu.dwim.graphviz";
     });
     systems = [ "hu.dwim.graphviz" ];
-    lispLibs = [ cffi hu_dwim_asdf metabang-bind ];
+    lispLibs = [ cffi hu_dot_dwim_dot_asdf metabang-bind ];
   };
-  hu_dwim_graphviz_documentation = {
+  hu_dot_dwim_dot_graphviz_dot_documentation = {
     pname = "hu.dwim.graphviz.documentation";
     createAsd = false;
     version = "stable-git";
@@ -32761,9 +32761,9 @@ rec {
       asd = "hu.dwim.graphviz.documentation";
     });
     systems = [ "hu.dwim.graphviz.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_graphviz_test hu_dwim_presentation ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_graphviz_dot_test hu_dot_dwim_dot_presentation ];
   };
-  hu_dwim_graphviz_test = {
+  hu_dot_dwim_dot_graphviz_dot_test = {
     pname = "hu.dwim.graphviz.test";
     createAsd = false;
     version = "stable-git";
@@ -32774,9 +32774,9 @@ rec {
       asd = "hu.dwim.graphviz.test";
     });
     systems = [ "hu.dwim.graphviz.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_common hu_dwim_graphviz hu_dwim_stefil_hu_dwim_def_swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_graphviz hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank ];
   };
-  hu_dwim_logger = {
+  hu_dot_dwim_dot_logger = {
     pname = "hu.dwim.logger";
     createAsd = false;
     version = "stable-git";
@@ -32787,9 +32787,9 @@ rec {
       asd = "hu.dwim.logger";
     });
     systems = [ "hu.dwim.logger" ];
-    lispLibs = [ bordeaux-threads hu_dwim_asdf hu_dwim_def hu_dwim_def_hu_dwim_common hu_dwim_defclass-star_hu_dwim_def hu_dwim_util local-time ];
+    lispLibs = [ bordeaux-threads hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_util local-time ];
   };
-  hu_dwim_logger_iolib = {
+  hu_dot_dwim_dot_logger_plus_iolib = {
     pname = "hu.dwim.logger+iolib";
     createAsd = false;
     version = "stable-git";
@@ -32800,9 +32800,9 @@ rec {
       asd = "hu.dwim.logger+iolib";
     });
     systems = [ "hu.dwim.logger+iolib" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_logger hu_dwim_util_iolib ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_logger hu_dot_dwim_dot_util_plus_iolib ];
   };
-  hu_dwim_logger_swank = {
+  hu_dot_dwim_dot_logger_plus_swank = {
     pname = "hu.dwim.logger+swank";
     createAsd = false;
     version = "stable-git";
@@ -32813,9 +32813,9 @@ rec {
       asd = "hu.dwim.logger+swank";
     });
     systems = [ "hu.dwim.logger+swank" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_logger swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_logger swank ];
   };
-  hu_dwim_logger_documentation = {
+  hu_dot_dwim_dot_logger_dot_documentation = {
     pname = "hu.dwim.logger.documentation";
     createAsd = false;
     version = "stable-git";
@@ -32826,9 +32826,9 @@ rec {
       asd = "hu.dwim.logger.documentation";
     });
     systems = [ "hu.dwim.logger.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_logger_test hu_dwim_presentation ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_logger_dot_test hu_dot_dwim_dot_presentation ];
   };
-  hu_dwim_logger_test = {
+  hu_dot_dwim_dot_logger_dot_test = {
     pname = "hu.dwim.logger.test";
     createAsd = false;
     version = "stable-git";
@@ -32839,9 +32839,9 @@ rec {
       asd = "hu.dwim.logger.test";
     });
     systems = [ "hu.dwim.logger.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_logger hu_dwim_stefil_hu_dwim_def_swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_logger hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank ];
   };
-  hu_dwim_partial-eval = {
+  hu_dot_dwim_dot_partial-eval = {
     pname = "hu.dwim.partial-eval";
     createAsd = false;
     version = "20171130-darcs";
@@ -32852,9 +32852,9 @@ rec {
       asd = "hu.dwim.partial-eval";
     });
     systems = [ "hu.dwim.partial-eval" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_common hu_dwim_def hu_dwim_defclass-star_hu_dwim_def_contextl hu_dwim_logger hu_dwim_syntax-sugar hu_dwim_util hu_dwim_walker swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def_plus_contextl hu_dot_dwim_dot_logger hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_util hu_dot_dwim_dot_walker swank ];
   };
-  hu_dwim_partial-eval_documentation = {
+  hu_dot_dwim_dot_partial-eval_dot_documentation = {
     pname = "hu.dwim.partial-eval.documentation";
     createAsd = false;
     version = "20171130-darcs";
@@ -32865,9 +32865,9 @@ rec {
       asd = "hu.dwim.partial-eval.documentation";
     });
     systems = [ "hu.dwim.partial-eval.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_partial-eval_test hu_dwim_presentation ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_partial-eval_dot_test hu_dot_dwim_dot_presentation ];
   };
-  hu_dwim_partial-eval_test = {
+  hu_dot_dwim_dot_partial-eval_dot_test = {
     pname = "hu.dwim.partial-eval.test";
     createAsd = false;
     version = "20171130-darcs";
@@ -32878,9 +32878,9 @@ rec {
       asd = "hu.dwim.partial-eval.test";
     });
     systems = [ "hu.dwim.partial-eval.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_partial-eval hu_dwim_stefil_hu_dwim_def_swank hu_dwim_util ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_partial-eval hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_util ];
   };
-  hu_dwim_perec = {
+  hu_dot_dwim_dot_perec = {
     pname = "hu.dwim.perec";
     createAsd = false;
     version = "20211209-darcs";
@@ -32891,9 +32891,9 @@ rec {
       asd = "hu.dwim.perec";
     });
     systems = [ "hu.dwim.perec" ];
-    lispLibs = [ babel cl-containers cl-ppcre contextl hu_dwim_asdf hu_dwim_common hu_dwim_computed-class hu_dwim_def_contextl hu_dwim_def_hu_dwim_common hu_dwim_def_hu_dwim_delico hu_dwim_defclass-star_hu_dwim_def hu_dwim_logger hu_dwim_rdbms hu_dwim_serializer hu_dwim_syntax-sugar hu_dwim_util hu_dwim_walker ironclad local-time metacopy-with-contextl parse-number ];
+    lispLibs = [ babel cl-containers cl-ppcre contextl hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_computed-class hu_dot_dwim_dot_def_plus_contextl hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_delico hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_logger hu_dot_dwim_dot_rdbms hu_dot_dwim_dot_serializer hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_util hu_dot_dwim_dot_walker ironclad local-time metacopy-with-contextl parse-number ];
   };
-  hu_dwim_perec_hu_dwim_quasi-quote_xml = {
+  hu_dot_dwim_dot_perec_plus_hu_dot_dwim_dot_quasi-quote_dot_xml = {
     pname = "hu.dwim.perec+hu.dwim.quasi-quote.xml";
     createAsd = false;
     version = "20211209-darcs";
@@ -32904,9 +32904,9 @@ rec {
       asd = "hu.dwim.perec+hu.dwim.quasi-quote.xml";
     });
     systems = [ "hu.dwim.perec+hu.dwim.quasi-quote.xml" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec hu_dwim_quasi-quote_xml ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec hu_dot_dwim_dot_quasi-quote_dot_xml ];
   };
-  hu_dwim_perec_iolib = {
+  hu_dot_dwim_dot_perec_plus_iolib = {
     pname = "hu.dwim.perec+iolib";
     createAsd = false;
     version = "20211209-darcs";
@@ -32917,9 +32917,9 @@ rec {
       asd = "hu.dwim.perec+iolib";
     });
     systems = [ "hu.dwim.perec+iolib" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec iolib ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec iolib ];
   };
-  hu_dwim_perec_swank = {
+  hu_dot_dwim_dot_perec_plus_swank = {
     pname = "hu.dwim.perec+swank";
     createAsd = false;
     version = "20211209-darcs";
@@ -32930,9 +32930,9 @@ rec {
       asd = "hu.dwim.perec+swank";
     });
     systems = [ "hu.dwim.perec+swank" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec swank ];
   };
-  hu_dwim_perec_all = {
+  hu_dot_dwim_dot_perec_dot_all = {
     pname = "hu.dwim.perec.all";
     createAsd = false;
     version = "20211209-darcs";
@@ -32943,9 +32943,9 @@ rec {
       asd = "hu.dwim.perec.all";
     });
     systems = [ "hu.dwim.perec.all" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec_oracle hu_dwim_perec_postgresql hu_dwim_perec_sqlite ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec_dot_oracle hu_dot_dwim_dot_perec_dot_postgresql hu_dot_dwim_dot_perec_dot_sqlite ];
   };
-  hu_dwim_perec_all_test = {
+  hu_dot_dwim_dot_perec_dot_all_dot_test = {
     pname = "hu.dwim.perec.all.test";
     createAsd = false;
     version = "20211209-darcs";
@@ -32956,9 +32956,9 @@ rec {
       asd = "hu.dwim.perec.all.test";
     });
     systems = [ "hu.dwim.perec.all.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec_oracle_test hu_dwim_perec_postgresql_test hu_dwim_perec_sqlite_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec_dot_oracle_dot_test hu_dot_dwim_dot_perec_dot_postgresql_dot_test hu_dot_dwim_dot_perec_dot_sqlite_dot_test ];
   };
-  hu_dwim_perec_documentation = {
+  hu_dot_dwim_dot_perec_dot_documentation = {
     pname = "hu.dwim.perec.documentation";
     createAsd = false;
     version = "20211209-darcs";
@@ -32969,9 +32969,9 @@ rec {
       asd = "hu.dwim.perec.documentation";
     });
     systems = [ "hu.dwim.perec.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec_all_test hu_dwim_presentation ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec_dot_all_dot_test hu_dot_dwim_dot_presentation ];
   };
-  hu_dwim_perec_oracle = {
+  hu_dot_dwim_dot_perec_dot_oracle = {
     pname = "hu.dwim.perec.oracle";
     createAsd = false;
     version = "20211209-darcs";
@@ -32982,9 +32982,9 @@ rec {
       asd = "hu.dwim.perec.oracle";
     });
     systems = [ "hu.dwim.perec.oracle" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec hu_dwim_rdbms_oracle ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec hu_dot_dwim_dot_rdbms_dot_oracle ];
   };
-  hu_dwim_perec_oracle_test = {
+  hu_dot_dwim_dot_perec_dot_oracle_dot_test = {
     pname = "hu.dwim.perec.oracle.test";
     createAsd = false;
     version = "20211209-darcs";
@@ -32995,9 +32995,9 @@ rec {
       asd = "hu.dwim.perec.oracle.test";
     });
     systems = [ "hu.dwim.perec.oracle.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec_oracle hu_dwim_perec_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec_dot_oracle hu_dot_dwim_dot_perec_dot_test ];
   };
-  hu_dwim_perec_postgresql = {
+  hu_dot_dwim_dot_perec_dot_postgresql = {
     pname = "hu.dwim.perec.postgresql";
     createAsd = false;
     version = "20211209-darcs";
@@ -33008,9 +33008,9 @@ rec {
       asd = "hu.dwim.perec.postgresql";
     });
     systems = [ "hu.dwim.perec.postgresql" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec hu_dwim_rdbms_postgresql ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec hu_dot_dwim_dot_rdbms_dot_postgresql ];
   };
-  hu_dwim_perec_postgresql_test = {
+  hu_dot_dwim_dot_perec_dot_postgresql_dot_test = {
     pname = "hu.dwim.perec.postgresql.test";
     createAsd = false;
     version = "20211209-darcs";
@@ -33021,9 +33021,9 @@ rec {
       asd = "hu.dwim.perec.postgresql.test";
     });
     systems = [ "hu.dwim.perec.postgresql.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec_postgresql hu_dwim_perec_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec_dot_postgresql hu_dot_dwim_dot_perec_dot_test ];
   };
-  hu_dwim_perec_sqlite = {
+  hu_dot_dwim_dot_perec_dot_sqlite = {
     pname = "hu.dwim.perec.sqlite";
     createAsd = false;
     version = "20211209-darcs";
@@ -33034,9 +33034,9 @@ rec {
       asd = "hu.dwim.perec.sqlite";
     });
     systems = [ "hu.dwim.perec.sqlite" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec hu_dwim_rdbms_sqlite ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec hu_dot_dwim_dot_rdbms_dot_sqlite ];
   };
-  hu_dwim_perec_sqlite_test = {
+  hu_dot_dwim_dot_perec_dot_sqlite_dot_test = {
     pname = "hu.dwim.perec.sqlite.test";
     createAsd = false;
     version = "20211209-darcs";
@@ -33047,9 +33047,9 @@ rec {
       asd = "hu.dwim.perec.sqlite.test";
     });
     systems = [ "hu.dwim.perec.sqlite.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec_sqlite hu_dwim_perec_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec_dot_sqlite hu_dot_dwim_dot_perec_dot_test ];
   };
-  hu_dwim_perec_test = {
+  hu_dot_dwim_dot_perec_dot_test = {
     pname = "hu.dwim.perec.test";
     createAsd = false;
     version = "20211209-darcs";
@@ -33060,9 +33060,9 @@ rec {
       asd = "hu.dwim.perec.test";
     });
     systems = [ "hu.dwim.perec.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec_hu_dwim_quasi-quote_xml hu_dwim_perec_iolib hu_dwim_perec_swank hu_dwim_util_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec_plus_hu_dot_dwim_dot_quasi-quote_dot_xml hu_dot_dwim_dot_perec_plus_iolib hu_dot_dwim_dot_perec_plus_swank hu_dot_dwim_dot_util_dot_test ];
   };
-  hu_dwim_presentation = {
+  hu_dot_dwim_dot_presentation = {
     pname = "hu.dwim.presentation";
     createAsd = false;
     version = "20211230-darcs";
@@ -33073,9 +33073,9 @@ rec {
       asd = "hu.dwim.presentation";
     });
     systems = [ "hu.dwim.presentation" ];
-    lispLibs = [ cl-graph_hu_dwim_graphviz contextl hu_dwim_asdf hu_dwim_def_contextl hu_dwim_logger hu_dwim_stefil_hu_dwim_def hu_dwim_util hu_dwim_web-server_application iolib moptilities ];
+    lispLibs = [ cl-graph_plus_hu_dot_dwim_dot_graphviz contextl hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_contextl hu_dot_dwim_dot_logger hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_util hu_dot_dwim_dot_web-server_dot_application iolib moptilities ];
   };
-  hu_dwim_presentation_cl-graph_cl-typesetting = {
+  hu_dot_dwim_dot_presentation_plus_cl-graph_plus_cl-typesetting = {
     pname = "hu.dwim.presentation+cl-graph+cl-typesetting";
     createAsd = false;
     version = "20211230-darcs";
@@ -33086,9 +33086,9 @@ rec {
       asd = "hu.dwim.presentation+cl-graph+cl-typesetting";
     });
     systems = [ "hu.dwim.presentation+cl-graph+cl-typesetting" ];
-    lispLibs = [ cl-graph hu_dwim_asdf hu_dwim_presentation_cl-typesetting ];
+    lispLibs = [ cl-graph hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation_plus_cl-typesetting ];
   };
-  hu_dwim_presentation_cl-typesetting = {
+  hu_dot_dwim_dot_presentation_plus_cl-typesetting = {
     pname = "hu.dwim.presentation+cl-typesetting";
     createAsd = false;
     version = "20211230-darcs";
@@ -33099,9 +33099,9 @@ rec {
       asd = "hu.dwim.presentation+cl-typesetting";
     });
     systems = [ "hu.dwim.presentation+cl-typesetting" ];
-    lispLibs = [ cl-typesetting hu_dwim_asdf hu_dwim_presentation ];
+    lispLibs = [ cl-typesetting hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation ];
   };
-  hu_dwim_presentation_hu_dwim_stefil = {
+  hu_dot_dwim_dot_presentation_plus_hu_dot_dwim_dot_stefil = {
     pname = "hu.dwim.presentation+hu.dwim.stefil";
     createAsd = false;
     version = "20211230-darcs";
@@ -33112,9 +33112,9 @@ rec {
       asd = "hu.dwim.presentation+hu.dwim.stefil";
     });
     systems = [ "hu.dwim.presentation+hu.dwim.stefil" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_presentation hu_dwim_stefil ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation hu_dot_dwim_dot_stefil ];
   };
-  hu_dwim_presentation_hu_dwim_web-server = {
+  hu_dot_dwim_dot_presentation_plus_hu_dot_dwim_dot_web-server = {
     pname = "hu.dwim.presentation+hu.dwim.web-server";
     createAsd = false;
     version = "20211230-darcs";
@@ -33125,9 +33125,9 @@ rec {
       asd = "hu.dwim.presentation+hu.dwim.web-server";
     });
     systems = [ "hu.dwim.presentation+hu.dwim.web-server" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_presentation hu_dwim_web-server ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation hu_dot_dwim_dot_web-server ];
   };
-  hu_dwim_quasi-quote = {
+  hu_dot_dwim_dot_quasi-quote = {
     pname = "hu.dwim.quasi-quote";
     createAsd = false;
     version = "stable-git";
@@ -33138,9 +33138,9 @@ rec {
       asd = "hu.dwim.quasi-quote";
     });
     systems = [ "hu.dwim.quasi-quote" ];
-    lispLibs = [ babel babel-streams hu_dwim_asdf hu_dwim_common hu_dwim_defclass-star_hu_dwim_def hu_dwim_syntax-sugar hu_dwim_util hu_dwim_walker ];
+    lispLibs = [ babel babel-streams hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_util hu_dot_dwim_dot_walker ];
   };
-  hu_dwim_quasi-quote_css = {
+  hu_dot_dwim_dot_quasi-quote_dot_css = {
     pname = "hu.dwim.quasi-quote.css";
     createAsd = false;
     version = "stable-git";
@@ -33151,9 +33151,9 @@ rec {
       asd = "hu.dwim.quasi-quote.css";
     });
     systems = [ "hu.dwim.quasi-quote.css" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_quasi-quote ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_quasi-quote ];
   };
-  hu_dwim_quasi-quote_documentation = {
+  hu_dot_dwim_dot_quasi-quote_dot_documentation = {
     pname = "hu.dwim.quasi-quote.documentation";
     createAsd = false;
     version = "stable-git";
@@ -33164,9 +33164,9 @@ rec {
       asd = "hu.dwim.quasi-quote.documentation";
     });
     systems = [ "hu.dwim.quasi-quote.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_presentation hu_dwim_quasi-quote_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation hu_dot_dwim_dot_quasi-quote_dot_test ];
   };
-  hu_dwim_quasi-quote_js = {
+  hu_dot_dwim_dot_quasi-quote_dot_js = {
     pname = "hu.dwim.quasi-quote.js";
     createAsd = false;
     version = "stable-git";
@@ -33177,9 +33177,9 @@ rec {
       asd = "hu.dwim.quasi-quote.js";
     });
     systems = [ "hu.dwim.quasi-quote.js" ];
-    lispLibs = [ cl-ppcre hu_dwim_asdf hu_dwim_quasi-quote hu_dwim_util hu_dwim_walker ];
+    lispLibs = [ cl-ppcre hu_dot_dwim_dot_asdf hu_dot_dwim_dot_quasi-quote hu_dot_dwim_dot_util hu_dot_dwim_dot_walker ];
   };
-  hu_dwim_quasi-quote_pdf = {
+  hu_dot_dwim_dot_quasi-quote_dot_pdf = {
     pname = "hu.dwim.quasi-quote.pdf";
     createAsd = false;
     version = "stable-git";
@@ -33190,9 +33190,9 @@ rec {
       asd = "hu.dwim.quasi-quote.pdf";
     });
     systems = [ "hu.dwim.quasi-quote.pdf" ];
-    lispLibs = [ cffi hu_dwim_asdf hu_dwim_quasi-quote ];
+    lispLibs = [ cffi hu_dot_dwim_dot_asdf hu_dot_dwim_dot_quasi-quote ];
   };
-  hu_dwim_quasi-quote_test = {
+  hu_dot_dwim_dot_quasi-quote_dot_test = {
     pname = "hu.dwim.quasi-quote.test";
     createAsd = false;
     version = "stable-git";
@@ -33203,9 +33203,9 @@ rec {
       asd = "hu.dwim.quasi-quote.test";
     });
     systems = [ "hu.dwim.quasi-quote.test" ];
-    lispLibs = [ cxml hu_dwim_asdf hu_dwim_quasi-quote hu_dwim_quasi-quote_css hu_dwim_quasi-quote_xml_hu_dwim_quasi-quote_js hu_dwim_stefil_hu_dwim_def_swank parse-number uiop ];
+    lispLibs = [ cxml hu_dot_dwim_dot_asdf hu_dot_dwim_dot_quasi-quote hu_dot_dwim_dot_quasi-quote_dot_css hu_dot_dwim_dot_quasi-quote_dot_xml_plus_hu_dot_dwim_dot_quasi-quote_dot_js hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank parse-number uiop ];
   };
-  hu_dwim_quasi-quote_xml = {
+  hu_dot_dwim_dot_quasi-quote_dot_xml = {
     pname = "hu.dwim.quasi-quote.xml";
     createAsd = false;
     version = "stable-git";
@@ -33216,9 +33216,9 @@ rec {
       asd = "hu.dwim.quasi-quote.xml";
     });
     systems = [ "hu.dwim.quasi-quote.xml" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_quasi-quote ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_quasi-quote ];
   };
-  hu_dwim_quasi-quote_xml_cxml = {
+  hu_dot_dwim_dot_quasi-quote_dot_xml_plus_cxml = {
     pname = "hu.dwim.quasi-quote.xml+cxml";
     createAsd = false;
     version = "stable-git";
@@ -33229,9 +33229,9 @@ rec {
       asd = "hu.dwim.quasi-quote.xml+cxml";
     });
     systems = [ "hu.dwim.quasi-quote.xml+cxml" ];
-    lispLibs = [ cxml hu_dwim_asdf hu_dwim_quasi-quote_xml ];
+    lispLibs = [ cxml hu_dot_dwim_dot_asdf hu_dot_dwim_dot_quasi-quote_dot_xml ];
   };
-  hu_dwim_quasi-quote_xml_hu_dwim_quasi-quote_js = {
+  hu_dot_dwim_dot_quasi-quote_dot_xml_plus_hu_dot_dwim_dot_quasi-quote_dot_js = {
     pname = "hu.dwim.quasi-quote.xml+hu.dwim.quasi-quote.js";
     createAsd = false;
     version = "stable-git";
@@ -33242,9 +33242,9 @@ rec {
       asd = "hu.dwim.quasi-quote.xml+hu.dwim.quasi-quote.js";
     });
     systems = [ "hu.dwim.quasi-quote.xml+hu.dwim.quasi-quote.js" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_quasi-quote_js hu_dwim_quasi-quote_xml ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_quasi-quote_dot_js hu_dot_dwim_dot_quasi-quote_dot_xml ];
   };
-  hu_dwim_rdbms = {
+  hu_dot_dwim_dot_rdbms = {
     pname = "hu.dwim.rdbms";
     createAsd = false;
     version = "20201016-darcs";
@@ -33255,9 +33255,9 @@ rec {
       asd = "hu.dwim.rdbms";
     });
     systems = [ "hu.dwim.rdbms" ];
-    lispLibs = [ babel hu_dwim_asdf hu_dwim_defclass-star_hu_dwim_def hu_dwim_logger hu_dwim_syntax-sugar hu_dwim_util hu_dwim_walker ironclad local-time ];
+    lispLibs = [ babel hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_logger hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_util hu_dot_dwim_dot_walker ironclad local-time ];
   };
-  hu_dwim_rdbms_all = {
+  hu_dot_dwim_dot_rdbms_dot_all = {
     pname = "hu.dwim.rdbms.all";
     createAsd = false;
     version = "20201016-darcs";
@@ -33268,9 +33268,9 @@ rec {
       asd = "hu.dwim.rdbms.all";
     });
     systems = [ "hu.dwim.rdbms.all" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_rdbms_oracle hu_dwim_rdbms_postgresql hu_dwim_rdbms_sqlite ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_rdbms_dot_oracle hu_dot_dwim_dot_rdbms_dot_postgresql hu_dot_dwim_dot_rdbms_dot_sqlite ];
   };
-  hu_dwim_rdbms_all_test = {
+  hu_dot_dwim_dot_rdbms_dot_all_dot_test = {
     pname = "hu.dwim.rdbms.all.test";
     createAsd = false;
     version = "20201016-darcs";
@@ -33281,9 +33281,9 @@ rec {
       asd = "hu.dwim.rdbms.all.test";
     });
     systems = [ "hu.dwim.rdbms.all.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_rdbms_oracle_test hu_dwim_rdbms_postgresql_test hu_dwim_rdbms_sqlite_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_rdbms_dot_oracle_dot_test hu_dot_dwim_dot_rdbms_dot_postgresql_dot_test hu_dot_dwim_dot_rdbms_dot_sqlite_dot_test ];
   };
-  hu_dwim_rdbms_documentation = {
+  hu_dot_dwim_dot_rdbms_dot_documentation = {
     pname = "hu.dwim.rdbms.documentation";
     createAsd = false;
     version = "20201016-darcs";
@@ -33294,9 +33294,9 @@ rec {
       asd = "hu.dwim.rdbms.documentation";
     });
     systems = [ "hu.dwim.rdbms.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_presentation hu_dwim_rdbms_all_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation hu_dot_dwim_dot_rdbms_dot_all_dot_test ];
   };
-  hu_dwim_rdbms_oracle = {
+  hu_dot_dwim_dot_rdbms_dot_oracle = {
     pname = "hu.dwim.rdbms.oracle";
     createAsd = false;
     version = "20201016-darcs";
@@ -33307,9 +33307,9 @@ rec {
       asd = "hu.dwim.rdbms.oracle";
     });
     systems = [ "hu.dwim.rdbms.oracle" ];
-    lispLibs = [ cffi hu_dwim_asdf hu_dwim_rdbms ];
+    lispLibs = [ cffi hu_dot_dwim_dot_asdf hu_dot_dwim_dot_rdbms ];
   };
-  hu_dwim_rdbms_oracle_test = {
+  hu_dot_dwim_dot_rdbms_dot_oracle_dot_test = {
     pname = "hu.dwim.rdbms.oracle.test";
     createAsd = false;
     version = "20201016-darcs";
@@ -33320,9 +33320,9 @@ rec {
       asd = "hu.dwim.rdbms.oracle.test";
     });
     systems = [ "hu.dwim.rdbms.oracle.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_rdbms_oracle hu_dwim_rdbms_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_rdbms_dot_oracle hu_dot_dwim_dot_rdbms_dot_test ];
   };
-  hu_dwim_rdbms_postgresql = {
+  hu_dot_dwim_dot_rdbms_dot_postgresql = {
     pname = "hu.dwim.rdbms.postgresql";
     createAsd = false;
     version = "20201016-darcs";
@@ -33333,9 +33333,9 @@ rec {
       asd = "hu.dwim.rdbms.postgresql";
     });
     systems = [ "hu.dwim.rdbms.postgresql" ];
-    lispLibs = [ cl-postgres_local-time hu_dwim_asdf hu_dwim_rdbms ];
+    lispLibs = [ cl-postgres_plus_local-time hu_dot_dwim_dot_asdf hu_dot_dwim_dot_rdbms ];
   };
-  hu_dwim_rdbms_postgresql_test = {
+  hu_dot_dwim_dot_rdbms_dot_postgresql_dot_test = {
     pname = "hu.dwim.rdbms.postgresql.test";
     createAsd = false;
     version = "20201016-darcs";
@@ -33346,9 +33346,9 @@ rec {
       asd = "hu.dwim.rdbms.postgresql.test";
     });
     systems = [ "hu.dwim.rdbms.postgresql.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_rdbms_postgresql hu_dwim_rdbms_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_rdbms_dot_postgresql hu_dot_dwim_dot_rdbms_dot_test ];
   };
-  hu_dwim_rdbms_sqlite = {
+  hu_dot_dwim_dot_rdbms_dot_sqlite = {
     pname = "hu.dwim.rdbms.sqlite";
     createAsd = false;
     version = "20201016-darcs";
@@ -33359,9 +33359,9 @@ rec {
       asd = "hu.dwim.rdbms.sqlite";
     });
     systems = [ "hu.dwim.rdbms.sqlite" ];
-    lispLibs = [ cffi hu_dwim_asdf hu_dwim_rdbms ];
+    lispLibs = [ cffi hu_dot_dwim_dot_asdf hu_dot_dwim_dot_rdbms ];
   };
-  hu_dwim_rdbms_sqlite_test = {
+  hu_dot_dwim_dot_rdbms_dot_sqlite_dot_test = {
     pname = "hu.dwim.rdbms.sqlite.test";
     createAsd = false;
     version = "20201016-darcs";
@@ -33372,9 +33372,9 @@ rec {
       asd = "hu.dwim.rdbms.sqlite.test";
     });
     systems = [ "hu.dwim.rdbms.sqlite.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_rdbms_sqlite hu_dwim_rdbms_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_rdbms_dot_sqlite hu_dot_dwim_dot_rdbms_dot_test ];
   };
-  hu_dwim_rdbms_test = {
+  hu_dot_dwim_dot_rdbms_dot_test = {
     pname = "hu.dwim.rdbms.test";
     createAsd = false;
     version = "20201016-darcs";
@@ -33385,9 +33385,9 @@ rec {
       asd = "hu.dwim.rdbms.test";
     });
     systems = [ "hu.dwim.rdbms.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_rdbms hu_dwim_stefil_hu_dwim_def_swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_rdbms hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank ];
   };
-  hu_dwim_reiterate = {
+  hu_dot_dwim_dot_reiterate = {
     pname = "hu.dwim.reiterate";
     createAsd = false;
     version = "stable-git";
@@ -33398,9 +33398,9 @@ rec {
       asd = "hu.dwim.reiterate";
     });
     systems = [ "hu.dwim.reiterate" ];
-    lispLibs = [ alexandria anaphora hu_dwim_asdf hu_dwim_common-lisp hu_dwim_def hu_dwim_defclass-star hu_dwim_syntax-sugar hu_dwim_util metabang-bind ];
+    lispLibs = [ alexandria anaphora hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common-lisp hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_util metabang-bind ];
   };
-  hu_dwim_reiterate_hu_dwim_logger = {
+  hu_dot_dwim_dot_reiterate_plus_hu_dot_dwim_dot_logger = {
     pname = "hu.dwim.reiterate+hu.dwim.logger";
     createAsd = false;
     version = "stable-git";
@@ -33411,9 +33411,9 @@ rec {
       asd = "hu.dwim.reiterate+hu.dwim.logger";
     });
     systems = [ "hu.dwim.reiterate+hu.dwim.logger" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_logger hu_dwim_reiterate ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_logger hu_dot_dwim_dot_reiterate ];
   };
-  hu_dwim_sdl = {
+  hu_dot_dwim_dot_sdl = {
     pname = "hu.dwim.sdl";
     createAsd = false;
     version = "stable-git";
@@ -33424,9 +33424,9 @@ rec {
       asd = "hu.dwim.sdl";
     });
     systems = [ "hu.dwim.sdl" ];
-    lispLibs = [ alexandria cffi cffi-libffi hu_dwim_asdf ];
+    lispLibs = [ alexandria cffi cffi-libffi hu_dot_dwim_dot_asdf ];
   };
-  hu_dwim_serializer = {
+  hu_dot_dwim_dot_serializer = {
     pname = "hu.dwim.serializer";
     createAsd = false;
     version = "20161204-darcs";
@@ -33437,9 +33437,9 @@ rec {
       asd = "hu.dwim.serializer";
     });
     systems = [ "hu.dwim.serializer" ];
-    lispLibs = [ babel hu_dwim_asdf hu_dwim_common hu_dwim_def hu_dwim_syntax-sugar hu_dwim_util ];
+    lispLibs = [ babel hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_util ];
   };
-  hu_dwim_serializer_documentation = {
+  hu_dot_dwim_dot_serializer_dot_documentation = {
     pname = "hu.dwim.serializer.documentation";
     createAsd = false;
     version = "20161204-darcs";
@@ -33450,9 +33450,9 @@ rec {
       asd = "hu.dwim.serializer.documentation";
     });
     systems = [ "hu.dwim.serializer.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_presentation hu_dwim_serializer_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation hu_dot_dwim_dot_serializer_dot_test ];
   };
-  hu_dwim_serializer_test = {
+  hu_dot_dwim_dot_serializer_dot_test = {
     pname = "hu.dwim.serializer.test";
     createAsd = false;
     version = "20161204-darcs";
@@ -33463,9 +33463,9 @@ rec {
       asd = "hu.dwim.serializer.test";
     });
     systems = [ "hu.dwim.serializer.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_serializer hu_dwim_stefil_hu_dwim_def_swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_serializer hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank ];
   };
-  hu_dwim_stefil = {
+  hu_dot_dwim_dot_stefil = {
     pname = "hu.dwim.stefil";
     createAsd = false;
     version = "stable-git";
@@ -33478,7 +33478,7 @@ rec {
     systems = [ "hu.dwim.stefil" ];
     lispLibs = [ alexandria ];
   };
-  hu_dwim_stefil_hu_dwim_def = {
+  hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def = {
     pname = "hu.dwim.stefil+hu.dwim.def";
     createAsd = false;
     version = "stable-git";
@@ -33489,9 +33489,9 @@ rec {
       asd = "hu.dwim.stefil+hu.dwim.def";
     });
     systems = [ "hu.dwim.stefil+hu.dwim.def" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_def hu_dwim_stefil ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_stefil ];
   };
-  hu_dwim_stefil_hu_dwim_def_swank = {
+  hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank = {
     pname = "hu.dwim.stefil+hu.dwim.def+swank";
     createAsd = false;
     version = "stable-git";
@@ -33502,9 +33502,9 @@ rec {
       asd = "hu.dwim.stefil+hu.dwim.def+swank";
     });
     systems = [ "hu.dwim.stefil+hu.dwim.def+swank" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_def_swank hu_dwim_stefil_hu_dwim_def hu_dwim_stefil_swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_stefil_plus_swank ];
   };
-  hu_dwim_stefil_swank = {
+  hu_dot_dwim_dot_stefil_plus_swank = {
     pname = "hu.dwim.stefil+swank";
     createAsd = false;
     version = "stable-git";
@@ -33515,9 +33515,9 @@ rec {
       asd = "hu.dwim.stefil+swank";
     });
     systems = [ "hu.dwim.stefil+swank" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_stefil swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_stefil swank ];
   };
-  hu_dwim_syntax-sugar = {
+  hu_dot_dwim_dot_syntax-sugar = {
     pname = "hu.dwim.syntax-sugar";
     createAsd = false;
     version = "20161204-darcs";
@@ -33528,9 +33528,9 @@ rec {
       asd = "hu.dwim.syntax-sugar";
     });
     systems = [ "hu.dwim.syntax-sugar" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_common ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common ];
   };
-  hu_dwim_syntax-sugar_documentation = {
+  hu_dot_dwim_dot_syntax-sugar_dot_documentation = {
     pname = "hu.dwim.syntax-sugar.documentation";
     createAsd = false;
     version = "20161204-darcs";
@@ -33541,9 +33541,9 @@ rec {
       asd = "hu.dwim.syntax-sugar.documentation";
     });
     systems = [ "hu.dwim.syntax-sugar.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_presentation hu_dwim_syntax-sugar_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation hu_dot_dwim_dot_syntax-sugar_dot_test ];
   };
-  hu_dwim_syntax-sugar_test = {
+  hu_dot_dwim_dot_syntax-sugar_dot_test = {
     pname = "hu.dwim.syntax-sugar.test";
     createAsd = false;
     version = "20161204-darcs";
@@ -33554,9 +33554,9 @@ rec {
       asd = "hu.dwim.syntax-sugar.test";
     });
     systems = [ "hu.dwim.syntax-sugar.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_stefil_hu_dwim_def_swank hu_dwim_syntax-sugar hu_dwim_walker ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_walker ];
   };
-  hu_dwim_uri = {
+  hu_dot_dwim_dot_uri = {
     pname = "hu.dwim.uri";
     createAsd = false;
     version = "20180228-darcs";
@@ -33567,9 +33567,9 @@ rec {
       asd = "hu.dwim.uri";
     });
     systems = [ "hu.dwim.uri" ];
-    lispLibs = [ babel cl-ppcre hu_dwim_asdf hu_dwim_util iolib ];
+    lispLibs = [ babel cl-ppcre hu_dot_dwim_dot_asdf hu_dot_dwim_dot_util iolib ];
   };
-  hu_dwim_uri_test = {
+  hu_dot_dwim_dot_uri_dot_test = {
     pname = "hu.dwim.uri.test";
     createAsd = false;
     version = "20180228-darcs";
@@ -33580,9 +33580,9 @@ rec {
       asd = "hu.dwim.uri.test";
     });
     systems = [ "hu.dwim.uri.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_stefil_hu_dwim_def_swank hu_dwim_uri hu_dwim_util ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_uri hu_dot_dwim_dot_util ];
   };
-  hu_dwim_util = {
+  hu_dot_dwim_dot_util = {
     pname = "hu.dwim.util";
     createAsd = false;
     version = "stable-git";
@@ -33593,9 +33593,9 @@ rec {
       asd = "hu.dwim.util";
     });
     systems = [ "hu.dwim.util" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_def_hu_dwim_common hu_dwim_defclass-star_hu_dwim_def hu_dwim_syntax-sugar ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar ];
   };
-  hu_dwim_util_iolib = {
+  hu_dot_dwim_dot_util_plus_iolib = {
     pname = "hu.dwim.util+iolib";
     createAsd = false;
     version = "stable-git";
@@ -33606,9 +33606,9 @@ rec {
       asd = "hu.dwim.util+iolib";
     });
     systems = [ "hu.dwim.util+iolib" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_util iolib ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_util iolib ];
   };
-  hu_dwim_util_documentation = {
+  hu_dot_dwim_dot_util_dot_documentation = {
     pname = "hu.dwim.util.documentation";
     createAsd = false;
     version = "stable-git";
@@ -33619,9 +33619,9 @@ rec {
       asd = "hu.dwim.util.documentation";
     });
     systems = [ "hu.dwim.util.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_presentation hu_dwim_stefil_hu_dwim_def_swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank ];
   };
-  hu_dwim_util_test = {
+  hu_dot_dwim_dot_util_dot_test = {
     pname = "hu.dwim.util.test";
     createAsd = false;
     version = "stable-git";
@@ -33632,9 +33632,9 @@ rec {
       asd = "hu.dwim.util.test";
     });
     systems = [ "hu.dwim.util.test" ];
-    lispLibs = [ babel babel-streams bordeaux-threads cl-l10n cl-ppcre closer-mop command-line-arguments cxml drakma hu_dwim_asdf hu_dwim_def hu_dwim_def_hu_dwim_common hu_dwim_defclass-star_hu_dwim_def hu_dwim_delico hu_dwim_logger hu_dwim_perec_postgresql hu_dwim_quasi-quote_xml hu_dwim_stefil_hu_dwim_def_swank hu_dwim_syntax-sugar hu_dwim_util hu_dwim_util_iolib hu_dwim_web-server_application iolib swank uiop ];
+    lispLibs = [ babel babel-streams bordeaux-threads cl-l10n cl-ppcre closer-mop command-line-arguments cxml drakma hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_delico hu_dot_dwim_dot_logger hu_dot_dwim_dot_perec_dot_postgresql hu_dot_dwim_dot_quasi-quote_dot_xml hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_util hu_dot_dwim_dot_util_plus_iolib hu_dot_dwim_dot_web-server_dot_application iolib swank uiop ];
   };
-  hu_dwim_walker = {
+  hu_dot_dwim_dot_walker = {
     pname = "hu.dwim.walker";
     createAsd = false;
     version = "stable-git";
@@ -33645,9 +33645,9 @@ rec {
       asd = "hu.dwim.walker";
     });
     systems = [ "hu.dwim.walker" ];
-    lispLibs = [ alexandria anaphora closer-mop contextl hu_dwim_asdf hu_dwim_def_contextl hu_dwim_defclass-star_hu_dwim_def hu_dwim_util metabang-bind ];
+    lispLibs = [ alexandria anaphora closer-mop contextl hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_contextl hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_util metabang-bind ];
   };
-  hu_dwim_web-server = {
+  hu_dot_dwim_dot_web-server = {
     pname = "hu.dwim.web-server";
     createAsd = false;
     version = "20211230-darcs";
@@ -33658,9 +33658,9 @@ rec {
       asd = "hu.dwim.web-server";
     });
     systems = [ "hu.dwim.web-server" ];
-    lispLibs = [ babel babel-streams bordeaux-threads cffi cl_ssl hu_dwim_asdf hu_dwim_common hu_dwim_computed-class hu_dwim_def hu_dwim_def_cl-l10n hu_dwim_def_contextl hu_dwim_def_hu_dwim_delico hu_dwim_logger_iolib hu_dwim_quasi-quote_xml_hu_dwim_quasi-quote_js hu_dwim_syntax-sugar hu_dwim_uri hu_dwim_util hu_dwim_zlib iolib local-time parse-number rfc2109 rfc2388-binary swank ];
+    lispLibs = [ babel babel-streams bordeaux-threads cffi cl_plus_ssl hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_computed-class hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_cl-l10n hu_dot_dwim_dot_def_plus_contextl hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_delico hu_dot_dwim_dot_logger_plus_iolib hu_dot_dwim_dot_quasi-quote_dot_xml_plus_hu_dot_dwim_dot_quasi-quote_dot_js hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_uri hu_dot_dwim_dot_util hu_dot_dwim_dot_zlib iolib local-time parse-number rfc2109 rfc2388-binary swank ];
   };
-  hu_dwim_web-server_swank = {
+  hu_dot_dwim_dot_web-server_plus_swank = {
     pname = "hu.dwim.web-server+swank";
     createAsd = false;
     version = "20211230-darcs";
@@ -33671,9 +33671,9 @@ rec {
       asd = "hu.dwim.web-server+swank";
     });
     systems = [ "hu.dwim.web-server+swank" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_def_swank hu_dwim_web-server ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_web-server ];
   };
-  hu_dwim_web-server_application = {
+  hu_dot_dwim_dot_web-server_dot_application = {
     pname = "hu.dwim.web-server.application";
     createAsd = false;
     version = "20211230-darcs";
@@ -33684,9 +33684,9 @@ rec {
       asd = "hu.dwim.web-server.application";
     });
     systems = [ "hu.dwim.web-server.application" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_web-server ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_web-server ];
   };
-  hu_dwim_web-server_application_hu_dwim_perec = {
+  hu_dot_dwim_dot_web-server_dot_application_plus_hu_dot_dwim_dot_perec = {
     pname = "hu.dwim.web-server.application+hu.dwim.perec";
     createAsd = false;
     version = "20211230-darcs";
@@ -33697,9 +33697,9 @@ rec {
       asd = "hu.dwim.web-server.application+hu.dwim.perec";
     });
     systems = [ "hu.dwim.web-server.application+hu.dwim.perec" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_perec hu_dwim_web-server_application ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_perec hu_dot_dwim_dot_web-server_dot_application ];
   };
-  hu_dwim_web-server_application_test = {
+  hu_dot_dwim_dot_web-server_dot_application_dot_test = {
     pname = "hu.dwim.web-server.application.test";
     createAsd = false;
     version = "20211230-darcs";
@@ -33710,9 +33710,9 @@ rec {
       asd = "hu.dwim.web-server.application.test";
     });
     systems = [ "hu.dwim.web-server.application.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_web-server_application hu_dwim_web-server_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_web-server_dot_application hu_dot_dwim_dot_web-server_dot_test ];
   };
-  hu_dwim_web-server_documentation = {
+  hu_dot_dwim_dot_web-server_dot_documentation = {
     pname = "hu.dwim.web-server.documentation";
     createAsd = false;
     version = "20211230-darcs";
@@ -33723,9 +33723,9 @@ rec {
       asd = "hu.dwim.web-server.documentation";
     });
     systems = [ "hu.dwim.web-server.documentation" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_presentation hu_dwim_web-server_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation hu_dot_dwim_dot_web-server_dot_test ];
   };
-  hu_dwim_web-server_test = {
+  hu_dot_dwim_dot_web-server_dot_test = {
     pname = "hu.dwim.web-server.test";
     createAsd = false;
     version = "20211230-darcs";
@@ -33736,9 +33736,9 @@ rec {
       asd = "hu.dwim.web-server.test";
     });
     systems = [ "hu.dwim.web-server.test" ];
-    lispLibs = [ drakma hu_dwim_asdf hu_dwim_computed-class_hu_dwim_logger hu_dwim_stefil_hu_dwim_def_swank hu_dwim_web-server hu_dwim_web-server_swank ];
+    lispLibs = [ drakma hu_dot_dwim_dot_asdf hu_dot_dwim_dot_computed-class_plus_hu_dot_dwim_dot_logger hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_web-server hu_dot_dwim_dot_web-server_plus_swank ];
   };
-  hu_dwim_web-server_websocket = {
+  hu_dot_dwim_dot_web-server_dot_websocket = {
     pname = "hu.dwim.web-server.websocket";
     createAsd = false;
     version = "20211230-darcs";
@@ -33749,9 +33749,9 @@ rec {
       asd = "hu.dwim.web-server.websocket";
     });
     systems = [ "hu.dwim.web-server.websocket" ];
-    lispLibs = [ cl-base64 hu_dwim_asdf hu_dwim_web-server ironclad ];
+    lispLibs = [ cl-base64 hu_dot_dwim_dot_asdf hu_dot_dwim_dot_web-server ironclad ];
   };
-  hu_dwim_zlib = {
+  hu_dot_dwim_dot_zlib = {
     pname = "hu.dwim.zlib";
     createAsd = false;
     version = "stable-git";
@@ -33762,7 +33762,7 @@ rec {
       asd = "hu.dwim.zlib";
     });
     systems = [ "hu.dwim.zlib" ];
-    lispLibs = [ alexandria cffi cffi-libffi hu_dwim_asdf ];
+    lispLibs = [ alexandria cffi cffi-libffi hu_dot_dwim_dot_asdf ];
   };
   huffman = {
     pname = "huffman";
@@ -33853,7 +33853,7 @@ rec {
       asd = "hunchentoot";
     });
     systems = [ "hunchentoot" ];
-    lispLibs = [ alexandria bordeaux-threads chunga cl_ssl cl-base64 cl-fad cl-ppcre flexi-streams md5 rfc2388 trivial-backtrace usocket ];
+    lispLibs = [ alexandria bordeaux-threads chunga cl_plus_ssl cl-base64 cl-fad cl-ppcre flexi-streams md5 rfc2388 trivial-backtrace usocket ];
   };
   hunchentoot-dev = {
     pname = "hunchentoot-dev";
@@ -34011,7 +34011,7 @@ rec {
     systems = [ "ia-hash-table" ];
     lispLibs = [ alexandria split-sequence ];
   };
-  ia-hash-table_test = {
+  ia-hash-table_dot_test = {
     pname = "ia-hash-table.test";
     createAsd = false;
     version = "20160318-git";
@@ -34230,7 +34230,7 @@ rec {
       asd = "inferior-shell";
     });
     systems = [ "inferior-shell" ];
-    lispLibs = [ alexandria fare-mop fare-quasiquote-extras fare-utils trivia trivia_quasiquote ];
+    lispLibs = [ alexandria fare-mop fare-quasiquote-extras fare-utils trivia trivia_dot_quasiquote ];
   };
   infix-dollar-reader = {
     pname = "infix-dollar-reader";
@@ -34349,7 +34349,7 @@ rec {
     systems = [ "inlined-generic-function" ];
     lispLibs = [ alexandria closer-mop introspect-environment iterate trivia ];
   };
-  inlined-generic-function_test = {
+  inlined-generic-function_dot_test = {
     pname = "inlined-generic-function.test";
     createAsd = false;
     version = "20190521-git";
@@ -34607,9 +34607,9 @@ rec {
       asd = "iolib";
     });
     systems = [ "iolib" ];
-    lispLibs = [ babel bordeaux-threads cffi cffi-grovel idna iolib_asdf iolib_base iolib_conf swap-bytes trivial-features ];
+    lispLibs = [ babel bordeaux-threads cffi cffi-grovel idna iolib_dot_asdf iolib_dot_base iolib_dot_conf swap-bytes trivial-features ];
   };
-  iolib_asdf = {
+  iolib_dot_asdf = {
     pname = "iolib.asdf";
     createAsd = false;
     version = "v0.8.4";
@@ -34622,7 +34622,7 @@ rec {
     systems = [ "iolib.asdf" ];
     lispLibs = [ alexandria ];
   };
-  iolib_base = {
+  iolib_dot_base = {
     pname = "iolib.base";
     createAsd = false;
     version = "v0.8.4";
@@ -34633,9 +34633,9 @@ rec {
       asd = "iolib.base";
     });
     systems = [ "iolib.base" ];
-    lispLibs = [ alexandria iolib_asdf iolib_common-lisp iolib_conf split-sequence ];
+    lispLibs = [ alexandria iolib_dot_asdf iolib_dot_common-lisp iolib_dot_conf split-sequence ];
   };
-  iolib_common-lisp = {
+  iolib_dot_common-lisp = {
     pname = "iolib.common-lisp";
     createAsd = false;
     version = "v0.8.4";
@@ -34646,9 +34646,9 @@ rec {
       asd = "iolib.common-lisp";
     });
     systems = [ "iolib.common-lisp" ];
-    lispLibs = [ alexandria iolib_asdf iolib_conf ];
+    lispLibs = [ alexandria iolib_dot_asdf iolib_dot_conf ];
   };
-  iolib_conf = {
+  iolib_dot_conf = {
     pname = "iolib.conf";
     createAsd = false;
     version = "v0.8.4";
@@ -34659,9 +34659,9 @@ rec {
       asd = "iolib.conf";
     });
     systems = [ "iolib.conf" ];
-    lispLibs = [ iolib_asdf ];
+    lispLibs = [ iolib_dot_asdf ];
   };
-  iolib_examples = {
+  iolib_dot_examples = {
     pname = "iolib.examples";
     createAsd = false;
     version = "v0.8.4";
@@ -34672,7 +34672,7 @@ rec {
       asd = "iolib.examples";
     });
     systems = [ "iolib.examples" ];
-    lispLibs = [ bordeaux-threads iolib iolib_asdf iolib_base iolib_conf ];
+    lispLibs = [ bordeaux-threads iolib iolib_dot_asdf iolib_dot_base iolib_dot_conf ];
   };
   ip-interfaces = {
     pname = "ip-interfaces";
@@ -34739,7 +34739,7 @@ rec {
     systems = [ "ironclad-text" ];
     lispLibs = [ flexi-streams ironclad ];
   };
-  eclecticse_iso-8601-date = {
+  eclecticse_dot_iso-8601-date = {
     pname = "eclecticse.iso-8601-date";
     createAsd = false;
     version = "20190107-git";
@@ -34778,7 +34778,7 @@ rec {
     systems = [ "iterate-clsql" ];
     lispLibs = [ clsql iterate ];
   };
-  jenkins_api = {
+  jenkins_dot_api = {
     pname = "jenkins.api";
     createAsd = false;
     version = "20130312-git";
@@ -34789,7 +34789,7 @@ rec {
       asd = "jenkins.api";
     });
     systems = [ "jenkins.api" ];
-    lispLibs = [ alexandria cl-json cl-ppcre closer-mop drakma iterate let-plus more-conditions puri split-sequence xml_location ];
+    lispLibs = [ alexandria cl-json cl-ppcre closer-mop drakma iterate let-plus more-conditions puri split-sequence xml_dot_location ];
   };
   jingoh = {
     pname = "jingoh";
@@ -34802,9 +34802,9 @@ rec {
       asd = "jingoh";
     });
     systems = [ "jingoh" ];
-    lispLibs = [ jingoh_examiner jingoh_org jingoh_reader jingoh_tester named-readtables ];
+    lispLibs = [ jingoh_dot_examiner jingoh_dot_org jingoh_dot_reader jingoh_dot_tester named-readtables ];
   };
-  jingoh_documentizer = {
+  jingoh_dot_documentizer = {
     pname = "jingoh.documentizer";
     createAsd = false;
     version = "20211209-git";
@@ -34817,7 +34817,7 @@ rec {
     systems = [ "jingoh.documentizer" ];
     lispLibs = [ _3bmd _3bmd-ext-code-blocks cl-ppcre eclector read-as-string uiop ];
   };
-  jingoh_documentizer_test = {
+  jingoh_dot_documentizer_dot_test = {
     pname = "jingoh.documentizer.test";
     createAsd = false;
     version = "20211209-git";
@@ -34828,9 +34828,9 @@ rec {
       asd = "jingoh.documentizer.test";
     });
     systems = [ "jingoh.documentizer.test" ];
-    lispLibs = [ jingoh jingoh_documentizer ];
+    lispLibs = [ jingoh jingoh_dot_documentizer ];
   };
-  jingoh_examiner = {
+  jingoh_dot_examiner = {
     pname = "jingoh.examiner";
     createAsd = false;
     version = "20211209-git";
@@ -34841,9 +34841,9 @@ rec {
       asd = "jingoh.examiner";
     });
     systems = [ "jingoh.examiner" ];
-    lispLibs = [ cl-ansi-text jingoh_documentizer jingoh_org jingoh_tester ];
+    lispLibs = [ cl-ansi-text jingoh_dot_documentizer jingoh_dot_org jingoh_dot_tester ];
   };
-  jingoh_examiner_test = {
+  jingoh_dot_examiner_dot_test = {
     pname = "jingoh.examiner.test";
     createAsd = false;
     version = "20211209-git";
@@ -34854,9 +34854,9 @@ rec {
       asd = "jingoh.examiner.test";
     });
     systems = [ "jingoh.examiner.test" ];
-    lispLibs = [ cl-ansi-text jingoh jingoh_examiner ];
+    lispLibs = [ cl-ansi-text jingoh jingoh_dot_examiner ];
   };
-  jingoh_generator = {
+  jingoh_dot_generator = {
     pname = "jingoh.generator";
     createAsd = false;
     version = "20211209-git";
@@ -34867,9 +34867,9 @@ rec {
       asd = "jingoh.generator";
     });
     systems = [ "jingoh.generator" ];
-    lispLibs = [ alexandria cl-unification closer-mop jingoh_documentizer lambda-fiddle millet named-readtables prompt-for trivial-cltl2 uiop ];
+    lispLibs = [ alexandria cl-unification closer-mop jingoh_dot_documentizer lambda-fiddle millet named-readtables prompt-for trivial-cltl2 uiop ];
   };
-  jingoh_generator_test = {
+  jingoh_dot_generator_dot_test = {
     pname = "jingoh.generator.test";
     createAsd = false;
     version = "20211209-git";
@@ -34880,9 +34880,9 @@ rec {
       asd = "jingoh.generator.test";
     });
     systems = [ "jingoh.generator.test" ];
-    lispLibs = [ jingoh jingoh_generator ];
+    lispLibs = [ jingoh jingoh_dot_generator ];
   };
-  jingoh_org = {
+  jingoh_dot_org = {
     pname = "jingoh.org";
     createAsd = false;
     version = "20211209-git";
@@ -34893,9 +34893,9 @@ rec {
       asd = "jingoh.org";
     });
     systems = [ "jingoh.org" ];
-    lispLibs = [ alexandria check-bnf jingoh_documentizer ];
+    lispLibs = [ alexandria check-bnf jingoh_dot_documentizer ];
   };
-  jingoh_org_test = {
+  jingoh_dot_org_dot_test = {
     pname = "jingoh.org.test";
     createAsd = false;
     version = "20211209-git";
@@ -34906,9 +34906,9 @@ rec {
       asd = "jingoh.org.test";
     });
     systems = [ "jingoh.org.test" ];
-    lispLibs = [ jingoh jingoh_org ];
+    lispLibs = [ jingoh jingoh_dot_org ];
   };
-  jingoh_parallel = {
+  jingoh_dot_parallel = {
     pname = "jingoh.parallel";
     createAsd = false;
     version = "20211209-git";
@@ -34921,7 +34921,7 @@ rec {
     systems = [ "jingoh.parallel" ];
     lispLibs = [ bordeaux-threads cl-cpus jingoh lparallel ];
   };
-  jingoh_parallel_test = {
+  jingoh_dot_parallel_dot_test = {
     pname = "jingoh.parallel.test";
     createAsd = false;
     version = "20211209-git";
@@ -34932,9 +34932,9 @@ rec {
       asd = "jingoh.parallel.test";
     });
     systems = [ "jingoh.parallel.test" ];
-    lispLibs = [ jingoh jingoh_parallel ];
+    lispLibs = [ jingoh jingoh_dot_parallel ];
   };
-  jingoh_reader = {
+  jingoh_dot_reader = {
     pname = "jingoh.reader";
     createAsd = false;
     version = "20211209-git";
@@ -34945,9 +34945,9 @@ rec {
       asd = "jingoh.reader";
     });
     systems = [ "jingoh.reader" ];
-    lispLibs = [ jingoh_documentizer jingoh_tester named-readtables ];
+    lispLibs = [ jingoh_dot_documentizer jingoh_dot_tester named-readtables ];
   };
-  jingoh_reader_test = {
+  jingoh_dot_reader_dot_test = {
     pname = "jingoh.reader.test";
     createAsd = false;
     version = "20211209-git";
@@ -34958,9 +34958,9 @@ rec {
       asd = "jingoh.reader.test";
     });
     systems = [ "jingoh.reader.test" ];
-    lispLibs = [ jingoh jingoh_reader ];
+    lispLibs = [ jingoh jingoh_dot_reader ];
   };
-  jingoh_tester = {
+  jingoh_dot_tester = {
     pname = "jingoh.tester";
     createAsd = false;
     version = "20211209-git";
@@ -34971,9 +34971,9 @@ rec {
       asd = "jingoh.tester";
     });
     systems = [ "jingoh.tester" ];
-    lispLibs = [ alexandria bordeaux-threads check-bnf cl-ansi-text cl-colors2 closer-mop jingoh_documentizer jingoh_org structure-ext uiop vivid-colors vivid-diff ];
+    lispLibs = [ alexandria bordeaux-threads check-bnf cl-ansi-text cl-colors2 closer-mop jingoh_dot_documentizer jingoh_dot_org structure-ext uiop vivid-colors vivid-diff ];
   };
-  jingoh_tester_test = {
+  jingoh_dot_tester_dot_test = {
     pname = "jingoh.tester.test";
     createAsd = false;
     version = "20211209-git";
@@ -34984,7 +34984,7 @@ rec {
       asd = "jingoh.tester.test";
     });
     systems = [ "jingoh.tester.test" ];
-    lispLibs = [ jingoh jingoh_tester ];
+    lispLibs = [ jingoh jingoh_dot_tester ];
   };
   jonathan = {
     pname = "jonathan";
@@ -36271,7 +36271,7 @@ rec {
       asd = "lfarm-ssl";
     });
     systems = [ "lfarm-ssl" ];
-    lispLibs = [ cl_ssl lfarm-common ];
+    lispLibs = [ cl_plus_ssl lfarm-common ];
   };
   lfarm-test = {
     pname = "lfarm-test";
@@ -36609,7 +36609,7 @@ rec {
       asd = "lisp-binary";
     });
     systems = [ "lisp-binary" ];
-    lispLibs = [ cffi closer-mop flexi-streams moptilities quasiquote-2_0 ];
+    lispLibs = [ cffi closer-mop flexi-streams moptilities quasiquote-2_dot_0 ];
   };
   lisp-binary-test = {
     pname = "lisp-binary-test";
@@ -36702,7 +36702,7 @@ rec {
     systems = [ "lisp-executable-tests" ];
     lispLibs = [ lisp-executable lisp-unit ];
   };
-  com_google_flag = {
+  com_dot_google_dot_flag = {
     pname = "com.google.flag";
     createAsd = false;
     version = "20201220-git";
@@ -36713,7 +36713,7 @@ rec {
       asd = "com.google.flag";
     });
     systems = [ "com.google.flag" ];
-    lispLibs = [ com_google_base ];
+    lispLibs = [ com_dot_google_dot_base ];
   };
   lil = {
     pname = "lil";
@@ -36767,7 +36767,7 @@ rec {
     systems = [ "lisp-namespace" ];
     lispLibs = [ alexandria ];
   };
-  lisp-namespace_test = {
+  lisp-namespace_dot_test = {
     pname = "lisp-namespace.test";
     createAsd = false;
     version = "20211020-git";
@@ -37612,7 +37612,7 @@ rec {
     systems = [ "local-package-aliases" ];
     lispLibs = [  ];
   };
-  cl-postgres_local-time = {
+  cl-postgres_plus_local-time = {
     pname = "cl-postgres+local-time";
     createAsd = false;
     version = "20210124-git";
@@ -37638,7 +37638,7 @@ rec {
     systems = [ "local-time" ];
     lispLibs = [ uiop ];
   };
-  cl-postgres_local-time-duration = {
+  cl-postgres_plus_local-time-duration = {
     pname = "cl-postgres+local-time-duration";
     createAsd = false;
     version = "20180430-git";
@@ -37690,7 +37690,7 @@ rec {
     systems = [ "log4cl-examples" ];
     lispLibs = [ log4cl swank ];
   };
-  log4cl_log4slime = {
+  log4cl_dot_log4slime = {
     pname = "log4cl.log4slime";
     createAsd = false;
     version = "20211209-git";
@@ -37703,7 +37703,7 @@ rec {
     systems = [ "log4cl.log4slime" ];
     lispLibs = [ log4cl swank ];
   };
-  log4cl_log4sly = {
+  log4cl_dot_log4sly = {
     pname = "log4cl.log4sly";
     createAsd = false;
     version = "20211209-git";
@@ -37781,7 +37781,7 @@ rec {
     systems = [ "lowlight" ];
     lispLibs = [ alexandria cl-ppcre cl-who graylex spinneret yacc ];
   };
-  lowlight_doc = {
+  lowlight_dot_doc = {
     pname = "lowlight.doc";
     createAsd = false;
     version = "20131211-git";
@@ -37792,9 +37792,9 @@ rec {
       asd = "lowlight.doc";
     });
     systems = [ "lowlight.doc" ];
-    lispLibs = [ cl-gendoc lowlight lowlight_tests ];
+    lispLibs = [ cl-gendoc lowlight lowlight_dot_tests ];
   };
-  lowlight_old = {
+  lowlight_dot_old = {
     pname = "lowlight.old";
     createAsd = false;
     version = "20131211-git";
@@ -37807,7 +37807,7 @@ rec {
     systems = [ "lowlight.old" ];
     lispLibs = [ alexandria cl-ppcre cl-who spinneret ];
   };
-  lowlight_tests = {
+  lowlight_dot_tests = {
     pname = "lowlight.tests";
     createAsd = false;
     version = "20131211-git";
@@ -38468,7 +38468,7 @@ rec {
       asd = "maiden-networking";
     });
     systems = [ "maiden-networking" ];
-    lispLibs = [ cl_ssl maiden usocket ];
+    lispLibs = [ cl_plus_ssl maiden usocket ];
   };
   maiden-notify = {
     pname = "maiden-notify";
@@ -38782,7 +38782,7 @@ rec {
     systems = [ "marching-cubes-test" ];
     lispLibs = [ cl-test-more marching-cubes ];
   };
-  markdown_cl = {
+  markdown_dot_cl = {
     pname = "markdown.cl";
     createAsd = false;
     version = "20210228-git";
@@ -38795,7 +38795,7 @@ rec {
     systems = [ "markdown.cl" ];
     lispLibs = [ cl-ppcre split-sequence xmls ];
   };
-  markdown_cl-test = {
+  markdown_dot_cl-test = {
     pname = "markdown.cl-test";
     createAsd = false;
     version = "20210228-git";
@@ -38806,7 +38806,7 @@ rec {
       asd = "markdown.cl-test";
     });
     systems = [ "markdown.cl-test" ];
-    lispLibs = [ fiveam markdown_cl xmls ];
+    lispLibs = [ fiveam markdown_dot_cl xmls ];
   };
   markup = {
     pname = "markup";
@@ -38821,7 +38821,7 @@ rec {
     systems = [ "markup" ];
     lispLibs = [ alexandria named-readtables str trivial-gray-streams ];
   };
-  markup_test = {
+  markup_dot_test = {
     pname = "markup.test";
     createAsd = false;
     version = "20211020-git";
@@ -38897,9 +38897,9 @@ rec {
       asd = "matrix-case";
     });
     systems = [ "matrix-case" ];
-    lispLibs = [ jingoh_documentizer ];
+    lispLibs = [ jingoh_dot_documentizer ];
   };
-  matrix-case_test = {
+  matrix-case_dot_test = {
     pname = "matrix-case.test";
     createAsd = false;
     version = "20211020-git";
@@ -38962,9 +38962,9 @@ rec {
       asd = "mcase";
     });
     systems = [ "mcase" ];
-    lispLibs = [ jingoh_documentizer millet ];
+    lispLibs = [ jingoh_dot_documentizer millet ];
   };
-  mcase_test = {
+  mcase_dot_test = {
     pname = "mcase.test";
     createAsd = false;
     version = "20211020-git";
@@ -39456,7 +39456,7 @@ rec {
       asd = "mel-base";
     });
     systems = [ "mel-base" ];
-    lispLibs = [ cl_ssl flexi-streams usocket ];
+    lispLibs = [ cl_plus_ssl flexi-streams usocket ];
   };
   memoize = {
     pname = "memoize";
@@ -39692,7 +39692,7 @@ rec {
     systems = [ "method-combination-utilities" ];
     lispLibs = [ closer-mop ];
   };
-  method-combination-utilities_tests = {
+  method-combination-utilities_dot_tests = {
     pname = "method-combination-utilities.tests";
     createAsd = "method-combination-utilities";
     version = "20141106-git";
@@ -39833,9 +39833,9 @@ rec {
       asd = "millet";
     });
     systems = [ "millet" ];
-    lispLibs = [ jingoh_documentizer ];
+    lispLibs = [ jingoh_dot_documentizer ];
   };
-  millet_test = {
+  millet_dot_test = {
     pname = "millet.test";
     createAsd = false;
     version = "20211209-git";
@@ -40394,7 +40394,7 @@ rec {
     systems = [ "moira" ];
     lispLibs = [ alexandria bordeaux-threads osicat serapeum trivial-features trivial-garbage ];
   };
-  com_gigamonkeys_binary-data = {
+  com_dot_gigamonkeys_dot_binary-data = {
     pname = "com.gigamonkeys.binary-data";
     createAsd = false;
     version = "20111203-git";
@@ -40418,9 +40418,9 @@ rec {
       asd = "monkeylib-html";
     });
     systems = [ "monkeylib-html" ];
-    lispLibs = [ com_gigamonkeys_macro-utilities com_gigamonkeys_pathnames com_gigamonkeys_test-framework com_gigamonkeys_utilities monkeylib-text-languages monkeylib-text-output ];
+    lispLibs = [ com_dot_gigamonkeys_dot_macro-utilities com_dot_gigamonkeys_dot_pathnames com_dot_gigamonkeys_dot_test-framework com_dot_gigamonkeys_dot_utilities monkeylib-text-languages monkeylib-text-output ];
   };
-  com_gigamonkeys_json = {
+  com_dot_gigamonkeys_dot_json = {
     pname = "com.gigamonkeys.json";
     createAsd = false;
     version = "20180228-git";
@@ -40431,9 +40431,9 @@ rec {
       asd = "com.gigamonkeys.json";
     });
     systems = [ "com.gigamonkeys.json" ];
-    lispLibs = [ com_gigamonkeys_parser com_gigamonkeys_utilities ];
+    lispLibs = [ com_dot_gigamonkeys_dot_parser com_dot_gigamonkeys_dot_utilities ];
   };
-  com_gigamonkeys_macro-utilities = {
+  com_dot_gigamonkeys_dot_macro-utilities = {
     pname = "com.gigamonkeys.macro-utilities";
     createAsd = false;
     version = "20111203-git";
@@ -40446,7 +40446,7 @@ rec {
     systems = [ "com.gigamonkeys.macro-utilities" ];
     lispLibs = [  ];
   };
-  com_gigamonkeys_markup = {
+  com_dot_gigamonkeys_dot_markup = {
     pname = "com.gigamonkeys.markup";
     createAsd = false;
     version = "20120909-git";
@@ -40457,7 +40457,7 @@ rec {
       asd = "com.gigamonkeys.markup";
     });
     systems = [ "com.gigamonkeys.markup" ];
-    lispLibs = [ cl-ppcre com_gigamonkeys_pathnames com_gigamonkeys_utilities ];
+    lispLibs = [ cl-ppcre com_dot_gigamonkeys_dot_pathnames com_dot_gigamonkeys_dot_utilities ];
   };
   monkeylib-markup-html = {
     pname = "monkeylib-markup-html";
@@ -40470,9 +40470,9 @@ rec {
       asd = "monkeylib-markup-html";
     });
     systems = [ "monkeylib-markup-html" ];
-    lispLibs = [ alexandria com_gigamonkeys_macro-utilities com_gigamonkeys_markup com_gigamonkeys_utilities monkeylib-html ];
+    lispLibs = [ alexandria com_dot_gigamonkeys_dot_macro-utilities com_dot_gigamonkeys_dot_markup com_dot_gigamonkeys_dot_utilities monkeylib-html ];
   };
-  com_gigamonkeys_parser = {
+  com_dot_gigamonkeys_dot_parser = {
     pname = "com.gigamonkeys.parser";
     createAsd = false;
     version = "20120208-git";
@@ -40483,9 +40483,9 @@ rec {
       asd = "com.gigamonkeys.parser";
     });
     systems = [ "com.gigamonkeys.parser" ];
-    lispLibs = [ com_gigamonkeys_macro-utilities com_gigamonkeys_utilities ];
+    lispLibs = [ com_dot_gigamonkeys_dot_macro-utilities com_dot_gigamonkeys_dot_utilities ];
   };
-  com_gigamonkeys_pathnames = {
+  com_dot_gigamonkeys_dot_pathnames = {
     pname = "com.gigamonkeys.pathnames";
     createAsd = false;
     version = "20120208-git";
@@ -40498,7 +40498,7 @@ rec {
     systems = [ "com.gigamonkeys.pathnames" ];
     lispLibs = [  ];
   };
-  com_gigamonkeys_prose-diff = {
+  com_dot_gigamonkeys_dot_prose-diff = {
     pname = "com.gigamonkeys.prose-diff";
     createAsd = false;
     version = "20140713-git";
@@ -40509,9 +40509,9 @@ rec {
       asd = "com.gigamonkeys.prose-diff";
     });
     systems = [ "com.gigamonkeys.prose-diff" ];
-    lispLibs = [ cl-ppcre com_gigamonkeys_macro-utilities com_gigamonkeys_markup com_gigamonkeys_pathnames com_gigamonkeys_utilities monkeylib-markup-html ];
+    lispLibs = [ cl-ppcre com_dot_gigamonkeys_dot_macro-utilities com_dot_gigamonkeys_dot_markup com_dot_gigamonkeys_dot_pathnames com_dot_gigamonkeys_dot_utilities monkeylib-markup-html ];
   };
-  com_gigamonkeys_test-framework = {
+  com_dot_gigamonkeys_dot_test-framework = {
     pname = "com.gigamonkeys.test-framework";
     createAsd = false;
     version = "20101207-git";
@@ -40522,7 +40522,7 @@ rec {
       asd = "com.gigamonkeys.test-framework";
     });
     systems = [ "com.gigamonkeys.test-framework" ];
-    lispLibs = [ com_gigamonkeys_macro-utilities ];
+    lispLibs = [ com_dot_gigamonkeys_dot_macro-utilities ];
   };
   monkeylib-text-languages = {
     pname = "monkeylib-text-languages";
@@ -40535,7 +40535,7 @@ rec {
       asd = "monkeylib-text-languages";
     });
     systems = [ "monkeylib-text-languages" ];
-    lispLibs = [ com_gigamonkeys_macro-utilities monkeylib-text-output ];
+    lispLibs = [ com_dot_gigamonkeys_dot_macro-utilities monkeylib-text-output ];
   };
   monkeylib-text-output = {
     pname = "monkeylib-text-output";
@@ -40548,9 +40548,9 @@ rec {
       asd = "monkeylib-text-output";
     });
     systems = [ "monkeylib-text-output" ];
-    lispLibs = [ com_gigamonkeys_macro-utilities com_gigamonkeys_pathnames com_gigamonkeys_test-framework com_gigamonkeys_utilities ];
+    lispLibs = [ com_dot_gigamonkeys_dot_macro-utilities com_dot_gigamonkeys_dot_pathnames com_dot_gigamonkeys_dot_test-framework com_dot_gigamonkeys_dot_utilities ];
   };
-  com_gigamonkeys_utilities = {
+  com_dot_gigamonkeys_dot_utilities = {
     pname = "com.gigamonkeys.utilities";
     createAsd = false;
     version = "20170403-git";
@@ -41302,7 +41302,7 @@ rec {
       asd = "nineveh";
     });
     systems = [ "nineveh" ];
-    lispLibs = [ cepl cl-soil dendrite_primitives documentation-utils easing livesupport rtg-math_vari with-setf ];
+    lispLibs = [ cepl cl-soil dendrite_dot_primitives documentation-utils easing livesupport rtg-math_dot_vari with-setf ];
   };
   ningle = {
     pname = "ningle";
@@ -41473,7 +41473,7 @@ rec {
     systems = [ "null-package" ];
     lispLibs = [ alexandria core-reader named-readtables read-as-string ];
   };
-  null-package_test = {
+  null-package_dot_test = {
     pname = "null-package.test";
     createAsd = false;
     version = "20211020-git";
@@ -41499,7 +41499,7 @@ rec {
     systems = [ "numcl" ];
     lispLibs = [ alexandria cl-randist constantfold float-features function-cache gtype iterate lisp-namespace specialized-function trivia type-r ];
   };
-  numcl_test = {
+  numcl_dot_test = {
     pname = "numcl.test";
     createAsd = false;
     version = "20211209-git";
@@ -41562,7 +41562,7 @@ rec {
       asd = "nyxt";
     });
     systems = [ "nyxt" ];
-    lispLibs = [ alexandria bordeaux-threads calispel cl-base64 cl-containers cl-css cl-custom-hash-table cl-html-diff cl-json cl-ppcre cl-ppcre-unicode cl-prevalence cl-qrencode closer-mop clss cluffer dexador enchant flexi-streams fset hu_dwim_defclass-star iolib local-time log4cl lparallel moptilities named-readtables parenscript plump quri serapeum spinneret str swank trivia trivial-clipboard trivial-features trivial-garbage trivial-package-local-nicknames trivial-types uiop unix-opts ];
+    lispLibs = [ alexandria bordeaux-threads calispel cl-base64 cl-containers cl-css cl-custom-hash-table cl-html-diff cl-json cl-ppcre cl-ppcre-unicode cl-prevalence cl-qrencode closer-mop clss cluffer dexador enchant flexi-streams fset hu_dot_dwim_dot_defclass-star iolib local-time log4cl lparallel moptilities named-readtables parenscript plump quri serapeum spinneret str swank trivia trivial-clipboard trivial-features trivial-garbage trivial-package-local-nicknames trivial-types uiop unix-opts ];
   };
   nyxt-ubuntu-package = {
     pname = "nyxt-ubuntu-package";
@@ -41681,7 +41681,7 @@ rec {
     systems = [ "oe-encode-test" ];
     lispLibs = [ clunit oe-encode ];
   };
-  eclecticse_omer = {
+  eclecticse_dot_omer = {
     pname = "eclecticse.omer";
     createAsd = false;
     version = "20210411-git";
@@ -41889,7 +41889,7 @@ rec {
     systems = [ "optima" ];
     lispLibs = [ alexandria closer-mop ];
   };
-  optima_ppcre = {
+  optima_dot_ppcre = {
     pname = "optima.ppcre";
     createAsd = false;
     version = "20150709-git";
@@ -41902,7 +41902,7 @@ rec {
     systems = [ "optima.ppcre" ];
     lispLibs = [ alexandria cl-ppcre optima ];
   };
-  optima_test = {
+  optima_dot_test = {
     pname = "optima.test";
     createAsd = false;
     version = "20150709-git";
@@ -41913,7 +41913,7 @@ rec {
       asd = "optima.test";
     });
     systems = [ "optima.test" ];
-    lispLibs = [ eos optima optima_ppcre ];
+    lispLibs = [ eos optima optima_dot_ppcre ];
   };
   org-davep-dict = {
     pname = "org-davep-dict";
@@ -41967,7 +41967,7 @@ rec {
     systems = [ "origin" ];
     lispLibs = [ golden-utils specialization-store ];
   };
-  origin_test = {
+  origin_dot_test = {
     pname = "origin.test";
     createAsd = false;
     version = "20210630-git";
@@ -42030,7 +42030,7 @@ rec {
       asd = "osmpbf";
     });
     systems = [ "osmpbf" ];
-    lispLibs = [ chipz com_google_base flexi-streams nibbles protobuf ];
+    lispLibs = [ chipz com_dot_google_dot_base flexi-streams nibbles protobuf ];
   };
   overlord = {
     pname = "overlord";
@@ -42134,7 +42134,7 @@ rec {
       asd = "package-renaming-test";
     });
     systems = [ "package-renaming-test" ];
-    lispLibs = [ hu_dwim_stefil package-renaming ];
+    lispLibs = [ hu_dot_dwim_dot_stefil package-renaming ];
   };
   packet = {
     pname = "packet";
@@ -42435,7 +42435,7 @@ rec {
     systems = [ "parenscript" ];
     lispLibs = [ anaphora cl-ppcre named-readtables ];
   };
-  parenscript_tests = {
+  parenscript_dot_tests = {
     pname = "parenscript.tests";
     createAsd = false;
     version = "Parenscript-2.7.1";
@@ -42474,7 +42474,7 @@ rec {
     systems = [ "parse" ];
     lispLibs = [  ];
   };
-  parse-declarations-1_0 = {
+  parse-declarations-1_dot_0 = {
     pname = "parse-declarations-1.0";
     createAsd = false;
     version = "20101006-darcs";
@@ -42604,7 +42604,7 @@ rec {
     systems = [ "parseq" ];
     lispLibs = [  ];
   };
-  parser_common-rules = {
+  parser_dot_common-rules = {
     pname = "parser.common-rules";
     createAsd = false;
     version = "20200715-git";
@@ -42617,7 +42617,7 @@ rec {
     systems = [ "parser.common-rules" ];
     lispLibs = [ alexandria esrap let-plus split-sequence ];
   };
-  parser_common-rules_operators = {
+  parser_dot_common-rules_dot_operators = {
     pname = "parser.common-rules.operators";
     createAsd = false;
     version = "20200715-git";
@@ -42628,9 +42628,9 @@ rec {
       asd = "parser.common-rules.operators";
     });
     systems = [ "parser.common-rules.operators" ];
-    lispLibs = [ alexandria architecture_builder-protocol esrap let-plus parser_common-rules ];
+    lispLibs = [ alexandria architecture_dot_builder-protocol esrap let-plus parser_dot_common-rules ];
   };
-  parser_ini = {
+  parser_dot_ini = {
     pname = "parser.ini";
     createAsd = false;
     version = "20181018-git";
@@ -42641,7 +42641,7 @@ rec {
       asd = "parser.ini";
     });
     systems = [ "parser.ini" ];
-    lispLibs = [ alexandria architecture_builder-protocol esrap let-plus more-conditions parser_common-rules ];
+    lispLibs = [ alexandria architecture_dot_builder-protocol esrap let-plus more-conditions parser_dot_common-rules ];
   };
   parsley = {
     pname = "parsley";
@@ -42901,7 +42901,7 @@ rec {
       asd = "perlre";
     });
     systems = [ "perlre" ];
-    lispLibs = [ cl-interpol cl-ppcre let-over-lambda prove trivia trivia_ppcre ];
+    lispLibs = [ cl-interpol cl-ppcre let-over-lambda prove trivia trivia_dot_ppcre ];
   };
   persistent-tables = {
     pname = "persistent-tables";
@@ -42929,7 +42929,7 @@ rec {
     systems = [ "persistent-variables" ];
     lispLibs = [  ];
   };
-  persistent-variables_test = {
+  persistent-variables_dot_test = {
     pname = "persistent-variables.test";
     createAsd = "persistent-variables";
     version = "20130312-git";
@@ -42953,9 +42953,9 @@ rec {
       asd = "petalisp";
     });
     systems = [ "petalisp" ];
-    lispLibs = [ petalisp_api ];
+    lispLibs = [ petalisp_dot_api ];
   };
-  petalisp_api = {
+  petalisp_dot_api = {
     pname = "petalisp.api";
     createAsd = false;
     version = "20211230-git";
@@ -42966,9 +42966,9 @@ rec {
       asd = "petalisp.api";
     });
     systems = [ "petalisp.api" ];
-    lispLibs = [ alexandria petalisp_core petalisp_multicore-backend petalisp_native-backend petalisp_utilities trivia ];
+    lispLibs = [ alexandria petalisp_dot_core petalisp_dot_multicore-backend petalisp_dot_native-backend petalisp_dot_utilities trivia ];
   };
-  petalisp_core = {
+  petalisp_dot_core = {
     pname = "petalisp.core";
     createAsd = false;
     version = "20211230-git";
@@ -42979,9 +42979,9 @@ rec {
       asd = "petalisp.core";
     });
     systems = [ "petalisp.core" ];
-    lispLibs = [ alexandria bordeaux-threads lparallel petalisp_type-inference petalisp_utilities split-sequence trivia trivial-garbage trivial-macroexpand-all ucons ];
+    lispLibs = [ alexandria bordeaux-threads lparallel petalisp_dot_type-inference petalisp_dot_utilities split-sequence trivia trivial-garbage trivial-macroexpand-all ucons ];
   };
-  petalisp_examples = {
+  petalisp_dot_examples = {
     pname = "petalisp.examples";
     createAsd = false;
     version = "20211230-git";
@@ -42994,7 +42994,7 @@ rec {
     systems = [ "petalisp.examples" ];
     lispLibs = [ numpy-file-format petalisp ];
   };
-  petalisp_graphviz = {
+  petalisp_dot_graphviz = {
     pname = "petalisp.graphviz";
     createAsd = false;
     version = "20211230-git";
@@ -43005,9 +43005,9 @@ rec {
       asd = "petalisp.graphviz";
     });
     systems = [ "petalisp.graphviz" ];
-    lispLibs = [ alexandria cl-dot petalisp petalisp_core petalisp_ir petalisp_utilities trivial-features uiop ];
+    lispLibs = [ alexandria cl-dot petalisp petalisp_dot_core petalisp_dot_ir petalisp_dot_utilities trivial-features uiop ];
   };
-  petalisp_ir = {
+  petalisp_dot_ir = {
     pname = "petalisp.ir";
     createAsd = false;
     version = "20211230-git";
@@ -43018,9 +43018,9 @@ rec {
       asd = "petalisp.ir";
     });
     systems = [ "petalisp.ir" ];
-    lispLibs = [ alexandria petalisp_core petalisp_utilities priority-queue ];
+    lispLibs = [ alexandria petalisp_dot_core petalisp_dot_utilities priority-queue ];
   };
-  petalisp_multicore-backend = {
+  petalisp_dot_multicore-backend = {
     pname = "petalisp.multicore-backend";
     createAsd = false;
     version = "20211230-git";
@@ -43031,9 +43031,9 @@ rec {
       asd = "petalisp.multicore-backend";
     });
     systems = [ "petalisp.multicore-backend" ];
-    lispLibs = [ alexandria atomics bordeaux-threads petalisp_core petalisp_ir petalisp_utilities trivia ];
+    lispLibs = [ alexandria atomics bordeaux-threads petalisp_dot_core petalisp_dot_ir petalisp_dot_utilities trivia ];
   };
-  petalisp_native-backend = {
+  petalisp_dot_native-backend = {
     pname = "petalisp.native-backend";
     createAsd = false;
     version = "20211230-git";
@@ -43044,9 +43044,9 @@ rec {
       asd = "petalisp.native-backend";
     });
     systems = [ "petalisp.native-backend" ];
-    lispLibs = [ alexandria bordeaux-threads lparallel petalisp_core petalisp_ir petalisp_scheduler petalisp_utilities trivia ];
+    lispLibs = [ alexandria bordeaux-threads lparallel petalisp_dot_core petalisp_dot_ir petalisp_dot_scheduler petalisp_dot_utilities trivia ];
   };
-  petalisp_scheduler = {
+  petalisp_dot_scheduler = {
     pname = "petalisp.scheduler";
     createAsd = false;
     version = "20211230-git";
@@ -43057,9 +43057,9 @@ rec {
       asd = "petalisp.scheduler";
     });
     systems = [ "petalisp.scheduler" ];
-    lispLibs = [ atomics petalisp_core petalisp_ir ];
+    lispLibs = [ atomics petalisp_dot_core petalisp_dot_ir ];
   };
-  petalisp_test-suite = {
+  petalisp_dot_test-suite = {
     pname = "petalisp.test-suite";
     createAsd = false;
     version = "20211230-git";
@@ -43070,9 +43070,9 @@ rec {
       asd = "petalisp.test-suite";
     });
     systems = [ "petalisp.test-suite" ];
-    lispLibs = [ bordeaux-threads closer-mop petalisp petalisp_examples petalisp_graphviz ];
+    lispLibs = [ bordeaux-threads closer-mop petalisp petalisp_dot_examples petalisp_dot_graphviz ];
   };
-  petalisp_type-inference = {
+  petalisp_dot_type-inference = {
     pname = "petalisp.type-inference";
     createAsd = false;
     version = "20211230-git";
@@ -43085,7 +43085,7 @@ rec {
     systems = [ "petalisp.type-inference" ];
     lispLibs = [ alexandria trivia trivial-arguments ];
   };
-  petalisp_utilities = {
+  petalisp_dot_utilities = {
     pname = "petalisp.utilities";
     createAsd = false;
     version = "20211230-git";
@@ -43098,7 +43098,7 @@ rec {
     systems = [ "petalisp.utilities" ];
     lispLibs = [ alexandria atomics bordeaux-threads trivia trivial-garbage ];
   };
-  petit_package-utils = {
+  petit_dot_package-utils = {
     pname = "petit.package-utils";
     createAsd = false;
     version = "20140826-git";
@@ -43111,7 +43111,7 @@ rec {
     systems = [ "petit.package-utils" ];
     lispLibs = [  ];
   };
-  petit_string-utils = {
+  petit_dot_string-utils = {
     pname = "petit.string-utils";
     createAsd = false;
     version = "20141106-git";
@@ -43124,7 +43124,7 @@ rec {
     systems = [ "petit.string-utils" ];
     lispLibs = [  ];
   };
-  petit_string-utils-test = {
+  petit_dot_string-utils-test = {
     pname = "petit.string-utils-test";
     createAsd = false;
     version = "20141106-git";
@@ -43135,7 +43135,7 @@ rec {
       asd = "petit.string-utils-test";
     });
     systems = [ "petit.string-utils-test" ];
-    lispLibs = [ petit_string-utils rt ];
+    lispLibs = [ petit_dot_string-utils rt ];
   };
   petri = {
     pname = "petri";
@@ -43304,7 +43304,7 @@ rec {
       asd = "pileup";
     });
     systems = [ "pileup-tests" ];
-    lispLibs = [ hu_dwim_stefil pileup ];
+    lispLibs = [ hu_dot_dwim_dot_stefil pileup ];
   };
   pipes = {
     pname = "pipes";
@@ -43605,7 +43605,7 @@ rec {
     systems = [ "pngload" ];
     lispLibs = [ _3bz alexandria cffi mmap parse-float static-vectors swap-bytes uiop zpb-exif ];
   };
-  pngload_test = {
+  pngload_dot_test = {
     pname = "pngload.test";
     createAsd = false;
     version = "20210411-git";
@@ -43670,7 +43670,7 @@ rec {
     systems = [ "polisher" ];
     lispLibs = [ cl-ppcre ];
   };
-  polisher_test = {
+  polisher_dot_test = {
     pname = "polisher.test";
     createAsd = false;
     version = "20211230-git";
@@ -43722,7 +43722,7 @@ rec {
     systems = [ "portable-condition-system" ];
     lispLibs = [ alexandria split-sequence ];
   };
-  portable-condition-system_integration = {
+  portable-condition-system_dot_integration = {
     pname = "portable-condition-system.integration";
     createAsd = false;
     version = "20210807-git";
@@ -44281,7 +44281,7 @@ rec {
     systems = [ "proc-parse-test" ];
     lispLibs = [ proc-parse prove prove-asdf ];
   };
-  projectured_document = {
+  projectured_dot_document = {
     pname = "projectured.document";
     createAsd = false;
     version = "quicklisp-c3a60e76-git";
@@ -44292,9 +44292,9 @@ rec {
       asd = "projectured.document";
     });
     systems = [ "projectured.document" ];
-    lispLibs = [ cl-json hu_dwim_asdf parse-number projectured_editor s-xml ];
+    lispLibs = [ cl-json hu_dot_dwim_dot_asdf parse-number projectured_dot_editor s-xml ];
   };
-  projectured_editor = {
+  projectured_dot_editor = {
     pname = "projectured.editor";
     createAsd = false;
     version = "quicklisp-c3a60e76-git";
@@ -44305,9 +44305,9 @@ rec {
       asd = "projectured.editor";
     });
     systems = [ "projectured.editor" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_common hu_dwim_def hu_dwim_defclass-star hu_dwim_logger hu_dwim_serializer hu_dwim_syntax-sugar hu_dwim_util trivial-garbage ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star hu_dot_dwim_dot_logger hu_dot_dwim_dot_serializer hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_util trivial-garbage ];
   };
-  projectured_executable = {
+  projectured_dot_executable = {
     pname = "projectured.executable";
     createAsd = false;
     version = "quicklisp-c3a60e76-git";
@@ -44318,9 +44318,9 @@ rec {
       asd = "projectured.executable";
     });
     systems = [ "projectured.executable" ];
-    lispLibs = [ command-line-arguments hu_dwim_asdf projectured_sdl ];
+    lispLibs = [ command-line-arguments hu_dot_dwim_dot_asdf projectured_dot_sdl ];
   };
-  projectured_projection = {
+  projectured_dot_projection = {
     pname = "projectured.projection";
     createAsd = false;
     version = "quicklisp-c3a60e76-git";
@@ -44331,9 +44331,9 @@ rec {
       asd = "projectured.projection";
     });
     systems = [ "projectured.projection" ];
-    lispLibs = [ hu_dwim_asdf projectured_document projectured_editor ];
+    lispLibs = [ hu_dot_dwim_dot_asdf projectured_dot_document projectured_dot_editor ];
   };
-  projectured_sdl = {
+  projectured_dot_sdl = {
     pname = "projectured.sdl";
     createAsd = false;
     version = "quicklisp-c3a60e76-git";
@@ -44344,9 +44344,9 @@ rec {
       asd = "projectured.sdl";
     });
     systems = [ "projectured.sdl" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_sdl projectured_document projectured_editor projectured_projection ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_sdl projectured_dot_document projectured_dot_editor projectured_dot_projection ];
   };
-  projectured_sdl_test = {
+  projectured_dot_sdl_dot_test = {
     pname = "projectured.sdl.test";
     createAsd = false;
     version = "quicklisp-c3a60e76-git";
@@ -44357,9 +44357,9 @@ rec {
       asd = "projectured.sdl.test";
     });
     systems = [ "projectured.sdl.test" ];
-    lispLibs = [ hu_dwim_asdf projectured_sdl projectured_test ];
+    lispLibs = [ hu_dot_dwim_dot_asdf projectured_dot_sdl projectured_dot_test ];
   };
-  projectured_swank = {
+  projectured_dot_swank = {
     pname = "projectured.swank";
     createAsd = false;
     version = "quicklisp-c3a60e76-git";
@@ -44370,9 +44370,9 @@ rec {
       asd = "projectured.swank";
     });
     systems = [ "projectured.swank" ];
-    lispLibs = [ hu_dwim_asdf projectured_editor swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf projectured_dot_editor swank ];
   };
-  projectured_test = {
+  projectured_dot_test = {
     pname = "projectured.test";
     createAsd = false;
     version = "quicklisp-c3a60e76-git";
@@ -44383,7 +44383,7 @@ rec {
       asd = "projectured.test";
     });
     systems = [ "projectured.test" ];
-    lispLibs = [ hu_dwim_asdf hu_dwim_logger hu_dwim_stefil_hu_dwim_def_swank projectured_document projectured_editor projectured_projection projectured_swank ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_logger hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank projectured_dot_document projectured_dot_editor projectured_dot_projection projectured_dot_swank ];
   };
   prometheus = {
     pname = "prometheus";
@@ -44398,7 +44398,7 @@ rec {
     systems = [ "prometheus" ];
     lispLibs = [ alexandria bordeaux-threads cl-ppcre local-time quantile-estimator ];
   };
-  prometheus_collectors_process = {
+  prometheus_dot_collectors_dot_process = {
     pname = "prometheus.collectors.process";
     createAsd = false;
     version = "20201220-git";
@@ -44411,7 +44411,7 @@ rec {
     systems = [ "prometheus.collectors.process" ];
     lispLibs = [ cffi cffi-grovel cl-fad prometheus split-sequence ];
   };
-  prometheus_collectors_process_test = {
+  prometheus_dot_collectors_dot_process_dot_test = {
     pname = "prometheus.collectors.process.test";
     createAsd = false;
     version = "20201220-git";
@@ -44422,9 +44422,9 @@ rec {
       asd = "prometheus.collectors.process.test";
     });
     systems = [ "prometheus.collectors.process.test" ];
-    lispLibs = [ cl-interpol log4cl mw-equiv prometheus_collectors_process prometheus_test_support prove prove-asdf ];
+    lispLibs = [ cl-interpol log4cl mw-equiv prometheus_dot_collectors_dot_process prometheus_dot_test_dot_support prove prove-asdf ];
   };
-  prometheus_collectors_sbcl = {
+  prometheus_dot_collectors_dot_sbcl = {
     pname = "prometheus.collectors.sbcl";
     createAsd = false;
     version = "20201220-git";
@@ -44437,7 +44437,7 @@ rec {
     systems = [ "prometheus.collectors.sbcl" ];
     lispLibs = [ prometheus ];
   };
-  prometheus_collectors_sbcl_test = {
+  prometheus_dot_collectors_dot_sbcl_dot_test = {
     pname = "prometheus.collectors.sbcl.test";
     createAsd = false;
     version = "20201220-git";
@@ -44448,9 +44448,9 @@ rec {
       asd = "prometheus.collectors.sbcl.test";
     });
     systems = [ "prometheus.collectors.sbcl.test" ];
-    lispLibs = [ cl-interpol log4cl mw-equiv prometheus_collectors_sbcl prometheus_test_support prove prove-asdf ];
+    lispLibs = [ cl-interpol log4cl mw-equiv prometheus_dot_collectors_dot_sbcl prometheus_dot_test_dot_support prove prove-asdf ];
   };
-  prometheus_examples = {
+  prometheus_dot_examples = {
     pname = "prometheus.examples";
     createAsd = false;
     version = "20201220-git";
@@ -44461,9 +44461,9 @@ rec {
       asd = "prometheus.examples";
     });
     systems = [ "prometheus.examples" ];
-    lispLibs = [ prometheus prometheus_collectors_process prometheus_collectors_sbcl prometheus_exposers_hunchentoot prometheus_formats_text ];
+    lispLibs = [ prometheus prometheus_dot_collectors_dot_process prometheus_dot_collectors_dot_sbcl prometheus_dot_exposers_dot_hunchentoot prometheus_dot_formats_dot_text ];
   };
-  prometheus_exposers_hunchentoot = {
+  prometheus_dot_exposers_dot_hunchentoot = {
     pname = "prometheus.exposers.hunchentoot";
     createAsd = false;
     version = "20201220-git";
@@ -44474,9 +44474,9 @@ rec {
       asd = "prometheus.exposers.hunchentoot";
     });
     systems = [ "prometheus.exposers.hunchentoot" ];
-    lispLibs = [ hunchentoot prometheus prometheus_formats_text salza2 trivial-utf-8 ];
+    lispLibs = [ hunchentoot prometheus prometheus_dot_formats_dot_text salza2 trivial-utf-8 ];
   };
-  prometheus_exposers_hunchentoot_test = {
+  prometheus_dot_exposers_dot_hunchentoot_dot_test = {
     pname = "prometheus.exposers.hunchentoot.test";
     createAsd = false;
     version = "20201220-git";
@@ -44487,9 +44487,9 @@ rec {
       asd = "prometheus.exposers.hunchentoot.test";
     });
     systems = [ "prometheus.exposers.hunchentoot.test" ];
-    lispLibs = [ chipz cl-interpol drakma log4cl mw-equiv prometheus_exposers_hunchentoot prometheus_formats_text prometheus_test_support prove prove-asdf ];
+    lispLibs = [ chipz cl-interpol drakma log4cl mw-equiv prometheus_dot_exposers_dot_hunchentoot prometheus_dot_formats_dot_text prometheus_dot_test_dot_support prove prove-asdf ];
   };
-  prometheus_formats_text = {
+  prometheus_dot_formats_dot_text = {
     pname = "prometheus.formats.text";
     createAsd = false;
     version = "20201220-git";
@@ -44502,7 +44502,7 @@ rec {
     systems = [ "prometheus.formats.text" ];
     lispLibs = [ alexandria prometheus ];
   };
-  prometheus_formats_text_test = {
+  prometheus_dot_formats_dot_text_dot_test = {
     pname = "prometheus.formats.text.test";
     createAsd = false;
     version = "20201220-git";
@@ -44513,9 +44513,9 @@ rec {
       asd = "prometheus.formats.text.test";
     });
     systems = [ "prometheus.formats.text.test" ];
-    lispLibs = [ cl-interpol log4cl mw-equiv prometheus_formats_text prometheus_test_support prove prove-asdf ];
+    lispLibs = [ cl-interpol log4cl mw-equiv prometheus_dot_formats_dot_text prometheus_dot_test_dot_support prove prove-asdf ];
   };
-  prometheus_pushgateway = {
+  prometheus_dot_pushgateway = {
     pname = "prometheus.pushgateway";
     createAsd = false;
     version = "20201220-git";
@@ -44526,9 +44526,9 @@ rec {
       asd = "prometheus.pushgateway";
     });
     systems = [ "prometheus.pushgateway" ];
-    lispLibs = [ drakma prometheus prometheus_formats_text ];
+    lispLibs = [ drakma prometheus prometheus_dot_formats_dot_text ];
   };
-  prometheus_pushgateway_test = {
+  prometheus_dot_pushgateway_dot_test = {
     pname = "prometheus.pushgateway.test";
     createAsd = false;
     version = "20201220-git";
@@ -44539,9 +44539,9 @@ rec {
       asd = "prometheus.pushgateway.test";
     });
     systems = [ "prometheus.pushgateway.test" ];
-    lispLibs = [ cl-interpol hunchentoot log4cl mw-equiv prometheus_pushgateway prometheus_test_support prove prove-asdf ];
+    lispLibs = [ cl-interpol hunchentoot log4cl mw-equiv prometheus_dot_pushgateway prometheus_dot_test_dot_support prove prove-asdf ];
   };
-  prometheus_test = {
+  prometheus_dot_test = {
     pname = "prometheus.test";
     createAsd = false;
     version = "20201220-git";
@@ -44552,9 +44552,9 @@ rec {
       asd = "prometheus.test";
     });
     systems = [ "prometheus.test" ];
-    lispLibs = [ cl-interpol log4cl mw-equiv prometheus prometheus_test_support prove prove-asdf ];
+    lispLibs = [ cl-interpol log4cl mw-equiv prometheus prometheus_dot_test_dot_support prove prove-asdf ];
   };
-  prometheus_test_all = {
+  prometheus_dot_test_dot_all = {
     pname = "prometheus.test.all";
     createAsd = false;
     version = "20201220-git";
@@ -44565,9 +44565,9 @@ rec {
       asd = "prometheus.test.all";
     });
     systems = [ "prometheus.test.all" ];
-    lispLibs = [ cl-coveralls prometheus_collectors_process_test prometheus_collectors_sbcl_test prometheus_exposers_hunchentoot_test prometheus_formats_text_test prometheus_pushgateway_test prometheus_test prove-asdf ];
+    lispLibs = [ cl-coveralls prometheus_dot_collectors_dot_process_dot_test prometheus_dot_collectors_dot_sbcl_dot_test prometheus_dot_exposers_dot_hunchentoot_dot_test prometheus_dot_formats_dot_text_dot_test prometheus_dot_pushgateway_dot_test prometheus_dot_test prove-asdf ];
   };
-  prometheus_test_support = {
+  prometheus_dot_test_dot_support = {
     pname = "prometheus.test.support";
     createAsd = false;
     version = "20201220-git";
@@ -44619,7 +44619,7 @@ rec {
     systems = [ "prompt-for" ];
     lispLibs = [  ];
   };
-  prompt-for_test = {
+  prompt-for_dot_test = {
     pname = "prompt-for.test";
     createAsd = false;
     version = "20211020-git";
@@ -44656,7 +44656,7 @@ rec {
       asd = "protobuf";
     });
     systems = [ "protobuf" ];
-    lispLibs = [ com_google_base varint ];
+    lispLibs = [ com_dot_google_dot_base varint ];
   };
   varint = {
     pname = "varint";
@@ -44669,7 +44669,7 @@ rec {
       asd = "varint";
     });
     systems = [ "varint" ];
-    lispLibs = [ com_google_base nibbles ];
+    lispLibs = [ com_dot_google_dot_base nibbles ];
   };
   cl-test-more = {
     pname = "cl-test-more";
@@ -44812,7 +44812,7 @@ rec {
       asd = "purgatory-tests";
     });
     systems = [ "purgatory-tests" ];
-    lispLibs = [ alexandria babel cl_ssl cl-ppcre clunit2 purgatory uiop usocket ];
+    lispLibs = [ alexandria babel cl_plus_ssl cl-ppcre clunit2 purgatory uiop usocket ];
   };
   puri = {
     pname = "puri";
@@ -45020,7 +45020,7 @@ rec {
       asd = "qmynd";
     });
     systems = [ "qmynd" ];
-    lispLibs = [ babel chipz cl_ssl flexi-streams ironclad list-of salza2 trivial-gray-streams usocket ];
+    lispLibs = [ babel chipz cl_plus_ssl flexi-streams ironclad list-of salza2 trivial-gray-streams usocket ];
   };
   qmynd-test = {
     pname = "qmynd-test";
@@ -45046,7 +45046,7 @@ rec {
       asd = "commonqt";
     });
     systems = [ "commonqt" ];
-    lispLibs = [ qt_libs qt-libs smokebase ];
+    lispLibs = [ qt_plus_libs qt-libs smokebase ];
   };
   phonon = {
     pname = "phonon";
@@ -45059,7 +45059,7 @@ rec {
       asd = "phonon";
     });
     systems = [ "phonon" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtdbus qtgui qtxml ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtdbus qtgui qtxml ];
   };
   qimageblitz = {
     pname = "qimageblitz";
@@ -45072,7 +45072,7 @@ rec {
       asd = "qimageblitz";
     });
     systems = [ "qimageblitz" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtgui ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtgui ];
   };
   qsci = {
     pname = "qsci";
@@ -45085,7 +45085,7 @@ rec {
       asd = "qsci";
     });
     systems = [ "qsci" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtgui ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtgui ];
   };
   qt-lib-generator = {
     pname = "qt-lib-generator";
@@ -45124,7 +45124,7 @@ rec {
       asd = "qt3support";
     });
     systems = [ "qt3support" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtgui qtnetwork qtsql qtxml ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtgui qtnetwork qtsql qtxml ];
   };
   qtcore = {
     pname = "qtcore";
@@ -45137,7 +45137,7 @@ rec {
       asd = "qtcore";
     });
     systems = [ "qtcore" ];
-    lispLibs = [ commonqt qt_libs qt-libs ];
+    lispLibs = [ commonqt qt_plus_libs qt-libs ];
   };
   qtdbus = {
     pname = "qtdbus";
@@ -45150,7 +45150,7 @@ rec {
       asd = "qtdbus";
     });
     systems = [ "qtdbus" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtxml ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtxml ];
   };
   qtdeclarative = {
     pname = "qtdeclarative";
@@ -45163,7 +45163,7 @@ rec {
       asd = "qtdeclarative";
     });
     systems = [ "qtdeclarative" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtgui qtnetwork qtscript qtsql qtxmlpatterns ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtgui qtnetwork qtscript qtsql qtxmlpatterns ];
   };
   qtgui = {
     pname = "qtgui";
@@ -45176,7 +45176,7 @@ rec {
       asd = "qtgui";
     });
     systems = [ "qtgui" ];
-    lispLibs = [ qt_libs qt-libs qtcore ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore ];
   };
   qthelp = {
     pname = "qthelp";
@@ -45189,7 +45189,7 @@ rec {
       asd = "qthelp";
     });
     systems = [ "qthelp" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtgui qtnetwork qtsql ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtgui qtnetwork qtsql ];
   };
   qtnetwork = {
     pname = "qtnetwork";
@@ -45202,7 +45202,7 @@ rec {
       asd = "qtnetwork";
     });
     systems = [ "qtnetwork" ];
-    lispLibs = [ qt_libs qt-libs qtcore ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore ];
   };
   qtopengl = {
     pname = "qtopengl";
@@ -45215,7 +45215,7 @@ rec {
       asd = "qtopengl";
     });
     systems = [ "qtopengl" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtgui ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtgui ];
   };
   qtscript = {
     pname = "qtscript";
@@ -45228,7 +45228,7 @@ rec {
       asd = "qtscript";
     });
     systems = [ "qtscript" ];
-    lispLibs = [ qt_libs qt-libs qtcore ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore ];
   };
   qtsql = {
     pname = "qtsql";
@@ -45241,7 +45241,7 @@ rec {
       asd = "qtsql";
     });
     systems = [ "qtsql" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtgui ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtgui ];
   };
   qtsvg = {
     pname = "qtsvg";
@@ -45254,7 +45254,7 @@ rec {
       asd = "qtsvg";
     });
     systems = [ "qtsvg" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtgui ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtgui ];
   };
   qttest = {
     pname = "qttest";
@@ -45267,7 +45267,7 @@ rec {
       asd = "qttest";
     });
     systems = [ "qttest" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtgui ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtgui ];
   };
   qtuitools = {
     pname = "qtuitools";
@@ -45280,7 +45280,7 @@ rec {
       asd = "qtuitools";
     });
     systems = [ "qtuitools" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtgui ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtgui ];
   };
   qtwebkit = {
     pname = "qtwebkit";
@@ -45293,7 +45293,7 @@ rec {
       asd = "qtwebkit";
     });
     systems = [ "qtwebkit" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtgui qtnetwork ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtgui qtnetwork ];
   };
   qtxml = {
     pname = "qtxml";
@@ -45306,7 +45306,7 @@ rec {
       asd = "qtxml";
     });
     systems = [ "qtxml" ];
-    lispLibs = [ qt_libs qt-libs qtcore ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore ];
   };
   qtxmlpatterns = {
     pname = "qtxmlpatterns";
@@ -45319,7 +45319,7 @@ rec {
       asd = "qtxmlpatterns";
     });
     systems = [ "qtxmlpatterns" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtnetwork ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtnetwork ];
   };
   qwt = {
     pname = "qwt";
@@ -45332,7 +45332,7 @@ rec {
       asd = "qwt";
     });
     systems = [ "qwt" ];
-    lispLibs = [ qt_libs qt-libs qtcore qtgui ];
+    lispLibs = [ qt_plus_libs qt-libs qtcore qtgui ];
   };
   smokebase = {
     pname = "smokebase";
@@ -45345,9 +45345,9 @@ rec {
       asd = "smokebase";
     });
     systems = [ "smokebase" ];
-    lispLibs = [ qt_libs qt-libs ];
+    lispLibs = [ qt_plus_libs qt-libs ];
   };
-  q_ = {
+  q_plus = {
     pname = "q+";
     createAsd = false;
     version = "20200427-git";
@@ -45371,7 +45371,7 @@ rec {
       asd = "qtools";
     });
     systems = [ "qtools" ];
-    lispLibs = [ cl-ppcre closer-mop deploy documentation-utils form-fiddle named-readtables qt_libs trivial-garbage trivial-indent trivial-main-thread ];
+    lispLibs = [ cl-ppcre closer-mop deploy documentation-utils form-fiddle named-readtables qt_plus_libs trivial-garbage trivial-indent trivial-main-thread ];
   };
   qtools-evaluator = {
     pname = "qtools-evaluator";
@@ -45932,7 +45932,7 @@ rec {
     systems = [ "quantile-estimator" ];
     lispLibs = [ alexandria ];
   };
-  quantile-estimator_test = {
+  quantile-estimator_dot_test = {
     pname = "quantile-estimator.test";
     createAsd = false;
     version = "20160825-git";
@@ -45945,7 +45945,7 @@ rec {
     systems = [ "quantile-estimator.test" ];
     lispLibs = [ log4cl mw-equiv prove prove-asdf quantile-estimator ];
   };
-  quasiquote-2_0 = {
+  quasiquote-2_dot_0 = {
     pname = "quasiquote-2.0";
     createAsd = false;
     version = "20150505-git";
@@ -45958,7 +45958,7 @@ rec {
     systems = [ "quasiquote-2.0" ];
     lispLibs = [ iterate ];
   };
-  quasiquote-2_0-tests = {
+  quasiquote-2_dot_0-tests = {
     pname = "quasiquote-2.0-tests";
     createAsd = "quasiquote-2.0";
     version = "20150505-git";
@@ -45969,7 +45969,7 @@ rec {
       asd = "quasiquote-2.0";
     });
     systems = [ "quasiquote-2.0-tests" ];
-    lispLibs = [ fiveam quasiquote-2_0 ];
+    lispLibs = [ fiveam quasiquote-2_dot_0 ];
   };
   queen = {
     pname = "queen";
@@ -46008,9 +46008,9 @@ rec {
       asd = "query-repl";
     });
     systems = [ "query-repl" ];
-    lispLibs = [ check-bnf jingoh_documentizer uiop ];
+    lispLibs = [ check-bnf jingoh_dot_documentizer uiop ];
   };
-  query-repl_test = {
+  query-repl_dot_test = {
     pname = "query-repl.test";
     createAsd = false;
     version = "20211020-git";
@@ -46036,7 +46036,7 @@ rec {
     systems = [ "queues" ];
     lispLibs = [  ];
   };
-  queues_priority-cqueue = {
+  queues_dot_priority-cqueue = {
     pname = "queues.priority-cqueue";
     createAsd = false;
     version = "20170124-git";
@@ -46047,9 +46047,9 @@ rec {
       asd = "queues.priority-cqueue";
     });
     systems = [ "queues.priority-cqueue" ];
-    lispLibs = [ bordeaux-threads queues queues_priority-queue ];
+    lispLibs = [ bordeaux-threads queues queues_dot_priority-queue ];
   };
-  queues_priority-queue = {
+  queues_dot_priority-queue = {
     pname = "queues.priority-queue";
     createAsd = false;
     version = "20170124-git";
@@ -46062,7 +46062,7 @@ rec {
     systems = [ "queues.priority-queue" ];
     lispLibs = [ queues ];
   };
-  queues_simple-cqueue = {
+  queues_dot_simple-cqueue = {
     pname = "queues.simple-cqueue";
     createAsd = false;
     version = "20170124-git";
@@ -46073,9 +46073,9 @@ rec {
       asd = "queues.simple-cqueue";
     });
     systems = [ "queues.simple-cqueue" ];
-    lispLibs = [ bordeaux-threads queues queues_simple-queue ];
+    lispLibs = [ bordeaux-threads queues queues_dot_simple-queue ];
   };
-  queues_simple-queue = {
+  queues_dot_simple-queue = {
     pname = "queues.simple-queue";
     createAsd = false;
     version = "20170124-git";
@@ -46281,7 +46281,7 @@ rec {
       asd = "cl-quil";
     });
     systems = [ "cl-quil" ];
-    lispLibs = [ abstract-classes alexa alexandria cl-algebraic-data-type cl-grnm cl-heap cl-permutation closer-mop flexi-streams global-vars magicl optima parse-float queues_priority-queue salza2 singleton-classes split-sequence trivial-garbage uiop yacc yason ];
+    lispLibs = [ abstract-classes alexa alexandria cl-algebraic-data-type cl-grnm cl-heap cl-permutation closer-mop flexi-streams global-vars magicl optima parse-float queues_dot_priority-queue salza2 singleton-classes split-sequence trivial-garbage uiop yacc yason ];
   };
   cl-quil-benchmarking = {
     pname = "cl-quil-benchmarking";
@@ -46528,7 +46528,7 @@ rec {
       asd = "acm-random";
     });
     systems = [ "acm-random" ];
-    lispLibs = [ com_google_base random ];
+    lispLibs = [ com_dot_google_dot_base random ];
   };
   acm-random-test = {
     pname = "acm-random-test";
@@ -46541,7 +46541,7 @@ rec {
       asd = "acm-random-test";
     });
     systems = [ "acm-random-test" ];
-    lispLibs = [ acm-random hu_dwim_stefil ];
+    lispLibs = [ acm-random hu_dot_dwim_dot_stefil ];
   };
   random = {
     pname = "random";
@@ -46554,7 +46554,7 @@ rec {
       asd = "random";
     });
     systems = [ "random" ];
-    lispLibs = [ com_google_base ];
+    lispLibs = [ com_dot_google_dot_base ];
   };
   random-test = {
     pname = "random-test";
@@ -46567,7 +46567,7 @@ rec {
       asd = "random-test";
     });
     systems = [ "random-test" ];
-    lispLibs = [ hu_dwim_stefil random ];
+    lispLibs = [ hu_dot_dwim_dot_stefil random ];
   };
   random-access-lists = {
     pname = "random-access-lists";
@@ -46647,7 +46647,7 @@ rec {
     systems = [ "rate-monotonic" ];
     lispLibs = [ bordeaux-threads timer-wheel ];
   };
-  rate-monotonic_examples = {
+  rate-monotonic_dot_examples = {
     pname = "rate-monotonic.examples";
     createAsd = false;
     version = "20200325-git";
@@ -46725,7 +46725,7 @@ rec {
     systems = [ "read-as-string" ];
     lispLibs = [ core-reader named-readtables ];
   };
-  read-as-string_test = {
+  read-as-string_dot_test = {
     pname = "read-as-string.test";
     createAsd = false;
     version = "20211020-git";
@@ -46751,7 +46751,7 @@ rec {
     systems = [ "read-csv" ];
     lispLibs = [  ];
   };
-  read-csv_test = {
+  read-csv_dot_test = {
     pname = "read-csv.test";
     createAsd = "read-csv";
     version = "20181018-git";
@@ -46790,7 +46790,7 @@ rec {
     systems = [ "reader" ];
     lispLibs = [ alexandria fiveam hash-set iterate split-sequence trivial-types uiop ];
   };
-  reader_swank = {
+  reader_plus_swank = {
     pname = "reader+swank";
     createAsd = false;
     version = "v0.10.0";
@@ -46827,7 +46827,7 @@ rec {
       asd = "reader-interception-test";
     });
     systems = [ "reader-interception-test" ];
-    lispLibs = [ fare-utils hu_dwim_stefil reader-interception ];
+    lispLibs = [ fare-utils hu_dot_dwim_dot_stefil reader-interception ];
   };
   rectangle-packing = {
     pname = "rectangle-packing";
@@ -47282,9 +47282,9 @@ rec {
       asd = "resignal-bind";
     });
     systems = [ "resignal-bind" ];
-    lispLibs = [ closer-mop jingoh_documentizer ];
+    lispLibs = [ closer-mop jingoh_dot_documentizer ];
   };
-  resignal-bind_test = {
+  resignal-bind_dot_test = {
     pname = "resignal-bind.test";
     createAsd = false;
     version = "20211020-git";
@@ -47336,7 +47336,7 @@ rec {
     systems = [ "restas-directory-publisher" ];
     lispLibs = [ closure-template local-time restas ];
   };
-  restas_file-publisher = {
+  restas_dot_file-publisher = {
     pname = "restas.file-publisher";
     createAsd = false;
     version = "20120107-git";
@@ -47399,7 +47399,7 @@ rec {
       asd = "retrospectiff";
     });
     systems = [ "retrospectiff" ];
-    lispLibs = [ cl-jpeg com_gigamonkeys_binary-data deflate flexi-streams ieee-floats opticl-core ];
+    lispLibs = [ cl-jpeg com_dot_gigamonkeys_dot_binary-data deflate flexi-streams ieee-floats opticl-core ];
   };
   reversi = {
     pname = "reversi";
@@ -47726,7 +47726,7 @@ rec {
     systems = [ "rt-events" ];
     lispLibs = [ bordeaux-threads ];
   };
-  rt-events_examples = {
+  rt-events_dot_examples = {
     pname = "rt-events.examples";
     createAsd = false;
     version = "20160318-git";
@@ -47752,7 +47752,7 @@ rec {
     systems = [ "rtg-math" ];
     lispLibs = [ alexandria documentation-utils glsl-symbols ];
   };
-  rtg-math_vari = {
+  rtg-math_dot_vari = {
     pname = "rtg-math.vari";
     createAsd = false;
     version = "release-quicklisp-29fc5b3d-git";
@@ -47841,7 +47841,7 @@ rec {
       asd = "ryeboy";
     });
     systems = [ "ryeboy" ];
-    lispLibs = [ alexandria com_google_base protobuf prove-asdf usocket ];
+    lispLibs = [ alexandria com_dot_google_dot_base protobuf prove-asdf usocket ];
   };
   s-base64 = {
     pname = "s-base64";
@@ -47947,7 +47947,7 @@ rec {
     systems = [ "s-xml" ];
     lispLibs = [  ];
   };
-  s-xml_examples = {
+  s-xml_dot_examples = {
     pname = "s-xml.examples";
     createAsd = "s-xml";
     version = "20150608-git";
@@ -47960,7 +47960,7 @@ rec {
     systems = [ "s-xml.examples" ];
     lispLibs = [ s-xml ];
   };
-  s-xml_test = {
+  s-xml_dot_test = {
     pname = "s-xml.test";
     createAsd = "s-xml";
     version = "20150608-git";
@@ -48038,7 +48038,7 @@ rec {
     systems = [ "salza2" ];
     lispLibs = [ trivial-gray-streams ];
   };
-  sandalphon_lambda-list = {
+  sandalphon_dot_lambda-list = {
     pname = "sandalphon.lambda-list";
     createAsd = false;
     version = "20180711-git";
@@ -48153,7 +48153,7 @@ rec {
       asd = "scheduler";
     });
     systems = [ "scheduler" ];
-    lispLibs = [ alexandria bordeaux-threads local-time optima optima_ppcre split-sequence ];
+    lispLibs = [ alexandria bordeaux-threads local-time optima optima_dot_ppcre split-sequence ];
   };
   screamer = {
     pname = "screamer";
@@ -48179,7 +48179,7 @@ rec {
       asd = "screamer-tests";
     });
     systems = [ "screamer-tests" ];
-    lispLibs = [ hu_dwim_stefil iterate screamer ];
+    lispLibs = [ hu_dot_dwim_dot_stefil iterate screamer ];
   };
   scriba = {
     pname = "scriba";
@@ -48335,7 +48335,7 @@ rec {
       asd = "secure-random";
     });
     systems = [ "secure-random" ];
-    lispLibs = [ cl_ssl ];
+    lispLibs = [ cl_plus_ssl ];
   };
   seedable-rng = {
     pname = "seedable-rng";
@@ -48426,7 +48426,7 @@ rec {
       asd = "sequence-iterators";
     });
     systems = [ "sequence-iterators" ];
-    lispLibs = [ parse-declarations-1_0 ];
+    lispLibs = [ parse-declarations-1_dot_0 ];
   };
   sequence-iterators-test = {
     pname = "sequence-iterators-test";
@@ -48452,7 +48452,7 @@ rec {
       asd = "serapeum";
     });
     systems = [ "serapeum" ];
-    lispLibs = [ alexandria babel bordeaux-threads global-vars introspect-environment parse-declarations-1_0 parse-number split-sequence string-case trivia trivial-cltl2 trivial-file-size trivial-garbage trivial-macroexpand-all ];
+    lispLibs = [ alexandria babel bordeaux-threads global-vars introspect-environment parse-declarations-1_dot_0 parse-number split-sequence string-case trivia trivial-cltl2 trivial-file-size trivial-garbage trivial-macroexpand-all ];
   };
   serializable-object = {
     pname = "serializable-object";
@@ -48467,7 +48467,7 @@ rec {
     systems = [ "serializable-object" ];
     lispLibs = [ alexandria ];
   };
-  serializable-object_test = {
+  serializable-object_dot_test = {
     pname = "serializable-object.test";
     createAsd = false;
     version = "20191227-git";
@@ -49089,7 +49089,7 @@ rec {
       asd = "sip-hash";
     });
     systems = [ "sip-hash" ];
-    lispLibs = [ com_google_base nibbles ];
+    lispLibs = [ com_dot_google_dot_base nibbles ];
   };
   skeleton-creator = {
     pname = "skeleton-creator";
@@ -49169,7 +49169,7 @@ rec {
     systems = [ "skitter" ];
     lispLibs = [ alexandria rtg-math structy-defclass ];
   };
-  skitter_glop = {
+  skitter_dot_glop = {
     pname = "skitter.glop";
     createAsd = false;
     version = "release-quicklisp-620772ae-git";
@@ -49182,7 +49182,7 @@ rec {
     systems = [ "skitter.glop" ];
     lispLibs = [ glop skitter ];
   };
-  skitter_sdl2 = {
+  skitter_dot_sdl2 = {
     pname = "skitter.sdl2";
     createAsd = false;
     version = "release-quicklisp-620772ae-git";
@@ -49247,7 +49247,7 @@ rec {
     systems = [ "slite" ];
     lispLibs = [ fiveam str ];
   };
-  eclecticse_slk-581 = {
+  eclecticse_dot_slk-581 = {
     pname = "eclecticse.slk-581";
     createAsd = false;
     version = "20190107-git";
@@ -49364,7 +49364,7 @@ rec {
     systems = [ "smug" ];
     lispLibs = [ asdf-package-system ];
   };
-  sn_man = {
+  sn_dot_man = {
     pname = "sn.man";
     createAsd = false;
     version = "20190202-git";
@@ -49401,7 +49401,7 @@ rec {
       asd = "snappy";
     });
     systems = [ "snappy" ];
-    lispLibs = [ com_google_base nibbles varint ];
+    lispLibs = [ com_dot_google_dot_base nibbles varint ];
   };
   snark = {
     pname = "snark";
@@ -49754,7 +49754,7 @@ rec {
     systems = [ "spatial-trees" ];
     lispLibs = [  ];
   };
-  spatial-trees_nns = {
+  spatial-trees_dot_nns = {
     pname = "spatial-trees.nns";
     createAsd = false;
     version = "20140826-git";
@@ -49767,7 +49767,7 @@ rec {
     systems = [ "spatial-trees.nns" ];
     lispLibs = [ alexandria iterate optima spatial-trees ];
   };
-  spatial-trees_nns_test = {
+  spatial-trees_dot_nns_dot_test = {
     pname = "spatial-trees.nns.test";
     createAsd = false;
     version = "20140826-git";
@@ -49778,9 +49778,9 @@ rec {
       asd = "spatial-trees.nns.test";
     });
     systems = [ "spatial-trees.nns.test" ];
-    lispLibs = [ alexandria fiveam iterate optima spatial-trees spatial-trees_nns ];
+    lispLibs = [ alexandria fiveam iterate optima spatial-trees spatial-trees_dot_nns ];
   };
-  spatial-trees_test = {
+  spatial-trees_dot_test = {
     pname = "spatial-trees.test";
     createAsd = false;
     version = "20140826-git";
@@ -49858,7 +49858,7 @@ rec {
     systems = [ "specialized-function" ];
     lispLibs = [ alexandria iterate lisp-namespace trivia trivial-cltl2 type-r ];
   };
-  specialized-function_test = {
+  specialized-function_dot_test = {
     pname = "specialized-function.test";
     createAsd = false;
     version = "20210531-git";
@@ -49962,7 +49962,7 @@ rec {
     systems = [ "srfi-1" ];
     lispLibs = [  ];
   };
-  srfi-1_test = {
+  srfi-1_dot_test = {
     pname = "srfi-1.test";
     createAsd = "srfi-1";
     version = "20200218-git";
@@ -50014,7 +50014,7 @@ rec {
     systems = [ "srfi-98" ];
     lispLibs = [  ];
   };
-  srfi-98_test = {
+  srfi-98_dot_test = {
     pname = "srfi-98.test";
     createAsd = "srfi-98";
     version = "20200218-git";
@@ -50196,7 +50196,7 @@ rec {
     systems = [ "stefil-test" ];
     lispLibs = [ stefil ];
   };
-  stefil_ = {
+  stefil_plus = {
     pname = "stefil+";
     createAsd = false;
     version = "20211209-git";
@@ -50248,7 +50248,7 @@ rec {
     systems = [ "stmx" ];
     lispLibs = [ alexandria bordeaux-threads closer-mop log4cl trivial-garbage ];
   };
-  stmx_test = {
+  stmx_dot_test = {
     pname = "stmx.test";
     createAsd = false;
     version = "stable-49eef1d5-git";
@@ -50337,9 +50337,9 @@ rec {
       asd = "structure-ext";
     });
     systems = [ "structure-ext" ];
-    lispLibs = [ structure-ext_as-class structure-ext_left-arrow-accessors structure-ext_make-instance ];
+    lispLibs = [ structure-ext_dot_as-class structure-ext_dot_left-arrow-accessors structure-ext_dot_make-instance ];
   };
-  structure-ext_as-class = {
+  structure-ext_dot_as-class = {
     pname = "structure-ext.as-class";
     createAsd = false;
     version = "20211209-git";
@@ -50350,9 +50350,9 @@ rec {
       asd = "structure-ext.as-class";
     });
     systems = [ "structure-ext.as-class" ];
-    lispLibs = [ closer-mop jingoh_documentizer lambda-fiddle uiop ];
+    lispLibs = [ closer-mop jingoh_dot_documentizer lambda-fiddle uiop ];
   };
-  structure-ext_as-class_test = {
+  structure-ext_dot_as-class_dot_test = {
     pname = "structure-ext.as-class.test";
     createAsd = false;
     version = "20211209-git";
@@ -50363,9 +50363,9 @@ rec {
       asd = "structure-ext.as-class.test";
     });
     systems = [ "structure-ext.as-class.test" ];
-    lispLibs = [ jingoh structure-ext_as-class ];
+    lispLibs = [ jingoh structure-ext_dot_as-class ];
   };
-  structure-ext_left-arrow-accessors = {
+  structure-ext_dot_left-arrow-accessors = {
     pname = "structure-ext.left-arrow-accessors";
     createAsd = false;
     version = "20211209-git";
@@ -50376,9 +50376,9 @@ rec {
       asd = "structure-ext.left-arrow-accessors";
     });
     systems = [ "structure-ext.left-arrow-accessors" ];
-    lispLibs = [ jingoh_documentizer ];
+    lispLibs = [ jingoh_dot_documentizer ];
   };
-  structure-ext_left-arrow-accessors_test = {
+  structure-ext_dot_left-arrow-accessors_dot_test = {
     pname = "structure-ext.left-arrow-accessors.test";
     createAsd = false;
     version = "20211209-git";
@@ -50389,9 +50389,9 @@ rec {
       asd = "structure-ext.left-arrow-accessors.test";
     });
     systems = [ "structure-ext.left-arrow-accessors.test" ];
-    lispLibs = [ jingoh structure-ext_left-arrow-accessors ];
+    lispLibs = [ jingoh structure-ext_dot_left-arrow-accessors ];
   };
-  structure-ext_make-instance = {
+  structure-ext_dot_make-instance = {
     pname = "structure-ext.make-instance";
     createAsd = false;
     version = "20211209-git";
@@ -50402,9 +50402,9 @@ rec {
       asd = "structure-ext.make-instance";
     });
     systems = [ "structure-ext.make-instance" ];
-    lispLibs = [ closer-mop jingoh_documentizer ];
+    lispLibs = [ closer-mop jingoh_dot_documentizer ];
   };
-  structure-ext_make-instance_test = {
+  structure-ext_dot_make-instance_dot_test = {
     pname = "structure-ext.make-instance.test";
     createAsd = false;
     version = "20211209-git";
@@ -50415,7 +50415,7 @@ rec {
       asd = "structure-ext.make-instance.test";
     });
     systems = [ "structure-ext.make-instance.test" ];
-    lispLibs = [ jingoh structure-ext_make-instance ];
+    lispLibs = [ jingoh structure-ext_dot_make-instance ];
   };
   structy-defclass = {
     pname = "structy-defclass";
@@ -50805,7 +50805,7 @@ rec {
       asd = "swank-client";
     });
     systems = [ "swank-client" ];
-    lispLibs = [ bordeaux-threads com_google_base swank usocket ];
+    lispLibs = [ bordeaux-threads com_dot_google_dot_base swank usocket ];
   };
   swank-crew = {
     pname = "swank-crew";
@@ -50818,7 +50818,7 @@ rec {
       asd = "swank-crew";
     });
     systems = [ "swank-crew" ];
-    lispLibs = [ bordeaux-threads com_google_base swank-client ];
+    lispLibs = [ bordeaux-threads com_dot_google_dot_base swank-client ];
   };
   swank-protocol = {
     pname = "swank-protocol";
@@ -50833,7 +50833,7 @@ rec {
     systems = [ "swank-protocol" ];
     lispLibs = [ swank usocket ];
   };
-  swank_live = {
+  swank_dot_live = {
     pname = "swank.live";
     createAsd = false;
     version = "20160208-git";
@@ -51000,7 +51000,7 @@ rec {
       asd = "taglib";
     });
     systems = [ "taglib" ];
-    lispLibs = [ bordeaux-threads flexi-streams optima optima_ppcre ];
+    lispLibs = [ bordeaux-threads flexi-streams optima optima_dot_ppcre ];
   };
   taglib-tests = {
     pname = "taglib-tests";
@@ -51130,7 +51130,7 @@ rec {
       asd = "teddy";
     });
     systems = [ "teddy" ];
-    lispLibs = [ alexandria asdf-finalizers cl-ascii-table eazy-gnuplot hu_dwim_def lhstats list-of rutils simplified-types ];
+    lispLibs = [ alexandria asdf-finalizers cl-ascii-table eazy-gnuplot hu_dot_dwim_dot_def lhstats list-of rutils simplified-types ];
   };
   teepeedee2 = {
     pname = "teepeedee2";
@@ -51249,7 +51249,7 @@ rec {
     systems = [ "ten" ];
     lispLibs = [ access cl-who esrap split-sequence ];
   };
-  ten_examples = {
+  ten_dot_examples = {
     pname = "ten.examples";
     createAsd = false;
     version = "20210807-git";
@@ -51262,7 +51262,7 @@ rec {
     systems = [ "ten.examples" ];
     lispLibs = [ ten ];
   };
-  ten_i18n_cl-locale = {
+  ten_dot_i18n_dot_cl-locale = {
     pname = "ten.i18n.cl-locale";
     createAsd = false;
     version = "20210807-git";
@@ -51275,7 +51275,7 @@ rec {
     systems = [ "ten.i18n.cl-locale" ];
     lispLibs = [ cl-locale ten ];
   };
-  ten_i18n_gettext = {
+  ten_dot_i18n_dot_gettext = {
     pname = "ten.i18n.gettext";
     createAsd = false;
     version = "20210807-git";
@@ -51288,7 +51288,7 @@ rec {
     systems = [ "ten.i18n.gettext" ];
     lispLibs = [ gettext ten ];
   };
-  ten_tests = {
+  ten_dot_tests = {
     pname = "ten.tests";
     createAsd = false;
     version = "20210807-git";
@@ -51299,7 +51299,7 @@ rec {
       asd = "ten.tests";
     });
     systems = [ "ten.tests" ];
-    lispLibs = [ fiveam ten ten_examples ];
+    lispLibs = [ fiveam ten ten_dot_examples ];
   };
   terminfo = {
     pname = "terminfo";
@@ -51418,7 +51418,7 @@ rec {
     systems = [ "textery" ];
     lispLibs = [ cl-json cl-ppcre str uiop ];
   };
-  org_tfeb_hax = {
+  org_dot_tfeb_dot_hax = {
     pname = "org.tfeb.hax";
     createAsd = false;
     version = "20211020-git";
@@ -51431,7 +51431,7 @@ rec {
     systems = [ "org.tfeb.hax" ];
     lispLibs = [ closer-mop ];
   };
-  org_tfeb_tools = {
+  org_dot_tfeb_dot_tools = {
     pname = "org.tfeb.tools";
     createAsd = false;
     version = "20211230-git";
@@ -51444,7 +51444,7 @@ rec {
     systems = [ "org.tfeb.tools" ];
     lispLibs = [  ];
   };
-  net_didierverna_tfm = {
+  net_dot_didierverna_dot_tfm = {
     pname = "net.didierverna.tfm";
     createAsd = false;
     version = "20210411-git";
@@ -51455,9 +51455,9 @@ rec {
       asd = "net.didierverna.tfm";
     });
     systems = [ "net.didierverna.tfm" ];
-    lispLibs = [ net_didierverna_tfm_core ];
+    lispLibs = [ net_dot_didierverna_dot_tfm_dot_core ];
   };
-  net_didierverna_tfm_core = {
+  net_dot_didierverna_dot_tfm_dot_core = {
     pname = "net.didierverna.tfm.core";
     createAsd = false;
     version = "20210411-git";
@@ -51468,9 +51468,9 @@ rec {
       asd = "net.didierverna.tfm.core";
     });
     systems = [ "net.didierverna.tfm.core" ];
-    lispLibs = [ net_didierverna_tfm_setup ];
+    lispLibs = [ net_dot_didierverna_dot_tfm_dot_setup ];
   };
-  net_didierverna_tfm_setup = {
+  net_dot_didierverna_dot_tfm_dot_setup = {
     pname = "net.didierverna.tfm.setup";
     createAsd = false;
     version = "20210411-git";
@@ -51561,7 +51561,7 @@ rec {
     systems = [ "thread-pool" ];
     lispLibs = [ arnesi bordeaux-threads ];
   };
-  thread_comm_rendezvous = {
+  thread_dot_comm_dot_rendezvous = {
     pname = "thread.comm.rendezvous";
     createAsd = false;
     version = "20121013-git";
@@ -51574,7 +51574,7 @@ rec {
     systems = [ "thread.comm.rendezvous" ];
     lispLibs = [ bordeaux-threads cl-annot ];
   };
-  thread_comm_rendezvous_test = {
+  thread_dot_comm_dot_rendezvous_dot_test = {
     pname = "thread.comm.rendezvous.test";
     createAsd = false;
     version = "20121013-git";
@@ -51585,7 +51585,7 @@ rec {
       asd = "thread.comm.rendezvous.test";
     });
     systems = [ "thread.comm.rendezvous.test" ];
-    lispLibs = [ cl-test-more thread_comm_rendezvous ];
+    lispLibs = [ cl-test-more thread_dot_comm_dot_rendezvous ];
   };
   time-interval = {
     pname = "time-interval";
@@ -51613,7 +51613,7 @@ rec {
     systems = [ "timer-wheel" ];
     lispLibs = [ bordeaux-threads ];
   };
-  timer-wheel_examples = {
+  timer-wheel_dot_examples = {
     pname = "timer-wheel.examples";
     createAsd = false;
     version = "20180228-git";
@@ -51678,7 +51678,7 @@ rec {
     systems = [ "tmpdir" ];
     lispLibs = [ cl-fad ];
   };
-  tmpdir_tests = {
+  tmpdir_dot_tests = {
     pname = "tmpdir.tests";
     createAsd = false;
     version = "20200218-git";
@@ -51728,7 +51728,7 @@ rec {
       asd = "toot";
     });
     systems = [ "toot" ];
-    lispLibs = [ alexandria bordeaux-threads chunga cl_ssl cl-base64 cl-fad cl-ppcre flexi-streams md5 puri trivial-backtrace usocket ];
+    lispLibs = [ alexandria bordeaux-threads chunga cl_plus_ssl cl-base64 cl-fad cl-ppcre flexi-streams md5 puri trivial-backtrace usocket ];
   };
   tooter = {
     pname = "tooter";
@@ -51808,7 +51808,7 @@ rec {
     systems = [ "trainable-object" ];
     lispLibs = [ closer-mop serializable-object ];
   };
-  trainable-object_test = {
+  trainable-object_dot_test = {
     pname = "trainable-object.test";
     createAsd = false;
     version = "20191227-git";
@@ -51886,7 +51886,7 @@ rec {
     systems = [ "treedb" ];
     lispLibs = [ cl-json ];
   };
-  treedb_doc = {
+  treedb_dot_doc = {
     pname = "treedb.doc";
     createAsd = false;
     version = "20160825-git";
@@ -51897,9 +51897,9 @@ rec {
       asd = "treedb.doc";
     });
     systems = [ "treedb.doc" ];
-    lispLibs = [ cl-gendoc treedb treedb_tests ];
+    lispLibs = [ cl-gendoc treedb treedb_dot_tests ];
   };
-  treedb_tests = {
+  treedb_dot_tests = {
     pname = "treedb.tests";
     createAsd = false;
     version = "20160825-git";
@@ -51949,9 +51949,9 @@ rec {
       asd = "trestrul";
     });
     systems = [ "trestrul" ];
-    lispLibs = [ jingoh_documentizer ];
+    lispLibs = [ jingoh_dot_documentizer ];
   };
-  trestrul_test = {
+  trestrul_dot_test = {
     pname = "trestrul.test";
     createAsd = false;
     version = "20211020-git";
@@ -51975,9 +51975,9 @@ rec {
       asd = "trivia";
     });
     systems = [ "trivia" ];
-    lispLibs = [ trivia_balland2006 ];
+    lispLibs = [ trivia_dot_balland2006 ];
   };
-  trivia_balland2006 = {
+  trivia_dot_balland2006 = {
     pname = "trivia.balland2006";
     createAsd = false;
     version = "20211020-git";
@@ -51988,9 +51988,9 @@ rec {
       asd = "trivia.balland2006";
     });
     systems = [ "trivia.balland2006" ];
-    lispLibs = [ alexandria iterate trivia_trivial type-i ];
+    lispLibs = [ alexandria iterate trivia_dot_trivial type-i ];
   };
-  trivia_benchmark = {
+  trivia_dot_benchmark = {
     pname = "trivia.benchmark";
     createAsd = false;
     version = "20211020-git";
@@ -52001,9 +52001,9 @@ rec {
       asd = "trivia.benchmark";
     });
     systems = [ "trivia.benchmark" ];
-    lispLibs = [ iterate optima trivia trivia_balland2006 ];
+    lispLibs = [ iterate optima trivia trivia_dot_balland2006 ];
   };
-  trivia_cffi = {
+  trivia_dot_cffi = {
     pname = "trivia.cffi";
     createAsd = false;
     version = "20211020-git";
@@ -52014,9 +52014,9 @@ rec {
       asd = "trivia.cffi";
     });
     systems = [ "trivia.cffi" ];
-    lispLibs = [ cffi trivia_trivial ];
+    lispLibs = [ cffi trivia_dot_trivial ];
   };
-  trivia_fset = {
+  trivia_dot_fset = {
     pname = "trivia.fset";
     createAsd = false;
     version = "20211020-git";
@@ -52027,9 +52027,9 @@ rec {
       asd = "trivia.fset";
     });
     systems = [ "trivia.fset" ];
-    lispLibs = [ fset trivia_trivial ];
+    lispLibs = [ fset trivia_dot_trivial ];
   };
-  trivia_level0 = {
+  trivia_dot_level0 = {
     pname = "trivia.level0";
     createAsd = false;
     version = "20211020-git";
@@ -52042,7 +52042,7 @@ rec {
     systems = [ "trivia.level0" ];
     lispLibs = [ alexandria ];
   };
-  trivia_level1 = {
+  trivia_dot_level1 = {
     pname = "trivia.level1";
     createAsd = false;
     version = "20211020-git";
@@ -52053,9 +52053,9 @@ rec {
       asd = "trivia.level1";
     });
     systems = [ "trivia.level1" ];
-    lispLibs = [ trivia_level0 ];
+    lispLibs = [ trivia_dot_level0 ];
   };
-  trivia_level2 = {
+  trivia_dot_level2 = {
     pname = "trivia.level2";
     createAsd = false;
     version = "20211020-git";
@@ -52066,9 +52066,9 @@ rec {
       asd = "trivia.level2";
     });
     systems = [ "trivia.level2" ];
-    lispLibs = [ closer-mop lisp-namespace trivia_level1 trivial-cltl2 ];
+    lispLibs = [ closer-mop lisp-namespace trivia_dot_level1 trivial-cltl2 ];
   };
-  trivia_ppcre = {
+  trivia_dot_ppcre = {
     pname = "trivia.ppcre";
     createAsd = false;
     version = "20211020-git";
@@ -52079,9 +52079,9 @@ rec {
       asd = "trivia.ppcre";
     });
     systems = [ "trivia.ppcre" ];
-    lispLibs = [ cl-ppcre trivia_trivial ];
+    lispLibs = [ cl-ppcre trivia_dot_trivial ];
   };
-  trivia_quasiquote = {
+  trivia_dot_quasiquote = {
     pname = "trivia.quasiquote";
     createAsd = false;
     version = "20211020-git";
@@ -52092,9 +52092,9 @@ rec {
       asd = "trivia.quasiquote";
     });
     systems = [ "trivia.quasiquote" ];
-    lispLibs = [ fare-quasiquote-readtable trivia_trivial ];
+    lispLibs = [ fare-quasiquote-readtable trivia_dot_trivial ];
   };
-  trivia_test = {
+  trivia_dot_test = {
     pname = "trivia.test";
     createAsd = false;
     version = "20211020-git";
@@ -52105,9 +52105,9 @@ rec {
       asd = "trivia.test";
     });
     systems = [ "trivia.test" ];
-    lispLibs = [ fiveam optima trivia trivia_cffi trivia_fset trivia_ppcre trivia_quasiquote ];
+    lispLibs = [ fiveam optima trivia trivia_dot_cffi trivia_dot_fset trivia_dot_ppcre trivia_dot_quasiquote ];
   };
-  trivia_trivial = {
+  trivia_dot_trivial = {
     pname = "trivia.trivial";
     createAsd = false;
     version = "20211020-git";
@@ -52118,7 +52118,7 @@ rec {
       asd = "trivia.trivial";
     });
     systems = [ "trivia.trivial" ];
-    lispLibs = [ trivia_level2 ];
+    lispLibs = [ trivia_dot_level2 ];
   };
   trivial-arguments = {
     pname = "trivial-arguments";
@@ -52768,7 +52768,7 @@ rec {
       asd = "trivial-ldap";
     });
     systems = [ "trivial-ldap" ];
-    lispLibs = [ cl_ssl usocket yacc ];
+    lispLibs = [ cl_plus_ssl usocket yacc ];
   };
   trivial-left-pad = {
     pname = "trivial-left-pad";
@@ -52911,7 +52911,7 @@ rec {
       asd = "trivial-nntp";
     });
     systems = [ "trivial-nntp" ];
-    lispLibs = [ cl_ssl usocket ];
+    lispLibs = [ cl_plus_ssl usocket ];
   };
   trivial-object-lock = {
     pname = "trivial-object-lock";
@@ -53017,7 +53017,7 @@ rec {
     systems = [ "trivial-package-manager" ];
     lispLibs = [ alexandria trivial-features trivial-open-browser ];
   };
-  trivial-package-manager_test = {
+  trivial-package-manager_dot_test = {
     pname = "trivial-package-manager.test";
     createAsd = false;
     version = "20171227-git";
@@ -53446,7 +53446,7 @@ rec {
     systems = [ "trivial-yenc" ];
     lispLibs = [ split-sequence ];
   };
-  trivialib_bdd = {
+  trivialib_dot_bdd = {
     pname = "trivialib.bdd";
     createAsd = false;
     version = "20211209-git";
@@ -53459,7 +53459,7 @@ rec {
     systems = [ "trivialib.bdd" ];
     lispLibs = [ alexandria immutable-struct trivia trivial-garbage ];
   };
-  trivialib_bdd_test = {
+  trivialib_dot_bdd_dot_test = {
     pname = "trivialib.bdd.test";
     createAsd = false;
     version = "20211209-git";
@@ -53470,9 +53470,9 @@ rec {
       asd = "trivialib.bdd.test";
     });
     systems = [ "trivialib.bdd.test" ];
-    lispLibs = [ fiveam trivialib_bdd ];
+    lispLibs = [ fiveam trivialib_dot_bdd ];
   };
-  trivialib_type-unify = {
+  trivialib_dot_type-unify = {
     pname = "trivialib.type-unify";
     createAsd = false;
     version = "20200325-git";
@@ -53485,7 +53485,7 @@ rec {
     systems = [ "trivialib.type-unify" ];
     lispLibs = [ alexandria introspect-environment trivia type-r ];
   };
-  trivialib_type-unify_test = {
+  trivialib_dot_type-unify_dot_test = {
     pname = "trivialib.type-unify.test";
     createAsd = false;
     version = "20200325-git";
@@ -53496,7 +53496,7 @@ rec {
       asd = "trivialib.type-unify.test";
     });
     systems = [ "trivialib.type-unify.test" ];
-    lispLibs = [ fiveam trivialib_type-unify ];
+    lispLibs = [ fiveam trivialib_dot_type-unify ];
   };
   trucler = {
     pname = "trucler";
@@ -53613,9 +53613,9 @@ rec {
       asd = "type-i";
     });
     systems = [ "type-i" ];
-    lispLibs = [ alexandria introspect-environment lisp-namespace trivia_trivial ];
+    lispLibs = [ alexandria introspect-environment lisp-namespace trivia_dot_trivial ];
   };
-  type-i_test = {
+  type-i_dot_test = {
     pname = "type-i.test";
     createAsd = false;
     version = "20191227-git";
@@ -53641,7 +53641,7 @@ rec {
     systems = [ "type-r" ];
     lispLibs = [ alexandria trivia ];
   };
-  type-r_test = {
+  type-r_dot_test = {
     pname = "type-r.test";
     createAsd = false;
     version = "20191227-git";
@@ -53784,7 +53784,7 @@ rec {
     systems = [ "ucw-core" ];
     lispLibs = [ arnesi bordeaux-threads cl-fad closer-mop iterate local-time net-telent-date rfc2109 swank trivial-garbage usocket yaclml ];
   };
-  ucw-core_test = {
+  ucw-core_dot_test = {
     pname = "ucw-core.test";
     createAsd = "ucw-core";
     version = "20160208-darcs";
@@ -53797,7 +53797,7 @@ rec {
     systems = [ "ucw-core.test" ];
     lispLibs = [ arnesi cxml drakma iterate stefil ucw-core ];
   };
-  ucw_examples = {
+  ucw_dot_examples = {
     pname = "ucw.examples";
     createAsd = "ucw";
     version = "20160208-darcs";
@@ -53810,7 +53810,7 @@ rec {
     systems = [ "ucw.examples" ];
     lispLibs = [ ucw ];
   };
-  ucw_httpd = {
+  ucw_dot_httpd = {
     pname = "ucw.httpd";
     createAsd = "ucw-core";
     version = "20160208-darcs";
@@ -53823,7 +53823,7 @@ rec {
     systems = [ "ucw.httpd" ];
     lispLibs = [ cl-ppcre puri rfc2388-binary ucw-core ];
   };
-  ucw_manual-examples = {
+  ucw_dot_manual-examples = {
     pname = "ucw.manual-examples";
     createAsd = "ucw";
     version = "20160208-darcs";
@@ -54109,7 +54109,7 @@ rec {
     systems = [ "uri-template" ];
     lispLibs = [ cl-ppcre flexi-streams named-readtables ];
   };
-  uri-template_test = {
+  uri-template_dot_test = {
     pname = "uri-template.test";
     createAsd = false;
     version = "1.3.1";
@@ -54200,7 +54200,7 @@ rec {
     systems = [ "usocket-test" ];
     lispLibs = [ rt usocket-server ];
   };
-  utilities_binary-dump = {
+  utilities_dot_binary-dump = {
     pname = "utilities.binary-dump";
     createAsd = false;
     version = "20181210-git";
@@ -54213,7 +54213,7 @@ rec {
     systems = [ "utilities.binary-dump" ];
     lispLibs = [ alexandria let-plus nibbles ];
   };
-  utilities_print-items = {
+  utilities_dot_print-items = {
     pname = "utilities.print-items";
     createAsd = false;
     version = "20210411-git";
@@ -54226,7 +54226,7 @@ rec {
     systems = [ "utilities.print-items" ];
     lispLibs = [ alexandria ];
   };
-  utilities_print-tree = {
+  utilities_dot_print-tree = {
     pname = "utilities.print-tree";
     createAsd = false;
     version = "20200325-git";
@@ -54291,7 +54291,7 @@ rec {
     systems = [ "utm" ];
     lispLibs = [  ];
   };
-  utm_test = {
+  utm_dot_test = {
     pname = "utm.test";
     createAsd = false;
     version = "20200218-git";
@@ -54356,7 +54356,7 @@ rec {
     systems = [ "varjo" ];
     lispLibs = [ alexandria cl-ppcre documentation-utils fn glsl-docs glsl-spec glsl-symbols named-readtables parse-float uiop vas-string-metrics ];
   };
-  varjo_import = {
+  varjo_dot_import = {
     pname = "varjo.import";
     createAsd = false;
     version = "release-quicklisp-92f9c75b-git";
@@ -54367,9 +54367,9 @@ rec {
       asd = "varjo.import";
     });
     systems = [ "varjo.import" ];
-    lispLibs = [ fare-quasiquote-extras glsl-toolkit rtg-math_vari split-sequence varjo ];
+    lispLibs = [ fare-quasiquote-extras glsl-toolkit rtg-math_dot_vari split-sequence varjo ];
   };
-  varjo_tests = {
+  varjo_dot_tests = {
     pname = "varjo.tests";
     createAsd = false;
     version = "release-quicklisp-92f9c75b-git";
@@ -54380,9 +54380,9 @@ rec {
       asd = "varjo.tests";
     });
     systems = [ "varjo.tests" ];
-    lispLibs = [ fiveam rtg-math_vari varjo ];
+    lispLibs = [ fiveam rtg-math_dot_vari varjo ];
   };
-  test_vas-string-metrics = {
+  test_dot_vas-string-metrics = {
     pname = "test.vas-string-metrics";
     createAsd = false;
     version = "20211209-git";
@@ -54434,7 +54434,7 @@ rec {
     systems = [ "vectometry" ];
     lispLibs = [ vecto ];
   };
-  com_elbeno_vector = {
+  com_dot_elbeno_dot_vector = {
     pname = "com.elbeno.vector";
     createAsd = false;
     version = "20130128-git";
@@ -54666,9 +54666,9 @@ rec {
       asd = "vivid-colors";
     });
     systems = [ "vivid-colors" ];
-    lispLibs = [ cl-colors2 closer-mop jingoh_documentizer lambda-fiddle millet vivid-colors_content vivid-colors_dispatch vivid-colors_stream ];
+    lispLibs = [ cl-colors2 closer-mop jingoh_dot_documentizer lambda-fiddle millet vivid-colors_dot_content vivid-colors_dot_dispatch vivid-colors_dot_stream ];
   };
-  vivid-colors_content = {
+  vivid-colors_dot_content = {
     pname = "vivid-colors.content";
     createAsd = false;
     version = "20211209-git";
@@ -54679,9 +54679,9 @@ rec {
       asd = "vivid-colors.content";
     });
     systems = [ "vivid-colors.content" ];
-    lispLibs = [ alexandria cl-ansi-text jingoh_documentizer mcase vivid-colors_queue vivid-colors_shared ];
+    lispLibs = [ alexandria cl-ansi-text jingoh_dot_documentizer mcase vivid-colors_dot_queue vivid-colors_dot_shared ];
   };
-  vivid-colors_content_test = {
+  vivid-colors_dot_content_dot_test = {
     pname = "vivid-colors.content.test";
     createAsd = false;
     version = "20211209-git";
@@ -54692,9 +54692,9 @@ rec {
       asd = "vivid-colors.content.test";
     });
     systems = [ "vivid-colors.content.test" ];
-    lispLibs = [ jingoh vivid-colors_content ];
+    lispLibs = [ jingoh vivid-colors_dot_content ];
   };
-  vivid-colors_dispatch = {
+  vivid-colors_dot_dispatch = {
     pname = "vivid-colors.dispatch";
     createAsd = false;
     version = "20211209-git";
@@ -54705,9 +54705,9 @@ rec {
       asd = "vivid-colors.dispatch";
     });
     systems = [ "vivid-colors.dispatch" ];
-    lispLibs = [ alexandria jingoh_documentizer millet ];
+    lispLibs = [ alexandria jingoh_dot_documentizer millet ];
   };
-  vivid-colors_dispatch_test = {
+  vivid-colors_dot_dispatch_dot_test = {
     pname = "vivid-colors.dispatch.test";
     createAsd = false;
     version = "20211209-git";
@@ -54718,9 +54718,9 @@ rec {
       asd = "vivid-colors.dispatch.test";
     });
     systems = [ "vivid-colors.dispatch.test" ];
-    lispLibs = [ jingoh vivid-colors_dispatch ];
+    lispLibs = [ jingoh vivid-colors_dot_dispatch ];
   };
-  vivid-colors_queue = {
+  vivid-colors_dot_queue = {
     pname = "vivid-colors.queue";
     createAsd = false;
     version = "20211209-git";
@@ -54731,9 +54731,9 @@ rec {
       asd = "vivid-colors.queue";
     });
     systems = [ "vivid-colors.queue" ];
-    lispLibs = [ alexandria jingoh_documentizer millet ];
+    lispLibs = [ alexandria jingoh_dot_documentizer millet ];
   };
-  vivid-colors_queue_test = {
+  vivid-colors_dot_queue_dot_test = {
     pname = "vivid-colors.queue.test";
     createAsd = false;
     version = "20211209-git";
@@ -54744,9 +54744,9 @@ rec {
       asd = "vivid-colors.queue.test";
     });
     systems = [ "vivid-colors.queue.test" ];
-    lispLibs = [ jingoh vivid-colors_queue ];
+    lispLibs = [ jingoh vivid-colors_dot_queue ];
   };
-  vivid-colors_shared = {
+  vivid-colors_dot_shared = {
     pname = "vivid-colors.shared";
     createAsd = false;
     version = "20211209-git";
@@ -54757,9 +54757,9 @@ rec {
       asd = "vivid-colors.shared";
     });
     systems = [ "vivid-colors.shared" ];
-    lispLibs = [ jingoh_documentizer ];
+    lispLibs = [ jingoh_dot_documentizer ];
   };
-  vivid-colors_shared_test = {
+  vivid-colors_dot_shared_dot_test = {
     pname = "vivid-colors.shared.test";
     createAsd = false;
     version = "20211209-git";
@@ -54770,9 +54770,9 @@ rec {
       asd = "vivid-colors.shared.test";
     });
     systems = [ "vivid-colors.shared.test" ];
-    lispLibs = [ jingoh vivid-colors_shared ];
+    lispLibs = [ jingoh vivid-colors_dot_shared ];
   };
-  vivid-colors_stream = {
+  vivid-colors_dot_stream = {
     pname = "vivid-colors.stream";
     createAsd = false;
     version = "20211209-git";
@@ -54783,9 +54783,9 @@ rec {
       asd = "vivid-colors.stream";
     });
     systems = [ "vivid-colors.stream" ];
-    lispLibs = [ alexandria cl-ansi-text jingoh_documentizer trivial-gray-streams vivid-colors_content vivid-colors_dispatch vivid-colors_shared ];
+    lispLibs = [ alexandria cl-ansi-text jingoh_dot_documentizer trivial-gray-streams vivid-colors_dot_content vivid-colors_dot_dispatch vivid-colors_dot_shared ];
   };
-  vivid-colors_stream_test = {
+  vivid-colors_dot_stream_dot_test = {
     pname = "vivid-colors.stream.test";
     createAsd = false;
     version = "20211209-git";
@@ -54796,9 +54796,9 @@ rec {
       asd = "vivid-colors.stream.test";
     });
     systems = [ "vivid-colors.stream.test" ];
-    lispLibs = [ jingoh vivid-colors_stream ];
+    lispLibs = [ jingoh vivid-colors_dot_stream ];
   };
-  vivid-colors_test = {
+  vivid-colors_dot_test = {
     pname = "vivid-colors.test";
     createAsd = false;
     version = "20211209-git";
@@ -54822,9 +54822,9 @@ rec {
       asd = "vivid-diff";
     });
     systems = [ "vivid-diff" ];
-    lispLibs = [ cl-colors2 closer-mop jingoh_documentizer matrix-case vivid-colors ];
+    lispLibs = [ cl-colors2 closer-mop jingoh_dot_documentizer matrix-case vivid-colors ];
   };
-  vivid-diff_test = {
+  vivid-diff_dot_test = {
     pname = "vivid-diff.test";
     createAsd = false;
     version = "20211209-git";
@@ -55017,7 +55017,7 @@ rec {
       asd = "weblocks-perec";
     });
     systems = [ "weblocks-perec" ];
-    lispLibs = [ hu_dwim_perec weblocks-stores ];
+    lispLibs = [ hu_dot_dwim_dot_perec weblocks-stores ];
   };
   weblocks-prevalence = {
     pname = "weblocks-prevalence";
@@ -55082,7 +55082,7 @@ rec {
       asd = "websocket-driver-client";
     });
     systems = [ "websocket-driver-client" ];
-    lispLibs = [ cl_ssl cl-base64 fast-http fast-io fast-websocket ironclad quri usocket websocket-driver-base ];
+    lispLibs = [ cl_plus_ssl cl-base64 fast-http fast-io fast-websocket ironclad quri usocket websocket-driver-base ];
   };
   websocket-driver-server = {
     pname = "websocket-driver-server";
@@ -55513,7 +55513,7 @@ rec {
     systems = [ "wuwei-examples" ];
     lispLibs = [ drakma wuwei ];
   };
-  x_let-star = {
+  x_dot_let-star = {
     pname = "x.let-star";
     createAsd = false;
     version = "20200325-git";
@@ -55682,7 +55682,7 @@ rec {
     systems = [ "xml-mop" ];
     lispLibs = [ closer-mop s-xml ];
   };
-  xml_location = {
+  xml_dot_location = {
     pname = "xml.location";
     createAsd = false;
     version = "20200325-git";
@@ -55695,7 +55695,7 @@ rec {
     systems = [ "xml.location" ];
     lispLibs = [ alexandria closer-mop cxml-stp iterate let-plus more-conditions split-sequence xpath ];
   };
-  xml_location-and-local-time = {
+  xml_dot_location-and-local-time = {
     pname = "xml.location-and-local-time";
     createAsd = false;
     version = "20200325-git";
@@ -55706,7 +55706,7 @@ rec {
       asd = "xml.location-and-local-time";
     });
     systems = [ "xml.location-and-local-time" ];
-    lispLibs = [ local-time xml_location ];
+    lispLibs = [ local-time xml_dot_location ];
   };
   xmls = {
     pname = "xmls";
@@ -55823,7 +55823,7 @@ rec {
       asd = "zacl";
     });
     systems = [ "zacl" ];
-    lispLibs = [ alexandria bordeaux-threads cl_ssl cl-base64 cl-ppcre cl-store flexi-streams local-time md5 queues_simple-queue quri split-sequence trivial-backtrace trivial-garbage uiop usocket ];
+    lispLibs = [ alexandria bordeaux-threads cl_plus_ssl cl-base64 cl-ppcre cl-store flexi-streams local-time md5 queues_dot_simple-queue quri split-sequence trivial-backtrace trivial-garbage uiop usocket ];
   };
   zaws = {
     pname = "zaws";
