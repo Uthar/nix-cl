@@ -88,6 +88,16 @@ Supported `${lisp}`s are:
 - `cclWithPackages`
 - `claspWithPackages`
 
+Other lisps can be achieved by passing an implementation-dependent "run-a-script-noninteractively" command to `lispWithPackages`:
+```
+myLispWithPackages = lispWithPackages "${pkgs.my-lisp}/bin/my-lisp --batch --load"
+```
+
+To just get the package set, use `lispPackagesFor`:
+```
+myLispPackages = lispPackagesFor "${pkgs.my-lisp}/bin/my-lisp --batch --load"
+```
+
 ### Supported OS
 
 Tested only on Linux, but should work on MacOS too.
