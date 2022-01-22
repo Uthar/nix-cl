@@ -4,6 +4,36 @@ let
 
   ql = quicklispPackagesFor { inherit lisp; fixup = fixupFor packages; };
 
+  makeLibraryPath = pkgs.lib.makeLibraryPath;
+  makeSearchPath = pkgs.lib.makeSearchPath;
+
+  # Used by builds that would otherwise attempt to write into storeDir.
+  #
+  # Will run build two times, keeping all files created during the
+  # first run, exept the FASL's. Then using that directory tree as the
+  # source of the second run.
+  #
+  # E.g. cl-unicode creating .txt files during compilation
+  build-with-compile-into-pwd = args:
+    let
+      build = (build-asdf-system (args // { version = args.version + "-build"; }))
+        .overrideAttrs(o: {
+          buildPhase = with builtins; ''
+            mkdir __fasls
+            export LD_LIBRARY_PATH=${makeLibraryPath o.nativeLibs}:$LD_LIBRARY_PATH
+            export CLASSPATH=${makeSearchPath "share/java/*" o.javaLibs}:$CLASSPATH
+            export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$(pwd)//
+            export ASDF_OUTPUT_TRANSLATIONS="$(pwd):$(pwd)/__fasls:${storeDir}:${storeDir}"
+            ${o.lisp} ${o.buildScript}
+          '';
+          installPhase = ''
+            mkdir -pv $out
+            rm -rf __fasls
+            cp -r * $out
+          '';
+        });
+    in build-asdf-system (args // { src = build; });
+
   packages = rec {
 
   asdf = with builtins; let
