@@ -232,13 +232,7 @@ let
   # `packages` is a function that takes `clpkgs` - a set of lisp
   # packages - as argument and returns the list of packages to be
   # installed
-  #
-  # Example:
-  #
-  # sbclPackages = commonLispPackagesFor sbcl;
-  # sbclWithPackages = lispWithPackages sbclPackages;
-  # sbclWithPackages (clpkgs: with clpkgs; [ alexandria cffi str ]);
-  lispWithPackages = clpkgs: packages:
+  lispWithPackagesInternal = clpkgs: packages:
     # FIXME just use flattenedDeps instead
     (build-asdf-system rec {
       lisp = (head (lib.attrValues clpkgs)).lisp;
@@ -262,41 +256,43 @@ let
       '';
     });
 
+  lispWithPackages = lisp:
+    let
+      packages = lispPackagesFor lisp;
+    in lispWithPackagesInternal packages;
+
+  lispPackagesFor = lisp:
+    let
+      packages = commonLispPackagesFor lisp;
+      qlPackages = quicklispPackagesFor { inherit lisp; fixup = fixupFor packages; };
+    in qlPackages // packages;
 
   commonLispPackages = rec {
-    inherit commonLispPackagesFor build-asdf-system lispWithPackages;
+    inherit build-asdf-system lispPackagesFor lispWithPackages;
 
+    # There's got to be a better way than this...
+    # The problem was that with --load everywhere, some
+    # implementations didn't exit with 0 on compilation failure
+    # Maybe a handler-case in buildScript?
     sbcl  = "${pkgs.sbcl}/bin/sbcl --script";
     ecl   = "${pkgs.ecl}/bin/ecl --shell";
     abcl  = ''${pkgs.abcl}/bin/abcl --batch --eval "(load \"$buildScript\")"'';
     ccl   = ''${pkgs.ccl}/bin/ccl --batch --eval "(load \"$buildScript\")" --'';
     clasp = ''${pkgs.clasp}/bin/clasp --non-interactive --quit --load'';
 
-    sbclManualPackages  = commonLispPackagesFor sbcl;
-    eclManualPackages   = commonLispPackagesFor ecl;
-    abclManualPackages  = commonLispPackagesFor abcl;
-    cclManualPackages   = commonLispPackagesFor ccl;
-    claspManualPackages = commonLispPackagesFor clasp;
-
-    sbclQlPackages  = quicklispPackagesFor { lisp = sbcl;  fixup = fixupFor sbclManualPackages;  };
-    eclQlPackages   = quicklispPackagesFor { lisp = ecl;   fixup = fixupFor eclManualPackages;   };
-    abclQlPackages  = quicklispPackagesFor { lisp = abcl;  fixup = fixupFor abclManualPackages;  };
-    cclQlPackages   = quicklispPackagesFor { lisp = ccl;   fixup = fixupFor cclManualPackages;   };
-    claspQlPackages = quicklispPackagesFor { lisp = clasp; fixup = fixupFor claspManualPackages; };
-
     # Manually defined packages shadow the ones imported from quicklisp
 
-    sbclPackages  = (sbclQlPackages  // sbclManualPackages);
-    eclPackages   = (eclQlPackages   // eclManualPackages);
-    abclPackages  = (abclQlPackages  // abclManualPackages);
-    cclPackages   = (cclQlPackages   // cclManualPackages);
-    claspPackages = (claspQlPackages // claspManualPackages);
+    sbclPackages  = lispPackagesFor sbcl;
+    eclPackages   = lispPackagesFor ecl;
+    abclPackages  = lispPackagesFor abcl;
+    cclPackages   = lispPackagesFor ccl;
+    claspPackages = lispPackagesFor clasp;
 
-    sbclWithPackages  = lispWithPackages sbclPackages;
-    eclWithPackages   = lispWithPackages eclPackages;
-    abclWithPackages  = lispWithPackages abclPackages;
-    cclWithPackages   = lispWithPackages cclPackages;
-    claspWithPackages = lispWithPackages claspPackages;
+    sbclWithPackages  = lispWithPackages sbcl;
+    eclWithPackages   = lispWithPackages ecl;
+    abclWithPackages  = lispWithPackages abcl;
+    cclWithPackages   = lispWithPackages ccl;
+    claspWithPackages = lispWithPackages clasp;
   };
 
 in commonLispPackages
