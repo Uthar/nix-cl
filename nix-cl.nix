@@ -110,8 +110,14 @@ let
       # load-system. Strange.
       buildScript = pkgs.writeText "build-${pname}.lisp" ''
         (require :asdf)
+        (setf *debugger-hook*
+          (lambda (c fn)
+            (declare (ignore fn))
+            (format t "~a~%" c)
+            (uiop:quit 1)))
         (dolist (s '(${concatStringsSep " " systems}))
           (asdf:load-system s))
+        (uiop:quit 0)
       '';
 
       buildPhase = optionalString (src != null) ''
@@ -274,11 +280,11 @@ let
     # The problem was that with --load everywhere, some
     # implementations didn't exit with 0 on compilation failure
     # Maybe a handler-case in buildScript?
-    sbcl  = "${pkgs.sbcl}/bin/sbcl --script";
-    ecl   = "${pkgs.ecl}/bin/ecl --shell";
-    abcl  = ''${pkgs.abcl}/bin/abcl --batch --eval "(load \"$buildScript\")"'';
-    ccl   = ''${pkgs.ccl}/bin/ccl --batch --eval "(load \"$buildScript\")" --'';
-    clasp = ''${pkgs.clasp}/bin/clasp --non-interactive --quit --load'';
+    sbcl  = "${pkgs.sbcl}/bin/sbcl --load";
+    ecl   = "${pkgs.ecl}/bin/ecl --load";
+    abcl  = ''${pkgs.abcl}/bin/abcl --load'';
+    ccl   = ''${pkgs.ccl}/bin/ccl --load'';
+    clasp = ''${pkgs.clasp}/bin/clasp --load'';
 
     # Manually defined packages shadow the ones imported from quicklisp
 
