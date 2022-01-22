@@ -105,6 +105,9 @@ let
       nativeLibs = [ libfixposix ];
       systems = [ "iolib" "iolib/os" "iolib/pathnames" ];
     };
+    swank = pkg: {
+      patches = [ ./patches/swank-pure-paths.patch ];
+    };
   };
 
   # NOTE:
