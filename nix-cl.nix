@@ -91,12 +91,13 @@ let
       LD_LIBRARY_PATH =
         let
           deps = flattenedDeps lispLibs;
-          nativeLibs = concatMap (x: x.nativeLibs) deps;
-          libpaths = filter (x: x != "") (map (x: x.LD_LIBRARY_PATH) deps);
-        in
-          makeLibraryPath nativeLibs
-          + optionalString (length libpaths != 0) ":"
-          + concatStringsSep ":" libpaths;
+          libs = concatMap (x: x.nativeLibs) deps;
+          paths = filter (x: x != "") (map (x: x.LD_LIBRARY_PATH) deps);
+          path =
+            makeLibraryPath libs
+            + optionalString (length paths != 0) ":"
+            + concatStringsSep ":" paths;
+        in concatStringsSep ":" (unique (splitString ":" path));
 
       # Java libraries For ABCL
       CLASSPATH = makeSearchPath "share/java/*" (concatMap (x: x.javaLibs) (flattenedDeps lispLibs));
