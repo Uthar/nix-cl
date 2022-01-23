@@ -129,7 +129,8 @@ In particular I had such problems with `cl-ana`, `generic-cl`, among others.
 
 ## Quirks
 
-- `.` and `+` in names are converted to `_`. (`cl+ssl`->`cl_ssl`)
+- `+` in names are converted to `_plus{_,}`: `cl+ssl`->`cl_plus_ssl`, `alexandria+`->`alexandria_plus`
+- `.` to `_dot_`: `iolib.base`->`iolib_dot_base`
 - names starting with a number have a `_` prepended (`3d-vectors`->`_3d-vectors`)
 
 ## other nix+CL projects
