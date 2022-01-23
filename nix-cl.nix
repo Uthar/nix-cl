@@ -259,6 +259,8 @@ let
     # FIXME just use flattenedDeps instead
     (build-asdf-system rec {
       lisp = (head (lib.attrValues clpkgs)).lisp;
+      # See dontUnpack in build-asdf-system
+      src = null;
       pname = baseNameOf (head (split " " lisp));
       version = "with-packages";
       lispLibs = packages clpkgs;
