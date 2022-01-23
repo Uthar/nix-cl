@@ -34,7 +34,7 @@ Use cases include:
 Packages are declared using `build-asdf-system` - its API is documented in `nix-cl.nix`. A simple example of packaging `bordeaux-threads` would be:
 
 ```
-bordeaux-threads = {
+bordeaux-threads = build-asdf-system {
   pname = "bordeaux-threads";
   version = "0.8.8";
   src = builtins.fetchTarball {
