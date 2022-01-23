@@ -142,7 +142,7 @@ let
         export ASDF_OUTPUT_TRANSLATIONS="${src}:$(pwd):${storeDir}:${storeDir}"
 
         # Finally, compile the systems
-        ${lisp} ${buildScript}
+        ${lisp} $buildScript
       '';
 
       # Copy compiled files to store

@@ -206,6 +206,54 @@ let
     systems = [ "mgl-mat" "mgl-mat/test" ];
   };
 
+  nyxt-gtk = build-asdf-system {
+    inherit (ql.nyxt) pname lisp;
+    version = "2.2.4";
+
+    lispLibs = ql.nyxt.lispLibs ++ (with ql; [
+      cl-cffi-gtk cl-webkit2 mk-string-metrics
+    ]);
+
+    src = builtins.fetchTarball {
+      url = "https://github.com/atlas-engineer/nyxt/archive/2.2.4.tar.gz";
+      sha256 = "12l7ir3q29v06jx0zng5cvlbmap7p709ka3ik6x29lw334qshm9b";
+    };
+
+    buildInputs = [
+      pkgs.makeWrapper
+
+      # needed for GSETTINGS_SCHEMAS_PATH
+      pkgs.gsettings-desktop-schemas pkgs.glib pkgs.gtk3
+
+      # needed for XDG_ICON_DIRS
+      pkgs.gnome.adwaita-icon-theme
+    ];
+
+    buildScript = pkgs.writeText "build-nyxt.lisp" ''
+      (require :asdf)
+      (asdf:load-system :nyxt/gtk-application)
+      (sb-ext:save-lisp-and-die "nyxt" :executable t
+                                       #+sb-core-compression :compression
+                                       #+sb-core-compression t
+                                       :toplevel #'nyxt:entry-point)
+    '';
+
+    installPhase = ql.nyxt.installPhase + ''
+      rm -v $out/nyxt
+      mkdir -p $out/bin
+      cp -v nyxt $out/bin
+      wrapProgram $out/bin/nyxt \
+        --prefix LD_LIBRARY_PATH : $LD_LIBRARY_PATH \
+        --prefix XDG_DATA_DIRS : $XDG_ICON_DIRS \
+        --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
+        --set WEBKIT_FORCE_SANDBOX 0 \
+        --prefix GIO_EXTRA_MODULES ":" ${pkgs.dconf.lib}/lib/gio/modules/ \
+        --prefix GIO_EXTRA_MODULES ":" ${pkgs.glib-networking}/lib/gio/modules/
+    '';
+  };
+
+  nyxt = nyxt-gtk;
+
   };
 
 in packages
