@@ -1,14 +1,12 @@
 Prevent swank from attempting write into storeDir
 --- a/swank-loader.lisp
 +++ b/swank-loader.lisp
-@@ -162,7 +162,9 @@
+@@ -162,7 +162,7 @@
                   ,(unique-dir-name)))
     (user-homedir-pathname)))
  
 -(defvar *fasl-directory* (default-fasl-dir)
-+(defvar *fasl-directory* (merge-pathnames #P"fasl/"
-+                                          (uiop:ensure-directory-pathname
-+                                           (uiop:getenv "out")))
++(defvar *fasl-directory* #P"@out@/fasl/"
    "The directory where fasl files should be placed.")
  
  (defun binary-pathname (src-pathname binary-dir)

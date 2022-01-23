@@ -32,7 +32,11 @@ let
             cp -r * $out
           '';
         });
-    in build-asdf-system (args // { src = build; });
+    in build-asdf-system (args // {
+      # Patches are already applied in `build`
+      patches = [];
+      src = build;
+    });
 
   packages = rec {
 
@@ -150,6 +154,14 @@ let
     inherit (ql.cl-containers) pname version src;
     lispLibs = ql.cl-containers.lispLibs ++ [ ql.moptilities ];
     systems = [ "cl-containers" "cl-containers/with-moptilities" ];
+  };
+
+  swank = build-with-compile-into-pwd {
+    inherit (ql.swank) pname version src lispLibs;
+    patches = [ ./patches/swank-pure-paths.patch ];
+    postConfigure = ''
+      substituteAllInPlace swank-loader.lisp
+    '';
   };
 
   clx-truetype = build-asdf-system {
