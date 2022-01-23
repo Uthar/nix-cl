@@ -152,6 +152,48 @@ let
     systems = [ "cl-containers" "cl-containers/with-moptilities" ];
   };
 
+  clx-truetype = build-asdf-system {
+    pname = "clx-truetype";
+    version = "20160825-git";
+    src = builtins.fetchTarball {
+      url = "http://beta.quicklisp.org/archive/clx-truetype/2016-08-25/clx-truetype-20160825-git.tgz";
+      sha256 = "079hyp92cjkdfn6bhkxsrwnibiqbz4y4af6nl31lzw6nm91j5j37";
+    };
+    lispLibs = with ql; [
+      alexandria bordeaux-threads cl-aa cl-fad cl-paths cl-paths-ttf
+      cl-store cl-vectors clx trivial-features zpb-ttf
+    ];
+  };
+
+  mgl = build-asdf-system {
+    pname = "mgl";
+    version = "2021-10-07";
+    src = builtins.fetchTarball {
+      url = "https://github.com/melisgl/mgl/archive/e697791a9bcad3b6e7b3845246a2aa55238cfef7.tar.gz";
+      sha256 = "09sf7nq7nmf9q7bh3a5ygl2i2n0nhrx5fk2kv5ili0ckv7g9x72s";
+    };
+    lispLibs = with ql; [
+      alexandria closer-mop array-operations lla cl-reexport mgl-pax
+      named-readtables pythonic-string-reader
+    ] ++ [ mgl-mat ];
+    systems = [ "mgl" "mgl/test" ];
+  };
+
+  mgl-mat = build-asdf-system {
+    pname = "mgl-mat";
+    version = "2021-10-11";
+    src = builtins.fetchTarball {
+      url = "https://github.com/melisgl/mgl-mat/archive/3710858bc876b1b86e50f1db2abe719e92d810e7.tar.gz";
+      sha256 = "1aa2382mi55rp8pd31dz4d94yhfzh30vkggcvmvdfrr4ngffj0dx";
+    };
+    lispLibs = with ql; [
+      alexandria bordeaux-threads cffi cffi-grovel cl-cuda
+      flexi-streams ieee-floats lla mgl-pax static-vectors
+      trivial-garbage cl-fad
+    ];
+    systems = [ "mgl-mat" "mgl-mat/test" ];
+  };
+
   };
 
 in packages
