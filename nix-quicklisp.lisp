@@ -208,6 +208,12 @@
              . (:attrs
                 . (("pname" . (:string . ,(make-pname system)))
                    ("version" . (:string . ,version))
+
+                   ;; Not necessarily the asd from QL data, but the
+                   ;; one that this system ends up providing after
+                   ;; possibly creating it in `createAsd`.
+                   ("asd" . (:string . ,master))
+
                    ("src"
                     . (:funcall
                        . ("createAsd"
@@ -219,10 +225,6 @@
                    ("systems" . (:list . ((:string . ,system))))
                    ("lispLibs" . (:list . ,(mapcar (lambda (dep) `(:symbol . ,dep)) deps))))))))))
 
-;;
-;; FIXME Remove other system definitions than `system` from `asd`
-;;
-
 (defun write-nix-packages (outfile)
   (with-open-file (stream outfile :direction :output :if-exists :supersede)
     (format stream "
@@ -232,6 +234,13 @@
 
 with builtins;
 
+# Ensures that every non-slashy `system` exists in a unique .asd file.
+# (Think cl-async-base being declared in cl-async.asd upstream)
+#
+# This is required because we're building and loading a system called
+# `system`, not `asd`, so otherwise `system` would not be loadable
+# without building and loading `asd` first.
+#
 let createAsd = { url, sha256, asd, system }:
    let
      src = fetchTarball { inherit url sha256; };
