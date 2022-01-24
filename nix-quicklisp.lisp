@@ -202,7 +202,6 @@
            `(,system
              . (:attrs
                 . (("pname" . (:string . ,system))
-                   ("createAsd" . ,(if create-asd? `(:string . ,create-asd?) `(:symbol . "false")))
                    ("version" . (:string . ,version))
                    ("src"
                     . (:funcall
