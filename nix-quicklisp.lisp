@@ -185,8 +185,8 @@
                     . (("pname" . (:string . ,system))
                        ("systems"
                         . (:list
-                           . ((:string . ,system)
-                              (:string . ,master))))
+                           . ((:string . ,master)
+                              (:string . ,system))))
                        ("lispLibs"
                         . (:list
                            . ,(mapcar
