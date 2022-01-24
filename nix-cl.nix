@@ -60,12 +60,15 @@ let
       # such as when using reverse domain naming.
       systems ? [ pname ],
 
+      # The .asd file that this package provides
+      asd ? pname,
+
       # Other args to mkDerivation
       ...
     } @ args:
 
     stdenv.mkDerivation (rec {
-      inherit pname version nativeLibs javaLibs lispLibs lisp systems;
+      inherit pname version nativeLibs javaLibs lispLibs lisp systems asd;
 
       src = if builtins.length patches > 0
             then apply-patches args
@@ -263,7 +266,25 @@ let
       src = null;
       pname = baseNameOf (head (split " " lisp));
       version = "with-packages";
-      lispLibs = packages clpkgs;
+      lispLibs =
+        let
+          libs = packages clpkgs;
+          asds = map (lib.getAttr "asd") (flattenedDeps libs);
+        in
+          if length asds == length (unique asds)
+          then libs
+          else throw ''
+            Duplicate .asd's in [ ${toString asds} ]
+
+            This ambiguity will create loading problems where ASDF
+            could try to compile into ${storeDir}.
+
+            This frequently happens with "slashy" systems.
+
+            Instead of having multiple slashy systems in `lispLibs`,
+            have just the parent system, but with the desired slashy
+            systems appended to its `systems` via `overrideLispAttrs`.
+          '';
       buildInputs = with pkgs; [ makeWrapper ];
       systems = [];
     }).overrideAttrs(o: {
