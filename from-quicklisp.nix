@@ -110,7 +110,7 @@ rec {
   _3b-hdr_slash_test = (_3b-hdr // {
     pname = "3b-hdr/test";
     systems = [ "3b-hdr/test" "3b-hdr" ];
-    lispLibs = [ nibbles parachute ];
+    lispLibs = [ split-sequence parse-number babel alexandria nibbles parachute ];
   });
   _3b-swf = {
     pname = "3b-swf";
@@ -479,7 +479,7 @@ rec {
   adopt_slash_test = (adopt // {
     pname = "adopt/test";
     systems = [ "adopt/test" "adopt" ];
-    lispLibs = [ _1am ];
+    lispLibs = [ split-sequence bobbin _1am ];
   });
   adopt-subcommands = {
     pname = "adopt-subcommands";
@@ -679,7 +679,7 @@ rec {
   alexandria_plus_slash_tests = (alexandria_plus // {
     pname = "alexandria+/tests";
     systems = [ "alexandria+/tests" "alexandria+" ];
-    lispLibs = [ parachute ];
+    lispLibs = [ alexandria parachute ];
   });
   algae = {
     pname = "algae";
@@ -749,7 +749,7 @@ rec {
   amb_slash_test = (amb // {
     pname = "amb/test";
     systems = [ "amb/test" "amb" ];
-    lispLibs = [ parachute ];
+    lispLibs = [ alexandria parachute ];
   });
   anaphora = {
     pname = "anaphora";
@@ -863,12 +863,12 @@ rec {
   anypool_slash_middleware = (anypool // {
     pname = "anypool/middleware";
     systems = [ "anypool/middleware" "anypool" ];
-    lispLibs = [  ];
+    lispLibs = [ cl-speedy-queue bordeaux-threads ];
   });
   anypool_slash_tests = (anypool // {
     pname = "anypool/tests";
     systems = [ "anypool/tests" "anypool" ];
-    lispLibs = [ rove ];
+    lispLibs = [ cl-speedy-queue bordeaux-threads rove ];
   });
   lack-middleware-anypool = {
     pname = "lack-middleware-anypool";
@@ -1042,7 +1042,7 @@ rec {
   architecture_dot_builder-protocol_dot_json_slash_test = (architecture_dot_builder-protocol_dot_json // {
     pname = "architecture.builder-protocol.json/test";
     systems = [ "architecture.builder-protocol.json/test" "architecture.builder-protocol.json" ];
-    lispLibs = [ alexandria architecture_dot_builder-protocol fiveam ];
+    lispLibs = [ cl-json architecture_dot_builder-protocol alexandria alexandria architecture_dot_builder-protocol fiveam ];
   });
   architecture_dot_builder-protocol_dot_universal-builder = {
     pname = "architecture.builder-protocol.universal-builder";
@@ -1060,7 +1060,7 @@ rec {
   architecture_dot_builder-protocol_dot_universal-builder_slash_test = (architecture_dot_builder-protocol_dot_universal-builder // {
     pname = "architecture.builder-protocol.universal-builder/test";
     systems = [ "architecture.builder-protocol.universal-builder/test" "architecture.builder-protocol.universal-builder" ];
-    lispLibs = [ alexandria architecture_dot_builder-protocol fiveam ];
+    lispLibs = [ closer-mop architecture_dot_builder-protocol alexandria alexandria architecture_dot_builder-protocol fiveam ];
   });
   architecture_dot_builder-protocol_dot_xpath = {
     pname = "architecture.builder-protocol.xpath";
@@ -1078,12 +1078,12 @@ rec {
   architecture_dot_builder-protocol_dot_xpath_slash_test = (architecture_dot_builder-protocol_dot_xpath // {
     pname = "architecture.builder-protocol.xpath/test";
     systems = [ "architecture.builder-protocol.xpath/test" "architecture.builder-protocol.xpath" ];
-    lispLibs = [ alexandria fiveam ];
+    lispLibs = [ xpath architecture_dot_builder-protocol alexandria alexandria fiveam ];
   });
   architecture_dot_builder-protocol_slash_test = (architecture_dot_builder-protocol // {
     pname = "architecture.builder-protocol/test";
     systems = [ "architecture.builder-protocol/test" "architecture.builder-protocol" ];
-    lispLibs = [ alexandria fiveam ];
+    lispLibs = [ fiveam alexandria alexandria ];
   });
   cl-hooks = {
     pname = "cl-hooks";
@@ -1101,7 +1101,7 @@ rec {
   cl-hooks_slash_test = (cl-hooks // {
     pname = "cl-hooks/test";
     systems = [ "cl-hooks/test" "cl-hooks" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivial-garbage let-plus closer-mop alexandria fiveam ];
   });
   architecture_dot_service-provider = {
     pname = "architecture.service-provider";
@@ -1132,12 +1132,12 @@ rec {
   architecture_dot_service-provider-and-hooks_slash_test = (architecture_dot_service-provider-and-hooks // {
     pname = "architecture.service-provider-and-hooks/test";
     systems = [ "architecture.service-provider-and-hooks/test" "architecture.service-provider-and-hooks" ];
-    lispLibs = [ alexandria architecture_dot_service-provider fiveam let-plus more-conditions ];
+    lispLibs = [ more-conditions let-plus fiveam architecture_dot_service-provider alexandria architecture_dot_service-provider cl-hooks ];
   });
   architecture_dot_service-provider_slash_test = (architecture_dot_service-provider // {
     pname = "architecture.service-provider/test";
     systems = [ "architecture.service-provider/test" "architecture.service-provider" ];
-    lispLibs = [ alexandria fiveam let-plus more-conditions ];
+    lispLibs = [ utilities_dot_print-items more-conditions let-plus alexandria alexandria fiveam let-plus more-conditions ];
   });
   archive = {
     pname = "archive";
@@ -1181,12 +1181,12 @@ rec {
   arnesi_slash_cl-ppcre-extras = (arnesi // {
     pname = "arnesi/cl-ppcre-extras";
     systems = [ "arnesi/cl-ppcre-extras" "arnesi" ];
-    lispLibs = [ cl-ppcre ];
+    lispLibs = [ cl-ppcre collectors ];
   });
   arnesi_slash_slime-extras = (arnesi // {
     pname = "arnesi/slime-extras";
     systems = [ "arnesi/slime-extras" "arnesi" ];
-    lispLibs = [ swank ];
+    lispLibs = [ swank collectors ];
   });
   array-operations = {
     pname = "array-operations";
@@ -1204,7 +1204,7 @@ rec {
   array-operations_slash_tests = (array-operations // {
     pname = "array-operations/tests";
     systems = [ "array-operations/tests" "array-operations" ];
-    lispLibs = [ alexandria clunit2 ];
+    lispLibs = [ clunit2 alexandria let-plus ];
   });
   array-utils = {
     pname = "array-utils";
@@ -1357,7 +1357,7 @@ rec {
   asdf-encodings_slash_test = (asdf-encodings // {
     pname = "asdf-encodings/test";
     systems = [ "asdf-encodings/test" "asdf-encodings" ];
-    lispLibs = [ fare-utils hu_dot_dwim_dot_stefil ];
+    lispLibs = [ hu_dot_dwim_dot_stefil fare-utils ];
   });
   asdf-finalizers = {
     pname = "asdf-finalizers";
@@ -1544,7 +1544,7 @@ rec {
   assert-p_slash_test = (assert-p // {
     pname = "assert-p/test";
     systems = [ "assert-p/test" "assert-p" ];
-    lispLibs = [ simplet simplet-asdf ];
+    lispLibs = [ simplet-asdf assertion-error simplet simplet-asdf ];
   });
   assertion-error = {
     pname = "assertion-error";
@@ -1562,7 +1562,7 @@ rec {
   assertion-error_slash_test = (assertion-error // {
     pname = "assertion-error/test";
     systems = [ "assertion-error/test" "assertion-error" ];
-    lispLibs = [  ];
+    lispLibs = [ dissect ];
   });
   assoc-utils = {
     pname = "assoc-utils";
@@ -1619,7 +1619,7 @@ rec {
   astonish_slash_tests = (astonish // {
     pname = "astonish/tests";
     systems = [ "astonish/tests" "astonish" ];
-    lispLibs = [ rove ];
+    lispLibs = [ uiop alexandria rove ];
   });
   async-process = {
     pname = "async-process";
@@ -1702,7 +1702,7 @@ rec {
   audio-tag_slash_tests = (audio-tag // {
     pname = "audio-tag/tests";
     systems = [ "audio-tag/tests" "audio-tag" ];
-    lispLibs = [ rove ];
+    lispLibs = [ osicat flexi-streams rove ];
   });
   authenticated-encryption = {
     pname = "authenticated-encryption";
@@ -1954,17 +1954,17 @@ rec {
   bdef_slash_cl-collider = (bdef // {
     pname = "bdef/cl-collider";
     systems = [ "bdef/cl-collider" "bdef" ];
-    lispLibs = [ cl-collider ];
+    lispLibs = [ parse-float mutility jsown eager-future2 alexandria cl-collider ];
   });
   bdef_slash_cl-patterns = (bdef // {
     pname = "bdef/cl-patterns";
     systems = [ "bdef/cl-patterns" "bdef" ];
-    lispLibs = [ cl-patterns ];
+    lispLibs = [ parse-float mutility jsown eager-future2 alexandria cl-patterns ];
   });
   bdef_slash_tests = (bdef // {
     pname = "bdef/tests";
     systems = [ "bdef/tests" "bdef" ];
-    lispLibs = [ cl-patterns fiveam mutility ];
+    lispLibs = [ parse-float mutility jsown eager-future2 alexandria cl-patterns fiveam mutility ];
   });
   beast = {
     pname = "beast";
@@ -2078,7 +2078,7 @@ rec {
   binary-io_slash_test = (binary-io // {
     pname = "binary-io/test";
     systems = [ "binary-io/test" "binary-io" ];
-    lispLibs = [ _1am ];
+    lispLibs = [ ieee-floats alexandria _1am ];
   });
   binary-types = {
     pname = "binary-types";
@@ -2600,7 +2600,7 @@ rec {
   bobbin_slash_test = (bobbin // {
     pname = "bobbin/test";
     systems = [ "bobbin/test" "bobbin" ];
-    lispLibs = [ _1am ];
+    lispLibs = [ split-sequence _1am ];
   });
   bodge-blobs-support = {
     pname = "bodge-blobs-support";
@@ -2631,7 +2631,7 @@ rec {
   bodge-chipmunk_slash_example = (bodge-chipmunk // {
     pname = "bodge-chipmunk/example";
     systems = [ "bodge-chipmunk/example" "bodge-chipmunk" ];
-    lispLibs = [ chipmunk-blob float-features ];
+    lispLibs = [ claw-utils claw cffi-c-ref cffi alexandria chipmunk-blob float-features ];
   });
   bodge-concurrency = {
     pname = "bodge-concurrency";
@@ -2675,7 +2675,7 @@ rec {
   bodge-glfw_slash_example = (bodge-glfw // {
     pname = "bodge-glfw/example";
     systems = [ "bodge-glfw/example" "bodge-glfw" ];
-    lispLibs = [ cl-opengl claw glfw-blob ];
+    lispLibs = [ claw-utils claw cffi-c-ref cffi alexandria cl-opengl claw glfw-blob ];
   });
   bodge-heap = {
     pname = "bodge-heap";
@@ -2693,7 +2693,7 @@ rec {
   bodge-heap_slash_tests = (bodge-heap // {
     pname = "bodge-heap/tests";
     systems = [ "bodge-heap/tests" "bodge-heap" ];
-    lispLibs = [ alexandria fiveam ];
+    lispLibs = [ fiveam alexandria ];
   });
   bodge-host = {
     pname = "bodge-host";
@@ -2763,7 +2763,7 @@ rec {
   bodge-nanovg_slash_example = (bodge-nanovg // {
     pname = "bodge-nanovg/example";
     systems = [ "bodge-nanovg/example" "bodge-nanovg" ];
-    lispLibs = [ bodge-glad bodge-glfw cffi cffi-c-ref cl-opengl claw float-features glad-blob glfw-blob nanovg-blob trivial-main-thread ];
+    lispLibs = [ trivial-main-thread nanovg-blob glfw-blob glad-blob float-features claw cl-opengl cffi-c-ref cffi bodge-glfw bodge-glad alexandria cffi cffi-c-ref claw claw-utils uiop ];
   });
   bodge-nuklear = {
     pname = "bodge-nuklear";
@@ -2794,7 +2794,7 @@ rec {
   bodge-ode_slash_example = (bodge-ode // {
     pname = "bodge-ode/example";
     systems = [ "bodge-ode/example" "bodge-ode" ];
-    lispLibs = [ cffi-c-ref claw ode-blob ];
+    lispLibs = [ float-features claw-utils claw cffi-c-ref cffi alexandria cffi-c-ref claw ode-blob ];
   });
   bodge-openal = {
     pname = "bodge-openal";
@@ -2812,7 +2812,7 @@ rec {
   bodge-openal_slash_example = (bodge-openal // {
     pname = "bodge-openal/example";
     systems = [ "bodge-openal/example" "bodge-openal" ];
-    lispLibs = [ alexandria cffi-c-ref claw float-features openal-blob static-vectors ];
+    lispLibs = [ static-vectors openal-blob float-features claw cffi-c-ref alexandria alexandria cffi claw claw-utils ];
   });
   bodge-queue = {
     pname = "bodge-queue";
@@ -2848,7 +2848,7 @@ rec {
   bodge-sndfile_slash_example = (bodge-sndfile // {
     pname = "bodge-sndfile/example";
     systems = [ "bodge-sndfile/example" "bodge-sndfile" ];
-    lispLibs = [ cffi-c-ref sndfile-blob ];
+    lispLibs = [ static-vectors claw-utils claw cffi-c-ref cffi bodge-libc-essentials alexandria cffi-c-ref sndfile-blob ];
   });
   bodge-utilities = {
     pname = "bodge-utilities";
@@ -2892,7 +2892,7 @@ rec {
   bordeaux-threads_slash_test = (bordeaux-threads // {
     pname = "bordeaux-threads/test";
     systems = [ "bordeaux-threads/test" "bordeaux-threads" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ alexandria fiveam ];
   });
   bourbaki = {
     pname = "bourbaki";
@@ -2923,7 +2923,7 @@ rec {
   bp_slash_tests = (bp // {
     pname = "bp/tests";
     systems = [ "bp/tests" "bp" ];
-    lispLibs = [  ];
+    lispLibs = [ usocket jsown ironclad cffi aserve ];
   });
   bst = {
     pname = "bst";
@@ -2941,7 +2941,7 @@ rec {
   bst_slash_test = (bst // {
     pname = "bst/test";
     systems = [ "bst/test" "bst" ];
-    lispLibs = [ alexandria fiveam ];
+    lispLibs = [ fiveam alexandria ];
   });
   bt-semaphore = {
     pname = "bt-semaphore";
@@ -3193,7 +3193,7 @@ rec {
   bytecurry_dot_mocks_slash_test = (bytecurry_dot_mocks // {
     pname = "bytecurry.mocks/test";
     systems = [ "bytecurry.mocks/test" "bytecurry.mocks" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ bytecurry_dot_asdf-ext asdf-package-system fiveam ];
   });
   c2ffi-blob = {
     pname = "c2ffi-blob";
@@ -4004,12 +4004,12 @@ rec {
   cffi_slash_c2ffi = (cffi // {
     pname = "cffi/c2ffi";
     systems = [ "cffi/c2ffi" "cffi" ];
-    lispLibs = [ alexandria ];
+    lispLibs = [ uiop trivial-features babel alexandria alexandria ];
   });
   cffi_slash_c2ffi-generator = (cffi // {
     pname = "cffi/c2ffi-generator";
     systems = [ "cffi/c2ffi-generator" "cffi" ];
-    lispLibs = [ alexandria cl-json cl-ppcre ];
+    lispLibs = [ uiop trivial-features babel alexandria alexandria cl-json cl-ppcre ];
   });
   cffi-c-ref = {
     pname = "cffi-c-ref";
@@ -4027,7 +4027,7 @@ rec {
   cffi-c-ref_slash_tests = (cffi-c-ref // {
     pname = "cffi-c-ref/tests";
     systems = [ "cffi-c-ref/tests" "cffi-c-ref" ];
-    lispLibs = [ alexandria bodge-libc-essentials fiveam ];
+    lispLibs = [ fiveam bodge-libc-essentials alexandria alexandria cffi ];
   });
   chain = {
     pname = "chain";
@@ -4058,7 +4058,7 @@ rec {
   chameleon_slash_tests = (chameleon // {
     pname = "chameleon/tests";
     systems = [ "chameleon/tests" "chameleon" ];
-    lispLibs = [ fiveam fset ];
+    lispLibs = [ fset fiveam alexandria ];
   });
   chancery = {
     pname = "chancery";
@@ -4128,12 +4128,12 @@ rec {
   chanl_slash_examples = (chanl // {
     pname = "chanl/examples";
     systems = [ "chanl/examples" "chanl" ];
-    lispLibs = [  ];
+    lispLibs = [ bordeaux-threads ];
   });
   chanl_slash_tests = (chanl // {
     pname = "chanl/tests";
     systems = [ "chanl/tests" "chanl" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ bordeaux-threads fiveam ];
   });
   cheat-js = {
     pname = "cheat-js";
@@ -4489,12 +4489,12 @@ rec {
   ci-utils_slash_coveralls = (ci-utils // {
     pname = "ci-utils/coveralls";
     systems = [ "ci-utils/coveralls" "ci-utils" ];
-    lispLibs = [ ci-utils-features split-sequence ];
+    lispLibs = [ split-sequence ci-utils-features ci-utils-features ];
   });
   ci-utils_slash_test = (ci-utils // {
     pname = "ci-utils/test";
     systems = [ "ci-utils/test" "ci-utils" ];
-    lispLibs = [ ci-utils-features fiveam split-sequence ];
+    lispLibs = [ split-sequence fiveam ci-utils-features ci-utils-features ];
   });
   circular-streams = {
     pname = "circular-streams";
@@ -5747,12 +5747,12 @@ rec {
   cl-aubio_slash_examples = (cl-aubio // {
     pname = "cl-aubio/examples";
     systems = [ "cl-aubio/examples" "cl-aubio" ];
-    lispLibs = [ vgplot ];
+    lispLibs = [ closer-mop cffi-libffi cffi vgplot ];
   });
   cl-aubio_slash_tests = (cl-aubio // {
     pname = "cl-aubio/tests";
     systems = [ "cl-aubio/tests" "cl-aubio" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ closer-mop cffi-libffi cffi fiveam ];
   });
   cl-autorepo = {
     pname = "cl-autorepo";
@@ -5796,7 +5796,7 @@ rec {
   cl-autowrap_slash_libffi = (cl-autowrap // {
     pname = "cl-autowrap/libffi";
     systems = [ "cl-autowrap/libffi" "cl-autowrap" ];
-    lispLibs = [ cl-plus-c ];
+    lispLibs = [ uiop trivial-features defpackage-plus cl-ppcre cl-json cffi alexandria cl-plus-c ];
   });
   cl-plus-c = {
     pname = "cl-plus-c";
@@ -5905,7 +5905,7 @@ rec {
   cl-base64_slash_test = (cl-base64 // {
     pname = "cl-base64/test";
     systems = [ "cl-base64/test" "cl-base64" ];
-    lispLibs = [ kmrcl ptester ];
+    lispLibs = [ ptester kmrcl ];
   });
   cl-bayesnet = {
     pname = "cl-bayesnet";
@@ -6339,7 +6339,7 @@ rec {
   capstone_slash_test = (capstone // {
     pname = "capstone/test";
     systems = [ "capstone/test" "capstone" ];
-    lispLibs = [ cffi cffi-grovel gt static-vectors stefil ];
+    lispLibs = [ trivial-features static-vectors gt cffi-grovel cffi cffi cffi-grovel gt static-vectors stefil ];
   });
   cl-case-control = {
     pname = "cl-case-control";
@@ -6370,12 +6370,12 @@ rec {
   cl-catmull-rom-spline_slash_example = (cl-catmull-rom-spline // {
     pname = "cl-catmull-rom-spline/example";
     systems = [ "cl-catmull-rom-spline/example" "cl-catmull-rom-spline" ];
-    lispLibs = [ bordeaux-threads lispbuilder-sdl lispbuilder-sdl-gfx lispbuilder-sdl-ttf ];
+    lispLibs = [ lispbuilder-sdl-ttf lispbuilder-sdl-gfx lispbuilder-sdl bordeaux-threads ];
   });
   cl-catmull-rom-spline_slash_test = (cl-catmull-rom-spline // {
     pname = "cl-catmull-rom-spline/test";
     systems = [ "cl-catmull-rom-spline/test" "cl-catmull-rom-spline" ];
-    lispLibs = [ arrow-macros fiveam uiop ];
+    lispLibs = [ uiop fiveam arrow-macros ];
   });
   cl-cerf = {
     pname = "cl-cerf";
@@ -6575,7 +6575,7 @@ rec {
   cl-change-case_slash_test = (cl-change-case // {
     pname = "cl-change-case/test";
     systems = [ "cl-change-case/test" "cl-change-case" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ cl-ppcre-unicode cl-ppcre fiveam ];
   });
   cl-charms = {
     pname = "cl-charms";
@@ -6736,7 +6736,7 @@ rec {
   net_dot_didierverna_dot_clon_dot_setup_slash_termio = (net_dot_didierverna_dot_clon_dot_setup // {
     pname = "net.didierverna.clon.setup/termio";
     systems = [ "net.didierverna.clon.setup/termio" "net.didierverna.clon.setup" ];
-    lispLibs = [  ];
+    lispLibs = [ named-readtables ];
   });
   simple = {
     pname = "simple";
@@ -6884,7 +6884,7 @@ rec {
   cl-colors2_slash_tests = (cl-colors2 // {
     pname = "cl-colors2/tests";
     systems = [ "cl-colors2/tests" "cl-colors2" ];
-    lispLibs = [ clunit2 ];
+    lispLibs = [ cl-ppcre alexandria clunit2 ];
   });
   cl-conllu = {
     pname = "cl-conllu";
@@ -6980,12 +6980,12 @@ rec {
   cl-containers_slash_with-moptilities = (cl-containers // {
     pname = "cl-containers/with-moptilities";
     systems = [ "cl-containers/with-moptilities" "cl-containers" ];
-    lispLibs = [ moptilities ];
+    lispLibs = [ metatilities-base asdf-system-connections moptilities ];
   });
   cl-containers_slash_with-utilities = (cl-containers // {
     pname = "cl-containers/with-utilities";
     systems = [ "cl-containers/with-utilities" "cl-containers" ];
-    lispLibs = [ metatilities-base ];
+    lispLibs = [ metatilities-base asdf-system-connections metatilities-base ];
   });
   cl-cookie = {
     pname = "cl-cookie";
@@ -7237,12 +7237,12 @@ rec {
   cl-csv_slash_speed-test = (cl-csv // {
     pname = "cl-csv/speed-test";
     systems = [ "cl-csv/speed-test" "cl-csv" ];
-    lispLibs = [ lisp-unit2 ];
+    lispLibs = [ iterate cl-interpol alexandria lisp-unit2 ];
   });
   cl-csv_slash_test = (cl-csv // {
     pname = "cl-csv/test";
     systems = [ "cl-csv/test" "cl-csv" ];
-    lispLibs = [ lisp-unit2 ];
+    lispLibs = [ iterate cl-interpol alexandria lisp-unit2 ];
   });
   cl-cuda = {
     pname = "cl-cuda";
@@ -7611,7 +7611,7 @@ rec {
   dbi_slash_test = (dbi // {
     pname = "dbi/test";
     systems = [ "dbi/test" "dbi" ];
-    lispLibs = [ alexandria closer-mop dbd-mysql dbd-postgres dbd-sqlite3 dbi-test rove trivial-types ];
+    lispLibs = [ trivial-types rove dbi-test dbd-sqlite3 dbd-postgres dbd-mysql closer-mop alexandria bordeaux-threads closer-mop split-sequence ];
   });
   dct = {
     pname = "dct";
@@ -7928,12 +7928,12 @@ rec {
   cl-drawille_slash_examples = (cl-drawille // {
     pname = "cl-drawille/examples";
     systems = [ "cl-drawille/examples" "cl-drawille" ];
-    lispLibs = [  ];
+    lispLibs = [ osicat cffi alexandria ];
   });
   cl-drawille_slash_examples-animations = (cl-drawille // {
     pname = "cl-drawille/examples-animations";
     systems = [ "cl-drawille/examples-animations" "cl-drawille" ];
-    lispLibs = [ cl-charms ];
+    lispLibs = [ osicat cffi alexandria cl-charms ];
   });
   cl-drm = {
     pname = "cl-drm";
@@ -8216,7 +8216,7 @@ rec {
   cl-environments_slash_test = (cl-environments // {
     pname = "cl-environments/test";
     systems = [ "cl-environments/test" "cl-environments" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ parse-declarations-1_dot_0 optima collectors anaphora alexandria fiveam ];
   });
   epmd = {
     pname = "epmd";
@@ -8481,7 +8481,7 @@ rec {
   cl-feedparser_slash_test = (cl-feedparser // {
     pname = "cl-feedparser/test";
     systems = [ "cl-feedparser/test" "cl-feedparser" ];
-    lispLibs = [ fiveam fxml local-time ];
+    lispLibs = [ serapeum quri plump net-telent-date local-time fxml fset cl-ppcre cl-html5-parser asdf-package-system anaphora alexandria fiveam fxml local-time ];
   });
   cl-fix = {
     pname = "cl-fix";
@@ -8499,12 +8499,12 @@ rec {
   cl-fix_slash_fix44 = (cl-fix // {
     pname = "cl-fix/fix44";
     systems = [ "cl-fix/fix44" "cl-fix" ];
-    lispLibs = [  ];
+    lispLibs = [ usocket parse-number log4cl local-time cl-ppcre bordeaux-threads arrow-macros alexandria ];
   });
   cl-fix_slash_test = (cl-fix // {
     pname = "cl-fix/test";
     systems = [ "cl-fix/test" "cl-fix" ];
-    lispLibs = [ fiveam trivial-gray-streams ];
+    lispLibs = [ usocket parse-number log4cl local-time cl-ppcre bordeaux-threads arrow-macros alexandria fiveam trivial-gray-streams ];
   });
   cl-fixtures = {
     pname = "cl-fixtures";
@@ -8574,7 +8574,7 @@ rec {
   cl-flow_slash_tests = (cl-flow // {
     pname = "cl-flow/tests";
     systems = [ "cl-flow/tests" "cl-flow" ];
-    lispLibs = [ alexandria cl-muth fiveam simple-flow-dispatcher ];
+    lispLibs = [ simple-flow-dispatcher fiveam cl-muth alexandria alexandria cl-muth ];
   });
   cl-flowd = {
     pname = "cl-flowd";
@@ -8670,7 +8670,7 @@ rec {
   cl-form-types_slash_test = (cl-form-types // {
     pname = "cl-form-types/test";
     systems = [ "cl-form-types/test" "cl-form-types" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ optima introspect-environment cl-environments arrows anaphora alexandria agutil fiveam ];
   });
   cl-forms = {
     pname = "cl-forms";
@@ -9169,7 +9169,7 @@ rec {
   cl-geos_slash_test = (cl-geos // {
     pname = "cl-geos/test";
     systems = [ "cl-geos/test" "cl-geos" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ xarray uiop trivial-garbage cffi fiveam ];
   });
   cl-getopt = {
     pname = "cl-getopt";
@@ -9213,7 +9213,7 @@ rec {
   cl-gimei_slash_test = (cl-gimei // {
     pname = "cl-gimei/test";
     systems = [ "cl-gimei/test" "cl-gimei" ];
-    lispLibs = [ rove ];
+    lispLibs = [ cl-yaml alexandria rove ];
   });
   cl-gists = {
     pname = "cl-gists";
@@ -9257,7 +9257,7 @@ rec {
   cl-git_slash_tests = (cl-git // {
     pname = "cl-git/tests";
     systems = [ "cl-git/tests" "cl-git" ];
-    lispLibs = [ alexandria cl-fad fiveam flexi-streams inferior-shell local-time unix-options ];
+    lispLibs = [ uiop trivial-garbage local-time flexi-streams closer-mop cl-fad cffi-grovel cffi anaphora alexandria alexandria cl-fad fiveam flexi-streams inferior-shell local-time unix-options ];
   });
   cl-github-v3 = {
     pname = "cl-github-v3";
@@ -13916,22 +13916,22 @@ rec {
   cl-graph_slash_with-cl-mathstats = (cl-graph // {
     pname = "cl-graph/with-cl-mathstats";
     systems = [ "cl-graph/with-cl-mathstats" "cl-graph" ];
-    lispLibs = [ cl-mathstats ];
+    lispLibs = [ metatilities-base metabang-bind cl-containers asdf-system-connections cl-mathstats ];
   });
   cl-graph_slash_with-dynamic-classes = (cl-graph // {
     pname = "cl-graph/with-dynamic-classes";
     systems = [ "cl-graph/with-dynamic-classes" "cl-graph" ];
-    lispLibs = [ dynamic-classes ];
+    lispLibs = [ metatilities-base metabang-bind cl-containers asdf-system-connections dynamic-classes ];
   });
   cl-graph_slash_with-metacopy = (cl-graph // {
     pname = "cl-graph/with-metacopy";
     systems = [ "cl-graph/with-metacopy" "cl-graph" ];
-    lispLibs = [ metacopy ];
+    lispLibs = [ metatilities-base metabang-bind cl-containers asdf-system-connections metacopy ];
   });
   cl-graph_slash_with-moptilities = (cl-graph // {
     pname = "cl-graph/with-moptilities";
     systems = [ "cl-graph/with-moptilities" "cl-graph" ];
-    lispLibs = [ moptilities ];
+    lispLibs = [ metatilities-base metabang-bind cl-containers asdf-system-connections moptilities ];
   });
   gravatar = {
     pname = "gravatar";
@@ -14040,12 +14040,12 @@ rec {
   cl-gserver_slash_docs = (cl-gserver // {
     pname = "cl-gserver/docs";
     systems = [ "cl-gserver/docs" "cl-gserver" ];
-    lispLibs = [ mgl-pax ];
+    lispLibs = [ timer-wheel str lparallel log4cl cl-speedy-queue bordeaux-threads blackbird binding-arrows atomics alexandria mgl-pax ];
   });
   cl-gserver_slash_tests = (cl-gserver // {
     pname = "cl-gserver/tests";
     systems = [ "cl-gserver/tests" "cl-gserver" ];
-    lispLibs = [ cl-mock fiveam ];
+    lispLibs = [ timer-wheel str lparallel log4cl cl-speedy-queue bordeaux-threads blackbird binding-arrows atomics alexandria cl-mock fiveam ];
   });
   cl-gss = {
     pname = "cl-gss";
@@ -14466,7 +14466,7 @@ rec {
   cl-incognia_slash_tests = (cl-incognia // {
     pname = "cl-incognia/tests";
     systems = [ "cl-incognia/tests" "cl-incognia" ];
-    lispLibs = [ rove ];
+    lispLibs = [ jonathan dexador rove ];
   });
   cl-indentify = {
     pname = "cl-indentify";
@@ -14484,12 +14484,12 @@ rec {
   cl-indentify_slash_cli = (cl-indentify // {
     pname = "cl-indentify/cli";
     systems = [ "cl-indentify/cli" "cl-indentify" ];
-    lispLibs = [ command-line-arguments ];
+    lispLibs = [ uiop trivial-gray-streams alexandria command-line-arguments ];
   });
   cl-indentify_slash_tests = (cl-indentify // {
     pname = "cl-indentify/tests";
     systems = [ "cl-indentify/tests" "cl-indentify" ];
-    lispLibs = [ rove trivial-escapes ];
+    lispLibs = [ uiop trivial-gray-streams alexandria rove trivial-escapes ];
   });
   cl-inflector = {
     pname = "cl-inflector";
@@ -14936,7 +14936,7 @@ rec {
   cl-json-pointer_slash_synonyms = (cl-json-pointer // {
     pname = "cl-json-pointer/synonyms";
     systems = [ "cl-json-pointer/synonyms" "cl-json-pointer" ];
-    lispLibs = [  ];
+    lispLibs = [ closer-mop alexandria ];
   });
   cl-json-schema = {
     pname = "cl-json-schema";
@@ -15250,7 +15250,7 @@ rec {
   cl-l10n_slash_test = (cl-l10n // {
     pname = "cl-l10n/test";
     systems = [ "cl-l10n/test" "cl-l10n" ];
-    lispLibs = [ hu_dot_dwim_dot_stefil parse-number ];
+    lispLibs = [ metabang-bind local-time iterate flexi-streams cxml closer-mop cl-ppcre cl-l10n-cldr cl-fad alexandria hu_dot_dwim_dot_stefil parse-number ];
   });
   cl-l10n-cldr = {
     pname = "cl-l10n-cldr";
@@ -16321,7 +16321,7 @@ rec {
   cl-megolm_slash_tests = (cl-megolm // {
     pname = "cl-megolm/tests";
     systems = [ "cl-megolm/tests" "cl-megolm" ];
-    lispLibs = [ lisp-unit s-base64 ];
+    lispLibs = [ str s-base64 lisp-unit jonathan ironclad claw-olm cffi alexandria lisp-unit s-base64 ];
   });
   cl-memcached = {
     pname = "cl-memcached";
@@ -17132,7 +17132,7 @@ rec {
   cl-murmurhash_slash_test = (cl-murmurhash // {
     pname = "cl-murmurhash/test";
     systems = [ "cl-murmurhash/test" "cl-murmurhash" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ babel fiveam ];
   });
   cl-mustache = {
     pname = "cl-mustache";
@@ -17176,7 +17176,7 @@ rec {
   cl-muth_slash_tests = (cl-muth // {
     pname = "cl-muth/tests";
     systems = [ "cl-muth/tests" "cl-muth" ];
-    lispLibs = [ alexandria bordeaux-threads fiveam ];
+    lispLibs = [ trivial-features bordeaux-threads bodge-queue bodge-heap alexandria alexandria bordeaux-threads fiveam ];
   });
   cl-mw = {
     pname = "cl-mw";
@@ -17467,7 +17467,7 @@ rec {
   cl-netpbm_slash_test = (cl-netpbm // {
     pname = "cl-netpbm/test";
     systems = [ "cl-netpbm/test" "cl-netpbm" ];
-    lispLibs = [ _1am external-program ];
+    lispLibs = [ external-program _1am ];
   });
   cl-netstring_plus = {
     pname = "cl-netstring+";
@@ -17511,7 +17511,7 @@ rec {
   cl-notebook_slash_test = (cl-notebook // {
     pname = "cl-notebook/test";
     systems = [ "cl-notebook/test" "cl-notebook" ];
-    lispLibs = [ prove-asdf test-utils ];
+    lispLibs = [ quri qlot prove-asdf parenscript house fact-base closer-mop cl-who cl-fad cl-css anaphora alexandria prove-asdf test-utils ];
   });
   asdf-nst = {
     pname = "asdf-nst";
@@ -17802,7 +17802,7 @@ rec {
   cl-octet-streams_slash_tests = (cl-octet-streams // {
     pname = "cl-octet-streams/tests";
     systems = [ "cl-octet-streams/tests" "cl-octet-streams" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivial-gray-streams fiveam ];
   });
   cl-ode = {
     pname = "cl-ode";
@@ -17846,7 +17846,7 @@ rec {
   cl-ohm_slash_test = (cl-ohm // {
     pname = "cl-ohm/test";
     systems = [ "cl-ohm/test" "cl-ohm" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ closer-mop cl-redis alexandria fiveam ];
   });
   cl-olefs = {
     pname = "cl-olefs";
@@ -18397,22 +18397,22 @@ rec {
   cl-patterns_slash_debug = (cl-patterns // {
     pname = "cl-patterns/debug";
     systems = [ "cl-patterns/debug" "cl-patterns" ];
-    lispLibs = [  ];
+    lispLibs = [ named-readtables mutility local-time dissect closer-mop bordeaux-threads alexandria ];
   });
   cl-patterns_slash_midifile = (cl-patterns // {
     pname = "cl-patterns/midifile";
     systems = [ "cl-patterns/midifile" "cl-patterns" ];
-    lispLibs = [ midi ];
+    lispLibs = [ named-readtables mutility local-time dissect closer-mop bordeaux-threads alexandria midi ];
   });
   cl-patterns_slash_sugar = (cl-patterns // {
     pname = "cl-patterns/sugar";
     systems = [ "cl-patterns/sugar" "cl-patterns" ];
-    lispLibs = [  ];
+    lispLibs = [ named-readtables mutility local-time dissect closer-mop bordeaux-threads alexandria ];
   });
   cl-patterns_slash_supercollider = (cl-patterns // {
     pname = "cl-patterns/supercollider";
     systems = [ "cl-patterns/supercollider" "cl-patterns" ];
-    lispLibs = [ cl-collider ];
+    lispLibs = [ named-readtables mutility local-time dissect closer-mop bordeaux-threads alexandria cl-collider ];
   });
   cl-paymill = {
     pname = "cl-paymill";
@@ -18794,12 +18794,12 @@ rec {
   cl-portaudio_slash_doc = (cl-portaudio // {
     pname = "cl-portaudio/doc";
     systems = [ "cl-portaudio/doc" "cl-portaudio" ];
-    lispLibs = [ atdoc ];
+    lispLibs = [ ffa cffi atdoc ];
   });
   cl-portaudio_slash_tests = (cl-portaudio // {
     pname = "cl-portaudio/tests";
     systems = [ "cl-portaudio/tests" "cl-portaudio" ];
-    lispLibs = [  ];
+    lispLibs = [ ffa cffi ];
   });
   portmanteau = {
     pname = "portmanteau";
@@ -19337,7 +19337,7 @@ rec {
   clpython_slash_test = (clpython // {
     pname = "clpython/test";
     systems = [ "clpython/test" "clpython" ];
-    lispLibs = [ ptester ];
+    lispLibs = [ yacc closer-mop cl-fad ptester ];
   });
   cl-qprint = {
     pname = "cl-qprint";
@@ -19550,7 +19550,7 @@ rec {
   cl-rdkafka_slash_test = (cl-rdkafka // {
     pname = "cl-rdkafka/test";
     systems = [ "cl-rdkafka/test" "cl-rdkafka" ];
-    lispLibs = [ _1am babel ];
+    lispLibs = [ trivial-garbage lparallel cffi-grovel cffi bordeaux-threads _1am babel ];
   });
   cl-readline = {
     pname = "cl-readline";
@@ -20262,7 +20262,7 @@ rec {
   sdl2_slash_examples = (sdl2 // {
     pname = "sdl2/examples";
     systems = [ "sdl2/examples" "sdl2" ];
-    lispLibs = [ cl-opengl ];
+    lispLibs = [ trivial-features trivial-channels cl-ppcre cl-plus-c cl-autowrap alexandria cl-opengl ];
   });
   sdl2-image = {
     pname = "sdl2-image";
@@ -20423,7 +20423,7 @@ rec {
   cl-ses4_slash_test = (cl-ses4 // {
     pname = "cl-ses4/test";
     systems = [ "cl-ses4/test" "cl-ses4" ];
-    lispLibs = [ fiveam uiop ];
+    lispLibs = [ quri quickapp local-time ironclad dexador cl-ppcre cl-base64 arrow-macros fiveam uiop ];
   });
   cl-setlocale = {
     pname = "cl-setlocale";
@@ -20441,7 +20441,7 @@ rec {
   cl-setlocale_slash_tests = (cl-setlocale // {
     pname = "cl-setlocale/tests";
     systems = [ "cl-setlocale/tests" "cl-setlocale" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ cffi-grovel cffi fiveam ];
   });
   cl-sha1 = {
     pname = "cl-sha1";
@@ -20498,7 +20498,7 @@ rec {
   shlex_slash_test = (shlex // {
     pname = "shlex/test";
     systems = [ "shlex/test" "shlex" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ serapeum cl-unicode cl-ppcre alexandria fiveam ];
   });
   cl-simple-concurrent-jobs = {
     pname = "cl-simple-concurrent-jobs";
@@ -20594,7 +20594,7 @@ rec {
   cl-skkserv_slash_cli = (cl-skkserv // {
     pname = "cl-skkserv/cli";
     systems = [ "cl-skkserv/cli" "cl-skkserv" ];
-    lispLibs = [ alexandria daemon unix-opts usocket usocket-server ];
+    lispLibs = [ yason papyrus named-readtables jp-numeral flexi-streams esrap drakma cl-ppcre babel alexandria alexandria daemon unix-opts usocket usocket-server ];
   });
   cl-skkserv_slash_core = {
     pname = "cl-skkserv/core";
@@ -20651,7 +20651,7 @@ rec {
   cl-skkserv_slash_tests = (cl-skkserv // {
     pname = "cl-skkserv/tests";
     systems = [ "cl-skkserv/tests" "cl-skkserv" ];
-    lispLibs = [ _1am flexi-streams ];
+    lispLibs = [ yason papyrus named-readtables jp-numeral flexi-streams esrap drakma cl-ppcre babel alexandria _1am flexi-streams ];
   });
   cl-android = {
     pname = "cl-android";
@@ -21215,7 +21215,7 @@ rec {
   cl-strftime_slash_tests = (cl-strftime // {
     pname = "cl-strftime/tests";
     systems = [ "cl-strftime/tests" "cl-strftime" ];
-    lispLibs = [ cffi fiveam uiop ];
+    lispLibs = [ serapeum local-time cl-ppcre alexandria cffi fiveam uiop ];
   });
   cl-string-complete = {
     pname = "cl-string-complete";
@@ -21246,7 +21246,7 @@ rec {
   cl-string-generator_slash_tests = (cl-string-generator // {
     pname = "cl-string-generator/tests";
     systems = [ "cl-string-generator/tests" "cl-string-generator" ];
-    lispLibs = [ rove ];
+    lispLibs = [ cl-ppcre alexandria rove ];
   });
   ascii-strings = {
     pname = "ascii-strings";
@@ -21706,12 +21706,12 @@ rec {
   cl-threadpool_slash_doc = (cl-threadpool // {
     pname = "cl-threadpool/doc";
     systems = [ "cl-threadpool/doc" "cl-threadpool" ];
-    lispLibs = [ cl-html-readme docparser ];
+    lispLibs = [ queues_dot_simple-cqueue bordeaux-threads cl-html-readme docparser ];
   });
   cl-threadpool_slash_test = (cl-threadpool // {
     pname = "cl-threadpool/test";
     systems = [ "cl-threadpool/test" "cl-threadpool" ];
-    lispLibs = [ lisp-unit verbose ];
+    lispLibs = [ queues_dot_simple-cqueue bordeaux-threads lisp-unit verbose ];
   });
   cl-tidy = {
     pname = "cl-tidy";
@@ -21859,7 +21859,7 @@ rec {
   torrents_slash_tk = (torrents // {
     pname = "torrents/tk";
     systems = [ "torrents/tk" "torrents" ];
-    lispLibs = [ nodgui ];
+    lispLibs = [ unix-opts str replic py-configparser plump parse-float mockingbird lquery lparallel log4cl jonathan dexador clache cl-transmission cl-readline cl-ansi-text access nodgui ];
   });
   cl-transmission = {
     pname = "cl-transmission";
@@ -22090,7 +22090,7 @@ rec {
   cl-unicode_slash_test = (cl-unicode // {
     pname = "cl-unicode/test";
     systems = [ "cl-unicode/test" "cl-unicode" ];
-    lispLibs = [  ];
+    lispLibs = [ cl-ppcre ];
   });
   cl-ppcre-template = {
     pname = "cl-ppcre-template";
@@ -22477,7 +22477,7 @@ rec {
   cl-wave-file-writer_slash_doc = (cl-wave-file-writer // {
     pname = "cl-wave-file-writer/doc";
     systems = [ "cl-wave-file-writer/doc" "cl-wave-file-writer" ];
-    lispLibs = [ cl-html-readme docparser ];
+    lispLibs = [ docparser cl-html-readme ];
   });
   cl-wavelets = {
     pname = "cl-wavelets";
@@ -22495,7 +22495,7 @@ rec {
   cl-wavelets_slash_examples = (cl-wavelets // {
     pname = "cl-wavelets/examples";
     systems = [ "cl-wavelets/examples" "cl-wavelets" ];
-    lispLibs = [ cl-jpeg easy-audio ];
+    lispLibs = [ easy-audio cl-jpeg ];
   });
   cl-wavelets_slash_tests = (cl-wavelets // {
     pname = "cl-wavelets/tests";
@@ -23004,22 +23004,22 @@ rec {
   zyre_slash_tock-client = (zyre // {
     pname = "zyre/tock-client";
     systems = [ "zyre/tock-client" "zyre" ];
-    lispLibs = [ local-time local-time-duration ];
+    lispLibs = [ uiop trivial-garbage trivia cffi-grovel cffi local-time local-time-duration ];
   });
   zyre_slash_tock-server = (zyre // {
     pname = "zyre/tock-server";
     systems = [ "zyre/tock-server" "zyre" ];
-    lispLibs = [ local-time local-time-duration ];
+    lispLibs = [ uiop trivial-garbage trivia cffi-grovel cffi local-time local-time-duration ];
   });
   zyre_slash_zpinger = (zyre // {
     pname = "zyre/zpinger";
     systems = [ "zyre/zpinger" "zyre" ];
-    lispLibs = [ cl-ppcre log4cl ];
+    lispLibs = [ uiop trivial-garbage trivia cffi-grovel cffi cl-ppcre log4cl ];
   });
   zyre_slash_zyredir = (zyre // {
     pname = "zyre/zyredir";
     systems = [ "zyre/zyredir" "zyre" ];
-    lispLibs = [ cl-json ];
+    lispLibs = [ uiop trivial-garbage trivia cffi-grovel cffi cl-json ];
   });
   cl4store = {
     pname = "cl4store";
@@ -24082,7 +24082,7 @@ rec {
   clj_slash_test = (clj // {
     pname = "clj/test";
     systems = [ "clj/test" "clj" ];
-    lispLibs = [ prove-asdf test-utils ];
+    lispLibs = [ test-utils prove-asdf optima named-readtables local-package-aliases cl-hamt arrow-macros agnostic-lizard prove-asdf test-utils ];
   });
   clj-con = {
     pname = "clj-con";
@@ -24555,12 +24555,12 @@ rec {
   clog_slash_docs = (clog // {
     pname = "clog/docs";
     systems = [ "clog/docs" "clog" ];
-    lispLibs = [ _3bmd colorize ];
+    lispLibs = [ websocket-driver trivial-open-browser sqlite quri parse-float mgl-pax lack-middleware-static hunchentoot clack cl-ppcre bordeaux-threads alexandria _3bmd colorize ];
   });
   clog_slash_tools = (clog // {
     pname = "clog/tools";
     systems = [ "clog/tools" "clog" ];
-    lispLibs = [  ];
+    lispLibs = [ websocket-driver trivial-open-browser sqlite quri parse-float mgl-pax lack-middleware-static hunchentoot clack cl-ppcre bordeaux-threads alexandria ];
   });
   hello-clog = {
     pname = "hello-clog";
@@ -25150,7 +25150,7 @@ rec {
   clutter_slash_tests = (clutter // {
     pname = "clutter/tests";
     systems = [ "clutter/tests" "clutter" ];
-    lispLibs = [ dissect rove ];
+    lispLibs = [ doplus closer-mop dissect rove ];
   });
   clweb = {
     pname = "clweb";
@@ -25651,7 +25651,7 @@ rec {
   command-line-arguments_slash_test = (command-line-arguments // {
     pname = "command-line-arguments/test";
     systems = [ "command-line-arguments/test" "command-line-arguments" ];
-    lispLibs = [ alexandria hu_dot_dwim_dot_stefil ];
+    lispLibs = [ hu_dot_dwim_dot_stefil alexandria ];
   });
   common-doc = {
     pname = "common-doc";
@@ -26059,7 +26059,7 @@ rec {
   concrete-syntax-tree_slash_test = (concrete-syntax-tree // {
     pname = "concrete-syntax-tree/test";
     systems = [ "concrete-syntax-tree/test" "concrete-syntax-tree" ];
-    lispLibs = [  ];
+    lispLibs = [ concrete-syntax-tree-lambda-list concrete-syntax-tree-base ];
   });
   org_dot_tfeb_dot_conduit-packages = {
     pname = "org.tfeb.conduit-packages";
@@ -26090,7 +26090,7 @@ rec {
   conf_slash_test = (conf // {
     pname = "conf/test";
     systems = [ "conf/test" "conf" ];
-    lispLibs = [  ];
+    lispLibs = [ cl-fad ];
   });
   configuration_dot_options = {
     pname = "configuration.options";
@@ -26121,7 +26121,7 @@ rec {
   configuration_dot_options-and-mop_slash_test = (configuration_dot_options-and-mop // {
     pname = "configuration.options-and-mop/test";
     systems = [ "configuration.options-and-mop/test" "configuration.options-and-mop" ];
-    lispLibs = [ alexandria configuration_dot_options fiveam let-plus ];
+    lispLibs = [ let-plus configuration_dot_options closer-mop alexandria alexandria configuration_dot_options fiveam let-plus ];
   });
   configuration_dot_options-and-puri = {
     pname = "configuration.options-and-puri";
@@ -26139,7 +26139,7 @@ rec {
   configuration_dot_options-and-puri_slash_test = (configuration_dot_options-and-puri // {
     pname = "configuration.options-and-puri/test";
     systems = [ "configuration.options-and-puri/test" "configuration.options-and-puri" ];
-    lispLibs = [ alexandria configuration_dot_options fiveam let-plus ];
+    lispLibs = [ puri let-plus configuration_dot_options alexandria alexandria configuration_dot_options fiveam let-plus ];
   });
   configuration_dot_options-and-quri = {
     pname = "configuration.options-and-quri";
@@ -26157,7 +26157,7 @@ rec {
   configuration_dot_options-and-quri_slash_test = (configuration_dot_options-and-quri // {
     pname = "configuration.options-and-quri/test";
     systems = [ "configuration.options-and-quri/test" "configuration.options-and-quri" ];
-    lispLibs = [ alexandria configuration_dot_options fiveam let-plus ];
+    lispLibs = [ quri let-plus configuration_dot_options alexandria alexandria configuration_dot_options fiveam let-plus ];
   });
   configuration_dot_options-and-service-provider = {
     pname = "configuration.options-and-service-provider";
@@ -26175,7 +26175,7 @@ rec {
   configuration_dot_options-and-service-provider_slash_test = (configuration_dot_options-and-service-provider // {
     pname = "configuration.options-and-service-provider/test";
     systems = [ "configuration.options-and-service-provider/test" "configuration.options-and-service-provider" ];
-    lispLibs = [ alexandria architecture_dot_service-provider configuration_dot_options fiveam let-plus ];
+    lispLibs = [ log4cl let-plus configuration_dot_options-and-mop configuration_dot_options architecture_dot_service-provider-and-hooks architecture_dot_service-provider alexandria alexandria architecture_dot_service-provider configuration_dot_options fiveam let-plus ];
   });
   configuration_dot_options-syntax-ini = {
     pname = "configuration.options-syntax-ini";
@@ -26193,7 +26193,7 @@ rec {
   configuration_dot_options-syntax-ini_slash_test = (configuration_dot_options-syntax-ini // {
     pname = "configuration.options-syntax-ini/test";
     systems = [ "configuration.options-syntax-ini/test" "configuration.options-syntax-ini" ];
-    lispLibs = [ alexandria configuration_dot_options fiveam let-plus ];
+    lispLibs = [ parser_dot_ini let-plus configuration_dot_options alexandria alexandria configuration_dot_options fiveam let-plus ];
   });
   configuration_dot_options-syntax-xml = {
     pname = "configuration.options-syntax-xml";
@@ -26211,12 +26211,12 @@ rec {
   configuration_dot_options-syntax-xml_slash_test = (configuration_dot_options-syntax-xml // {
     pname = "configuration.options-syntax-xml/test";
     systems = [ "configuration.options-syntax-xml/test" "configuration.options-syntax-xml" ];
-    lispLibs = [ alexandria configuration_dot_options fiveam let-plus ];
+    lispLibs = [ xml_dot_location let-plus configuration_dot_options alexandria alexandria configuration_dot_options fiveam let-plus ];
   });
   configuration_dot_options_slash_test = (configuration_dot_options // {
     pname = "configuration.options/test";
     systems = [ "configuration.options/test" "configuration.options" ];
-    lispLibs = [ alexandria fiveam let-plus ];
+    lispLibs = [ utilities_dot_print-tree utilities_dot_print-items split-sequence more-conditions log4cl let-plus esrap cl-hooks architecture_dot_service-provider alexandria alexandria fiveam let-plus ];
   });
   conium = {
     pname = "conium";
@@ -26247,7 +26247,7 @@ rec {
   consfigurator_slash_tests = (consfigurator // {
     pname = "consfigurator/tests";
     systems = [ "consfigurator/tests" "consfigurator" ];
-    lispLibs = [  ];
+    lispLibs = [ trivial-backtrace osicat named-readtables closer-mop cl-ppcre cl-interpol cl-heredoc cffi-grovel cffi bordeaux-threads babel-streams babel anaphora alexandria agnostic-lizard ];
   });
   consix = {
     pname = "consix";
@@ -26304,7 +26304,7 @@ rec {
   context-lite_slash_test = (context-lite // {
     pname = "context-lite/test";
     systems = [ "context-lite/test" "context-lite" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ closer-mop fiveam ];
   });
   contextl = {
     pname = "contextl";
@@ -26756,7 +26756,7 @@ rec {
   curry-compose-reader-macros_slash_test = (curry-compose-reader-macros // {
     pname = "curry-compose-reader-macros/test";
     systems = [ "curry-compose-reader-macros/test" "curry-compose-reader-macros" ];
-    lispLibs = [  ];
+    lispLibs = [ named-readtables alexandria ];
   });
   com_dot_elbeno_dot_curve = {
     pname = "com.elbeno.curve";
@@ -26917,7 +26917,7 @@ rec {
   cxml-stp_slash_test = (cxml-stp // {
     pname = "cxml-stp/test";
     systems = [ "cxml-stp/test" "cxml-stp" ];
-    lispLibs = [ cxml rt xpath ];
+    lispLibs = [ xpath cxml alexandria cxml rt xpath ];
   });
   cytoscape-clj = {
     pname = "cytoscape-clj";
@@ -26961,7 +26961,7 @@ rec {
   damn-fast-priority-queue_slash_test = (damn-fast-priority-queue // {
     pname = "damn-fast-priority-queue/test";
     systems = [ "damn-fast-priority-queue/test" "damn-fast-priority-queue" ];
-    lispLibs = [ alexandria ];
+    lispLibs = [ alexandria alexandria ];
   });
   damn-fast-stable-priority-queue = {
     pname = "damn-fast-stable-priority-queue";
@@ -26979,7 +26979,7 @@ rec {
   damn-fast-stable-priority-queue_slash_test = (damn-fast-stable-priority-queue // {
     pname = "damn-fast-stable-priority-queue/test";
     systems = [ "damn-fast-stable-priority-queue/test" "damn-fast-stable-priority-queue" ];
-    lispLibs = [ alexandria ];
+    lispLibs = [ alexandria alexandria ];
   });
   priority-queue-benchmark = {
     pname = "priority-queue-benchmark";
@@ -27166,7 +27166,7 @@ rec {
   data-frame_slash_tests = (data-frame // {
     pname = "data-frame/tests";
     systems = [ "data-frame/tests" "data-frame" ];
-    lispLibs = [ clunit2 ];
+    lispLibs = [ select num-utils let-plus array-operations anaphora alexandria_plus alexandria clunit2 ];
   });
   data-lens = {
     pname = "data-lens";
@@ -27184,12 +27184,12 @@ rec {
   data-lens_slash_beta_slash_transducers = (data-lens // {
     pname = "data-lens/beta/transducers";
     systems = [ "data-lens/beta/transducers" "data-lens" ];
-    lispLibs = [ alexandria ];
+    lispLibs = [ serapeum cl-ppcre alexandria alexandria ];
   });
   data-lens_slash_transducers_slash_test = (data-lens // {
     pname = "data-lens/transducers/test";
     systems = [ "data-lens/transducers/test" "data-lens" ];
-    lispLibs = [ alexandria fiveam ];
+    lispLibs = [ serapeum cl-ppcre alexandria alexandria fiveam ];
   });
   data-sift = {
     pname = "data-sift";
@@ -27350,7 +27350,7 @@ rec {
   date-calc_slash_test = (date-calc // {
     pname = "date-calc/test";
     systems = [ "date-calc/test" "date-calc" ];
-    lispLibs = [ fiveam serapeum ];
+    lispLibs = [ serapeum fiveam ];
   });
   datum-comments = {
     pname = "datum-comments";
@@ -27490,7 +27490,7 @@ rec {
   defconfig_slash_tests = (defconfig // {
     pname = "defconfig/tests";
     systems = [ "defconfig/tests" "defconfig" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivial-cltl2 alexandria fiveam ];
   });
   defenum = {
     pname = "defenum";
@@ -27794,12 +27794,12 @@ rec {
   delta-debug_slash_delta = (delta-debug // {
     pname = "delta-debug/delta";
     systems = [ "delta-debug/delta" "delta-debug" ];
-    lispLibs = [ alexandria curry-compose-reader-macros diff metabang-bind split-sequence trivial-shell ];
+    lispLibs = [ trivial-shell split-sequence metabang-bind diff curry-compose-reader-macros alexandria alexandria curry-compose-reader-macros named-readtables ];
   });
   delta-debug_slash_test = (delta-debug // {
     pname = "delta-debug/test";
     systems = [ "delta-debug/test" "delta-debug" ];
-    lispLibs = [ alexandria curry-compose-reader-macros stefil ];
+    lispLibs = [ named-readtables curry-compose-reader-macros alexandria alexandria curry-compose-reader-macros stefil ];
   });
   dendrite = {
     pname = "dendrite";
@@ -28147,12 +28147,12 @@ rec {
   dfio_slash_json = (dfio // {
     pname = "dfio/json";
     systems = [ "dfio/json" "dfio" ];
-    lispLibs = [ yason ];
+    lispLibs = [ let-plus fare-csv dexador data-frame anaphora alexandria yason ];
   });
   dfio_slash_tests = (dfio // {
     pname = "dfio/tests";
     systems = [ "dfio/tests" "dfio" ];
-    lispLibs = [ clunit2 ];
+    lispLibs = [ let-plus fare-csv dexador data-frame anaphora alexandria clunit2 ];
   });
   diff = {
     pname = "diff";
@@ -28183,7 +28183,7 @@ rec {
   diff-match-patch_slash_test = (diff-match-patch // {
     pname = "diff-match-patch/test";
     systems = [ "diff-match-patch/test" "diff-match-patch" ];
-    lispLibs = [ cl-interpol fiveam ];
+    lispLibs = [ iterate cl-ppcre cl-interpol fiveam ];
   });
   dirt = {
     pname = "dirt";
@@ -28669,7 +28669,7 @@ rec {
   dufy_slash_examples = (dufy // {
     pname = "dufy/examples";
     systems = [ "dufy/examples" "dufy" ];
-    lispLibs = [ alexandria iterate lispbuilder-sdl lparallel ];
+    lispLibs = [ lparallel lispbuilder-sdl iterate alexandria alexandria cl-ppcre ];
   });
   dufy_slash_extra-data = {
     pname = "dufy/extra-data";
@@ -28726,7 +28726,7 @@ rec {
   dufy_slash_test = (dufy // {
     pname = "dufy/test";
     systems = [ "dufy/test" "dufy" ];
-    lispLibs = [ alexandria cl-csv fiveam parse-float ];
+    lispLibs = [ parse-float fiveam cl-csv alexandria alexandria cl-ppcre ];
   });
   duologue = {
     pname = "duologue";
@@ -28952,7 +28952,7 @@ rec {
   easy-audio_slash_examples = (easy-audio // {
     pname = "easy-audio/examples";
     systems = [ "easy-audio/examples" "easy-audio" ];
-    lispLibs = [  ];
+    lispLibs = [ flexi-streams alexandria ];
   });
   easy-audio_slash_general-decoders = {
     pname = "easy-audio/general-decoders";
@@ -28983,7 +28983,7 @@ rec {
   easy-audio_slash_tests = (easy-audio // {
     pname = "easy-audio/tests";
     systems = [ "easy-audio/tests" "easy-audio" ];
-    lispLibs = [ fiveam md5 ];
+    lispLibs = [ flexi-streams alexandria fiveam md5 ];
   });
   easy-audio_slash_utils = {
     pname = "easy-audio/utils";
@@ -29235,12 +29235,12 @@ rec {
   eclector-concrete-syntax-tree_slash_test = (eclector-concrete-syntax-tree // {
     pname = "eclector-concrete-syntax-tree/test";
     systems = [ "eclector-concrete-syntax-tree/test" "eclector-concrete-syntax-tree" ];
-    lispLibs = [ alexandria eclector fiveam ];
+    lispLibs = [ eclector concrete-syntax-tree alexandria alexandria eclector fiveam ];
   });
   eclector_slash_test = (eclector // {
     pname = "eclector/test";
     systems = [ "eclector/test" "eclector" ];
-    lispLibs = [ alexandria fiveam ];
+    lispLibs = [ closer-mop alexandria acclimation alexandria fiveam ];
   });
   eco = {
     pname = "eco";
@@ -29336,7 +29336,7 @@ rec {
   elf_slash_test = (elf // {
     pname = "elf/test";
     systems = [ "elf/test" "elf" ];
-    lispLibs = [ alexandria metabang-bind stefil trivial-timeout ];
+    lispLibs = [ trivial-shell split-sequence metabang-bind flexi-streams com_dot_gigamonkeys_dot_binary-data cl-ppcre alexandria alexandria metabang-bind stefil trivial-timeout ];
   });
   enhanced-boolean = {
     pname = "enhanced-boolean";
@@ -29653,7 +29653,7 @@ rec {
   esrap_slash_tests = (esrap // {
     pname = "esrap/tests";
     systems = [ "esrap/tests" "esrap" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivial-with-current-source-form alexandria fiveam ];
   });
   esrap-liquid = {
     pname = "esrap-liquid";
@@ -29788,7 +29788,7 @@ rec {
   eventbus_slash_test = (eventbus // {
     pname = "eventbus/test";
     systems = [ "eventbus/test" "eventbus" ];
-    lispLibs = [ simplet simplet-asdf ];
+    lispLibs = [ simplet-asdf simplet simplet-asdf ];
   });
   eventfd = {
     pname = "eventfd";
@@ -29884,7 +29884,7 @@ rec {
   exscribe_slash_typeset = (exscribe // {
     pname = "exscribe/typeset";
     systems = [ "exscribe/typeset" "exscribe" ];
-    lispLibs = [ cl-typesetting ];
+    lispLibs = [ trivia_dot_quasiquote scribble quri fare-utils fare-scripts fare-memoization alexandria cl-typesetting ];
   });
   ext-blog = {
     pname = "ext-blog";
@@ -30045,17 +30045,17 @@ rec {
   colnew_slash_test-1 = (colnew // {
     pname = "colnew/test-1";
     systems = [ "colnew/test-1" "colnew" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   colnew_slash_test-2 = (colnew // {
     pname = "colnew/test-2";
     systems = [ "colnew/test-2" "colnew" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   colnew_slash_test-3 = (colnew // {
     pname = "colnew/test-3";
     systems = [ "colnew/test-3" "colnew" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   f2cl = {
     pname = "f2cl";
@@ -30125,57 +30125,57 @@ rec {
   fishpack_slash_test-hstcrt = (fishpack // {
     pname = "fishpack/test-hstcrt";
     systems = [ "fishpack/test-hstcrt" "fishpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   fishpack_slash_test-hstcsp = (fishpack // {
     pname = "fishpack/test-hstcsp";
     systems = [ "fishpack/test-hstcsp" "fishpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   fishpack_slash_test-hstcyl = (fishpack // {
     pname = "fishpack/test-hstcyl";
     systems = [ "fishpack/test-hstcyl" "fishpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   fishpack_slash_test-hstplr = (fishpack // {
     pname = "fishpack/test-hstplr";
     systems = [ "fishpack/test-hstplr" "fishpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   fishpack_slash_test-hstssp = (fishpack // {
     pname = "fishpack/test-hstssp";
     systems = [ "fishpack/test-hstssp" "fishpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   fishpack_slash_test-hwscrt = (fishpack // {
     pname = "fishpack/test-hwscrt";
     systems = [ "fishpack/test-hwscrt" "fishpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   fishpack_slash_test-hwscsp = (fishpack // {
     pname = "fishpack/test-hwscsp";
     systems = [ "fishpack/test-hwscsp" "fishpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   fishpack_slash_test-hwscyl = (fishpack // {
     pname = "fishpack/test-hwscyl";
     systems = [ "fishpack/test-hwscyl" "fishpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   fishpack_slash_test-hwsplr = (fishpack // {
     pname = "fishpack/test-hwsplr";
     systems = [ "fishpack/test-hwsplr" "fishpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   fishpack_slash_test-hwsssp = (fishpack // {
     pname = "fishpack/test-hwsssp";
     systems = [ "fishpack/test-hwsssp" "fishpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   fishpack_slash_test-sepx4 = (fishpack // {
     pname = "fishpack/test-sepx4";
     systems = [ "fishpack/test-sepx4" "fishpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   hompack = {
     pname = "hompack";
@@ -30193,17 +30193,17 @@ rec {
   hompack_slash_test-mainf = (hompack // {
     pname = "hompack/test-mainf";
     systems = [ "hompack/test-mainf" "hompack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl blas-hompack ];
   });
   hompack_slash_test-mainp = (hompack // {
     pname = "hompack/test-mainp";
     systems = [ "hompack/test-mainp" "hompack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl blas-hompack ];
   });
   hompack_slash_test-mains = (hompack // {
     pname = "hompack/test-mains";
     systems = [ "hompack/test-mains" "hompack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl blas-hompack ];
   });
   lapack = {
     pname = "lapack";
@@ -30260,7 +30260,7 @@ rec {
   lapack_slash_tests = (lapack // {
     pname = "lapack/tests";
     systems = [ "lapack/tests" "lapack" ];
-    lispLibs = [ rt ];
+    lispLibs = [ f2cl blas-real blas-package blas-complex rt ];
   });
   minpack = {
     pname = "minpack";
@@ -30278,12 +30278,12 @@ rec {
   minpack_slash_test-hybrd = (minpack // {
     pname = "minpack/test-hybrd";
     systems = [ "minpack/test-hybrd" "minpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   minpack_slash_test-lmdif = (minpack // {
     pname = "minpack/test-lmdif";
     systems = [ "minpack/test-lmdif" "minpack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   odepack = {
     pname = "odepack";
@@ -30392,22 +30392,22 @@ rec {
   odepack_slash_lsodi-demo = (odepack // {
     pname = "odepack/lsodi-demo";
     systems = [ "odepack/lsodi-demo" "odepack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   odepack_slash_lsodkr-demo = (odepack // {
     pname = "odepack/lsodkr-demo";
     systems = [ "odepack/lsodkr-demo" "odepack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   odepack_slash_lsodpk-demo = (odepack // {
     pname = "odepack/lsodpk-demo";
     systems = [ "odepack/lsodpk-demo" "odepack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   odepack_slash_lsoibt-demo = (odepack // {
     pname = "odepack/lsoibt-demo";
     systems = [ "odepack/lsoibt-demo" "odepack" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   odepack_slash_package = {
     pname = "odepack/package";
@@ -30451,7 +30451,7 @@ rec {
   quadpack_slash_tests = (quadpack // {
     pname = "quadpack/tests";
     systems = [ "quadpack/tests" "quadpack" ];
-    lispLibs = [ rt ];
+    lispLibs = [ f2cl rt ];
   });
   toms419 = {
     pname = "toms419";
@@ -30469,7 +30469,7 @@ rec {
   toms419_slash_test = (toms419 // {
     pname = "toms419/test";
     systems = [ "toms419/test" "toms419" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   toms715 = {
     pname = "toms715";
@@ -30487,7 +30487,7 @@ rec {
   toms715_slash_tests = (toms715 // {
     pname = "toms715/tests";
     systems = [ "toms715/tests" "toms715" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   toms717 = {
     pname = "toms717";
@@ -30505,7 +30505,7 @@ rec {
   toms717_slash_tests = (toms717 // {
     pname = "toms717/tests";
     systems = [ "toms717/tests" "toms717" ];
-    lispLibs = [  ];
+    lispLibs = [ f2cl ];
   });
   fact-base = {
     pname = "fact-base";
@@ -31191,7 +31191,7 @@ rec {
   fiveam_slash_test = (fiveam // {
     pname = "fiveam/test";
     systems = [ "fiveam/test" "fiveam" ];
-    lispLibs = [  ];
+    lispLibs = [ trivial-backtrace net_dot_didierverna_dot_asdf-flv alexandria ];
   });
   fiveam-asdf = {
     pname = "fiveam-asdf";
@@ -32069,7 +32069,7 @@ rec {
   freebsd-sysctl_slash_tests = (freebsd-sysctl // {
     pname = "freebsd-sysctl/tests";
     systems = [ "freebsd-sysctl/tests" "freebsd-sysctl" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ cffi-grovel cffi fiveam ];
   });
   freesound = {
     pname = "freesound";
@@ -32126,12 +32126,12 @@ rec {
   froute_slash_hunchentoot = (froute // {
     pname = "froute/hunchentoot";
     systems = [ "froute/hunchentoot" "froute" ];
-    lispLibs = [ hunchentoot ];
+    lispLibs = [ closer-mop cl-ppcre hunchentoot ];
   });
   froute_slash_test = (froute // {
     pname = "froute/test";
     systems = [ "froute/test" "froute" ];
-    lispLibs = [ lisp-unit ];
+    lispLibs = [ closer-mop cl-ppcre lisp-unit ];
   });
   frpc = {
     pname = "frpc";
@@ -32214,7 +32214,7 @@ rec {
   fset_slash_test = (fset // {
     pname = "fset/test";
     systems = [ "fset/test" "fset" ];
-    lispLibs = [  ];
+    lispLibs = [ named-readtables mt19937 misc-extensions ];
   });
   fsocket = {
     pname = "fsocket";
@@ -32297,7 +32297,7 @@ rec {
   function-cache_slash_test = (function-cache // {
     pname = "function-cache/test";
     systems = [ "function-cache/test" "function-cache" ];
-    lispLibs = [ lisp-unit2 ];
+    lispLibs = [ symbol-munger iterate closer-mop cl-interpol alexandria lisp-unit2 ];
   });
   functional-trees = {
     pname = "functional-trees";
@@ -32354,12 +32354,12 @@ rec {
   fxml_slash_css-selectors = (fxml // {
     pname = "fxml/css-selectors";
     systems = [ "fxml/css-selectors" "fxml" ];
-    lispLibs = [ alexandria css-selectors xpath ];
+    lispLibs = [ trivial-gray-streams split-sequence serapeum quri named-readtables flexi-streams babel alexandria alexandria css-selectors xpath ];
   });
   fxml_slash_cxml = (fxml // {
     pname = "fxml/cxml";
     systems = [ "fxml/cxml" "fxml" ];
-    lispLibs = [ cxml ];
+    lispLibs = [ trivial-gray-streams split-sequence serapeum quri named-readtables flexi-streams babel alexandria cxml ];
   });
   fxml_slash_dom = {
     pname = "fxml/dom";
@@ -32377,7 +32377,7 @@ rec {
   fxml_slash_html5 = (fxml // {
     pname = "fxml/html5";
     systems = [ "fxml/html5" "fxml" ];
-    lispLibs = [ alexandria cl-html5-parser fset quri serapeum xpath ];
+    lispLibs = [ trivial-gray-streams split-sequence serapeum quri named-readtables flexi-streams babel alexandria alexandria cl-html5-parser fset quri serapeum xpath ];
   });
   fxml_slash_klacks = {
     pname = "fxml/klacks";
@@ -32408,22 +32408,22 @@ rec {
   fxml_slash_sanitize = (fxml // {
     pname = "fxml/sanitize";
     systems = [ "fxml/sanitize" "fxml" ];
-    lispLibs = [ alexandria quri serapeum ];
+    lispLibs = [ trivial-gray-streams split-sequence serapeum quri named-readtables flexi-streams babel alexandria alexandria quri serapeum ];
   });
   fxml_slash_sanitize_slash_test = (fxml // {
     pname = "fxml/sanitize/test";
     systems = [ "fxml/sanitize/test" "fxml" ];
-    lispLibs = [ alexandria cl-html5-parser fiveam fset quri serapeum xpath ];
+    lispLibs = [ trivial-gray-streams split-sequence serapeum quri named-readtables flexi-streams babel alexandria alexandria cl-html5-parser fiveam fset quri serapeum xpath ];
   });
   fxml_slash_stp = (fxml // {
     pname = "fxml/stp";
     systems = [ "fxml/stp" "fxml" ];
-    lispLibs = [ alexandria xpath ];
+    lispLibs = [ trivial-gray-streams split-sequence serapeum quri named-readtables flexi-streams babel alexandria alexandria xpath ];
   });
   fxml_slash_test = (fxml // {
     pname = "fxml/test";
     systems = [ "fxml/test" "fxml" ];
-    lispLibs = [ alexandria babel cxml cxml-rng fiveam flexi-streams named-readtables quri serapeum split-sequence trivial-gray-streams uiop xpath ];
+    lispLibs = [ xpath uiop trivial-gray-streams split-sequence serapeum quri named-readtables flexi-streams fiveam cxml-rng cxml babel alexandria alexandria babel flexi-streams named-readtables quri serapeum split-sequence trivial-gray-streams ];
   });
   fxml_slash_xml = {
     pname = "fxml/xml";
@@ -32441,7 +32441,7 @@ rec {
   fxml_slash_xpath = (fxml // {
     pname = "fxml/xpath";
     systems = [ "fxml/xpath" "fxml" ];
-    lispLibs = [ alexandria xpath ];
+    lispLibs = [ trivial-gray-streams split-sequence serapeum quri named-readtables flexi-streams babel alexandria alexandria xpath ];
   });
   gadgets = {
     pname = "gadgets";
@@ -33018,12 +33018,12 @@ rec {
   generic-cl_dot_util_slash_test = (generic-cl_dot_util // {
     pname = "generic-cl.util/test";
     systems = [ "generic-cl.util/test" "generic-cl.util" ];
-    lispLibs = [ alexandria anaphora arrows fiveam ];
+    lispLibs = [ fiveam arrows anaphora alexandria generic-cl ];
   });
   generic-cl_slash_test = (generic-cl // {
     pname = "generic-cl/test";
     systems = [ "generic-cl/test" "generic-cl" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ generic-cl_dot_set generic-cl_dot_sequence generic-cl_dot_object generic-cl_dot_math generic-cl_dot_map generic-cl_dot_lazy-seq generic-cl_dot_iterator generic-cl_dot_container generic-cl_dot_comparison generic-cl_dot_collector generic-cl_dot_arithmetic agutil fiveam ];
   });
   generic-comparability = {
     pname = "generic-comparability";
@@ -33249,7 +33249,7 @@ rec {
   geodesic_slash_test = (geodesic // {
     pname = "geodesic/test";
     systems = [ "geodesic/test" "geodesic" ];
-    lispLibs = [ _1am parse-number split-sequence ];
+    lispLibs = [ split-sequence parse-number _1am ];
   });
   geowkt = {
     pname = "geowkt";
@@ -33709,7 +33709,7 @@ rec {
   gooptest_slash_examples = (gooptest // {
     pname = "gooptest/examples";
     systems = [ "gooptest/examples" "gooptest" ];
-    lispLibs = [  ];
+    lispLibs = [ uiop cl-plus-c cl-autowrap cffi babel alexandria ];
   });
   graph = {
     pname = "graph";
@@ -33987,7 +33987,7 @@ rec {
   gute_slash_tests = (gute // {
     pname = "gute/tests";
     systems = [ "gute/tests" "gute" ];
-    lispLibs = [ lisp-unit ];
+    lispLibs = [ conium cl-strings cl-ppcre cl-mathstats alexandria lisp-unit ];
   });
   gzip-stream = {
     pname = "gzip-stream";
@@ -34200,7 +34200,7 @@ rec {
   herodotus_slash_tests = (herodotus // {
     pname = "herodotus/tests";
     systems = [ "herodotus/tests" "herodotus" ];
-    lispLibs = [ rove ];
+    lispLibs = [ yason cl-ppcre alexandria rove ];
   });
   hh-aws = {
     pname = "hh-aws";
@@ -34322,7 +34322,7 @@ rec {
   horse-html_slash_tests = (horse-html // {
     pname = "horse-html/tests";
     systems = [ "horse-html/tests" "horse-html" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ parenscript fiveam ];
   });
   house = {
     pname = "house";
@@ -34340,7 +34340,7 @@ rec {
   house_slash_test = (house // {
     pname = "house/test";
     systems = [ "house/test" "house" ];
-    lispLibs = [ prove-asdf test-utils ];
+    lispLibs = [ usocket trivial-features split-sequence session-token quri prove-asdf optima lisp-unit flexi-streams cl-ppcre cl-json cl-fad bordeaux-threads anaphora alexandria prove-asdf test-utils ];
   });
   ht-simple-ajax = {
     pname = "ht-simple-ajax";
@@ -34514,7 +34514,7 @@ rec {
   hu_dot_dwim_dot_bluez_slash_fancy = (hu_dot_dwim_dot_bluez // {
     pname = "hu.dwim.bluez/fancy";
     systems = [ "hu.dwim.bluez/fancy" "hu.dwim.bluez" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar ];
+    lispLibs = [ hu_dot_dwim_dot_asdf cffi-libffi cffi alexandria hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar ];
   });
   hu_dot_dwim_dot_common = {
     pname = "hu.dwim.common";
@@ -34766,7 +34766,7 @@ rec {
   hu_dot_dwim_dot_def_slash_namespace = (hu_dot_dwim_dot_def // {
     pname = "hu.dwim.def/namespace";
     systems = [ "hu.dwim.def/namespace" "hu.dwim.def" ];
-    lispLibs = [ bordeaux-threads hu_dot_dwim_dot_asdf hu_dot_dwim_dot_util trivial-garbage ];
+    lispLibs = [ metabang-bind iterate hu_dot_dwim_dot_asdf anaphora alexandria bordeaux-threads hu_dot_dwim_dot_asdf hu_dot_dwim_dot_util trivial-garbage ];
   });
   hu_dot_dwim_dot_def_slash_test = {
     pname = "hu.dwim.def/test";
@@ -34849,12 +34849,12 @@ rec {
   hu_dot_dwim_dot_defclass-star_slash_documentation = (hu_dot_dwim_dot_defclass-star // {
     pname = "hu.dwim.defclass-star/documentation";
     systems = [ "hu.dwim.defclass-star/documentation" "hu.dwim.defclass-star" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_presentation hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank ];
+    lispLibs = [ hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_presentation hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf hu_dot_dwim_dot_asdf ];
   });
   hu_dot_dwim_dot_defclass-star_slash_test = (hu_dot_dwim_dot_defclass-star // {
     pname = "hu.dwim.defclass-star/test";
     systems = [ "hu.dwim.defclass-star/test" "hu.dwim.defclass-star" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank ];
+    lispLibs = [ hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf hu_dot_dwim_dot_asdf ];
   });
   hu_dot_dwim_dot_delico = {
     pname = "hu.dwim.delico";
@@ -34872,12 +34872,12 @@ rec {
   hu_dot_dwim_dot_delico_slash_documentation = (hu_dot_dwim_dot_delico // {
     pname = "hu.dwim.delico/documentation";
     systems = [ "hu.dwim.delico/documentation" "hu.dwim.delico" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_presentation hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_util hu_dot_dwim_dot_walker ];
+    lispLibs = [ hu_dot_dwim_dot_walker hu_dot_dwim_dot_util hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_presentation hu_dot_dwim_dot_def hu_dot_dwim_dot_asdf contextl hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_walker ];
   });
   hu_dot_dwim_dot_delico_slash_test = (hu_dot_dwim_dot_delico // {
     pname = "hu.dwim.delico/test";
     systems = [ "hu.dwim.delico/test" "hu.dwim.delico" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_util ];
+    lispLibs = [ hu_dot_dwim_dot_walker hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf contextl hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_util ];
   });
   hu_dot_dwim_dot_graphviz = {
     pname = "hu.dwim.graphviz";
@@ -35571,22 +35571,22 @@ rec {
   hu_dot_dwim_dot_sdl_slash_fancy = (hu_dot_dwim_dot_sdl // {
     pname = "hu.dwim.sdl/fancy";
     systems = [ "hu.dwim.sdl/fancy" "hu.dwim.sdl" ];
-    lispLibs = [ alexandria cffi cffi-libffi hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar ];
+    lispLibs = [ hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf cffi-libffi cffi alexandria alexandria cffi cffi-libffi hu_dot_dwim_dot_asdf ];
   });
   hu_dot_dwim_dot_sdl_slash_gfx = (hu_dot_dwim_dot_sdl // {
     pname = "hu.dwim.sdl/gfx";
     systems = [ "hu.dwim.sdl/gfx" "hu.dwim.sdl" ];
-    lispLibs = [ alexandria cffi cffi-libffi ];
+    lispLibs = [ hu_dot_dwim_dot_asdf cffi-libffi cffi alexandria alexandria cffi cffi-libffi ];
   });
   hu_dot_dwim_dot_sdl_slash_image = (hu_dot_dwim_dot_sdl // {
     pname = "hu.dwim.sdl/image";
     systems = [ "hu.dwim.sdl/image" "hu.dwim.sdl" ];
-    lispLibs = [ alexandria cffi cffi-libffi ];
+    lispLibs = [ hu_dot_dwim_dot_asdf cffi-libffi cffi alexandria alexandria cffi cffi-libffi ];
   });
   hu_dot_dwim_dot_sdl_slash_ttf = (hu_dot_dwim_dot_sdl // {
     pname = "hu.dwim.sdl/ttf";
     systems = [ "hu.dwim.sdl/ttf" "hu.dwim.sdl" ];
-    lispLibs = [ alexandria cffi cffi-libffi ];
+    lispLibs = [ hu_dot_dwim_dot_asdf cffi-libffi cffi alexandria alexandria cffi cffi-libffi ];
   });
   hu_dot_dwim_dot_serializer = {
     pname = "hu.dwim.serializer";
@@ -35682,7 +35682,7 @@ rec {
   hu_dot_dwim_dot_stefil_slash_test = (hu_dot_dwim_dot_stefil // {
     pname = "hu.dwim.stefil/test";
     systems = [ "hu.dwim.stefil/test" "hu.dwim.stefil" ];
-    lispLibs = [  ];
+    lispLibs = [ alexandria ];
   });
   hu_dot_dwim_dot_syntax-sugar = {
     pname = "hu.dwim.syntax-sugar";
@@ -35726,12 +35726,12 @@ rec {
   hu_dot_dwim_dot_syntax-sugar_slash_lambda-with-bang-args = (hu_dot_dwim_dot_syntax-sugar // {
     pname = "hu.dwim.syntax-sugar/lambda-with-bang-args";
     systems = [ "hu.dwim.syntax-sugar/lambda-with-bang-args" "hu.dwim.syntax-sugar" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_walker ];
+    lispLibs = [ hu_dot_dwim_dot_walker hu_dot_dwim_dot_asdf hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common ];
   });
   hu_dot_dwim_dot_syntax-sugar_slash_unicode = (hu_dot_dwim_dot_syntax-sugar // {
     pname = "hu.dwim.syntax-sugar/unicode";
     systems = [ "hu.dwim.syntax-sugar/unicode" "hu.dwim.syntax-sugar" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf ];
+    lispLibs = [ hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf hu_dot_dwim_dot_asdf ];
   });
   hu_dot_dwim_dot_uri = {
     pname = "hu.dwim.uri";
@@ -35814,67 +35814,67 @@ rec {
   hu_dot_dwim_dot_util_slash_authorization = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/authorization";
     systems = [ "hu.dwim.util/authorization" "hu.dwim.util" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_logger hu_dot_dwim_dot_partial-eval hu_dot_dwim_dot_walker ];
+    lispLibs = [ hu_dot_dwim_dot_walker hu_dot_dwim_dot_partial-eval hu_dot_dwim_dot_logger hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_asdf hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar ];
   });
   hu_dot_dwim_dot_util_slash_command-line = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/command-line";
     systems = [ "hu.dwim.util/command-line" "hu.dwim.util" ];
-    lispLibs = [ command-line-arguments hu_dot_dwim_dot_asdf uiop ];
+    lispLibs = [ hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf command-line-arguments hu_dot_dwim_dot_asdf uiop ];
   });
   hu_dot_dwim_dot_util_slash_error-handling = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/error-handling";
     systems = [ "hu.dwim.util/error-handling" "hu.dwim.util" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def ];
+    lispLibs = [ hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def ];
   });
   hu_dot_dwim_dot_util_slash_error-handling_plus_swank = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/error-handling+swank";
     systems = [ "hu.dwim.util/error-handling+swank" "hu.dwim.util" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def swank ];
+    lispLibs = [ hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def swank ];
   });
   hu_dot_dwim_dot_util_slash_finite-state-machine = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/finite-state-machine";
     systems = [ "hu.dwim.util/finite-state-machine" "hu.dwim.util" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def ];
+    lispLibs = [ hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def ];
   });
   hu_dot_dwim_dot_util_slash_flexml = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/flexml";
     systems = [ "hu.dwim.util/flexml" "hu.dwim.util" ];
-    lispLibs = [ cl-ppcre cxml hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def ];
+    lispLibs = [ hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def hu_dot_dwim_dot_asdf cxml cl-ppcre hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar ];
   });
   hu_dot_dwim_dot_util_slash_i18n = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/i18n";
     systems = [ "hu.dwim.util/i18n" "hu.dwim.util" ];
-    lispLibs = [ cl-l10n hu_dot_dwim_dot_asdf ];
+    lispLibs = [ hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf cl-l10n hu_dot_dwim_dot_asdf ];
   });
   hu_dot_dwim_dot_util_slash_linear-mapping = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/linear-mapping";
     systems = [ "hu.dwim.util/linear-mapping" "hu.dwim.util" ];
-    lispLibs = [ bordeaux-threads hu_dot_dwim_dot_asdf ];
+    lispLibs = [ hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf bordeaux-threads hu_dot_dwim_dot_asdf ];
   });
   hu_dot_dwim_dot_util_slash_mop = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/mop";
     systems = [ "hu.dwim.util/mop" "hu.dwim.util" ];
-    lispLibs = [ closer-mop hu_dot_dwim_dot_asdf ];
+    lispLibs = [ hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf closer-mop hu_dot_dwim_dot_asdf ];
   });
   hu_dot_dwim_dot_util_slash_production = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/production";
     systems = [ "hu.dwim.util/production" "hu.dwim.util" ];
-    lispLibs = [ command-line-arguments hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_logger hu_dot_dwim_dot_perec_dot_postgresql hu_dot_dwim_dot_util_plus_iolib hu_dot_dwim_dot_web-server_dot_application iolib swank uiop ];
+    lispLibs = [ uiop swank iolib hu_dot_dwim_dot_web-server_dot_application hu_dot_dwim_dot_util_plus_iolib hu_dot_dwim_dot_perec_dot_postgresql hu_dot_dwim_dot_logger hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_asdf command-line-arguments hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar ];
   });
   hu_dot_dwim_dot_util_slash_soap = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/soap";
     systems = [ "hu.dwim.util/soap" "hu.dwim.util" ];
-    lispLibs = [ babel babel-streams cl-ppcre cxml drakma hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_logger hu_dot_dwim_dot_quasi-quote_dot_xml ];
+    lispLibs = [ hu_dot_dwim_dot_quasi-quote_dot_xml hu_dot_dwim_dot_logger hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def hu_dot_dwim_dot_asdf drakma cxml cl-ppcre babel-streams babel hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar ];
   });
   hu_dot_dwim_dot_util_slash_source = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/source";
     systems = [ "hu.dwim.util/source" "hu.dwim.util" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_syntax-sugar swank ];
+    lispLibs = [ hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_syntax-sugar swank ];
   });
   hu_dot_dwim_dot_util_slash_standard-process = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/standard-process";
     systems = [ "hu.dwim.util/standard-process" "hu.dwim.util" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_delico hu_dot_dwim_dot_logger ];
+    lispLibs = [ hu_dot_dwim_dot_logger hu_dot_dwim_dot_delico hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def hu_dot_dwim_dot_asdf hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar ];
   });
   hu_dot_dwim_dot_util_slash_temporary-files = {
     pname = "hu.dwim.util/temporary-files";
@@ -35892,12 +35892,12 @@ rec {
   hu_dot_dwim_dot_util_slash_threads = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/threads";
     systems = [ "hu.dwim.util/threads" "hu.dwim.util" ];
-    lispLibs = [ bordeaux-threads hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def ];
+    lispLibs = [ hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf bordeaux-threads hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def ];
   });
   hu_dot_dwim_dot_util_slash_worker-group = (hu_dot_dwim_dot_util // {
     pname = "hu.dwim.util/worker-group";
     systems = [ "hu.dwim.util/worker-group" "hu.dwim.util" ];
-    lispLibs = [ bordeaux-threads hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_logger ];
+    lispLibs = [ hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_asdf bordeaux-threads hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_logger ];
   });
   hu_dot_dwim_dot_walker = {
     pname = "hu.dwim.walker";
@@ -35915,12 +35915,12 @@ rec {
   hu_dot_dwim_dot_walker_slash_documentation = (hu_dot_dwim_dot_walker // {
     pname = "hu.dwim.walker/documentation";
     systems = [ "hu.dwim.walker/documentation" "hu.dwim.walker" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_stefil_plus_swank hu_dot_dwim_dot_util ];
+    lispLibs = [ metabang-bind hu_dot_dwim_dot_util hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_contextl hu_dot_dwim_dot_asdf contextl closer-mop anaphora alexandria hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_stefil_plus_swank hu_dot_dwim_dot_util ];
   });
   hu_dot_dwim_dot_walker_slash_test = (hu_dot_dwim_dot_walker // {
     pname = "hu.dwim.walker/test";
     systems = [ "hu.dwim.walker/test" "hu.dwim.walker" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_stefil_plus_swank hu_dot_dwim_dot_util ];
+    lispLibs = [ metabang-bind hu_dot_dwim_dot_util hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_contextl hu_dot_dwim_dot_asdf contextl closer-mop anaphora alexandria hu_dot_dwim_dot_asdf hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_stefil_plus_swank hu_dot_dwim_dot_util ];
   });
   hu_dot_dwim_dot_web-server = {
     pname = "hu.dwim.web-server";
@@ -36042,12 +36042,12 @@ rec {
   hu_dot_dwim_dot_zlib_slash_fancy = (hu_dot_dwim_dot_zlib // {
     pname = "hu.dwim.zlib/fancy";
     systems = [ "hu.dwim.zlib/fancy" "hu.dwim.zlib" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_syntax-sugar ];
+    lispLibs = [ hu_dot_dwim_dot_asdf cffi-libffi cffi alexandria hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_syntax-sugar ];
   });
   hu_dot_dwim_dot_zlib_slash_test = (hu_dot_dwim_dot_zlib // {
     pname = "hu.dwim.zlib/test";
     systems = [ "hu.dwim.zlib/test" "hu.dwim.zlib" ];
-    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_stefil ];
+    lispLibs = [ hu_dot_dwim_dot_asdf cffi-libffi cffi alexandria hu_dot_dwim_dot_asdf hu_dot_dwim_dot_stefil ];
   });
   huffman = {
     pname = "huffman";
@@ -36273,7 +36273,7 @@ rec {
   hyperobject_slash_test = (hyperobject // {
     pname = "hyperobject/test";
     systems = [ "hyperobject/test" "hyperobject" ];
-    lispLibs = [ rt ];
+    lispLibs = [ kmrcl clsql rt ];
   });
   hyperspec = {
     pname = "hyperspec";
@@ -36460,22 +36460,22 @@ rec {
   imago_slash_jpeg-turbo = (imago // {
     pname = "imago/jpeg-turbo";
     systems = [ "imago/jpeg-turbo" "imago" ];
-    lispLibs = [ jpeg-turbo ];
+    lispLibs = [ zlib serapeum polymorphic-functions cl-jpeg array-operations alexandria jpeg-turbo ];
   });
   imago_slash_jupyter = (imago // {
     pname = "imago/jupyter";
     systems = [ "imago/jupyter" "imago" ];
-    lispLibs = [ cl-base64 common-lisp-jupyter flexi-streams ];
+    lispLibs = [ zlib serapeum polymorphic-functions cl-jpeg array-operations alexandria cl-base64 common-lisp-jupyter flexi-streams ];
   });
   imago_slash_pngload = (imago // {
     pname = "imago/pngload";
     systems = [ "imago/pngload" "imago" ];
-    lispLibs = [ pngload ];
+    lispLibs = [ zlib serapeum polymorphic-functions cl-jpeg array-operations alexandria pngload ];
   });
   imago_slash_tests = (imago // {
     pname = "imago/tests";
     systems = [ "imago/tests" "imago" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ zlib serapeum polymorphic-functions cl-jpeg array-operations alexandria fiveam ];
   });
   immutable-struct = {
     pname = "immutable-struct";
@@ -36506,7 +36506,7 @@ rec {
   incf-cl_slash_tests = (incf-cl // {
     pname = "incf-cl/tests";
     systems = [ "incf-cl/tests" "incf-cl" ];
-    lispLibs = [ fiasco uiop ];
+    lispLibs = [ uiop fiasco cl-ppcre ];
   });
   incognito-keywords = {
     pname = "incognito-keywords";
@@ -36550,7 +36550,7 @@ rec {
   inferior-shell_slash_test = (inferior-shell // {
     pname = "inferior-shell/test";
     systems = [ "inferior-shell/test" "inferior-shell" ];
-    lispLibs = [ hu_dot_dwim_dot_stefil ];
+    lispLibs = [ trivia_dot_quasiquote trivia fare-utils fare-quasiquote-extras fare-mop alexandria hu_dot_dwim_dot_stefil ];
   });
   infix-dollar-reader = {
     pname = "infix-dollar-reader";
@@ -37075,7 +37075,7 @@ rec {
   iolib_slash_tests = (iolib // {
     pname = "iolib/tests";
     systems = [ "iolib/tests" "iolib" ];
-    lispLibs = [ cffi cffi-grovel fiveam iolib_dot_asdf iolib_dot_base iolib_dot_conf trivial-features ];
+    lispLibs = [ trivial-features swap-bytes iolib_dot_conf iolib_dot_base iolib_dot_asdf idna cffi-grovel cffi bordeaux-threads babel cffi cffi-grovel fiveam iolib_dot_asdf iolib_dot_base iolib_dot_conf trivial-features ];
   });
   iolib_slash_trivial-sockets = {
     pname = "iolib/trivial-sockets";
@@ -38328,7 +38328,7 @@ rec {
   ironclad_slash_tests = (ironclad // {
     pname = "ironclad/tests";
     systems = [ "ironclad/tests" "ironclad" ];
-    lispLibs = [ rt ];
+    lispLibs = [ bordeaux-threads rt ];
   });
   eclecticse_dot_iso-8601-date = {
     pname = "eclecticse.iso-8601-date";
@@ -38585,7 +38585,7 @@ rec {
   jingoh_slash_test = (jingoh // {
     pname = "jingoh/test";
     systems = [ "jingoh/test" "jingoh" ];
-    lispLibs = [ named-readtables ];
+    lispLibs = [ named-readtables jingoh_dot_tester jingoh_dot_reader jingoh_dot_org jingoh_dot_examiner named-readtables ];
   });
   jonathan = {
     pname = "jonathan";
@@ -38668,7 +38668,7 @@ rec {
   jpeg-turbo_slash_tests = (jpeg-turbo // {
     pname = "jpeg-turbo/tests";
     systems = [ "jpeg-turbo/tests" "jpeg-turbo" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ cffi-grovel cffi fiveam ];
   });
   jpl-queues = {
     pname = "jpl-queues";
@@ -38972,7 +38972,7 @@ rec {
   keystone_slash_test = (keystone // {
     pname = "keystone/test";
     systems = [ "keystone/test" "keystone" ];
-    lispLibs = [ cffi cffi-grovel gt static-vectors stefil ];
+    lispLibs = [ trivial-features static-vectors gt cffi-grovel cffi cffi cffi-grovel gt static-vectors stefil ];
   });
   kl-verify = {
     pname = "kl-verify";
@@ -39775,7 +39775,7 @@ rec {
   let-plus_slash_tests = (let-plus // {
     pname = "let-plus/tests";
     systems = [ "let-plus/tests" "let-plus" ];
-    lispLibs = [ lift ];
+    lispLibs = [ anaphora alexandria lift ];
   });
   letrec = {
     pname = "letrec";
@@ -40170,7 +40170,7 @@ rec {
   linear-programming-glpk_slash_test = (linear-programming-glpk // {
     pname = "linear-programming-glpk/test";
     systems = [ "linear-programming-glpk/test" "linear-programming-glpk" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ linear-programming cffi fiveam ];
   });
   linedit = {
     pname = "linedit";
@@ -40227,17 +40227,17 @@ rec {
   linux-packaging-tests_slash_deb = (linux-packaging-tests // {
     pname = "linux-packaging-tests/deb";
     systems = [ "linux-packaging-tests/deb" "linux-packaging-tests" ];
-    lispLibs = [ linux-packaging ];
+    lispLibs = [ wild-package-inferred-system sqlite osicat linux-packaging linux-packaging ];
   });
   linux-packaging-tests_slash_pacman = (linux-packaging-tests // {
     pname = "linux-packaging-tests/pacman";
     systems = [ "linux-packaging-tests/pacman" "linux-packaging-tests" ];
-    lispLibs = [ linux-packaging ];
+    lispLibs = [ wild-package-inferred-system sqlite osicat linux-packaging linux-packaging ];
   });
   linux-packaging-tests_slash_rpm = (linux-packaging-tests // {
     pname = "linux-packaging-tests/rpm";
     systems = [ "linux-packaging-tests/rpm" "linux-packaging-tests" ];
-    lispLibs = [ linux-packaging ];
+    lispLibs = [ wild-package-inferred-system sqlite osicat linux-packaging linux-packaging ];
   });
   lionchat = {
     pname = "lionchat";
@@ -40411,7 +40411,7 @@ rec {
   com_dot_google_dot_flag_slash_test = (com_dot_google_dot_flag // {
     pname = "com.google.flag/test";
     systems = [ "com.google.flag/test" "com.google.flag" ];
-    lispLibs = [ hu_dot_dwim_dot_stefil ];
+    lispLibs = [ com_dot_google_dot_base hu_dot_dwim_dot_stefil ];
   });
   lil = {
     pname = "lil";
@@ -40538,7 +40538,7 @@ rec {
   lisp-stat_slash_tests = (lisp-stat // {
     pname = "lisp-stat/tests";
     systems = [ "lisp-stat/tests" "lisp-stat" ];
-    lispLibs = [ parachute ];
+    lispLibs = [ split-sequence select num-utils let-plus dfio dexador data-frame array-operations alexandria parachute ];
   });
   lisp-unit = {
     pname = "lisp-unit";
@@ -41128,12 +41128,12 @@ rec {
   list-named-class_slash_protest = (list-named-class // {
     pname = "list-named-class/protest";
     systems = [ "list-named-class/protest" "list-named-class" ];
-    lispLibs = [ protest ];
+    lispLibs = [ closer-mop alexandria protest ];
   });
   list-named-class_slash_test = (list-named-class // {
     pname = "list-named-class/test";
     systems = [ "list-named-class/test" "list-named-class" ];
-    lispLibs = [ _1am ];
+    lispLibs = [ closer-mop alexandria _1am ];
   });
   listoflist = {
     pname = "listoflist";
@@ -41234,7 +41234,7 @@ rec {
   litterae_slash_tests = (litterae // {
     pname = "litterae/tests";
     systems = [ "litterae/tests" "litterae" ];
-    lispLibs = [ litterae-test-system rove ];
+    lispLibs = [ str lsx docparser cl-yaml _3bmd-ext-code-blocks _3bmd litterae-test-system rove ];
   });
   livesupport = {
     pname = "livesupport";
@@ -41291,7 +41291,7 @@ rec {
   lmdb_slash_test = (lmdb // {
     pname = "lmdb/test";
     systems = [ "lmdb/test" "lmdb" ];
-    lispLibs = [  ];
+    lispLibs = [ trivial-utf-8 trivial-garbage trivial-features osicat mgl-pax cl-reexport bordeaux-threads alexandria ];
   });
   lml = {
     pname = "lml";
@@ -41387,7 +41387,7 @@ rec {
   local-time_slash_test = (local-time // {
     pname = "local-time/test";
     systems = [ "local-time/test" "local-time" ];
-    lispLibs = [ hu_dot_dwim_dot_stefil ];
+    lispLibs = [ uiop hu_dot_dwim_dot_stefil ];
   });
   cl-postgres_plus_local-time-duration = {
     pname = "cl-postgres+local-time-duration";
@@ -41470,12 +41470,12 @@ rec {
   log4cl_slash_syslog = (log4cl // {
     pname = "log4cl/syslog";
     systems = [ "log4cl/syslog" "log4cl" ];
-    lispLibs = [  ];
+    lispLibs = [ bordeaux-threads ];
   });
   log4cl_slash_test = (log4cl // {
     pname = "log4cl/test";
     systems = [ "log4cl/test" "log4cl" ];
-    lispLibs = [ stefil ];
+    lispLibs = [ bordeaux-threads stefil ];
   });
   log4cl-extras = {
     pname = "log4cl-extras";
@@ -41818,7 +41818,7 @@ rec {
   macrodynamics_slash_test = (macrodynamics // {
     pname = "macrodynamics/test";
     systems = [ "macrodynamics/test" "macrodynamics" ];
-    lispLibs = [ check-it fiasco ];
+    lispLibs = [ fiasco check-it alexandria ];
   });
   macroexpand-dammit = {
     pname = "macroexpand-dammit";
@@ -41888,7 +41888,7 @@ rec {
   magicffi_slash_test = (magicffi // {
     pname = "magicffi/test";
     systems = [ "magicffi/test" "magicffi" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ cl-ppcre cffi-grovel cffi fiveam ];
   });
   magicl = {
     pname = "magicl";
@@ -42790,7 +42790,7 @@ rec {
   math_slash_docs = (math // {
     pname = "math/docs";
     systems = [ "math/docs" "math" ];
-    lispLibs = [ codex mnas-package ];
+    lispLibs = [ vgplot font-discovery cl-utilities codex mnas-package ];
   });
   math_slash_geom = {
     pname = "math/geom";
@@ -42860,7 +42860,7 @@ rec {
   math_slash_ls-solve = (math // {
     pname = "math/ls-solve";
     systems = [ "math/ls-solve" "math" ];
-    lispLibs = [ gsll ];
+    lispLibs = [ vgplot font-discovery cl-utilities gsll ];
   });
   math_slash_smooth = {
     pname = "math/smooth";
@@ -42891,7 +42891,7 @@ rec {
   math_slash_tests = (math // {
     pname = "math/tests";
     systems = [ "math/tests" "math" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ vgplot font-discovery cl-utilities fiveam ];
   });
   mathkit = {
     pname = "mathkit";
@@ -43130,7 +43130,7 @@ rec {
   clim-pdf_slash_test = (clim-pdf // {
     pname = "clim-pdf/test";
     systems = [ "clim-pdf/test" "clim-pdf" ];
-    lispLibs = [ fiveam mcclim ];
+    lispLibs = [ flexi-streams clim-postscript-font clim-postscript clim-basic cl-pdf fiveam mcclim ];
   });
   clim-postscript = {
     pname = "clim-postscript";
@@ -43161,7 +43161,7 @@ rec {
   clim-postscript_slash_test = (clim-postscript // {
     pname = "clim-postscript/test";
     systems = [ "clim-postscript/test" "clim-postscript" ];
-    lispLibs = [ fiveam mcclim ];
+    lispLibs = [ clim-postscript-font clim-basic fiveam mcclim ];
   });
   clouseau = {
     pname = "clouseau";
@@ -43179,7 +43179,7 @@ rec {
   clouseau_slash_test = (clouseau // {
     pname = "clouseau/test";
     systems = [ "clouseau/test" "clouseau" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ mcclim closer-mop fiveam ];
   });
   conditional-commands = {
     pname = "conditional-commands";
@@ -43210,7 +43210,7 @@ rec {
   drei-mcclim_slash_test = (drei-mcclim // {
     pname = "drei-mcclim/test";
     systems = [ "drei-mcclim/test" "drei-mcclim" ];
-    lispLibs = [ automaton fiveam ];
+    lispLibs = [ swank persistent mcclim-fonts flexichain esa-mcclim clim-core automaton automaton fiveam ];
   });
   esa-mcclim = {
     pname = "esa-mcclim";
@@ -43267,7 +43267,7 @@ rec {
   mcclim-backend-common_slash_test = (mcclim-backend-common // {
     pname = "mcclim-backend-common/test";
     systems = [ "mcclim-backend-common/test" "mcclim-backend-common" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ clim fiveam ];
   });
   mcclim-bezier = {
     pname = "mcclim-bezier";
@@ -43467,7 +43467,7 @@ rec {
   mcclim-raster-image_slash_test = (mcclim-raster-image // {
     pname = "mcclim-raster-image/test";
     systems = [ "mcclim-raster-image/test" "mcclim-raster-image" ];
-    lispLibs = [ fiveam mcclim ];
+    lispLibs = [ mcclim-render mcclim-backend-common clim-basic fiveam mcclim ];
   });
   mcclim-render = {
     pname = "mcclim-render";
@@ -43524,12 +43524,12 @@ rec {
   mcclim_slash_test = (mcclim // {
     pname = "mcclim/test";
     systems = [ "mcclim/test" "mcclim" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ mcclim-null mcclim-franz mcclim-clx-fb mcclim-clx mcclim-bitmaps mcclim-bezier conditional-commands clim-postscript clim-pdf clim fiveam ];
   });
   mcclim_slash_test-util = (mcclim // {
     pname = "mcclim/test-util";
     systems = [ "mcclim/test-util" "mcclim" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ mcclim-null mcclim-franz mcclim-clx-fb mcclim-clx mcclim-bitmaps mcclim-bezier conditional-commands clim-postscript clim-pdf clim fiveam ];
   });
   persistent = {
     pname = "persistent";
@@ -43612,7 +43612,7 @@ rec {
   media-types_slash_tests = (media-types // {
     pname = "media-types/tests";
     systems = [ "media-types/tests" "media-types" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ serapeum cl-ppcre alexandria fiveam ];
   });
   mel-base = {
     pname = "mel-base";
@@ -43747,12 +43747,12 @@ rec {
   metacopy-with-contextl_slash_test = (metacopy-with-contextl // {
     pname = "metacopy-with-contextl/test";
     systems = [ "metacopy-with-contextl/test" "metacopy-with-contextl" ];
-    lispLibs = [ lift metacopy ];
+    lispLibs = [ metacopy lift contextl metacopy ];
   });
   metacopy_slash_test = (metacopy // {
     pname = "metacopy/test";
     systems = [ "metacopy/test" "metacopy" ];
-    lispLibs = [ lift ];
+    lispLibs = [ lift moptilities ];
   });
   metalock = {
     pname = "metalock";
@@ -43983,27 +43983,27 @@ rec {
   mgl-pax_slash_document = (mgl-pax // {
     pname = "mgl-pax/document";
     systems = [ "mgl-pax/document" "mgl-pax" ];
-    lispLibs = [ _3bmd _3bmd-ext-code-blocks colorize md5 ];
+    lispLibs = [ swank pythonic-string-reader named-readtables alexandria _3bmd _3bmd-ext-code-blocks colorize md5 ];
   });
   mgl-pax_slash_full = (mgl-pax // {
     pname = "mgl-pax/full";
     systems = [ "mgl-pax/full" "mgl-pax" ];
-    lispLibs = [ _3bmd _3bmd-ext-code-blocks colorize md5 ];
+    lispLibs = [ swank pythonic-string-reader named-readtables alexandria _3bmd _3bmd-ext-code-blocks colorize md5 ];
   });
   mgl-pax_slash_navigate = (mgl-pax // {
     pname = "mgl-pax/navigate";
     systems = [ "mgl-pax/navigate" "mgl-pax" ];
-    lispLibs = [  ];
+    lispLibs = [ swank pythonic-string-reader named-readtables alexandria ];
   });
   mgl-pax_slash_test = (mgl-pax // {
     pname = "mgl-pax/test";
     systems = [ "mgl-pax/test" "mgl-pax" ];
-    lispLibs = [ _3bmd _3bmd-ext-code-blocks colorize md5 ];
+    lispLibs = [ swank pythonic-string-reader named-readtables alexandria _3bmd _3bmd-ext-code-blocks colorize md5 ];
   });
   mgl-pax_slash_transcribe = (mgl-pax // {
     pname = "mgl-pax/transcribe";
     systems = [ "mgl-pax/transcribe" "mgl-pax" ];
-    lispLibs = [  ];
+    lispLibs = [ swank pythonic-string-reader named-readtables alexandria ];
   });
   mgrs = {
     pname = "mgrs";
@@ -44021,7 +44021,7 @@ rec {
   mgrs_slash_tests = (mgrs // {
     pname = "mgrs/tests";
     systems = [ "mgrs/tests" "mgrs" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ utm-ups fiveam ];
   });
   micmac = {
     pname = "micmac";
@@ -44039,7 +44039,7 @@ rec {
   micmac_slash_test = (micmac // {
     pname = "micmac/test";
     systems = [ "micmac/test" "micmac" ];
-    lispLibs = [  ];
+    lispLibs = [ mgl-pax ];
   });
   midi = {
     pname = "midi";
@@ -44421,7 +44421,7 @@ rec {
   mnas-graph_slash_docs = (mnas-graph // {
     pname = "mnas-graph/docs";
     systems = [ "mnas-graph/docs" "mnas-graph" ];
-    lispLibs = [ codex mnas-package ];
+    lispLibs = [ mnas-package codex mnas-hash-table ];
   });
   mnas-graph_slash_filter = {
     pname = "mnas-graph/filter";
@@ -44452,7 +44452,7 @@ rec {
   mnas-graph_slash_tests = (mnas-graph // {
     pname = "mnas-graph/tests";
     systems = [ "mnas-graph/tests" "mnas-graph" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ mnas-hash-table fiveam ];
   });
   mnas-graph_slash_view = {
     pname = "mnas-graph/view";
@@ -44506,7 +44506,7 @@ rec {
   mnas-package_slash_docs = (mnas-package // {
     pname = "mnas-package/docs";
     systems = [ "mnas-package/docs" "mnas-package" ];
-    lispLibs = [ codex ];
+    lispLibs = [ slynk mnas-string mnas-graph inferior-shell closer-mop alexandria codex ];
   });
   mnas-package_slash_example = {
     pname = "mnas-package/example";
@@ -44589,7 +44589,7 @@ rec {
   mnas-package_slash_tests = (mnas-package // {
     pname = "mnas-package/tests";
     systems = [ "mnas-package/tests" "mnas-package" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ slynk mnas-string mnas-graph inferior-shell closer-mop alexandria fiveam ];
   });
   mnas-package_slash_view = {
     pname = "mnas-package/view";
@@ -44620,7 +44620,7 @@ rec {
   mnas-path_slash_docs = (mnas-path // {
     pname = "mnas-path/docs";
     systems = [ "mnas-path/docs" "mnas-path" ];
-    lispLibs = [ codex mnas-package ];
+    lispLibs = [ mnas-package codex cl-fad ];
   });
   mnas-string = {
     pname = "mnas-string";
@@ -44664,7 +44664,7 @@ rec {
   mnas-string_slash_docs = (mnas-string // {
     pname = "mnas-string/docs";
     systems = [ "mnas-string/docs" "mnas-string" ];
-    lispLibs = [ codex mnas-package ];
+    lispLibs = [ mnas-package codex cl-ppcre ];
   });
   mnas-string_slash_parse = {
     pname = "mnas-string/parse";
@@ -44695,7 +44695,7 @@ rec {
   mnas-string_slash_tests = (mnas-string // {
     pname = "mnas-string/tests";
     systems = [ "mnas-string/tests" "mnas-string" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ cl-ppcre fiveam ];
   });
   mnas-string_slash_translit = {
     pname = "mnas-string/translit";
@@ -45077,17 +45077,17 @@ rec {
   monomyth_slash_basic-example-master = (monomyth // {
     pname = "monomyth/basic-example-master";
     systems = [ "monomyth/basic-example-master" "monomyth" ];
-    lispLibs = [ rove ];
+    lispLibs = [ woo verbose uuid trivia stmx rutils pzmq optima ningle jonathan iterate fset flexi-streams closer-mop clack cl-store cl-rabbit cl-algebraic-data-type babel alexandria rove ];
   });
   monomyth_slash_basic-example-worker = (monomyth // {
     pname = "monomyth/basic-example-worker";
     systems = [ "monomyth/basic-example-worker" "monomyth" ];
-    lispLibs = [ rove ];
+    lispLibs = [ woo verbose uuid trivia stmx rutils pzmq optima ningle jonathan iterate fset flexi-streams closer-mop clack cl-store cl-rabbit cl-algebraic-data-type babel alexandria rove ];
   });
   monomyth_slash_tests = (monomyth // {
     pname = "monomyth/tests";
     systems = [ "monomyth/tests" "monomyth" ];
-    lispLibs = [ cl-mock dexador lparallel quri rove ];
+    lispLibs = [ woo verbose uuid trivia stmx rutils pzmq optima ningle jonathan iterate fset flexi-streams closer-mop clack cl-store cl-rabbit cl-algebraic-data-type babel alexandria cl-mock dexador lparallel quri rove ];
   });
   lucene-in-action-tests = {
     pname = "lucene-in-action-tests";
@@ -45196,7 +45196,7 @@ rec {
   more-conditions_slash_test = (more-conditions // {
     pname = "more-conditions/test";
     systems = [ "more-conditions/test" "more-conditions" ];
-    lispLibs = [ fiveam let-plus ];
+    lispLibs = [ closer-mop alexandria fiveam let-plus ];
   });
   mp3-duration = {
     pname = "mp3-duration";
@@ -45448,17 +45448,17 @@ rec {
   mutility_slash_loopy = (mutility // {
     pname = "mutility/loopy";
     systems = [ "mutility/loopy" "mutility" ];
-    lispLibs = [ trivial-do ];
+    lispLibs = [ local-time closer-mop alexandria trivial-do ];
   });
   mutility_slash_test-helpers = (mutility // {
     pname = "mutility/test-helpers";
     systems = [ "mutility/test-helpers" "mutility" ];
-    lispLibs = [  ];
+    lispLibs = [ local-time closer-mop alexandria ];
   });
   mutility_slash_tests = (mutility // {
     pname = "mutility/tests";
     systems = [ "mutility/tests" "mutility" ];
-    lispLibs = [ fiveam trivial-do ];
+    lispLibs = [ local-time closer-mop alexandria fiveam trivial-do ];
   });
   mw-equiv = {
     pname = "mw-equiv";
@@ -45733,7 +45733,7 @@ rec {
   nbd_slash_simple-in-memory = (nbd // {
     pname = "nbd/simple-in-memory";
     systems = [ "nbd/simple-in-memory" "nbd" ];
-    lispLibs = [ wild-package-inferred-system ];
+    lispLibs = [ wild-package-inferred-system lisp-binary flexi-streams bordeaux-threads wild-package-inferred-system ];
   });
   neo4cl = {
     pname = "neo4cl";
@@ -45816,12 +45816,12 @@ rec {
   neural-classifier_slash_mnist = (neural-classifier // {
     pname = "neural-classifier/mnist";
     systems = [ "neural-classifier/mnist" "neural-classifier" ];
-    lispLibs = [ nibbles ];
+    lispLibs = [ snakes magicl nibbles ];
   });
   neural-classifier_slash_tests = (neural-classifier // {
     pname = "neural-classifier/tests";
     systems = [ "neural-classifier/tests" "neural-classifier" ];
-    lispLibs = [ fiveam nibbles ];
+    lispLibs = [ snakes magicl fiveam nibbles ];
   });
   new-op = {
     pname = "new-op";
@@ -46091,7 +46091,7 @@ rec {
   num-utils_slash_tests = (num-utils // {
     pname = "num-utils/tests";
     systems = [ "num-utils/tests" "num-utils" ];
-    lispLibs = [ fiveam select ];
+    lispLibs = [ select let-plus array-operations anaphora alexandria fiveam select ];
   });
   numpy-file-format = {
     pname = "numpy-file-format";
@@ -46109,7 +46109,7 @@ rec {
   numpy-file-format_slash_tests = (numpy-file-format // {
     pname = "numpy-file-format/tests";
     systems = [ "numpy-file-format/tests" "numpy-file-format" ];
-    lispLibs = [ uiop ];
+    lispLibs = [ trivial-features ieee-floats uiop ];
   });
   nyaml = {
     pname = "nyaml";
@@ -46127,7 +46127,7 @@ rec {
   nyaml_slash_test = (nyaml // {
     pname = "nyaml/test";
     systems = [ "nyaml/test" "nyaml" ];
-    lispLibs = [ alexandria esrap parachute split-sequence yason ];
+    lispLibs = [ trivia parse-number fare-quasiquote-extras fare-quasiquote esrap cl-ppcre babel alexandria alexandria esrap parachute split-sequence yason ];
   });
   nyxt = {
     pname = "nyxt";
@@ -46171,7 +46171,7 @@ rec {
   nyxt_slash_benchmark = (nyxt // {
     pname = "nyxt/benchmark";
     systems = [ "nyxt/benchmark" "nyxt" ];
-    lispLibs = [ alexandria trivial-benchmark ];
+    lispLibs = [ unix-opts uiop trivial-types trivial-package-local-nicknames trivial-garbage trivial-features trivial-clipboard trivia swank str spinneret serapeum quri plump parenscript named-readtables moptilities lparallel log4cl local-time iolib hu_dot_dwim_dot_defclass-star fset flexi-streams enchant dexador cluffer clss closer-mop cl-qrencode cl-prevalence cl-ppcre-unicode cl-ppcre cl-json cl-html-diff cl-custom-hash-table cl-css cl-containers cl-base64 calispel bordeaux-threads alexandria alexandria trivial-benchmark ];
   });
   nyxt_slash_class-star = {
     pname = "nyxt/class-star";
@@ -46241,22 +46241,22 @@ rec {
   nyxt_slash_gi-gtk = (nyxt // {
     pname = "nyxt/gi-gtk";
     systems = [ "nyxt/gi-gtk" "nyxt" ];
-    lispLibs = [ bordeaux-threads cl-cffi-gtk cl-gobject-introspection cl-webkit2 ];
+    lispLibs = [ unix-opts uiop trivial-types trivial-package-local-nicknames trivial-garbage trivial-features trivial-clipboard trivia swank str spinneret serapeum quri plump parenscript named-readtables moptilities lparallel log4cl local-time iolib hu_dot_dwim_dot_defclass-star fset flexi-streams enchant dexador cluffer clss closer-mop cl-qrencode cl-prevalence cl-ppcre-unicode cl-ppcre cl-json cl-html-diff cl-custom-hash-table cl-css cl-containers cl-base64 calispel bordeaux-threads alexandria bordeaux-threads cl-cffi-gtk cl-gobject-introspection cl-webkit2 ];
   });
   nyxt_slash_gi-gtk-application = (nyxt // {
     pname = "nyxt/gi-gtk-application";
     systems = [ "nyxt/gi-gtk-application" "nyxt" ];
-    lispLibs = [ bordeaux-threads cl-cffi-gtk cl-gobject-introspection cl-webkit2 ];
+    lispLibs = [ unix-opts uiop trivial-types trivial-package-local-nicknames trivial-garbage trivial-features trivial-clipboard trivia swank str spinneret serapeum quri plump parenscript named-readtables moptilities lparallel log4cl local-time iolib hu_dot_dwim_dot_defclass-star fset flexi-streams enchant dexador cluffer clss closer-mop cl-qrencode cl-prevalence cl-ppcre-unicode cl-ppcre cl-json cl-html-diff cl-custom-hash-table cl-css cl-containers cl-base64 calispel bordeaux-threads alexandria bordeaux-threads cl-cffi-gtk cl-gobject-introspection cl-webkit2 ];
   });
   nyxt_slash_gtk = (nyxt // {
     pname = "nyxt/gtk";
     systems = [ "nyxt/gtk" "nyxt" ];
-    lispLibs = [ cl-cffi-gtk cl-webkit2 ];
+    lispLibs = [ unix-opts uiop trivial-types trivial-package-local-nicknames trivial-garbage trivial-features trivial-clipboard trivia swank str spinneret serapeum quri plump parenscript named-readtables moptilities lparallel log4cl local-time iolib hu_dot_dwim_dot_defclass-star fset flexi-streams enchant dexador cluffer clss closer-mop cl-qrencode cl-prevalence cl-ppcre-unicode cl-ppcre cl-json cl-html-diff cl-custom-hash-table cl-css cl-containers cl-base64 calispel bordeaux-threads alexandria cl-cffi-gtk cl-webkit2 ];
   });
   nyxt_slash_gtk-application = (nyxt // {
     pname = "nyxt/gtk-application";
     systems = [ "nyxt/gtk-application" "nyxt" ];
-    lispLibs = [ cl-cffi-gtk cl-webkit2 ];
+    lispLibs = [ unix-opts uiop trivial-types trivial-package-local-nicknames trivial-garbage trivial-features trivial-clipboard trivia swank str spinneret serapeum quri plump parenscript named-readtables moptilities lparallel log4cl local-time iolib hu_dot_dwim_dot_defclass-star fset flexi-streams enchant dexador cluffer clss closer-mop cl-qrencode cl-prevalence cl-ppcre-unicode cl-ppcre cl-json cl-html-diff cl-custom-hash-table cl-css cl-containers cl-base64 calispel bordeaux-threads alexandria cl-cffi-gtk cl-webkit2 ];
   });
   nyxt_slash_history-tree = {
     pname = "nyxt/history-tree";
@@ -46391,7 +46391,7 @@ rec {
   nyxt_slash_tests = (nyxt // {
     pname = "nyxt/tests";
     systems = [ "nyxt/tests" "nyxt" ];
-    lispLibs = [ prove ];
+    lispLibs = [ unix-opts uiop trivial-types trivial-package-local-nicknames trivial-garbage trivial-features trivial-clipboard trivia swank str spinneret serapeum quri plump parenscript named-readtables moptilities lparallel log4cl local-time iolib hu_dot_dwim_dot_defclass-star fset flexi-streams enchant dexador cluffer clss closer-mop cl-qrencode cl-prevalence cl-ppcre-unicode cl-ppcre cl-json cl-html-diff cl-custom-hash-table cl-css cl-containers cl-base64 calispel bordeaux-threads alexandria prove ];
   });
   nyxt_slash_text-buffer = {
     pname = "nyxt/text-buffer";
@@ -46448,7 +46448,7 @@ rec {
   nyxt_slash_version = (nyxt // {
     pname = "nyxt/version";
     systems = [ "nyxt/version" "nyxt" ];
-    lispLibs = [  ];
+    lispLibs = [ unix-opts uiop trivial-types trivial-package-local-nicknames trivial-garbage trivial-features trivial-clipboard trivia swank str spinneret serapeum quri plump parenscript named-readtables moptilities lparallel log4cl local-time iolib hu_dot_dwim_dot_defclass-star fset flexi-streams enchant dexador cluffer clss closer-mop cl-qrencode cl-prevalence cl-ppcre-unicode cl-ppcre cl-json cl-html-diff cl-custom-hash-table cl-css cl-containers cl-base64 calispel bordeaux-threads alexandria ];
   });
   object-class = {
     pname = "object-class";
@@ -46739,7 +46739,7 @@ rec {
   opticl_slash_test = (opticl // {
     pname = "opticl/test";
     systems = [ "opticl/test" "opticl" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ zpng skippy retrospectiff pngload opticl-core cl-tga cl-jpeg alexandria fiveam ];
   });
   opticl-core = {
     pname = "opticl-core";
@@ -46900,7 +46900,7 @@ rec {
   osicat_slash_tests = (osicat // {
     pname = "osicat/tests";
     systems = [ "osicat/tests" "osicat" ];
-    lispLibs = [ rt ];
+    lispLibs = [ trivial-features cffi-grovel cffi alexandria rt ];
   });
   osmpbf = {
     pname = "osmpbf";
@@ -47048,7 +47048,7 @@ rec {
   packet-crafting_slash_tests = (packet-crafting // {
     pname = "packet-crafting/tests";
     systems = [ "packet-crafting/tests" "packet-crafting" ];
-    lispLibs = [ rove ];
+    lispLibs = [ lisp-binary rove ];
   });
   paiprolog = {
     pname = "paiprolog";
@@ -47531,12 +47531,12 @@ rec {
   parser_dot_common-rules_dot_operators_slash_test = (parser_dot_common-rules_dot_operators // {
     pname = "parser.common-rules.operators/test";
     systems = [ "parser.common-rules.operators/test" "parser.common-rules.operators" ];
-    lispLibs = [ alexandria fiveam let-plus parser_dot_common-rules ];
+    lispLibs = [ parser_dot_common-rules let-plus esrap architecture_dot_builder-protocol alexandria alexandria fiveam let-plus parser_dot_common-rules ];
   });
   parser_dot_common-rules_slash_test = (parser_dot_common-rules // {
     pname = "parser.common-rules/test";
     systems = [ "parser.common-rules/test" "parser.common-rules" ];
-    lispLibs = [ alexandria fiveam let-plus ];
+    lispLibs = [ split-sequence let-plus esrap alexandria alexandria fiveam let-plus ];
   });
   parser_dot_ini = {
     pname = "parser.ini";
@@ -47554,7 +47554,7 @@ rec {
   parser_dot_ini_slash_test = (parser_dot_ini // {
     pname = "parser.ini/test";
     systems = [ "parser.ini/test" "parser.ini" ];
-    lispLibs = [ alexandria fiveam let-plus ];
+    lispLibs = [ parser_dot_common-rules more-conditions let-plus esrap architecture_dot_builder-protocol alexandria alexandria fiveam let-plus ];
   });
   parsley = {
     pname = "parsley";
@@ -47585,12 +47585,12 @@ rec {
   parsnip_slash_examples = (parsnip // {
     pname = "parsnip/examples";
     systems = [ "parsnip/examples" "parsnip" ];
-    lispLibs = [ alexandria ];
+    lispLibs = [ alexandria alexandria ];
   });
   parsnip_slash_test = (parsnip // {
     pname = "parsnip/test";
     systems = [ "parsnip/test" "parsnip" ];
-    lispLibs = [ alexandria parachute ];
+    lispLibs = [ parachute alexandria alexandria ];
   });
   patchwork = {
     pname = "patchwork";
@@ -47777,7 +47777,7 @@ rec {
   perceptual-hashes_slash_tests = (perceptual-hashes // {
     pname = "perceptual-hashes/tests";
     systems = [ "perceptual-hashes/tests" "perceptual-hashes" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ jpeg-turbo imago array-operations fiveam ];
   });
   periodic-table = {
     pname = "periodic-table";
@@ -48081,17 +48081,17 @@ rec {
   petri_slash_graph = (petri // {
     pname = "petri/graph";
     systems = [ "petri/graph" "petri" ];
-    lispLibs = [ cl-dot ];
+    lispLibs = [ split-sequence phoe-toolbox closer-mop alexandria _1am cl-dot ];
   });
   petri_slash_test = (petri // {
     pname = "petri/test";
     systems = [ "petri/test" "petri" ];
-    lispLibs = [ _1am alexandria bordeaux-threads lparallel trivial-backtrace ];
+    lispLibs = [ split-sequence phoe-toolbox closer-mop alexandria _1am _1am alexandria bordeaux-threads lparallel trivial-backtrace ];
   });
   petri_slash_threaded = (petri // {
     pname = "petri/threaded";
     systems = [ "petri/threaded" "petri" ];
-    lispLibs = [ bordeaux-threads lparallel trivial-backtrace ];
+    lispLibs = [ split-sequence phoe-toolbox closer-mop alexandria _1am bordeaux-threads lparallel trivial-backtrace ];
   });
   pettomato-deque = {
     pname = "pettomato-deque";
@@ -48213,7 +48213,7 @@ rec {
   physical-quantities_slash_test = (physical-quantities // {
     pname = "physical-quantities/test";
     systems = [ "physical-quantities/test" "physical-quantities" ];
-    lispLibs = [  ];
+    lispLibs = [ parseq ];
   });
   picl = {
     pname = "picl";
@@ -48231,12 +48231,12 @@ rec {
   picl_slash_iterate = (picl // {
     pname = "picl/iterate";
     systems = [ "picl/iterate" "picl" ];
-    lispLibs = [ alexandria iterate ];
+    lispLibs = [ defclass-std alexandria alexandria iterate ];
   });
   picl_slash_tests = (picl // {
     pname = "picl/tests";
     systems = [ "picl/tests" "picl" ];
-    lispLibs = [ alexandria fiveam generic-cl iterate ];
+    lispLibs = [ iterate generic-cl fiveam alexandria alexandria defclass-std ];
   });
   piggyback-parameters = {
     pname = "piggyback-parameters";
@@ -48254,7 +48254,7 @@ rec {
   piggyback-parameters_slash_test = (piggyback-parameters // {
     pname = "piggyback-parameters/test";
     systems = [ "piggyback-parameters/test" "piggyback-parameters" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivial-pooled-database trivial-json-codec trivial-hashtable-serialize fiveam ];
   });
   pileup = {
     pname = "pileup";
@@ -48415,7 +48415,7 @@ rec {
   xpath_slash_test = (xpath // {
     pname = "xpath/test";
     systems = [ "xpath/test" "xpath" ];
-    lispLibs = [  ];
+    lispLibs = [ yacc parse-number cxml cl-ppcre ];
   });
   plokami = {
     pname = "plokami";
@@ -48459,7 +48459,7 @@ rec {
   plot_slash_vglt = (plot // {
     pname = "plot/vglt";
     systems = [ "plot/vglt" "plot" ];
-    lispLibs = [ dfio let-plus yason ];
+    lispLibs = [ lass cl-who alexandria dfio let-plus yason ];
   });
   pludeck = {
     pname = "pludeck";
@@ -48698,7 +48698,7 @@ rec {
   polymorphic-functions_slash_swank = (polymorphic-functions // {
     pname = "polymorphic-functions/swank";
     systems = [ "polymorphic-functions/swank" "polymorphic-functions" ];
-    lispLibs = [ swank ];
+    lispLibs = [ introspect-environment fiveam ctype compiler-macro-notes closer-mop cl-form-types alexandria swank ];
   });
   pooler = {
     pname = "pooler";
@@ -48742,12 +48742,12 @@ rec {
   portable-condition-system_dot_integration_slash_test = (portable-condition-system_dot_integration // {
     pname = "portable-condition-system.integration/test";
     systems = [ "portable-condition-system.integration/test" "portable-condition-system.integration" ];
-    lispLibs = [  ];
+    lispLibs = [ trivial-custom-debugger portable-condition-system ];
   });
   portable-condition-system_slash_test = (portable-condition-system // {
     pname = "portable-condition-system/test";
     systems = [ "portable-condition-system/test" "portable-condition-system" ];
-    lispLibs = [  ];
+    lispLibs = [ split-sequence alexandria ];
   });
   portable-threads = {
     pname = "portable-threads";
@@ -48861,12 +48861,12 @@ rec {
   cl-postgres_slash_simple-date-tests = (cl-postgres // {
     pname = "cl-postgres/simple-date-tests";
     systems = [ "cl-postgres/simple-date-tests" "cl-postgres" ];
-    lispLibs = [ fiveam simple-date uiop ];
+    lispLibs = [ usocket uax-15 split-sequence md5 ironclad cl-base64 fiveam simple-date uiop ];
   });
   cl-postgres_slash_tests = (cl-postgres // {
     pname = "cl-postgres/tests";
     systems = [ "cl-postgres/tests" "cl-postgres" ];
-    lispLibs = [ fiveam uiop ];
+    lispLibs = [ usocket uax-15 split-sequence md5 ironclad cl-base64 fiveam uiop ];
   });
   postmodern = {
     pname = "postmodern";
@@ -48884,7 +48884,7 @@ rec {
   postmodern_slash_tests = (postmodern // {
     pname = "postmodern/tests";
     systems = [ "postmodern/tests" "postmodern" ];
-    lispLibs = [ cl-postgres cl-postgres_plus_local-time fiveam local-time s-sql simple-date uiop ];
+    lispLibs = [ uiop split-sequence s-sql global-vars closer-mop cl-postgres bordeaux-threads alexandria cl-postgres cl-postgres_plus_local-time fiveam local-time s-sql simple-date uiop ];
   });
   s-sql = {
     pname = "s-sql";
@@ -48902,7 +48902,7 @@ rec {
   s-sql_slash_tests = (s-sql // {
     pname = "s-sql/tests";
     systems = [ "s-sql/tests" "s-sql" ];
-    lispLibs = [ cl-postgres fiveam postmodern uiop ];
+    lispLibs = [ uiop postmodern fiveam cl-postgres alexandria cl-postgres ];
   });
   simple-date = {
     pname = "simple-date";
@@ -48920,7 +48920,7 @@ rec {
   simple-date_slash_postgres-glue = (simple-date // {
     pname = "simple-date/postgres-glue";
     systems = [ "simple-date/postgres-glue" "simple-date" ];
-    lispLibs = [ cl-postgres fiveam uiop ];
+    lispLibs = [ uiop fiveam cl-postgres ];
   });
   simple-date_slash_tests = (simple-date // {
     pname = "simple-date/tests";
@@ -49840,7 +49840,7 @@ rec {
   protest_slash_test = (protest // {
     pname = "protest/test";
     systems = [ "protest/test" "protest" ];
-    lispLibs = [ _1am alexandria closer-mop named-readtables trivial-garbage ];
+    lispLibs = [ trivial-garbage named-readtables closer-mop alexandria _1am alexandria closer-mop moptilities trivial-garbage ];
   });
   protest_slash_test-case = {
     pname = "protest/test-case";
@@ -49884,7 +49884,7 @@ rec {
   varint_slash_test = (varint // {
     pname = "varint/test";
     systems = [ "varint/test" "varint" ];
-    lispLibs = [ hu_dot_dwim_dot_stefil ];
+    lispLibs = [ nibbles com_dot_google_dot_base hu_dot_dwim_dot_stefil ];
   });
   cl-test-more = {
     pname = "cl-test-more";
@@ -50193,7 +50193,7 @@ rec {
   qbase64_slash_test = (qbase64 // {
     pname = "qbase64/test";
     systems = [ "qbase64/test" "qbase64" ];
-    lispLibs = [ fiveam temporary-file ];
+    lispLibs = [ trivial-gray-streams metabang-bind fiveam temporary-file ];
   });
   qbook = {
     pname = "qbook";
@@ -51342,7 +51342,7 @@ rec {
   quick-patch_slash_tests = (quick-patch // {
     pname = "quick-patch/tests";
     systems = [ "quick-patch/tests" "quick-patch" ];
-    lispLibs = [ cl-mock fiveam str tmpdir ];
+    lispLibs = [ tmpdir str fiveam cl-mock ];
   });
   quickapp = {
     pname = "quickapp";
@@ -51555,32 +51555,32 @@ rec {
   cl-quil_slash_quilec = (cl-quil // {
     pname = "cl-quil/quilec";
     systems = [ "cl-quil/quilec" "cl-quil" ];
-    lispLibs = [ alexandria magicl ];
+    lispLibs = [ yason yacc uiop trivial-garbage split-sequence singleton-classes salza2 queues_dot_priority-queue parse-float optima magicl global-vars flexi-streams closer-mop cl-permutation cl-heap cl-grnm cl-algebraic-data-type alexandria alexa abstract-classes alexandria magicl ];
   });
   cl-quil_slash_quilec-tests = (cl-quil // {
     pname = "cl-quil/quilec-tests";
     systems = [ "cl-quil/quilec-tests" "cl-quil" ];
-    lispLibs = [ alexandria fiasco magicl qvm ];
+    lispLibs = [ yason yacc uiop trivial-garbage split-sequence singleton-classes salza2 queues_dot_priority-queue parse-float optima magicl global-vars flexi-streams closer-mop cl-permutation cl-heap cl-grnm cl-algebraic-data-type alexandria alexa abstract-classes alexandria fiasco magicl qvm ];
   });
   cl-quil_slash_quilt = (cl-quil // {
     pname = "cl-quil/quilt";
     systems = [ "cl-quil/quilt" "cl-quil" ];
-    lispLibs = [  ];
+    lispLibs = [ yason yacc uiop trivial-garbage split-sequence singleton-classes salza2 queues_dot_priority-queue parse-float optima magicl global-vars flexi-streams closer-mop cl-permutation cl-heap cl-grnm cl-algebraic-data-type alexandria alexa abstract-classes ];
   });
   cl-quil_slash_quilt-tests = (cl-quil // {
     pname = "cl-quil/quilt-tests";
     systems = [ "cl-quil/quilt-tests" "cl-quil" ];
-    lispLibs = [ cl-quil-tests ];
+    lispLibs = [ yason yacc uiop trivial-garbage split-sequence singleton-classes salza2 queues_dot_priority-queue parse-float optima magicl global-vars flexi-streams closer-mop cl-permutation cl-heap cl-grnm cl-algebraic-data-type alexandria alexa abstract-classes cl-quil-tests ];
   });
   cl-quil_slash_tools = (cl-quil // {
     pname = "cl-quil/tools";
     systems = [ "cl-quil/tools" "cl-quil" ];
-    lispLibs = [ common-lisp-jupyter swank ];
+    lispLibs = [ yason yacc uiop trivial-garbage split-sequence singleton-classes salza2 queues_dot_priority-queue parse-float optima magicl global-vars flexi-streams closer-mop cl-permutation cl-heap cl-grnm cl-algebraic-data-type alexandria alexa abstract-classes common-lisp-jupyter swank ];
   });
   cl-quil_slash_tools-tests = (cl-quil // {
     pname = "cl-quil/tools-tests";
     systems = [ "cl-quil/tools-tests" "cl-quil" ];
-    lispLibs = [ cl-quil-tests common-lisp-jupyter swank ];
+    lispLibs = [ yason yacc uiop trivial-garbage split-sequence singleton-classes salza2 queues_dot_priority-queue parse-float optima magicl global-vars flexi-streams closer-mop cl-permutation cl-heap cl-grnm cl-algebraic-data-type alexandria alexa abstract-classes cl-quil-tests common-lisp-jupyter swank ];
   });
   quilc = {
     pname = "quilc";
@@ -51975,12 +51975,12 @@ rec {
   rcl_slash_prove = (rcl // {
     pname = "rcl/prove";
     systems = [ "rcl/prove" "rcl" ];
-    lispLibs = [ prove prove-asdf ];
+    lispLibs = [ trivial-garbage simple-tasks prove-asdf named-readtables cffi bordeaux-threads prove prove-asdf ];
   });
   rcl_slash_test = (rcl // {
     pname = "rcl/test";
     systems = [ "rcl/test" "rcl" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivial-garbage simple-tasks prove-asdf named-readtables cffi bordeaux-threads fiveam ];
   });
   re = {
     pname = "re";
@@ -52687,7 +52687,7 @@ rec {
   retrospectiff_slash_test = (retrospectiff // {
     pname = "retrospectiff/test";
     systems = [ "retrospectiff/test" "retrospectiff" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ opticl-core ieee-floats flexi-streams deflate com_dot_gigamonkeys_dot_binary-data cl-jpeg fiveam ];
   });
   reversi = {
     pname = "reversi";
@@ -52783,12 +52783,12 @@ rec {
   roan_slash_doc = (roan // {
     pname = "roan/doc";
     systems = [ "roan/doc" "roan" ];
-    lispLibs = [ alexandria asdf-encodings cl-fad cl-ppcre iterate trivial-documentation ];
+    lispLibs = [ zip uuid plump named-readtables local-time iterate drakma cl-ppcre cl-interpol cl-fad binascii asdf-encodings alexandria alexandria asdf-encodings cl-fad cl-ppcre iterate trivial-documentation ];
   });
   roan_slash_test = (roan // {
     pname = "roan/test";
     systems = [ "roan/test" "roan" ];
-    lispLibs = [ alexandria asdf-encodings cl-fad cl-ppcre iterate lisp-unit2 ];
+    lispLibs = [ zip uuid plump named-readtables local-time iterate drakma cl-ppcre cl-interpol cl-fad binascii asdf-encodings alexandria alexandria asdf-encodings cl-fad cl-ppcre iterate lisp-unit2 ];
   });
   rock = {
     pname = "rock";
@@ -53157,7 +53157,7 @@ rec {
   ryeboy_slash_test = (ryeboy // {
     pname = "ryeboy/test";
     systems = [ "ryeboy/test" "ryeboy" ];
-    lispLibs = [ prove prove-asdf ];
+    lispLibs = [ usocket prove-asdf protobuf com_dot_google_dot_base alexandria prove prove-asdf ];
   });
   s-base64 = {
     pname = "s-base64";
@@ -53331,7 +53331,7 @@ rec {
   safe-read_slash_test = (safe-read // {
     pname = "safe-read/test";
     systems = [ "safe-read/test" "safe-read" ];
-    lispLibs = [  ];
+    lispLibs = [ trivial-garbage local-time ];
   });
   safety-params = {
     pname = "safety-params";
@@ -53349,7 +53349,7 @@ rec {
   safety-params_slash_tests = (safety-params // {
     pname = "safety-params/tests";
     systems = [ "safety-params/tests" "safety-params" ];
-    lispLibs = [ rove ];
+    lispLibs = [ parse-number alexandria rove ];
   });
   salza2 = {
     pname = "salza2";
@@ -53367,7 +53367,7 @@ rec {
   salza2_slash_test = (salza2 // {
     pname = "salza2/test";
     systems = [ "salza2/test" "salza2" ];
-    lispLibs = [ chipz flexi-streams parachute ];
+    lispLibs = [ parachute flexi-streams chipz trivial-gray-streams ];
   });
   sandalphon_dot_lambda-list = {
     pname = "sandalphon.lambda-list";
@@ -53398,7 +53398,7 @@ rec {
   sanity-clause_slash_test = (sanity-clause // {
     pname = "sanity-clause/test";
     systems = [ "sanity-clause/test" "sanity-clause" ];
-    lispLibs = [ rove ];
+    lispLibs = [ trivial-types str quri parse-float local-time closer-mop cl-ppcre arrows alexandria rove ];
   });
   sapaclisp = {
     pname = "sapaclisp";
@@ -53559,7 +53559,7 @@ rec {
   scribble_slash_test = (scribble // {
     pname = "scribble/test";
     systems = [ "scribble/test" "scribble" ];
-    lispLibs = [ babel hu_dot_dwim_dot_stefil ];
+    lispLibs = [ meta fare-utils fare-quasiquote-readtable fare-memoization babel hu_dot_dwim_dot_stefil ];
   });
   scriptl = {
     pname = "scriptl";
@@ -53824,7 +53824,7 @@ rec {
   select_slash_tests = (select // {
     pname = "select/tests";
     systems = [ "select/tests" "select" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ let-plus anaphora alexandria fiveam ];
   });
   select-file = {
     pname = "select-file";
@@ -53907,7 +53907,7 @@ rec {
   serapeum_slash_docs = (serapeum // {
     pname = "serapeum/docs";
     systems = [ "serapeum/docs" "serapeum" ];
-    lispLibs = [ cl-ppcre swank ];
+    lispLibs = [ trivial-macroexpand-all trivial-garbage trivial-file-size trivial-cltl2 trivia string-case split-sequence parse-number parse-declarations-1_dot_0 introspect-environment global-vars bordeaux-threads babel alexandria cl-ppcre swank ];
   });
   serializable-object = {
     pname = "serializable-object";
@@ -54094,7 +54094,7 @@ rec {
   shasht_slash_test = (shasht // {
     pname = "shasht/test";
     systems = [ "shasht/test" "shasht" ];
-    lispLibs = [ alexandria parachute ];
+    lispLibs = [ trivial-do closer-mop alexandria parachute ];
   });
   sheeple = {
     pname = "sheeple";
@@ -54216,17 +54216,17 @@ rec {
   shop3_slash_openstacks = (shop3 // {
     pname = "shop3/openstacks";
     systems = [ "shop3/openstacks" "shop3" ];
-    lispLibs = [  ];
+    lispLibs = [ trivial-garbage iterate fiveam-asdf alexandria ];
   });
   shop3_slash_plan-grapher = (shop3 // {
     pname = "shop3/plan-grapher";
     systems = [ "shop3/plan-grapher" "shop3" ];
-    lispLibs = [ cl-dot ];
+    lispLibs = [ trivial-garbage iterate fiveam-asdf alexandria cl-dot ];
   });
   shop3_slash_rovers = (shop3 // {
     pname = "shop3/rovers";
     systems = [ "shop3/rovers" "shop3" ];
-    lispLibs = [  ];
+    lispLibs = [ trivial-garbage iterate fiveam-asdf alexandria ];
   });
   shop3_slash_test-unifier = {
     pname = "shop3/test-unifier";
@@ -54439,7 +54439,7 @@ rec {
   simple-neural-network_slash_test = (simple-neural-network // {
     pname = "simple-neural-network/test";
     systems = [ "simple-neural-network/test" "simple-neural-network" ];
-    lispLibs = [ chipz fiveam uiop ];
+    lispLibs = [ uiop fiveam chipz cl-store lparallel ];
   });
   simple-parallel-tasks = {
     pname = "simple-parallel-tasks";
@@ -54631,7 +54631,7 @@ rec {
   sip-hash_slash_test = (sip-hash // {
     pname = "sip-hash/test";
     systems = [ "sip-hash/test" "sip-hash" ];
-    lispLibs = [ hu_dot_dwim_dot_stefil ];
+    lispLibs = [ nibbles com_dot_google_dot_base hu_dot_dwim_dot_stefil ];
   });
   skeleton-creator = {
     pname = "skeleton-creator";
@@ -54649,7 +54649,7 @@ rec {
   skeleton-creator_slash_test = (skeleton-creator // {
     pname = "skeleton-creator/test";
     systems = [ "skeleton-creator/test" "skeleton-creator" ];
-    lispLibs = [ simplet simplet-asdf ];
+    lispLibs = [ simplet-asdf conf cl-ppcre cl-fad simplet simplet-asdf ];
   });
   sketch = {
     pname = "sketch";
@@ -54797,12 +54797,12 @@ rec {
   slite_slash_parachute = (slite // {
     pname = "slite/parachute";
     systems = [ "slite/parachute" "slite" ];
-    lispLibs = [ parachute ];
+    lispLibs = [ str fiveam parachute ];
   });
   slite_slash_tests = (slite // {
     pname = "slite/tests";
     systems = [ "slite/tests" "slite" ];
-    lispLibs = [ parachute ];
+    lispLibs = [ str fiveam parachute ];
   });
   eclecticse_dot_slk-581 = {
     pname = "eclecticse.slk-581";
@@ -55008,7 +55008,7 @@ rec {
   snappy_slash_test = (snappy // {
     pname = "snappy/test";
     systems = [ "snappy/test" "snappy" ];
-    lispLibs = [ acm-random hu_dot_dwim_dot_stefil nibbles ];
+    lispLibs = [ varint nibbles com_dot_google_dot_base acm-random hu_dot_dwim_dot_stefil nibbles ];
   });
   snark = {
     pname = "snark";
@@ -55416,7 +55416,7 @@ rec {
   special-functions_slash_tests = (special-functions // {
     pname = "special-functions/tests";
     systems = [ "special-functions/tests" "special-functions" ];
-    lispLibs = [ cl-variates fiveam select ];
+    lispLibs = [ select fiveam cl-variates float-features num-utils ];
   });
   specialization-store = {
     pname = "specialization-store";
@@ -55551,17 +55551,17 @@ rec {
   spinneret_slash_cl-markdown = (spinneret // {
     pname = "spinneret/cl-markdown";
     systems = [ "spinneret/cl-markdown" "spinneret" ];
-    lispLibs = [ cl-markdown ];
+    lispLibs = [ trivial-gray-streams serapeum parenscript global-vars cl-ppcre alexandria cl-markdown ];
   });
   spinneret_slash_ps = (spinneret // {
     pname = "spinneret/ps";
     systems = [ "spinneret/ps" "spinneret" ];
-    lispLibs = [ parenscript ];
+    lispLibs = [ trivial-gray-streams serapeum parenscript global-vars cl-ppcre alexandria parenscript ];
   });
   spinneret_slash_tests = (spinneret // {
     pname = "spinneret/tests";
     systems = [ "spinneret/tests" "spinneret" ];
-    lispLibs = [ cl-markdown fiveam parenscript serapeum ];
+    lispLibs = [ trivial-gray-streams serapeum parenscript global-vars cl-ppcre alexandria cl-markdown fiveam parenscript serapeum ];
   });
   split-sequence = {
     pname = "split-sequence";
@@ -55792,7 +55792,7 @@ rec {
   static-dispatch_slash_test = (static-dispatch // {
     pname = "static-dispatch/test";
     systems = [ "static-dispatch/test" "static-dispatch" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ optima iterate closer-mop cl-form-types cl-environments arrows anaphora alexandria agutil fiveam ];
   });
   static-vectors = {
     pname = "static-vectors";
@@ -55810,7 +55810,7 @@ rec {
   static-vectors_slash_test = (static-vectors // {
     pname = "static-vectors/test";
     systems = [ "static-vectors/test" "static-vectors" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ cffi-grovel cffi alexandria fiveam ];
   });
   stealth-mixin = {
     pname = "stealth-mixin";
@@ -55932,7 +55932,7 @@ rec {
   strict-function_slash_test = (strict-function // {
     pname = "strict-function/test";
     systems = [ "strict-function/test" "strict-function" ];
-    lispLibs = [ alexandria rove ];
+    lispLibs = [ trivia alexandria alexandria rove ];
   });
   string-case = {
     pname = "string-case";
@@ -56470,7 +56470,7 @@ rec {
   swank-client_slash_test = (swank-client // {
     pname = "swank-client/test";
     systems = [ "swank-client/test" "swank-client" ];
-    lispLibs = [ hu_dot_dwim_dot_stefil ];
+    lispLibs = [ usocket swank com_dot_google_dot_base bordeaux-threads hu_dot_dwim_dot_stefil ];
   });
   swank-crew = {
     pname = "swank-crew";
@@ -56488,7 +56488,7 @@ rec {
   swank-crew_slash_test = (swank-crew // {
     pname = "swank-crew/test";
     systems = [ "swank-crew/test" "swank-crew" ];
-    lispLibs = [ hu_dot_dwim_dot_stefil ];
+    lispLibs = [ swank-client com_dot_google_dot_base bordeaux-threads hu_dot_dwim_dot_stefil ];
   });
   swank-protocol = {
     pname = "swank-protocol";
@@ -56532,7 +56532,7 @@ rec {
   swap-bytes_slash_test = (swap-bytes // {
     pname = "swap-bytes/test";
     systems = [ "swap-bytes/test" "swap-bytes" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivial-features fiveam ];
   });
   sxql = {
     pname = "sxql";
@@ -57109,7 +57109,7 @@ rec {
   org_dot_tfeb_dot_hax_slash_test = (org_dot_tfeb_dot_hax // {
     pname = "org.tfeb.hax/test";
     systems = [ "org.tfeb.hax/test" "org.tfeb.hax" ];
-    lispLibs = [ parachute ];
+    lispLibs = [ closer-mop parachute ];
   });
   org_dot_tfeb_dot_tools = {
     pname = "org.tfeb.tools";
@@ -57335,7 +57335,7 @@ rec {
   tinaa_slash_with-cl-markdown = (tinaa // {
     pname = "tinaa/with-cl-markdown";
     systems = [ "tinaa/with-cl-markdown" "tinaa" ];
-    lispLibs = [ cl-markdown ];
+    lispLibs = [ trivial-shell metatilities lml2 dynamic-classes defsystem-compatibility cl-graph cl-containers asdf-system-connections anaphora cl-markdown ];
   });
   tm = {
     pname = "tm";
@@ -57701,7 +57701,7 @@ rec {
   trivia_dot_benchmark_slash_run = (trivia_dot_benchmark // {
     pname = "trivia.benchmark/run";
     systems = [ "trivia.benchmark/run" "trivia.benchmark" ];
-    lispLibs = [  ];
+    lispLibs = [ trivia_dot_balland2006 trivia optima iterate ];
   });
   trivia_dot_cffi = {
     pname = "trivia.cffi";
@@ -58031,7 +58031,7 @@ rec {
   trivial-continuation_slash_test = (trivial-continuation // {
     pname = "trivial-continuation/test";
     systems = [ "trivial-continuation/test" "trivial-continuation" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivial-utilities log4cl fiveam ];
   });
   trivial-coverage = {
     pname = "trivial-coverage";
@@ -58293,7 +58293,7 @@ rec {
   trivial-file-size_slash_tests = (trivial-file-size // {
     pname = "trivial-file-size/tests";
     systems = [ "trivial-file-size/tests" "trivial-file-size" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ uiop fiveam ];
   });
   trivial-garbage = {
     pname = "trivial-garbage";
@@ -58602,7 +58602,7 @@ rec {
   trivial-monitored-thread_slash_test = (trivial-monitored-thread // {
     pname = "trivial-monitored-thread/test";
     systems = [ "trivial-monitored-thread/test" "trivial-monitored-thread" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivial-utilities log4cl iterate fiveam ];
   });
   trivial-msi = {
     pname = "trivial-msi";
@@ -58659,7 +58659,7 @@ rec {
   trivial-object-lock_slash_test = (trivial-object-lock // {
     pname = "trivial-object-lock/test";
     systems = [ "trivial-object-lock/test" "trivial-object-lock" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivial-utilities log4cl iterate bordeaux-threads fiveam ];
   });
   trivial-octet-streams = {
     pname = "trivial-octet-streams";
@@ -59020,7 +59020,7 @@ rec {
   trivial-timer_slash_test = (trivial-timer // {
     pname = "trivial-timer/test";
     systems = [ "trivial-timer/test" "trivial-timer" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivial-utilities log4cl iterate chanl bordeaux-threads fiveam ];
   });
   trivial-timers = {
     pname = "trivial-timers";
@@ -59113,7 +59113,7 @@ rec {
   trivial-variable-bindings_slash_test = (trivial-variable-bindings // {
     pname = "trivial-variable-bindings/test";
     systems = [ "trivial-variable-bindings/test" "trivial-variable-bindings" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivial-utilities iterate fiveam ];
   });
   trivial-wish = {
     pname = "trivial-wish";
@@ -59461,7 +59461,7 @@ rec {
   uax-15_slash_tests = (uax-15 // {
     pname = "uax-15/tests";
     systems = [ "uax-15/tests" "uax-15" ];
-    lispLibs = [ cl-ppcre parachute split-sequence ];
+    lispLibs = [ split-sequence parachute cl-ppcre cl-ppcre split-sequence ];
   });
   uax-9 = {
     pname = "uax-9";
@@ -59991,7 +59991,7 @@ rec {
   utilities_dot_binary-dump_slash_test = (utilities_dot_binary-dump // {
     pname = "utilities.binary-dump/test";
     systems = [ "utilities.binary-dump/test" "utilities.binary-dump" ];
-    lispLibs = [ alexandria fiveam let-plus nibbles split-sequence ];
+    lispLibs = [ split-sequence nibbles let-plus fiveam alexandria alexandria let-plus nibbles ];
   });
   utilities_dot_print-items = {
     pname = "utilities.print-items";
@@ -60009,7 +60009,7 @@ rec {
   utilities_dot_print-items_slash_test = (utilities_dot_print-items // {
     pname = "utilities.print-items/test";
     systems = [ "utilities.print-items/test" "utilities.print-items" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ alexandria fiveam ];
   });
   utilities_dot_print-tree = {
     pname = "utilities.print-tree";
@@ -60027,7 +60027,7 @@ rec {
   utilities_dot_print-tree_slash_test = (utilities_dot_print-tree // {
     pname = "utilities.print-tree/test";
     systems = [ "utilities.print-tree/test" "utilities.print-tree" ];
-    lispLibs = [ alexandria fiveam uiop ];
+    lispLibs = [ uiop fiveam alexandria alexandria uiop ];
   });
   utility = {
     pname = "utility";
@@ -60141,7 +60141,7 @@ rec {
   validate-list_slash_tests = (validate-list // {
     pname = "validate-list/tests";
     systems = [ "validate-list/tests" "validate-list" ];
-    lispLibs = [ lisp-unit ];
+    lispLibs = [ lisp-unit arithmetic-operators-as-words alexandria lisp-unit ];
   });
   varjo = {
     pname = "varjo";
@@ -60653,7 +60653,7 @@ rec {
   vk_slash_tests = (vk // {
     pname = "vk/tests";
     systems = [ "vk/tests" "vk" ];
-    lispLibs = [ rove ];
+    lispLibs = [ rove cffi alexandria rove ];
   });
   vom = {
     pname = "vom";
@@ -60684,7 +60684,7 @@ rec {
   vom-json_slash_test = (vom-json // {
     pname = "vom-json/test";
     systems = [ "vom-json/test" "vom-json" ];
-    lispLibs = [ rove ];
+    lispLibs = [ vom local-time jonathan rove ];
   });
   vp-trees = {
     pname = "vp-trees";
@@ -60733,7 +60733,7 @@ rec {
   wasm-encoder_slash_test = (wasm-encoder // {
     pname = "wasm-encoder/test";
     systems = [ "wasm-encoder/test" "wasm-encoder" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ trivia ieee-floats generic-cl flexi-streams babel alexandria agutil fiveam ];
   });
   water = {
     pname = "water";
@@ -61094,7 +61094,7 @@ rec {
   winlock_slash_test = (winlock // {
     pname = "winlock/test";
     systems = [ "winlock/test" "winlock" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ serapeum named-readtables cffi fiveam ];
   });
   with-c-syntax = {
     pname = "with-c-syntax";
@@ -61307,7 +61307,7 @@ rec {
   workout-timer_slash_static = (workout-timer // {
     pname = "workout-timer/static";
     systems = [ "workout-timer/static" "workout-timer" ];
-    lispLibs = [ cffi-toolchain ];
+    lispLibs = [ vorbisfile-ffi mixalot-vorbis mixalot local-time command-line-arguments cffi-toolchain cffi-toolchain ];
   });
   wu-decimal = {
     pname = "wu-decimal";
@@ -61520,7 +61520,7 @@ rec {
   xml-emitter_slash_tests = (xml-emitter // {
     pname = "xml-emitter/tests";
     systems = [ "xml-emitter/tests" "xml-emitter" ];
-    lispLibs = [ _1am ];
+    lispLibs = [ cl-utilities _1am ];
   });
   xml-mop = {
     pname = "xml-mop";
@@ -61564,7 +61564,7 @@ rec {
   xml_dot_location_slash_test = (xml_dot_location // {
     pname = "xml.location/test";
     systems = [ "xml.location/test" "xml.location" ];
-    lispLibs = [ lift ];
+    lispLibs = [ xpath split-sequence more-conditions let-plus iterate cxml-stp closer-mop alexandria lift ];
   });
   xmls = {
     pname = "xmls";
@@ -61582,7 +61582,7 @@ rec {
   xmls_slash_octets = (xmls // {
     pname = "xmls/octets";
     systems = [ "xmls/octets" "xmls" ];
-    lispLibs = [ cl-ppcre flexi-streams ];
+    lispLibs = [ flexi-streams cl-ppcre ];
   });
   xmls_slash_test = (xmls // {
     pname = "xmls/test";
@@ -61662,7 +61662,7 @@ rec {
   yaclml_slash_test = (yaclml // {
     pname = "yaclml/test";
     systems = [ "yaclml/test" "yaclml" ];
-    lispLibs = [ fiveam ];
+    lispLibs = [ iterate arnesi fiveam ];
   });
   yason = {
     pname = "yason";

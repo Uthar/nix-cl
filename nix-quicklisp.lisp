@@ -183,22 +183,35 @@
                 . ((:symbol . ,master)
                    (:attrs
                     . (("pname" . (:string . ,system))
-                       ("systems" . (:list . ((:string . ,system)
-                                              (:string . ,master))))
-                       ("lispLibs" . (:list . ,(mapcar
-                                                (lambda (dep) `(:symbol . ,dep))
-                                                (remove-if (lambda (x) (string= x master)) deps))))))))))
+                       ("systems"
+                        . (:list
+                           . ((:string . ,system)
+                              (:string . ,master))))
+                       ("lispLibs"
+                        . (:list
+                           . ,(mapcar
+                               (lambda (dep) `(:symbol . ,dep))
+                               (remove-if
+                                (lambda (x)
+                                  (or (string= x master)
+                                      (string= x "asdf")))
+                                (union
+                                 (getf (find-project master) :deps)
+                                 deps :key #'string)))))))))))
           (t
            `(,system
              . (:attrs
                 . (("pname" . (:string . ,system))
                    ("createAsd" . ,(if create-asd? `(:string . ,create-asd?) `(:symbol . "false")))
                    ("version" . (:string . ,version))
-                   ("src" . (:funcall . ("createAsd" ((:attrs
-                                                       . (("url" . (:string . ,url))
-                                                          ("sha256" . (:string . ,sha256))
-                                                          ("system" . (:string . ,system))
-                                                          ("asd" . (:string . ,(or create-asd? asd)))))))))
+                   ("src"
+                    . (:funcall
+                       . ("createAsd"
+                          ((:attrs
+                            . (("url" . (:string . ,url))
+                               ("sha256" . (:string . ,sha256))
+                               ("system" . (:string . ,system))
+                               ("asd" . (:string . ,(or create-asd? asd)))))))))
                    ("systems" . (:list . ((:string . ,system))))
                    ("lispLibs" . (:list . ,(mapcar (lambda (dep) `(:symbol . ,dep)) deps))))))))))
 
