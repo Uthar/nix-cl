@@ -42,6 +42,58 @@ rec {
     systems = [ "3b-bmfont" ];
     lispLibs = [ alexandria split-sequence ];
   };
+  _3b-bmfont_slash_common = {
+    pname = "3b-bmfont/common";
+    createAsd = false;
+    version = "20200427-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/3b-bmfont/2020-04-27/3b-bmfont-20200427-git.tgz";
+      sha256 = "12sgf7m0h6fqzhvkas7vmci6mprj3j3fnz778jlbqbsydln6v2yc";
+      system = "3b-bmfont/common";
+      asd = "3b-bmfont";
+    });
+    systems = [ "3b-bmfont/common" ];
+    lispLibs = [ alexandria split-sequence ];
+  };
+  _3b-bmfont_slash_json = {
+    pname = "3b-bmfont/json";
+    createAsd = false;
+    version = "20200427-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/3b-bmfont/2020-04-27/3b-bmfont-20200427-git.tgz";
+      sha256 = "12sgf7m0h6fqzhvkas7vmci6mprj3j3fnz778jlbqbsydln6v2yc";
+      system = "3b-bmfont/json";
+      asd = "3b-bmfont";
+    });
+    systems = [ "3b-bmfont/json" ];
+    lispLibs = [ alexandria jsown split-sequence ];
+  };
+  _3b-bmfont_slash_text = {
+    pname = "3b-bmfont/text";
+    createAsd = false;
+    version = "20200427-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/3b-bmfont/2020-04-27/3b-bmfont-20200427-git.tgz";
+      sha256 = "12sgf7m0h6fqzhvkas7vmci6mprj3j3fnz778jlbqbsydln6v2yc";
+      system = "3b-bmfont/text";
+      asd = "3b-bmfont";
+    });
+    systems = [ "3b-bmfont/text" ];
+    lispLibs = [ alexandria split-sequence ];
+  };
+  _3b-bmfont_slash_xml = {
+    pname = "3b-bmfont/xml";
+    createAsd = false;
+    version = "20200427-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/3b-bmfont/2020-04-27/3b-bmfont-20200427-git.tgz";
+      sha256 = "12sgf7m0h6fqzhvkas7vmci6mprj3j3fnz778jlbqbsydln6v2yc";
+      system = "3b-bmfont/xml";
+      asd = "3b-bmfont";
+    });
+    systems = [ "3b-bmfont/xml" ];
+    lispLibs = [ alexandria cxml flexi-streams split-sequence ];
+  };
   _3b-hdr = {
     pname = "3b-hdr";
     createAsd = false;
@@ -55,6 +107,11 @@ rec {
     systems = [ "3b-hdr" ];
     lispLibs = [ alexandria babel parse-number split-sequence ];
   };
+  _3b-hdr_slash_test = (_3b-hdr // {
+    pname = "3b-hdr/test";
+    systems = [ "3b-hdr/test" "3b-hdr" ];
+    lispLibs = [ nibbles parachute ];
+  });
   _3b-swf = {
     pname = "3b-swf";
     createAsd = false;
@@ -419,6 +476,11 @@ rec {
     systems = [ "adopt" ];
     lispLibs = [ bobbin split-sequence ];
   };
+  adopt_slash_test = (adopt // {
+    pname = "adopt/test";
+    systems = [ "adopt/test" "adopt" ];
+    lispLibs = [ _1am ];
+  });
   adopt-subcommands = {
     pname = "adopt-subcommands";
     createAsd = false;
@@ -614,6 +676,11 @@ rec {
     systems = [ "alexandria+" ];
     lispLibs = [ alexandria ];
   };
+  alexandria_plus_slash_tests = (alexandria_plus // {
+    pname = "alexandria+/tests";
+    systems = [ "alexandria+/tests" "alexandria+" ];
+    lispLibs = [ parachute ];
+  });
   algae = {
     pname = "algae";
     createAsd = false;
@@ -679,6 +746,11 @@ rec {
     systems = [ "amb" ];
     lispLibs = [ alexandria ];
   };
+  amb_slash_test = (amb // {
+    pname = "amb/test";
+    systems = [ "amb/test" "amb" ];
+    lispLibs = [ parachute ];
+  });
   anaphora = {
     pname = "anaphora";
     createAsd = false;
@@ -692,6 +764,11 @@ rec {
     systems = [ "anaphora" ];
     lispLibs = [  ];
   };
+  anaphora_slash_test = (anaphora // {
+    pname = "anaphora/test";
+    systems = [ "anaphora/test" "anaphora" ];
+    lispLibs = [ rt ];
+  });
   anaphoric-variants = {
     pname = "anaphoric-variants";
     createAsd = false;
@@ -783,6 +860,16 @@ rec {
     systems = [ "anypool" ];
     lispLibs = [ bordeaux-threads cl-speedy-queue ];
   };
+  anypool_slash_middleware = (anypool // {
+    pname = "anypool/middleware";
+    systems = [ "anypool/middleware" "anypool" ];
+    lispLibs = [  ];
+  });
+  anypool_slash_tests = (anypool // {
+    pname = "anypool/tests";
+    systems = [ "anypool/tests" "anypool" ];
+    lispLibs = [ rove ];
+  });
   lack-middleware-anypool = {
     pname = "lack-middleware-anypool";
     createAsd = false;
@@ -952,6 +1039,11 @@ rec {
     systems = [ "architecture.builder-protocol.json" ];
     lispLibs = [ alexandria architecture_dot_builder-protocol cl-json ];
   };
+  architecture_dot_builder-protocol_dot_json_slash_test = (architecture_dot_builder-protocol_dot_json // {
+    pname = "architecture.builder-protocol.json/test";
+    systems = [ "architecture.builder-protocol.json/test" "architecture.builder-protocol.json" ];
+    lispLibs = [ alexandria architecture_dot_builder-protocol fiveam ];
+  });
   architecture_dot_builder-protocol_dot_universal-builder = {
     pname = "architecture.builder-protocol.universal-builder";
     createAsd = false;
@@ -965,6 +1057,11 @@ rec {
     systems = [ "architecture.builder-protocol.universal-builder" ];
     lispLibs = [ alexandria architecture_dot_builder-protocol closer-mop ];
   };
+  architecture_dot_builder-protocol_dot_universal-builder_slash_test = (architecture_dot_builder-protocol_dot_universal-builder // {
+    pname = "architecture.builder-protocol.universal-builder/test";
+    systems = [ "architecture.builder-protocol.universal-builder/test" "architecture.builder-protocol.universal-builder" ];
+    lispLibs = [ alexandria architecture_dot_builder-protocol fiveam ];
+  });
   architecture_dot_builder-protocol_dot_xpath = {
     pname = "architecture.builder-protocol.xpath";
     createAsd = false;
@@ -978,6 +1075,16 @@ rec {
     systems = [ "architecture.builder-protocol.xpath" ];
     lispLibs = [ alexandria architecture_dot_builder-protocol xpath ];
   };
+  architecture_dot_builder-protocol_dot_xpath_slash_test = (architecture_dot_builder-protocol_dot_xpath // {
+    pname = "architecture.builder-protocol.xpath/test";
+    systems = [ "architecture.builder-protocol.xpath/test" "architecture.builder-protocol.xpath" ];
+    lispLibs = [ alexandria fiveam ];
+  });
+  architecture_dot_builder-protocol_slash_test = (architecture_dot_builder-protocol // {
+    pname = "architecture.builder-protocol/test";
+    systems = [ "architecture.builder-protocol/test" "architecture.builder-protocol" ];
+    lispLibs = [ alexandria fiveam ];
+  });
   cl-hooks = {
     pname = "cl-hooks";
     createAsd = false;
@@ -991,6 +1098,11 @@ rec {
     systems = [ "cl-hooks" ];
     lispLibs = [ alexandria closer-mop let-plus trivial-garbage ];
   };
+  cl-hooks_slash_test = (cl-hooks // {
+    pname = "cl-hooks/test";
+    systems = [ "cl-hooks/test" "cl-hooks" ];
+    lispLibs = [ fiveam ];
+  });
   architecture_dot_service-provider = {
     pname = "architecture.service-provider";
     createAsd = false;
@@ -1017,6 +1129,16 @@ rec {
     systems = [ "architecture.service-provider-and-hooks" ];
     lispLibs = [ architecture_dot_service-provider cl-hooks ];
   };
+  architecture_dot_service-provider-and-hooks_slash_test = (architecture_dot_service-provider-and-hooks // {
+    pname = "architecture.service-provider-and-hooks/test";
+    systems = [ "architecture.service-provider-and-hooks/test" "architecture.service-provider-and-hooks" ];
+    lispLibs = [ alexandria architecture_dot_service-provider fiveam let-plus more-conditions ];
+  });
+  architecture_dot_service-provider_slash_test = (architecture_dot_service-provider // {
+    pname = "architecture.service-provider/test";
+    systems = [ "architecture.service-provider/test" "architecture.service-provider" ];
+    lispLibs = [ alexandria fiveam let-plus more-conditions ];
+  });
   archive = {
     pname = "archive";
     createAsd = false;
@@ -1056,6 +1178,16 @@ rec {
     systems = [ "arnesi" ];
     lispLibs = [ collectors ];
   };
+  arnesi_slash_cl-ppcre-extras = (arnesi // {
+    pname = "arnesi/cl-ppcre-extras";
+    systems = [ "arnesi/cl-ppcre-extras" "arnesi" ];
+    lispLibs = [ cl-ppcre ];
+  });
+  arnesi_slash_slime-extras = (arnesi // {
+    pname = "arnesi/slime-extras";
+    systems = [ "arnesi/slime-extras" "arnesi" ];
+    lispLibs = [ swank ];
+  });
   array-operations = {
     pname = "array-operations";
     createAsd = false;
@@ -1069,6 +1201,11 @@ rec {
     systems = [ "array-operations" ];
     lispLibs = [ let-plus ];
   };
+  array-operations_slash_tests = (array-operations // {
+    pname = "array-operations/tests";
+    systems = [ "array-operations/tests" "array-operations" ];
+    lispLibs = [ alexandria clunit2 ];
+  });
   array-utils = {
     pname = "array-utils";
     createAsd = false;
@@ -1147,6 +1284,11 @@ rec {
     systems = [ "arrows" ];
     lispLibs = [  ];
   };
+  arrows_slash_test = (arrows // {
+    pname = "arrows/test";
+    systems = [ "arrows/test" "arrows" ];
+    lispLibs = [ hu_dot_dwim_dot_stefil ];
+  });
   asd-generator = {
     pname = "asd-generator";
     createAsd = false;
@@ -1212,6 +1354,11 @@ rec {
     systems = [ "asdf-encodings" ];
     lispLibs = [  ];
   };
+  asdf-encodings_slash_test = (asdf-encodings // {
+    pname = "asdf-encodings/test";
+    systems = [ "asdf-encodings/test" "asdf-encodings" ];
+    lispLibs = [ fare-utils hu_dot_dwim_dot_stefil ];
+  });
   asdf-finalizers = {
     pname = "asdf-finalizers";
     createAsd = false;
@@ -1236,6 +1383,32 @@ rec {
       asd = "asdf-finalizers-test";
     });
     systems = [ "asdf-finalizers-test" ];
+    lispLibs = [ asdf-finalizers fare-utils hu_dot_dwim_dot_stefil list-of ];
+  };
+  asdf-finalizers-test_slash_1 = {
+    pname = "asdf-finalizers-test/1";
+    createAsd = false;
+    version = "20170403-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/asdf-finalizers/2017-04-03/asdf-finalizers-20170403-git.tgz";
+      sha256 = "1w56c9yjjydjshsgqxz57qlp2v3r4ilbisnsgiqphvxnhvd41y0v";
+      system = "asdf-finalizers-test/1";
+      asd = "asdf-finalizers-test";
+    });
+    systems = [ "asdf-finalizers-test/1" ];
+    lispLibs = [ asdf-finalizers fare-utils hu_dot_dwim_dot_stefil list-of ];
+  };
+  asdf-finalizers-test_slash_2 = {
+    pname = "asdf-finalizers-test/2";
+    createAsd = false;
+    version = "20170403-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/asdf-finalizers/2017-04-03/asdf-finalizers-20170403-git.tgz";
+      sha256 = "1w56c9yjjydjshsgqxz57qlp2v3r4ilbisnsgiqphvxnhvd41y0v";
+      system = "asdf-finalizers-test/2";
+      asd = "asdf-finalizers-test";
+    });
+    systems = [ "asdf-finalizers-test/2" ];
     lispLibs = [ asdf-finalizers fare-utils hu_dot_dwim_dot_stefil list-of ];
   };
   list-of = {
@@ -1368,6 +1541,11 @@ rec {
     systems = [ "assert-p" ];
     lispLibs = [ assertion-error simplet-asdf ];
   };
+  assert-p_slash_test = (assert-p // {
+    pname = "assert-p/test";
+    systems = [ "assert-p/test" "assert-p" ];
+    lispLibs = [ simplet simplet-asdf ];
+  });
   assertion-error = {
     pname = "assertion-error";
     createAsd = false;
@@ -1381,6 +1559,11 @@ rec {
     systems = [ "assertion-error" ];
     lispLibs = [ dissect ];
   };
+  assertion-error_slash_test = (assertion-error // {
+    pname = "assertion-error/test";
+    systems = [ "assertion-error/test" "assertion-error" ];
+    lispLibs = [  ];
+  });
   assoc-utils = {
     pname = "assoc-utils";
     createAsd = false;
@@ -1433,6 +1616,11 @@ rec {
     systems = [ "astonish" ];
     lispLibs = [ alexandria uiop ];
   };
+  astonish_slash_tests = (astonish // {
+    pname = "astonish/tests";
+    systems = [ "astonish/tests" "astonish" ];
+    lispLibs = [ rove ];
+  });
   async-process = {
     pname = "async-process";
     createAsd = false;
@@ -1511,6 +1699,11 @@ rec {
     systems = [ "audio-tag" ];
     lispLibs = [ flexi-streams osicat ];
   };
+  audio-tag_slash_tests = (audio-tag // {
+    pname = "audio-tag/tests";
+    systems = [ "audio-tag/tests" "audio-tag" ];
+    lispLibs = [ rove ];
+  });
   authenticated-encryption = {
     pname = "authenticated-encryption";
     createAsd = false;
@@ -1758,6 +1951,21 @@ rec {
     systems = [ "bdef" ];
     lispLibs = [ alexandria eager-future2 jsown mutility parse-float ];
   };
+  bdef_slash_cl-collider = (bdef // {
+    pname = "bdef/cl-collider";
+    systems = [ "bdef/cl-collider" "bdef" ];
+    lispLibs = [ cl-collider ];
+  });
+  bdef_slash_cl-patterns = (bdef // {
+    pname = "bdef/cl-patterns";
+    systems = [ "bdef/cl-patterns" "bdef" ];
+    lispLibs = [ cl-patterns ];
+  });
+  bdef_slash_tests = (bdef // {
+    pname = "bdef/tests";
+    systems = [ "bdef/tests" "bdef" ];
+    lispLibs = [ cl-patterns fiveam mutility ];
+  });
   beast = {
     pname = "beast";
     createAsd = false;
@@ -1771,6 +1979,11 @@ rec {
     systems = [ "beast" ];
     lispLibs = [  ];
   };
+  beast_slash_test = (beast // {
+    pname = "beast/test";
+    systems = [ "beast/test" "beast" ];
+    lispLibs = [ _1am ];
+  });
   beirc = {
     pname = "beirc";
     createAsd = false;
@@ -1862,6 +2075,11 @@ rec {
     systems = [ "binary-io" ];
     lispLibs = [ alexandria ieee-floats ];
   };
+  binary-io_slash_test = (binary-io // {
+    pname = "binary-io/test";
+    systems = [ "binary-io/test" "binary-io" ];
+    lispLibs = [ _1am ];
+  });
   binary-types = {
     pname = "binary-types";
     createAsd = false;
@@ -1914,6 +2132,11 @@ rec {
     systems = [ "binding-arrows" ];
     lispLibs = [  ];
   };
+  binding-arrows_slash_test = (binding-arrows // {
+    pname = "binding-arrows/test";
+    systems = [ "binding-arrows/test" "binding-arrows" ];
+    lispLibs = [ hu_dot_dwim_dot_stefil ];
+  });
   binfix = {
     pname = "binfix";
     createAsd = false;
@@ -1927,6 +2150,11 @@ rec {
     systems = [ "binfix" ];
     lispLibs = [  ];
   };
+  binfix_slash_5am = (binfix // {
+    pname = "binfix/5am";
+    systems = [ "binfix/5am" "binfix" ];
+    lispLibs = [ fiveam ];
+  });
   binomial-heap = {
     pname = "binomial-heap";
     createAsd = false;
@@ -1965,6 +2193,45 @@ rec {
     });
     systems = [ "binpack-test" ];
     lispLibs = [ binpack parachute ];
+  };
+  binpack-test_slash_2 = {
+    pname = "binpack-test/2";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/binpack/2020-12-20/binpack-20201220-git.tgz";
+      sha256 = "1vp69dyvcgrbqr14mhs3z246kp6x57bpw8p8rgvjd87xb86gnzzq";
+      system = "binpack-test/2";
+      asd = "binpack-test";
+    });
+    systems = [ "binpack-test/2" ];
+    lispLibs = [ alexandria parachute ];
+  };
+  binpack-test_slash_common = {
+    pname = "binpack-test/common";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/binpack/2020-12-20/binpack-20201220-git.tgz";
+      sha256 = "1vp69dyvcgrbqr14mhs3z246kp6x57bpw8p8rgvjd87xb86gnzzq";
+      system = "binpack-test/common";
+      asd = "binpack-test";
+    });
+    systems = [ "binpack-test/common" ];
+    lispLibs = [ binpack parachute ];
+  };
+  binpack_slash_2 = {
+    pname = "binpack/2";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/binpack/2020-12-20/binpack-20201220-git.tgz";
+      sha256 = "1vp69dyvcgrbqr14mhs3z246kp6x57bpw8p8rgvjd87xb86gnzzq";
+      system = "binpack/2";
+      asd = "binpack";
+    });
+    systems = [ "binpack/2" ];
+    lispLibs = [ alexandria ];
   };
   birch = {
     pname = "birch";
@@ -2330,6 +2597,11 @@ rec {
     systems = [ "bobbin" ];
     lispLibs = [ split-sequence ];
   };
+  bobbin_slash_test = (bobbin // {
+    pname = "bobbin/test";
+    systems = [ "bobbin/test" "bobbin" ];
+    lispLibs = [ _1am ];
+  });
   bodge-blobs-support = {
     pname = "bodge-blobs-support";
     createAsd = false;
@@ -2356,6 +2628,11 @@ rec {
     systems = [ "bodge-chipmunk" ];
     lispLibs = [ alexandria cffi cffi-c-ref claw claw-utils ];
   };
+  bodge-chipmunk_slash_example = (bodge-chipmunk // {
+    pname = "bodge-chipmunk/example";
+    systems = [ "bodge-chipmunk/example" "bodge-chipmunk" ];
+    lispLibs = [ chipmunk-blob float-features ];
+  });
   bodge-concurrency = {
     pname = "bodge-concurrency";
     createAsd = false;
@@ -2395,6 +2672,11 @@ rec {
     systems = [ "bodge-glfw" ];
     lispLibs = [ alexandria cffi cffi-c-ref claw claw-utils ];
   };
+  bodge-glfw_slash_example = (bodge-glfw // {
+    pname = "bodge-glfw/example";
+    systems = [ "bodge-glfw/example" "bodge-glfw" ];
+    lispLibs = [ cl-opengl claw glfw-blob ];
+  });
   bodge-heap = {
     pname = "bodge-heap";
     createAsd = false;
@@ -2408,6 +2690,11 @@ rec {
     systems = [ "bodge-heap" ];
     lispLibs = [  ];
   };
+  bodge-heap_slash_tests = (bodge-heap // {
+    pname = "bodge-heap/tests";
+    systems = [ "bodge-heap/tests" "bodge-heap" ];
+    lispLibs = [ alexandria fiveam ];
+  });
   bodge-host = {
     pname = "bodge-host";
     createAsd = false;
@@ -2473,6 +2760,11 @@ rec {
     systems = [ "bodge-nanovg" ];
     lispLibs = [ alexandria cffi cffi-c-ref claw claw-utils uiop ];
   };
+  bodge-nanovg_slash_example = (bodge-nanovg // {
+    pname = "bodge-nanovg/example";
+    systems = [ "bodge-nanovg/example" "bodge-nanovg" ];
+    lispLibs = [ bodge-glad bodge-glfw cffi cffi-c-ref cl-opengl claw float-features glad-blob glfw-blob nanovg-blob trivial-main-thread ];
+  });
   bodge-nuklear = {
     pname = "bodge-nuklear";
     createAsd = false;
@@ -2499,6 +2791,11 @@ rec {
     systems = [ "bodge-ode" ];
     lispLibs = [ alexandria cffi cffi-c-ref claw claw-utils float-features ];
   };
+  bodge-ode_slash_example = (bodge-ode // {
+    pname = "bodge-ode/example";
+    systems = [ "bodge-ode/example" "bodge-ode" ];
+    lispLibs = [ cffi-c-ref claw ode-blob ];
+  });
   bodge-openal = {
     pname = "bodge-openal";
     createAsd = false;
@@ -2512,6 +2809,11 @@ rec {
     systems = [ "bodge-openal" ];
     lispLibs = [ alexandria cffi claw claw-utils ];
   };
+  bodge-openal_slash_example = (bodge-openal // {
+    pname = "bodge-openal/example";
+    systems = [ "bodge-openal/example" "bodge-openal" ];
+    lispLibs = [ alexandria cffi-c-ref claw float-features openal-blob static-vectors ];
+  });
   bodge-queue = {
     pname = "bodge-queue";
     createAsd = false;
@@ -2525,6 +2827,11 @@ rec {
     systems = [ "bodge-queue" ];
     lispLibs = [  ];
   };
+  bodge-queue_slash_tests = (bodge-queue // {
+    pname = "bodge-queue/tests";
+    systems = [ "bodge-queue/tests" "bodge-queue" ];
+    lispLibs = [ fiveam ];
+  });
   bodge-sndfile = {
     pname = "bodge-sndfile";
     createAsd = false;
@@ -2538,6 +2845,11 @@ rec {
     systems = [ "bodge-sndfile" ];
     lispLibs = [ alexandria bodge-libc-essentials cffi cffi-c-ref claw claw-utils static-vectors ];
   };
+  bodge-sndfile_slash_example = (bodge-sndfile // {
+    pname = "bodge-sndfile/example";
+    systems = [ "bodge-sndfile/example" "bodge-sndfile" ];
+    lispLibs = [ cffi-c-ref sndfile-blob ];
+  });
   bodge-utilities = {
     pname = "bodge-utilities";
     createAsd = false;
@@ -2577,6 +2889,11 @@ rec {
     systems = [ "bordeaux-threads" ];
     lispLibs = [ alexandria ];
   };
+  bordeaux-threads_slash_test = (bordeaux-threads // {
+    pname = "bordeaux-threads/test";
+    systems = [ "bordeaux-threads/test" "bordeaux-threads" ];
+    lispLibs = [ fiveam ];
+  });
   bourbaki = {
     pname = "bourbaki";
     createAsd = false;
@@ -2603,6 +2920,11 @@ rec {
     systems = [ "bp" ];
     lispLibs = [ aserve cffi ironclad jsown usocket ];
   };
+  bp_slash_tests = (bp // {
+    pname = "bp/tests";
+    systems = [ "bp/tests" "bp" ];
+    lispLibs = [  ];
+  });
   bst = {
     pname = "bst";
     createAsd = false;
@@ -2616,6 +2938,11 @@ rec {
     systems = [ "bst" ];
     lispLibs = [  ];
   };
+  bst_slash_test = (bst // {
+    pname = "bst/test";
+    systems = [ "bst/test" "bst" ];
+    lispLibs = [ alexandria fiveam ];
+  });
   bt-semaphore = {
     pname = "bt-semaphore";
     createAsd = false;
@@ -2863,6 +3190,11 @@ rec {
     systems = [ "bytecurry.mocks" ];
     lispLibs = [ asdf-package-system bytecurry_dot_asdf-ext ];
   };
+  bytecurry_dot_mocks_slash_test = (bytecurry_dot_mocks // {
+    pname = "bytecurry.mocks/test";
+    systems = [ "bytecurry.mocks/test" "bytecurry.mocks" ];
+    lispLibs = [ fiveam ];
+  });
   c2ffi-blob = {
     pname = "c2ffi-blob";
     createAsd = false;
@@ -3630,6 +3962,19 @@ rec {
     systems = [ "cffi-tests" ];
     lispLibs = [ bordeaux-threads cffi-grovel cffi-libffi rt trivial-features ];
   };
+  cffi-tests_slash_example = {
+    pname = "cffi-tests/example";
+    createAsd = false;
+    version = "cffi_0.24.1";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
+      sha256 = "17ryim4xilb1rzxydfr7595dnhqkk02lmrbkqrkvi9091shi4cj3";
+      system = "cffi-tests/example";
+      asd = "cffi-tests";
+    });
+    systems = [ "cffi-tests/example" ];
+    lispLibs = [ cffi-grovel ];
+  };
   cffi-toolchain = {
     pname = "cffi-toolchain";
     createAsd = false;
@@ -3656,6 +4001,16 @@ rec {
     systems = [ "cffi-uffi-compat" ];
     lispLibs = [ cffi ];
   };
+  cffi_slash_c2ffi = (cffi // {
+    pname = "cffi/c2ffi";
+    systems = [ "cffi/c2ffi" "cffi" ];
+    lispLibs = [ alexandria ];
+  });
+  cffi_slash_c2ffi-generator = (cffi // {
+    pname = "cffi/c2ffi-generator";
+    systems = [ "cffi/c2ffi-generator" "cffi" ];
+    lispLibs = [ alexandria cl-json cl-ppcre ];
+  });
   cffi-c-ref = {
     pname = "cffi-c-ref";
     createAsd = false;
@@ -3669,6 +4024,11 @@ rec {
     systems = [ "cffi-c-ref" ];
     lispLibs = [ alexandria cffi ];
   };
+  cffi-c-ref_slash_tests = (cffi-c-ref // {
+    pname = "cffi-c-ref/tests";
+    systems = [ "cffi-c-ref/tests" "cffi-c-ref" ];
+    lispLibs = [ alexandria bodge-libc-essentials fiveam ];
+  });
   chain = {
     pname = "chain";
     createAsd = false;
@@ -3695,6 +4055,11 @@ rec {
     systems = [ "chameleon" ];
     lispLibs = [ alexandria ];
   };
+  chameleon_slash_tests = (chameleon // {
+    pname = "chameleon/tests";
+    systems = [ "chameleon/tests" "chameleon" ];
+    lispLibs = [ fiveam fset ];
+  });
   chancery = {
     pname = "chancery";
     createAsd = false;
@@ -3760,6 +4125,16 @@ rec {
     systems = [ "chanl" ];
     lispLibs = [ bordeaux-threads ];
   };
+  chanl_slash_examples = (chanl // {
+    pname = "chanl/examples";
+    systems = [ "chanl/examples" "chanl" ];
+    lispLibs = [  ];
+  });
+  chanl_slash_tests = (chanl // {
+    pname = "chanl/tests";
+    systems = [ "chanl/tests" "chanl" ];
+    lispLibs = [ fiveam ];
+  });
   cheat-js = {
     pname = "cheat-js";
     createAsd = false;
@@ -4111,6 +4486,16 @@ rec {
     systems = [ "ci-utils-features" ];
     lispLibs = [  ];
   };
+  ci-utils_slash_coveralls = (ci-utils // {
+    pname = "ci-utils/coveralls";
+    systems = [ "ci-utils/coveralls" "ci-utils" ];
+    lispLibs = [ ci-utils-features split-sequence ];
+  });
+  ci-utils_slash_test = (ci-utils // {
+    pname = "ci-utils/test";
+    systems = [ "ci-utils/test" "ci-utils" ];
+    lispLibs = [ ci-utils-features fiveam split-sequence ];
+  });
   circular-streams = {
     pname = "circular-streams";
     createAsd = false;
@@ -4188,6 +4573,19 @@ rec {
     });
     systems = [ "cl+ssl.test" ];
     lispLibs = [ cl_plus_ssl cl-coveralls fiveam usocket ];
+  };
+  cl_plus_ssl_slash_config = {
+    pname = "cl+ssl/config";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl+ssl/2021-12-30/cl+ssl-20211230-git.tgz";
+      sha256 = "0y5k9d2h9j38g4jgifi996w1sfz5gr8325x4vm2wgmrca27s561x";
+      system = "cl+ssl/config";
+      asd = "cl+ssl";
+    });
+    systems = [ "cl+ssl/config" ];
+    lispLibs = [ cffi ];
   };
   cl-6502 = {
     pname = "cl-6502";
@@ -5346,6 +5744,16 @@ rec {
     systems = [ "cl-aubio" ];
     lispLibs = [ cffi cffi-libffi closer-mop ];
   };
+  cl-aubio_slash_examples = (cl-aubio // {
+    pname = "cl-aubio/examples";
+    systems = [ "cl-aubio/examples" "cl-aubio" ];
+    lispLibs = [ vgplot ];
+  });
+  cl-aubio_slash_tests = (cl-aubio // {
+    pname = "cl-aubio/tests";
+    systems = [ "cl-aubio/tests" "cl-aubio" ];
+    lispLibs = [ fiveam ];
+  });
   cl-autorepo = {
     pname = "cl-autorepo";
     createAsd = false;
@@ -5385,6 +5793,11 @@ rec {
     systems = [ "cl-autowrap-test" ];
     lispLibs = [ cl-autowrap ];
   };
+  cl-autowrap_slash_libffi = (cl-autowrap // {
+    pname = "cl-autowrap/libffi";
+    systems = [ "cl-autowrap/libffi" "cl-autowrap" ];
+    lispLibs = [ cl-plus-c ];
+  });
   cl-plus-c = {
     pname = "cl-plus-c";
     createAsd = false;
@@ -5489,6 +5902,11 @@ rec {
     systems = [ "cl-base64" ];
     lispLibs = [  ];
   };
+  cl-base64_slash_test = (cl-base64 // {
+    pname = "cl-base64/test";
+    systems = [ "cl-base64/test" "cl-base64" ];
+    lispLibs = [ kmrcl ptester ];
+  });
   cl-bayesnet = {
     pname = "cl-bayesnet";
     createAsd = false;
@@ -5892,6 +6310,37 @@ rec {
     systems = [ "capstone" ];
     lispLibs = [ cffi cffi-grovel gt static-vectors trivial-features ];
   };
+  capstone_slash_raw = {
+    pname = "capstone/raw";
+    createAsd = false;
+    version = "20201016-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-capstone/2020-10-16/cl-capstone-20201016-git.tgz";
+      sha256 = "0xysxiv385m3rs3m62xpsrrdf32j6778bpkydr4j0vc3p9dfv52j";
+      system = "capstone/raw";
+      asd = "capstone";
+    });
+    systems = [ "capstone/raw" ];
+    lispLibs = [ cffi cffi-grovel gt static-vectors ];
+  };
+  capstone_slash_raw-test = {
+    pname = "capstone/raw-test";
+    createAsd = false;
+    version = "20201016-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-capstone/2020-10-16/cl-capstone-20201016-git.tgz";
+      sha256 = "0xysxiv385m3rs3m62xpsrrdf32j6778bpkydr4j0vc3p9dfv52j";
+      system = "capstone/raw-test";
+      asd = "capstone";
+    });
+    systems = [ "capstone/raw-test" ];
+    lispLibs = [ cffi cffi-grovel gt static-vectors stefil ];
+  };
+  capstone_slash_test = (capstone // {
+    pname = "capstone/test";
+    systems = [ "capstone/test" "capstone" ];
+    lispLibs = [ cffi cffi-grovel gt static-vectors stefil ];
+  });
   cl-case-control = {
     pname = "cl-case-control";
     createAsd = false;
@@ -5918,6 +6367,16 @@ rec {
     systems = [ "cl-catmull-rom-spline" ];
     lispLibs = [  ];
   };
+  cl-catmull-rom-spline_slash_example = (cl-catmull-rom-spline // {
+    pname = "cl-catmull-rom-spline/example";
+    systems = [ "cl-catmull-rom-spline/example" "cl-catmull-rom-spline" ];
+    lispLibs = [ bordeaux-threads lispbuilder-sdl lispbuilder-sdl-gfx lispbuilder-sdl-ttf ];
+  });
+  cl-catmull-rom-spline_slash_test = (cl-catmull-rom-spline // {
+    pname = "cl-catmull-rom-spline/test";
+    systems = [ "cl-catmull-rom-spline/test" "cl-catmull-rom-spline" ];
+    lispLibs = [ arrow-macros fiveam uiop ];
+  });
   cl-cerf = {
     pname = "cl-cerf";
     createAsd = false;
@@ -6113,6 +6572,11 @@ rec {
     systems = [ "cl-change-case" ];
     lispLibs = [ cl-ppcre cl-ppcre-unicode ];
   };
+  cl-change-case_slash_test = (cl-change-case // {
+    pname = "cl-change-case/test";
+    systems = [ "cl-change-case/test" "cl-change-case" ];
+    lispLibs = [ fiveam ];
+  });
   cl-charms = {
     pname = "cl-charms";
     createAsd = false;
@@ -6269,6 +6733,11 @@ rec {
     systems = [ "net.didierverna.clon.setup" ];
     lispLibs = [ named-readtables ];
   };
+  net_dot_didierverna_dot_clon_dot_setup_slash_termio = (net_dot_didierverna_dot_clon_dot_setup // {
+    pname = "net.didierverna.clon.setup/termio";
+    systems = [ "net.didierverna.clon.setup/termio" "net.didierverna.clon.setup" ];
+    lispLibs = [  ];
+  });
   simple = {
     pname = "simple";
     createAsd = false;
@@ -6412,6 +6881,11 @@ rec {
     systems = [ "cl-colors2" ];
     lispLibs = [ alexandria cl-ppcre ];
   };
+  cl-colors2_slash_tests = (cl-colors2 // {
+    pname = "cl-colors2/tests";
+    systems = [ "cl-colors2/tests" "cl-colors2" ];
+    lispLibs = [ clunit2 ];
+  });
   cl-conllu = {
     pname = "cl-conllu";
     createAsd = false;
@@ -6503,6 +6977,16 @@ rec {
     systems = [ "cl-containers-test" ];
     lispLibs = [ cl-containers lift ];
   };
+  cl-containers_slash_with-moptilities = (cl-containers // {
+    pname = "cl-containers/with-moptilities";
+    systems = [ "cl-containers/with-moptilities" "cl-containers" ];
+    lispLibs = [ moptilities ];
+  });
+  cl-containers_slash_with-utilities = (cl-containers // {
+    pname = "cl-containers/with-utilities";
+    systems = [ "cl-containers/with-utilities" "cl-containers" ];
+    lispLibs = [ metatilities-base ];
+  });
   cl-cookie = {
     pname = "cl-cookie";
     createAsd = false;
@@ -6750,6 +7234,16 @@ rec {
     systems = [ "cl-csv-data-table" ];
     lispLibs = [ cl-csv data-table ];
   };
+  cl-csv_slash_speed-test = (cl-csv // {
+    pname = "cl-csv/speed-test";
+    systems = [ "cl-csv/speed-test" "cl-csv" ];
+    lispLibs = [ lisp-unit2 ];
+  });
+  cl-csv_slash_test = (cl-csv // {
+    pname = "cl-csv/test";
+    systems = [ "cl-csv/test" "cl-csv" ];
+    lispLibs = [ lisp-unit2 ];
+  });
   cl-cuda = {
     pname = "cl-cuda";
     createAsd = false;
@@ -7114,6 +7608,11 @@ rec {
     systems = [ "dbi-test" ];
     lispLibs = [ alexandria dbi rove trivial-types ];
   };
+  dbi_slash_test = (dbi // {
+    pname = "dbi/test";
+    systems = [ "dbi/test" "dbi" ];
+    lispLibs = [ alexandria closer-mop dbd-mysql dbd-postgres dbd-sqlite3 dbi-test rove trivial-types ];
+  });
   dct = {
     pname = "dct";
     createAsd = false;
@@ -7426,6 +7925,16 @@ rec {
     systems = [ "cl-drawille" ];
     lispLibs = [ alexandria cffi osicat ];
   };
+  cl-drawille_slash_examples = (cl-drawille // {
+    pname = "cl-drawille/examples";
+    systems = [ "cl-drawille/examples" "cl-drawille" ];
+    lispLibs = [  ];
+  });
+  cl-drawille_slash_examples-animations = (cl-drawille // {
+    pname = "cl-drawille/examples-animations";
+    systems = [ "cl-drawille/examples-animations" "cl-drawille" ];
+    lispLibs = [ cl-charms ];
+  });
   cl-drm = {
     pname = "cl-drm";
     createAsd = false;
@@ -7686,6 +8195,11 @@ rec {
     systems = [ "cl-env" ];
     lispLibs = [  ];
   };
+  cl-env_slash_test = (cl-env // {
+    pname = "cl-env/test";
+    systems = [ "cl-env/test" "cl-env" ];
+    lispLibs = [ lisp-unit ];
+  });
   cl-environments = {
     pname = "cl-environments";
     createAsd = false;
@@ -7699,6 +8213,11 @@ rec {
     systems = [ "cl-environments" ];
     lispLibs = [ alexandria anaphora collectors optima parse-declarations-1_dot_0 ];
   };
+  cl-environments_slash_test = (cl-environments // {
+    pname = "cl-environments/test";
+    systems = [ "cl-environments/test" "cl-environments" ];
+    lispLibs = [ fiveam ];
+  });
   epmd = {
     pname = "epmd";
     createAsd = false;
@@ -7959,6 +8478,11 @@ rec {
     systems = [ "cl-feedparser-tests" ];
     lispLibs = [ cl-feedparser fiveam fxml local-time ];
   };
+  cl-feedparser_slash_test = (cl-feedparser // {
+    pname = "cl-feedparser/test";
+    systems = [ "cl-feedparser/test" "cl-feedparser" ];
+    lispLibs = [ fiveam fxml local-time ];
+  });
   cl-fix = {
     pname = "cl-fix";
     createAsd = false;
@@ -7972,6 +8496,16 @@ rec {
     systems = [ "cl-fix" ];
     lispLibs = [ alexandria arrow-macros bordeaux-threads cl-ppcre local-time log4cl parse-number usocket ];
   };
+  cl-fix_slash_fix44 = (cl-fix // {
+    pname = "cl-fix/fix44";
+    systems = [ "cl-fix/fix44" "cl-fix" ];
+    lispLibs = [  ];
+  });
+  cl-fix_slash_test = (cl-fix // {
+    pname = "cl-fix/test";
+    systems = [ "cl-fix/test" "cl-fix" ];
+    lispLibs = [ fiveam trivial-gray-streams ];
+  });
   cl-fixtures = {
     pname = "cl-fixtures";
     createAsd = false;
@@ -8037,6 +8571,11 @@ rec {
     systems = [ "cl-flow" ];
     lispLibs = [ alexandria cl-muth ];
   };
+  cl-flow_slash_tests = (cl-flow // {
+    pname = "cl-flow/tests";
+    systems = [ "cl-flow/tests" "cl-flow" ];
+    lispLibs = [ alexandria cl-muth fiveam simple-flow-dispatcher ];
+  });
   cl-flowd = {
     pname = "cl-flowd";
     createAsd = false;
@@ -8128,6 +8667,11 @@ rec {
     systems = [ "cl-form-types" ];
     lispLibs = [ agutil alexandria anaphora arrows cl-environments introspect-environment optima ];
   };
+  cl-form-types_slash_test = (cl-form-types // {
+    pname = "cl-form-types/test";
+    systems = [ "cl-form-types/test" "cl-form-types" ];
+    lispLibs = [ fiveam ];
+  });
   cl-forms = {
     pname = "cl-forms";
     createAsd = false;
@@ -8622,6 +9166,11 @@ rec {
     systems = [ "cl-geos" ];
     lispLibs = [ cffi trivial-garbage uiop xarray ];
   };
+  cl-geos_slash_test = (cl-geos // {
+    pname = "cl-geos/test";
+    systems = [ "cl-geos/test" "cl-geos" ];
+    lispLibs = [ fiveam ];
+  });
   cl-getopt = {
     pname = "cl-getopt";
     createAsd = false;
@@ -8661,6 +9210,11 @@ rec {
     systems = [ "cl-gimei" ];
     lispLibs = [ alexandria cl-yaml ];
   };
+  cl-gimei_slash_test = (cl-gimei // {
+    pname = "cl-gimei/test";
+    systems = [ "cl-gimei/test" "cl-gimei" ];
+    lispLibs = [ rove ];
+  });
   cl-gists = {
     pname = "cl-gists";
     createAsd = false;
@@ -8700,6 +9254,11 @@ rec {
     systems = [ "cl-git" ];
     lispLibs = [ alexandria anaphora cffi cffi-grovel cl-fad closer-mop flexi-streams local-time trivial-garbage uiop ];
   };
+  cl-git_slash_tests = (cl-git // {
+    pname = "cl-git/tests";
+    systems = [ "cl-git/tests" "cl-git" ];
+    lispLibs = [ alexandria cl-fad fiveam flexi-streams inferior-shell local-time unix-options ];
+  });
   cl-github-v3 = {
     pname = "cl-github-v3";
     createAsd = false;
@@ -13354,6 +13913,26 @@ rec {
     systems = [ "cl-graph+hu.dwim.graphviz" ];
     lispLibs = [ cl-graph hu_dot_dwim_dot_graphviz ];
   };
+  cl-graph_slash_with-cl-mathstats = (cl-graph // {
+    pname = "cl-graph/with-cl-mathstats";
+    systems = [ "cl-graph/with-cl-mathstats" "cl-graph" ];
+    lispLibs = [ cl-mathstats ];
+  });
+  cl-graph_slash_with-dynamic-classes = (cl-graph // {
+    pname = "cl-graph/with-dynamic-classes";
+    systems = [ "cl-graph/with-dynamic-classes" "cl-graph" ];
+    lispLibs = [ dynamic-classes ];
+  });
+  cl-graph_slash_with-metacopy = (cl-graph // {
+    pname = "cl-graph/with-metacopy";
+    systems = [ "cl-graph/with-metacopy" "cl-graph" ];
+    lispLibs = [ metacopy ];
+  });
+  cl-graph_slash_with-moptilities = (cl-graph // {
+    pname = "cl-graph/with-moptilities";
+    systems = [ "cl-graph/with-moptilities" "cl-graph" ];
+    lispLibs = [ moptilities ];
+  });
   gravatar = {
     pname = "gravatar";
     createAsd = false;
@@ -13458,6 +14037,16 @@ rec {
     systems = [ "cl-gserver" ];
     lispLibs = [ alexandria atomics binding-arrows blackbird bordeaux-threads cl-speedy-queue log4cl lparallel str timer-wheel ];
   };
+  cl-gserver_slash_docs = (cl-gserver // {
+    pname = "cl-gserver/docs";
+    systems = [ "cl-gserver/docs" "cl-gserver" ];
+    lispLibs = [ mgl-pax ];
+  });
+  cl-gserver_slash_tests = (cl-gserver // {
+    pname = "cl-gserver/tests";
+    systems = [ "cl-gserver/tests" "cl-gserver" ];
+    lispLibs = [ cl-mock fiveam ];
+  });
   cl-gss = {
     pname = "cl-gss";
     createAsd = false;
@@ -13731,6 +14320,32 @@ rec {
     systems = [ "cl-html-readme" ];
     lispLibs = [  ];
   };
+  cl-html-readme_slash_doc = {
+    pname = "cl-html-readme/doc";
+    createAsd = false;
+    version = "quicklisp-current-release-fa304a63-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-html-readme/2021-02-28/cl-html-readme-quicklisp-current-release-fa304a63-git.tgz";
+      sha256 = "01z2ykfhg7wx7sz4kp1c6cj9ffbpppnfgfd2jpizd7f5id2wi3cb";
+      system = "cl-html-readme/doc";
+      asd = "cl-html-readme";
+    });
+    systems = [ "cl-html-readme/doc" ];
+    lispLibs = [ docparser ];
+  };
+  cl-html-readme_slash_test = {
+    pname = "cl-html-readme/test";
+    createAsd = false;
+    version = "quicklisp-current-release-fa304a63-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-html-readme/2021-02-28/cl-html-readme-quicklisp-current-release-fa304a63-git.tgz";
+      sha256 = "01z2ykfhg7wx7sz4kp1c6cj9ffbpppnfgfd2jpizd7f5id2wi3cb";
+      system = "cl-html-readme/test";
+      asd = "cl-html-readme";
+    });
+    systems = [ "cl-html-readme/test" ];
+    lispLibs = [ lisp-unit ];
+  };
   cl-html5-parser = {
     pname = "cl-html5-parser";
     createAsd = false;
@@ -13848,6 +14463,11 @@ rec {
     systems = [ "cl-incognia" ];
     lispLibs = [ dexador jonathan ];
   };
+  cl-incognia_slash_tests = (cl-incognia // {
+    pname = "cl-incognia/tests";
+    systems = [ "cl-incognia/tests" "cl-incognia" ];
+    lispLibs = [ rove ];
+  });
   cl-indentify = {
     pname = "cl-indentify";
     createAsd = false;
@@ -13861,6 +14481,16 @@ rec {
     systems = [ "cl-indentify" ];
     lispLibs = [ alexandria trivial-gray-streams uiop ];
   };
+  cl-indentify_slash_cli = (cl-indentify // {
+    pname = "cl-indentify/cli";
+    systems = [ "cl-indentify/cli" "cl-indentify" ];
+    lispLibs = [ command-line-arguments ];
+  });
+  cl-indentify_slash_tests = (cl-indentify // {
+    pname = "cl-indentify/tests";
+    systems = [ "cl-indentify/tests" "cl-indentify" ];
+    lispLibs = [ rove trivial-escapes ];
+  });
   cl-inflector = {
     pname = "cl-inflector";
     createAsd = false;
@@ -14277,6 +14907,37 @@ rec {
     systems = [ "cl-json-pointer" ];
     lispLibs = [ alexandria closer-mop ];
   };
+  cl-json-pointer_slash_core = {
+    pname = "cl-json-pointer/core";
+    createAsd = false;
+    version = "20210411-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-json-pointer/2021-04-11/cl-json-pointer-20210411-git.tgz";
+      sha256 = "0mmi8v7b4584cxc6176rsa0w4jmcw8pd3zhxrc3qwnv9g126n33g";
+      system = "cl-json-pointer/core";
+      asd = "cl-json-pointer";
+    });
+    systems = [ "cl-json-pointer/core" ];
+    lispLibs = [ alexandria closer-mop ];
+  };
+  cl-json-pointer_slash_st-json-support = {
+    pname = "cl-json-pointer/st-json-support";
+    createAsd = false;
+    version = "20210411-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-json-pointer/2021-04-11/cl-json-pointer-20210411-git.tgz";
+      sha256 = "0mmi8v7b4584cxc6176rsa0w4jmcw8pd3zhxrc3qwnv9g126n33g";
+      system = "cl-json-pointer/st-json-support";
+      asd = "cl-json-pointer";
+    });
+    systems = [ "cl-json-pointer/st-json-support" ];
+    lispLibs = [ alexandria closer-mop st-json ];
+  };
+  cl-json-pointer_slash_synonyms = (cl-json-pointer // {
+    pname = "cl-json-pointer/synonyms";
+    systems = [ "cl-json-pointer/synonyms" "cl-json-pointer" ];
+    lispLibs = [  ];
+  });
   cl-json-schema = {
     pname = "cl-json-schema";
     createAsd = false;
@@ -14485,6 +15146,16 @@ rec {
     systems = [ "kaputt" ];
     lispLibs = [  ];
   };
+  kaputt_slash_example = (kaputt // {
+    pname = "kaputt/example";
+    systems = [ "kaputt/example" "kaputt" ];
+    lispLibs = [  ];
+  });
+  kaputt_slash_test = (kaputt // {
+    pname = "kaputt/test";
+    systems = [ "kaputt/test" "kaputt" ];
+    lispLibs = [ cl-ppcre ];
+  });
   cl-keycloak = {
     pname = "cl-keycloak";
     createAsd = false;
@@ -14510,6 +15181,19 @@ rec {
     });
     systems = [ "cl-kraken" ];
     lispLibs = [ cl-base64 dexador ironclad jsown quri ];
+  };
+  cl-kraken_slash_tests = {
+    pname = "cl-kraken/tests";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-kraken/2021-12-30/cl-kraken-20211230-git.tgz";
+      sha256 = "1nnyi9xpb59nxyzby5yhjvyxr8dx5x9xa705igbrvggghg27z4kp";
+      system = "cl-kraken/tests";
+      asd = "cl-kraken";
+    });
+    systems = [ "cl-kraken/tests" ];
+    lispLibs = [ rove ];
   };
   cl-ksuid = {
     pname = "cl-ksuid";
@@ -14563,6 +15247,11 @@ rec {
     systems = [ "cl-l10n" ];
     lispLibs = [ alexandria cl-fad cl-l10n-cldr cl-ppcre closer-mop cxml flexi-streams iterate local-time metabang-bind ];
   };
+  cl-l10n_slash_test = (cl-l10n // {
+    pname = "cl-l10n/test";
+    systems = [ "cl-l10n/test" "cl-l10n" ];
+    lispLibs = [ hu_dot_dwim_dot_stefil parse-number ];
+  });
   cl-l10n-cldr = {
     pname = "cl-l10n-cldr";
     createAsd = false;
@@ -15629,6 +16318,11 @@ rec {
     systems = [ "cl-megolm" ];
     lispLibs = [ alexandria cffi claw-olm ironclad jonathan lisp-unit s-base64 str ];
   };
+  cl-megolm_slash_tests = (cl-megolm // {
+    pname = "cl-megolm/tests";
+    systems = [ "cl-megolm/tests" "cl-megolm" ];
+    lispLibs = [ lisp-unit s-base64 ];
+  });
   cl-memcached = {
     pname = "cl-memcached";
     createAsd = false;
@@ -16435,6 +17129,11 @@ rec {
     systems = [ "cl-murmurhash" ];
     lispLibs = [ babel ];
   };
+  cl-murmurhash_slash_test = (cl-murmurhash // {
+    pname = "cl-murmurhash/test";
+    systems = [ "cl-murmurhash/test" "cl-murmurhash" ];
+    lispLibs = [ fiveam ];
+  });
   cl-mustache = {
     pname = "cl-mustache";
     createAsd = false;
@@ -16474,6 +17173,11 @@ rec {
     systems = [ "cl-muth" ];
     lispLibs = [ alexandria bodge-heap bodge-queue bordeaux-threads trivial-features ];
   };
+  cl-muth_slash_tests = (cl-muth // {
+    pname = "cl-muth/tests";
+    systems = [ "cl-muth/tests" "cl-muth" ];
+    lispLibs = [ alexandria bordeaux-threads fiveam ];
+  });
   cl-mw = {
     pname = "cl-mw";
     createAsd = false;
@@ -16760,6 +17464,11 @@ rec {
     systems = [ "cl-netpbm" ];
     lispLibs = [  ];
   };
+  cl-netpbm_slash_test = (cl-netpbm // {
+    pname = "cl-netpbm/test";
+    systems = [ "cl-netpbm/test" "cl-netpbm" ];
+    lispLibs = [ _1am external-program ];
+  });
   cl-netstring_plus = {
     pname = "cl-netstring+";
     createAsd = false;
@@ -16799,6 +17508,11 @@ rec {
     systems = [ "cl-notebook" ];
     lispLibs = [ alexandria anaphora cl-css cl-fad cl-who closer-mop fact-base house parenscript prove-asdf qlot quri ];
   };
+  cl-notebook_slash_test = (cl-notebook // {
+    pname = "cl-notebook/test";
+    systems = [ "cl-notebook/test" "cl-notebook" ];
+    lispLibs = [ prove-asdf test-utils ];
+  });
   asdf-nst = {
     pname = "asdf-nst";
     createAsd = false;
@@ -17085,6 +17799,11 @@ rec {
     systems = [ "cl-octet-streams" ];
     lispLibs = [ trivial-gray-streams ];
   };
+  cl-octet-streams_slash_tests = (cl-octet-streams // {
+    pname = "cl-octet-streams/tests";
+    systems = [ "cl-octet-streams/tests" "cl-octet-streams" ];
+    lispLibs = [ fiveam ];
+  });
   cl-ode = {
     pname = "cl-ode";
     createAsd = false;
@@ -17124,6 +17843,11 @@ rec {
     systems = [ "cl-ohm" ];
     lispLibs = [ alexandria cl-redis closer-mop ];
   };
+  cl-ohm_slash_test = (cl-ohm // {
+    pname = "cl-ohm/test";
+    systems = [ "cl-ohm/test" "cl-ohm" ];
+    lispLibs = [ fiveam ];
+  });
   cl-olefs = {
     pname = "cl-olefs";
     createAsd = false;
@@ -17343,6 +18067,19 @@ rec {
       asd = "cl-opengl";
     });
     systems = [ "cl-opengl" ];
+    lispLibs = [ alexandria cffi float-features ];
+  };
+  cl-opengl_slash_es2 = {
+    pname = "cl-opengl/es2";
+    createAsd = false;
+    version = "20191130-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-opengl/2019-11-30/cl-opengl-20191130-git.tgz";
+      sha256 = "0mhqmll09f079pnd6mgswz9nvr6h5n27d4q7zpmm2igf1v460id7";
+      system = "cl-opengl/es2";
+      asd = "cl-opengl";
+    });
+    systems = [ "cl-opengl/es2" ];
     lispLibs = [ alexandria cffi float-features ];
   };
   cl-openstack-client = {
@@ -17657,6 +18394,26 @@ rec {
     systems = [ "cl-patterns" ];
     lispLibs = [ alexandria bordeaux-threads closer-mop dissect local-time mutility named-readtables ];
   };
+  cl-patterns_slash_debug = (cl-patterns // {
+    pname = "cl-patterns/debug";
+    systems = [ "cl-patterns/debug" "cl-patterns" ];
+    lispLibs = [  ];
+  });
+  cl-patterns_slash_midifile = (cl-patterns // {
+    pname = "cl-patterns/midifile";
+    systems = [ "cl-patterns/midifile" "cl-patterns" ];
+    lispLibs = [ midi ];
+  });
+  cl-patterns_slash_sugar = (cl-patterns // {
+    pname = "cl-patterns/sugar";
+    systems = [ "cl-patterns/sugar" "cl-patterns" ];
+    lispLibs = [  ];
+  });
+  cl-patterns_slash_supercollider = (cl-patterns // {
+    pname = "cl-patterns/supercollider";
+    systems = [ "cl-patterns/supercollider" "cl-patterns" ];
+    lispLibs = [ cl-collider ];
+  });
   cl-paymill = {
     pname = "cl-paymill";
     createAsd = false;
@@ -18034,6 +18791,16 @@ rec {
     systems = [ "cl-portaudio" ];
     lispLibs = [ cffi ffa ];
   };
+  cl-portaudio_slash_doc = (cl-portaudio // {
+    pname = "cl-portaudio/doc";
+    systems = [ "cl-portaudio/doc" "cl-portaudio" ];
+    lispLibs = [ atdoc ];
+  });
+  cl-portaudio_slash_tests = (cl-portaudio // {
+    pname = "cl-portaudio/tests";
+    systems = [ "cl-portaudio/tests" "cl-portaudio" ];
+    lispLibs = [  ];
+  });
   portmanteau = {
     pname = "portmanteau";
     createAsd = false;
@@ -18489,6 +19256,89 @@ rec {
     systems = [ "clpython" ];
     lispLibs = [ cl-fad closer-mop yacc ];
   };
+  clpython_slash_basic = {
+    pname = "clpython/basic";
+    createAsd = false;
+    version = "20200427-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-python/2020-04-27/cl-python-20200427-git.tgz";
+      sha256 = "17j1n60yhc4cdxwbzbmjxk8dywx3my34k8b1gpiwxpq6jgzbh46c";
+      system = "clpython/basic";
+      asd = "clpython";
+    });
+    systems = [ "clpython/basic" ];
+    lispLibs = [ closer-mop ];
+  };
+  clpython_slash_compiler = {
+    pname = "clpython/compiler";
+    createAsd = false;
+    version = "20200427-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-python/2020-04-27/cl-python-20200427-git.tgz";
+      sha256 = "17j1n60yhc4cdxwbzbmjxk8dywx3my34k8b1gpiwxpq6jgzbh46c";
+      system = "clpython/compiler";
+      asd = "clpython";
+    });
+    systems = [ "clpython/compiler" ];
+    lispLibs = [ cl-fad closer-mop yacc ];
+  };
+  clpython_slash_contrib = {
+    pname = "clpython/contrib";
+    createAsd = false;
+    version = "20200427-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-python/2020-04-27/cl-python-20200427-git.tgz";
+      sha256 = "17j1n60yhc4cdxwbzbmjxk8dywx3my34k8b1gpiwxpq6jgzbh46c";
+      system = "clpython/contrib";
+      asd = "clpython";
+    });
+    systems = [ "clpython/contrib" ];
+    lispLibs = [ cl-fad closer-mop yacc ];
+  };
+  clpython_slash_lib = {
+    pname = "clpython/lib";
+    createAsd = false;
+    version = "20200427-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-python/2020-04-27/cl-python-20200427-git.tgz";
+      sha256 = "17j1n60yhc4cdxwbzbmjxk8dywx3my34k8b1gpiwxpq6jgzbh46c";
+      system = "clpython/lib";
+      asd = "clpython";
+    });
+    systems = [ "clpython/lib" ];
+    lispLibs = [ cl-fad closer-mop yacc ];
+  };
+  clpython_slash_parser = {
+    pname = "clpython/parser";
+    createAsd = false;
+    version = "20200427-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-python/2020-04-27/cl-python-20200427-git.tgz";
+      sha256 = "17j1n60yhc4cdxwbzbmjxk8dywx3my34k8b1gpiwxpq6jgzbh46c";
+      system = "clpython/parser";
+      asd = "clpython";
+    });
+    systems = [ "clpython/parser" ];
+    lispLibs = [ closer-mop yacc ];
+  };
+  clpython_slash_runtime = {
+    pname = "clpython/runtime";
+    createAsd = false;
+    version = "20200427-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-python/2020-04-27/cl-python-20200427-git.tgz";
+      sha256 = "17j1n60yhc4cdxwbzbmjxk8dywx3my34k8b1gpiwxpq6jgzbh46c";
+      system = "clpython/runtime";
+      asd = "clpython";
+    });
+    systems = [ "clpython/runtime" ];
+    lispLibs = [ cl-fad closer-mop ];
+  };
+  clpython_slash_test = (clpython // {
+    pname = "clpython/test";
+    systems = [ "clpython/test" "clpython" ];
+    lispLibs = [ ptester ];
+  });
   cl-qprint = {
     pname = "cl-qprint";
     createAsd = false;
@@ -18697,6 +19547,11 @@ rec {
     systems = [ "cl-rdkafka" ];
     lispLibs = [ bordeaux-threads cffi cffi-grovel lparallel trivial-garbage ];
   };
+  cl-rdkafka_slash_test = (cl-rdkafka // {
+    pname = "cl-rdkafka/test";
+    systems = [ "cl-rdkafka/test" "cl-rdkafka" ];
+    lispLibs = [ _1am babel ];
+  });
   cl-readline = {
     pname = "cl-readline";
     createAsd = false;
@@ -19126,6 +19981,11 @@ rec {
     systems = [ "cl-sandbox" ];
     lispLibs = [  ];
   };
+  cl-sandbox_slash_tests = (cl-sandbox // {
+    pname = "cl-sandbox/tests";
+    systems = [ "cl-sandbox/tests" "cl-sandbox" ];
+    lispLibs = [ fiveam ];
+  });
   sane = {
     pname = "sane";
     createAsd = false;
@@ -19321,6 +20181,19 @@ rec {
     systems = [ "cl-scripting" ];
     lispLibs = [ cl-launch fare-utils ];
   };
+  cl-scripting_slash_test = {
+    pname = "cl-scripting/test";
+    createAsd = false;
+    version = "20211020-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-scripting/2021-10-20/cl-scripting-20211020-git.tgz";
+      sha256 = "1xi8klkn4fhmcrnhxzxvl0rj68dc7az6l2hc10560g9jvblcmmpp";
+      system = "cl-scripting/test";
+      asd = "cl-scripting";
+    });
+    systems = [ "cl-scripting/test" ];
+    lispLibs = [  ];
+  };
   cl-scrobbler = {
     pname = "cl-scrobbler";
     createAsd = false;
@@ -19386,6 +20259,11 @@ rec {
     systems = [ "sdl2" ];
     lispLibs = [ alexandria cl-autowrap cl-plus-c cl-ppcre trivial-channels trivial-features ];
   };
+  sdl2_slash_examples = (sdl2 // {
+    pname = "sdl2/examples";
+    systems = [ "sdl2/examples" "sdl2" ];
+    lispLibs = [ cl-opengl ];
+  });
   sdl2-image = {
     pname = "sdl2-image";
     createAsd = false;
@@ -19542,6 +20420,11 @@ rec {
     systems = [ "cl-ses4" ];
     lispLibs = [ arrow-macros cl-base64 cl-ppcre dexador ironclad local-time quickapp quri ];
   };
+  cl-ses4_slash_test = (cl-ses4 // {
+    pname = "cl-ses4/test";
+    systems = [ "cl-ses4/test" "cl-ses4" ];
+    lispLibs = [ fiveam uiop ];
+  });
   cl-setlocale = {
     pname = "cl-setlocale";
     createAsd = false;
@@ -19555,6 +20438,11 @@ rec {
     systems = [ "cl-setlocale" ];
     lispLibs = [ cffi cffi-grovel ];
   };
+  cl-setlocale_slash_tests = (cl-setlocale // {
+    pname = "cl-setlocale/tests";
+    systems = [ "cl-setlocale/tests" "cl-setlocale" ];
+    lispLibs = [ fiveam ];
+  });
   cl-sha1 = {
     pname = "cl-sha1";
     createAsd = false;
@@ -19607,6 +20495,11 @@ rec {
     systems = [ "shlex" ];
     lispLibs = [ alexandria cl-ppcre cl-unicode serapeum ];
   };
+  shlex_slash_test = (shlex // {
+    pname = "shlex/test";
+    systems = [ "shlex/test" "shlex" ];
+    lispLibs = [ fiveam ];
+  });
   cl-simple-concurrent-jobs = {
     pname = "cl-simple-concurrent-jobs";
     createAsd = false;
@@ -19698,6 +20591,68 @@ rec {
     systems = [ "cl-skkserv" ];
     lispLibs = [ alexandria babel cl-ppcre drakma esrap flexi-streams jp-numeral named-readtables papyrus yason ];
   };
+  cl-skkserv_slash_cli = (cl-skkserv // {
+    pname = "cl-skkserv/cli";
+    systems = [ "cl-skkserv/cli" "cl-skkserv" ];
+    lispLibs = [ alexandria daemon unix-opts usocket usocket-server ];
+  });
+  cl-skkserv_slash_core = {
+    pname = "cl-skkserv/core";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-skkserv/2020-12-20/cl-skkserv-20201220-git.tgz";
+      sha256 = "1khbfsvf70dyrrkbwcblzd6bkgx1z6k9ras57inmv2lqqr93m5l4";
+      system = "cl-skkserv/core";
+      asd = "cl-skkserv";
+    });
+    systems = [ "cl-skkserv/core" ];
+    lispLibs = [ alexandria babel esrap named-readtables papyrus ];
+  };
+  cl-skkserv_slash_google-ime = {
+    pname = "cl-skkserv/google-ime";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-skkserv/2020-12-20/cl-skkserv-20201220-git.tgz";
+      sha256 = "1khbfsvf70dyrrkbwcblzd6bkgx1z6k9ras57inmv2lqqr93m5l4";
+      system = "cl-skkserv/google-ime";
+      asd = "cl-skkserv";
+    });
+    systems = [ "cl-skkserv/google-ime" ];
+    lispLibs = [ alexandria babel drakma esrap flexi-streams named-readtables papyrus yason ];
+  };
+  cl-skkserv_slash_mixed = {
+    pname = "cl-skkserv/mixed";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-skkserv/2020-12-20/cl-skkserv-20201220-git.tgz";
+      sha256 = "1khbfsvf70dyrrkbwcblzd6bkgx1z6k9ras57inmv2lqqr93m5l4";
+      system = "cl-skkserv/mixed";
+      asd = "cl-skkserv";
+    });
+    systems = [ "cl-skkserv/mixed" ];
+    lispLibs = [ alexandria babel esrap named-readtables papyrus ];
+  };
+  cl-skkserv_slash_skk = {
+    pname = "cl-skkserv/skk";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-skkserv/2020-12-20/cl-skkserv-20201220-git.tgz";
+      sha256 = "1khbfsvf70dyrrkbwcblzd6bkgx1z6k9ras57inmv2lqqr93m5l4";
+      system = "cl-skkserv/skk";
+      asd = "cl-skkserv";
+    });
+    systems = [ "cl-skkserv/skk" ];
+    lispLibs = [ alexandria babel cl-ppcre esrap jp-numeral named-readtables papyrus ];
+  };
+  cl-skkserv_slash_tests = (cl-skkserv // {
+    pname = "cl-skkserv/tests";
+    systems = [ "cl-skkserv/tests" "cl-skkserv" ];
+    lispLibs = [ _1am flexi-streams ];
+  });
   cl-android = {
     pname = "cl-android";
     createAsd = false;
@@ -20257,6 +21212,11 @@ rec {
     systems = [ "cl-strftime" ];
     lispLibs = [ alexandria cl-ppcre local-time serapeum ];
   };
+  cl-strftime_slash_tests = (cl-strftime // {
+    pname = "cl-strftime/tests";
+    systems = [ "cl-strftime/tests" "cl-strftime" ];
+    lispLibs = [ cffi fiveam uiop ];
+  });
   cl-string-complete = {
     pname = "cl-string-complete";
     createAsd = false;
@@ -20283,6 +21243,11 @@ rec {
     systems = [ "cl-string-generator" ];
     lispLibs = [ alexandria cl-ppcre ];
   };
+  cl-string-generator_slash_tests = (cl-string-generator // {
+    pname = "cl-string-generator/tests";
+    systems = [ "cl-string-generator/tests" "cl-string-generator" ];
+    lispLibs = [ rove ];
+  });
   ascii-strings = {
     pname = "ascii-strings";
     createAsd = false;
@@ -20738,6 +21703,16 @@ rec {
     systems = [ "cl-threadpool" ];
     lispLibs = [ bordeaux-threads queues_dot_simple-cqueue ];
   };
+  cl-threadpool_slash_doc = (cl-threadpool // {
+    pname = "cl-threadpool/doc";
+    systems = [ "cl-threadpool/doc" "cl-threadpool" ];
+    lispLibs = [ cl-html-readme docparser ];
+  });
+  cl-threadpool_slash_test = (cl-threadpool // {
+    pname = "cl-threadpool/test";
+    systems = [ "cl-threadpool/test" "cl-threadpool" ];
+    lispLibs = [ lisp-unit verbose ];
+  });
   cl-tidy = {
     pname = "cl-tidy";
     createAsd = false;
@@ -20881,6 +21856,11 @@ rec {
     systems = [ "torrents-test" ];
     lispLibs = [ mockingbird prove prove-asdf torrents ];
   };
+  torrents_slash_tk = (torrents // {
+    pname = "torrents/tk";
+    systems = [ "torrents/tk" "torrents" ];
+    lispLibs = [ nodgui ];
+  });
   cl-transmission = {
     pname = "cl-transmission";
     createAsd = false;
@@ -20933,6 +21913,11 @@ rec {
     systems = [ "cl-trie-examples" ];
     lispLibs = [ cl-ppcre cl-trie ];
   };
+  cl-trie_slash_tests = (cl-trie // {
+    pname = "cl-trie/tests";
+    systems = [ "cl-trie/tests" "cl-trie" ];
+    lispLibs = [ fiveam ];
+  });
   cl-tui = {
     pname = "cl-tui";
     createAsd = false;
@@ -21076,6 +22061,37 @@ rec {
     systems = [ "cl-unicode" ];
     lispLibs = [ cl-ppcre ];
   };
+  cl-unicode_slash_base = {
+    pname = "cl-unicode/base";
+    createAsd = false;
+    version = "20210228-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-unicode/2021-02-28/cl-unicode-20210228-git.tgz";
+      sha256 = "1a9gbzvi5gj3z9gcia1rgmnk0dzgc82vz47bgnfvhn4q0c7mvk31";
+      system = "cl-unicode/base";
+      asd = "cl-unicode";
+    });
+    systems = [ "cl-unicode/base" ];
+    lispLibs = [ cl-ppcre ];
+  };
+  cl-unicode_slash_build = {
+    pname = "cl-unicode/build";
+    createAsd = false;
+    version = "20210228-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cl-unicode/2021-02-28/cl-unicode-20210228-git.tgz";
+      sha256 = "1a9gbzvi5gj3z9gcia1rgmnk0dzgc82vz47bgnfvhn4q0c7mvk31";
+      system = "cl-unicode/build";
+      asd = "cl-unicode";
+    });
+    systems = [ "cl-unicode/build" ];
+    lispLibs = [ cl-ppcre flexi-streams ];
+  };
+  cl-unicode_slash_test = (cl-unicode // {
+    pname = "cl-unicode/test";
+    systems = [ "cl-unicode/test" "cl-unicode" ];
+    lispLibs = [  ];
+  });
   cl-ppcre-template = {
     pname = "cl-ppcre-template";
     createAsd = false;
@@ -21427,6 +22443,11 @@ rec {
     systems = [ "cl-wadler-pprint" ];
     lispLibs = [  ];
   };
+  cl-wadler-pprint_slash_test = (cl-wadler-pprint // {
+    pname = "cl-wadler-pprint/test";
+    systems = [ "cl-wadler-pprint/test" "cl-wadler-pprint" ];
+    lispLibs = [ fiveam ];
+  });
   cl-wav = {
     pname = "cl-wav";
     createAsd = false;
@@ -21453,6 +22474,11 @@ rec {
     systems = [ "cl-wave-file-writer" ];
     lispLibs = [  ];
   };
+  cl-wave-file-writer_slash_doc = (cl-wave-file-writer // {
+    pname = "cl-wave-file-writer/doc";
+    systems = [ "cl-wave-file-writer/doc" "cl-wave-file-writer" ];
+    lispLibs = [ cl-html-readme docparser ];
+  });
   cl-wavelets = {
     pname = "cl-wavelets";
     createAsd = false;
@@ -21466,6 +22492,16 @@ rec {
     systems = [ "cl-wavelets" ];
     lispLibs = [  ];
   };
+  cl-wavelets_slash_examples = (cl-wavelets // {
+    pname = "cl-wavelets/examples";
+    systems = [ "cl-wavelets/examples" "cl-wavelets" ];
+    lispLibs = [ cl-jpeg easy-audio ];
+  });
+  cl-wavelets_slash_tests = (cl-wavelets // {
+    pname = "cl-wavelets/tests";
+    systems = [ "cl-wavelets/tests" "cl-wavelets" ];
+    lispLibs = [ fiveam ];
+  });
   cl-wayland = {
     pname = "cl-wayland";
     createAsd = false;
@@ -21635,6 +22671,11 @@ rec {
     systems = [ "cl-wordcut" ];
     lispLibs = [  ];
   };
+  cl-wordcut_slash_test = (cl-wordcut // {
+    pname = "cl-wordcut/test";
+    systems = [ "cl-wordcut/test" "cl-wordcut" ];
+    lispLibs = [ fiveam ];
+  });
   cl-xdg = {
     pname = "cl-xdg";
     createAsd = false;
@@ -21960,6 +23001,26 @@ rec {
     systems = [ "zyre" ];
     lispLibs = [ cffi cffi-grovel trivia trivial-garbage uiop ];
   };
+  zyre_slash_tock-client = (zyre // {
+    pname = "zyre/tock-client";
+    systems = [ "zyre/tock-client" "zyre" ];
+    lispLibs = [ local-time local-time-duration ];
+  });
+  zyre_slash_tock-server = (zyre // {
+    pname = "zyre/tock-server";
+    systems = [ "zyre/tock-server" "zyre" ];
+    lispLibs = [ local-time local-time-duration ];
+  });
+  zyre_slash_zpinger = (zyre // {
+    pname = "zyre/zpinger";
+    systems = [ "zyre/zpinger" "zyre" ];
+    lispLibs = [ cl-ppcre log4cl ];
+  });
+  zyre_slash_zyredir = (zyre // {
+    pname = "zyre/zyredir";
+    systems = [ "zyre/zyredir" "zyre" ];
+    lispLibs = [ cl-json ];
+  });
   cl4store = {
     pname = "cl4store";
     createAsd = false;
@@ -22350,6 +23411,11 @@ rec {
     systems = [ "clast" ];
     lispLibs = [  ];
   };
+  clast_slash_tests = (clast // {
+    pname = "clast/tests";
+    systems = [ "clast/tests" "clast" ];
+    lispLibs = [ fiveam ];
+  });
   clath = {
     pname = "clath";
     createAsd = false;
@@ -22414,6 +23480,58 @@ rec {
     });
     systems = [ "claw" ];
     lispLibs = [ alexandria cffi cl-json cl-ppcre claw-support local-time trivial-features uiop ];
+  };
+  claw_slash_cffi = {
+    pname = "claw/cffi";
+    createAsd = false;
+    version = "stable-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/claw/2020-10-16/claw-stable-git.tgz";
+      sha256 = "146yv0hc4hmk72562ssj2d41143pp84dcbd1h7f4nx1c7hf2bb0d";
+      system = "claw/cffi";
+      asd = "claw";
+    });
+    systems = [ "claw/cffi" ];
+    lispLibs = [ alexandria cffi cl-json cl-ppcre claw-support local-time trivial-features uiop ];
+  };
+  claw_slash_spec = {
+    pname = "claw/spec";
+    createAsd = false;
+    version = "stable-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/claw/2020-10-16/claw-stable-git.tgz";
+      sha256 = "146yv0hc4hmk72562ssj2d41143pp84dcbd1h7f4nx1c7hf2bb0d";
+      system = "claw/spec";
+      asd = "claw";
+    });
+    systems = [ "claw/spec" ];
+    lispLibs = [ alexandria cl-json cl-ppcre claw-support local-time uiop ];
+  };
+  claw_slash_util = {
+    pname = "claw/util";
+    createAsd = false;
+    version = "stable-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/claw/2020-10-16/claw-stable-git.tgz";
+      sha256 = "146yv0hc4hmk72562ssj2d41143pp84dcbd1h7f4nx1c7hf2bb0d";
+      system = "claw/util";
+      asd = "claw";
+    });
+    systems = [ "claw/util" ];
+    lispLibs = [ alexandria cl-ppcre local-time uiop ];
+  };
+  claw_slash_wrapper = {
+    pname = "claw/wrapper";
+    createAsd = false;
+    version = "stable-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/claw/2020-10-16/claw-stable-git.tgz";
+      sha256 = "146yv0hc4hmk72562ssj2d41143pp84dcbd1h7f4nx1c7hf2bb0d";
+      system = "claw/wrapper";
+      asd = "claw";
+    });
+    systems = [ "claw/wrapper" ];
+    lispLibs = [ alexandria cl-json cl-ppcre claw-support local-time uiop ];
   };
   claw-olm = {
     pname = "claw-olm";
@@ -22961,6 +24079,11 @@ rec {
     systems = [ "clj" ];
     lispLibs = [ agnostic-lizard arrow-macros cl-hamt local-package-aliases named-readtables optima prove-asdf test-utils ];
   };
+  clj_slash_test = (clj // {
+    pname = "clj/test";
+    systems = [ "clj/test" "clj" ];
+    lispLibs = [ prove-asdf test-utils ];
+  });
   clj-con = {
     pname = "clj-con";
     createAsd = false;
@@ -23429,6 +24552,16 @@ rec {
     systems = [ "clog" ];
     lispLibs = [ alexandria bordeaux-threads cl-ppcre clack hunchentoot lack-middleware-static mgl-pax parse-float quri sqlite trivial-open-browser websocket-driver ];
   };
+  clog_slash_docs = (clog // {
+    pname = "clog/docs";
+    systems = [ "clog/docs" "clog" ];
+    lispLibs = [ _3bmd colorize ];
+  });
+  clog_slash_tools = (clog // {
+    pname = "clog/tools";
+    systems = [ "clog/tools" "clog" ];
+    lispLibs = [  ];
+  });
   hello-clog = {
     pname = "hello-clog";
     createAsd = false;
@@ -24014,6 +25147,11 @@ rec {
     systems = [ "clutter" ];
     lispLibs = [ closer-mop doplus ];
   };
+  clutter_slash_tests = (clutter // {
+    pname = "clutter/tests";
+    systems = [ "clutter/tests" "clutter" ];
+    lispLibs = [ dissect rove ];
+  });
   clweb = {
     pname = "clweb";
     createAsd = false;
@@ -24027,6 +25165,11 @@ rec {
     systems = [ "clweb" ];
     lispLibs = [  ];
   };
+  clweb_slash_tests = (clweb // {
+    pname = "clweb/tests";
+    systems = [ "clweb/tests" "clweb" ];
+    lispLibs = [  ];
+  });
   clws = {
     pname = "clws";
     createAsd = false;
@@ -24053,6 +25196,11 @@ rec {
     systems = [ "clx" ];
     lispLibs = [  ];
   };
+  clx_slash_test = (clx // {
+    pname = "clx/test";
+    systems = [ "clx/test" "clx" ];
+    lispLibs = [ fiasco ];
+  });
   xembed = {
     pname = "xembed";
     createAsd = false;
@@ -24482,6 +25630,11 @@ rec {
     systems = [ "com.google.base" ];
     lispLibs = [  ];
   };
+  com_dot_google_dot_base_slash_test = (com_dot_google_dot_base // {
+    pname = "com.google.base/test";
+    systems = [ "com.google.base/test" "com.google.base" ];
+    lispLibs = [ hu_dot_dwim_dot_stefil ];
+  });
   command-line-arguments = {
     pname = "command-line-arguments";
     createAsd = false;
@@ -24495,6 +25648,11 @@ rec {
     systems = [ "command-line-arguments" ];
     lispLibs = [  ];
   };
+  command-line-arguments_slash_test = (command-line-arguments // {
+    pname = "command-line-arguments/test";
+    systems = [ "command-line-arguments/test" "command-line-arguments" ];
+    lispLibs = [ alexandria hu_dot_dwim_dot_stefil ];
+  });
   common-doc = {
     pname = "common-doc";
     createAsd = false;
@@ -24898,6 +26056,11 @@ rec {
     systems = [ "concrete-syntax-tree-source-info" ];
     lispLibs = [  ];
   };
+  concrete-syntax-tree_slash_test = (concrete-syntax-tree // {
+    pname = "concrete-syntax-tree/test";
+    systems = [ "concrete-syntax-tree/test" "concrete-syntax-tree" ];
+    lispLibs = [  ];
+  });
   org_dot_tfeb_dot_conduit-packages = {
     pname = "org.tfeb.conduit-packages";
     createAsd = false;
@@ -24924,6 +26087,11 @@ rec {
     systems = [ "conf" ];
     lispLibs = [ cl-fad ];
   };
+  conf_slash_test = (conf // {
+    pname = "conf/test";
+    systems = [ "conf/test" "conf" ];
+    lispLibs = [  ];
+  });
   configuration_dot_options = {
     pname = "configuration.options";
     createAsd = false;
@@ -24950,6 +26118,11 @@ rec {
     systems = [ "configuration.options-and-mop" ];
     lispLibs = [ alexandria closer-mop configuration_dot_options let-plus ];
   };
+  configuration_dot_options-and-mop_slash_test = (configuration_dot_options-and-mop // {
+    pname = "configuration.options-and-mop/test";
+    systems = [ "configuration.options-and-mop/test" "configuration.options-and-mop" ];
+    lispLibs = [ alexandria configuration_dot_options fiveam let-plus ];
+  });
   configuration_dot_options-and-puri = {
     pname = "configuration.options-and-puri";
     createAsd = false;
@@ -24963,6 +26136,11 @@ rec {
     systems = [ "configuration.options-and-puri" ];
     lispLibs = [ alexandria configuration_dot_options let-plus puri ];
   };
+  configuration_dot_options-and-puri_slash_test = (configuration_dot_options-and-puri // {
+    pname = "configuration.options-and-puri/test";
+    systems = [ "configuration.options-and-puri/test" "configuration.options-and-puri" ];
+    lispLibs = [ alexandria configuration_dot_options fiveam let-plus ];
+  });
   configuration_dot_options-and-quri = {
     pname = "configuration.options-and-quri";
     createAsd = false;
@@ -24976,6 +26154,11 @@ rec {
     systems = [ "configuration.options-and-quri" ];
     lispLibs = [ alexandria configuration_dot_options let-plus quri ];
   };
+  configuration_dot_options-and-quri_slash_test = (configuration_dot_options-and-quri // {
+    pname = "configuration.options-and-quri/test";
+    systems = [ "configuration.options-and-quri/test" "configuration.options-and-quri" ];
+    lispLibs = [ alexandria configuration_dot_options fiveam let-plus ];
+  });
   configuration_dot_options-and-service-provider = {
     pname = "configuration.options-and-service-provider";
     createAsd = false;
@@ -24989,6 +26172,11 @@ rec {
     systems = [ "configuration.options-and-service-provider" ];
     lispLibs = [ alexandria architecture_dot_service-provider architecture_dot_service-provider-and-hooks configuration_dot_options configuration_dot_options-and-mop let-plus log4cl ];
   };
+  configuration_dot_options-and-service-provider_slash_test = (configuration_dot_options-and-service-provider // {
+    pname = "configuration.options-and-service-provider/test";
+    systems = [ "configuration.options-and-service-provider/test" "configuration.options-and-service-provider" ];
+    lispLibs = [ alexandria architecture_dot_service-provider configuration_dot_options fiveam let-plus ];
+  });
   configuration_dot_options-syntax-ini = {
     pname = "configuration.options-syntax-ini";
     createAsd = false;
@@ -25002,6 +26190,11 @@ rec {
     systems = [ "configuration.options-syntax-ini" ];
     lispLibs = [ alexandria configuration_dot_options let-plus parser_dot_ini ];
   };
+  configuration_dot_options-syntax-ini_slash_test = (configuration_dot_options-syntax-ini // {
+    pname = "configuration.options-syntax-ini/test";
+    systems = [ "configuration.options-syntax-ini/test" "configuration.options-syntax-ini" ];
+    lispLibs = [ alexandria configuration_dot_options fiveam let-plus ];
+  });
   configuration_dot_options-syntax-xml = {
     pname = "configuration.options-syntax-xml";
     createAsd = false;
@@ -25015,6 +26208,16 @@ rec {
     systems = [ "configuration.options-syntax-xml" ];
     lispLibs = [ alexandria configuration_dot_options let-plus xml_dot_location ];
   };
+  configuration_dot_options-syntax-xml_slash_test = (configuration_dot_options-syntax-xml // {
+    pname = "configuration.options-syntax-xml/test";
+    systems = [ "configuration.options-syntax-xml/test" "configuration.options-syntax-xml" ];
+    lispLibs = [ alexandria configuration_dot_options fiveam let-plus ];
+  });
+  configuration_dot_options_slash_test = (configuration_dot_options // {
+    pname = "configuration.options/test";
+    systems = [ "configuration.options/test" "configuration.options" ];
+    lispLibs = [ alexandria fiveam let-plus ];
+  });
   conium = {
     pname = "conium";
     createAsd = false;
@@ -25041,6 +26244,11 @@ rec {
     systems = [ "consfigurator" ];
     lispLibs = [ agnostic-lizard alexandria anaphora babel babel-streams bordeaux-threads cffi cffi-grovel cl-heredoc cl-interpol cl-ppcre closer-mop named-readtables osicat trivial-backtrace ];
   };
+  consfigurator_slash_tests = (consfigurator // {
+    pname = "consfigurator/tests";
+    systems = [ "consfigurator/tests" "consfigurator" ];
+    lispLibs = [  ];
+  });
   consix = {
     pname = "consix";
     createAsd = false;
@@ -25093,6 +26301,11 @@ rec {
     systems = [ "context-lite" ];
     lispLibs = [ closer-mop ];
   };
+  context-lite_slash_test = (context-lite // {
+    pname = "context-lite/test";
+    systems = [ "context-lite/test" "context-lite" ];
+    lispLibs = [ fiveam ];
+  });
   contextl = {
     pname = "contextl";
     createAsd = false;
@@ -25197,6 +26410,11 @@ rec {
     systems = [ "cover" ];
     lispLibs = [  ];
   };
+  cover_slash_tests = (cover // {
+    pname = "cover/tests";
+    systems = [ "cover/tests" "cover" ];
+    lispLibs = [ uiop ];
+  });
   cqlcl = {
     pname = "cqlcl";
     createAsd = false;
@@ -25535,6 +26753,11 @@ rec {
     systems = [ "curry-compose-reader-macros" ];
     lispLibs = [ alexandria named-readtables ];
   };
+  curry-compose-reader-macros_slash_test = (curry-compose-reader-macros // {
+    pname = "curry-compose-reader-macros/test";
+    systems = [ "curry-compose-reader-macros/test" "curry-compose-reader-macros" ];
+    lispLibs = [  ];
+  });
   com_dot_elbeno_dot_curve = {
     pname = "com.elbeno.curve";
     createAsd = false;
@@ -25600,6 +26823,58 @@ rec {
     systems = [ "cxml-test" ];
     lispLibs = [ closure-common puri trivial-gray-streams ];
   };
+  cxml_slash_dom = {
+    pname = "cxml/dom";
+    createAsd = false;
+    version = "20200610-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cxml/2020-06-10/cxml-20200610-git.tgz";
+      sha256 = "18fls3bx7vmnxfa6qara8fxp316d8kb3izar0kysvqg6l0a45a51";
+      system = "cxml/dom";
+      asd = "cxml";
+    });
+    systems = [ "cxml/dom" ];
+    lispLibs = [ closure-common puri trivial-gray-streams ];
+  };
+  cxml_slash_klacks = {
+    pname = "cxml/klacks";
+    createAsd = false;
+    version = "20200610-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cxml/2020-06-10/cxml-20200610-git.tgz";
+      sha256 = "18fls3bx7vmnxfa6qara8fxp316d8kb3izar0kysvqg6l0a45a51";
+      system = "cxml/klacks";
+      asd = "cxml";
+    });
+    systems = [ "cxml/klacks" ];
+    lispLibs = [ closure-common puri trivial-gray-streams ];
+  };
+  cxml_slash_test = {
+    pname = "cxml/test";
+    createAsd = false;
+    version = "20200610-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cxml/2020-06-10/cxml-20200610-git.tgz";
+      sha256 = "18fls3bx7vmnxfa6qara8fxp316d8kb3izar0kysvqg6l0a45a51";
+      system = "cxml/test";
+      asd = "cxml";
+    });
+    systems = [ "cxml/test" ];
+    lispLibs = [ closure-common puri trivial-gray-streams ];
+  };
+  cxml_slash_xml = {
+    pname = "cxml/xml";
+    createAsd = false;
+    version = "20200610-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/cxml/2020-06-10/cxml-20200610-git.tgz";
+      sha256 = "18fls3bx7vmnxfa6qara8fxp316d8kb3izar0kysvqg6l0a45a51";
+      system = "cxml/xml";
+      asd = "cxml";
+    });
+    systems = [ "cxml/xml" ];
+    lispLibs = [ closure-common puri trivial-gray-streams ];
+  };
   cxml-rng = {
     pname = "cxml-rng";
     createAsd = false;
@@ -25639,6 +26914,11 @@ rec {
     systems = [ "cxml-stp" ];
     lispLibs = [ alexandria cxml xpath ];
   };
+  cxml-stp_slash_test = (cxml-stp // {
+    pname = "cxml-stp/test";
+    systems = [ "cxml-stp/test" "cxml-stp" ];
+    lispLibs = [ cxml rt xpath ];
+  });
   cytoscape-clj = {
     pname = "cytoscape-clj";
     createAsd = false;
@@ -25678,6 +26958,11 @@ rec {
     systems = [ "damn-fast-priority-queue" ];
     lispLibs = [ alexandria ];
   };
+  damn-fast-priority-queue_slash_test = (damn-fast-priority-queue // {
+    pname = "damn-fast-priority-queue/test";
+    systems = [ "damn-fast-priority-queue/test" "damn-fast-priority-queue" ];
+    lispLibs = [ alexandria ];
+  });
   damn-fast-stable-priority-queue = {
     pname = "damn-fast-stable-priority-queue";
     createAsd = false;
@@ -25691,6 +26976,11 @@ rec {
     systems = [ "damn-fast-stable-priority-queue" ];
     lispLibs = [ alexandria ];
   };
+  damn-fast-stable-priority-queue_slash_test = (damn-fast-stable-priority-queue // {
+    pname = "damn-fast-stable-priority-queue/test";
+    systems = [ "damn-fast-stable-priority-queue/test" "damn-fast-stable-priority-queue" ];
+    lispLibs = [ alexandria ];
+  });
   priority-queue-benchmark = {
     pname = "priority-queue-benchmark";
     createAsd = false;
@@ -25873,6 +27163,11 @@ rec {
     systems = [ "data-frame" ];
     lispLibs = [ alexandria alexandria_plus anaphora array-operations let-plus num-utils select ];
   };
+  data-frame_slash_tests = (data-frame // {
+    pname = "data-frame/tests";
+    systems = [ "data-frame/tests" "data-frame" ];
+    lispLibs = [ clunit2 ];
+  });
   data-lens = {
     pname = "data-lens";
     createAsd = false;
@@ -25886,6 +27181,16 @@ rec {
     systems = [ "data-lens" ];
     lispLibs = [ alexandria cl-ppcre serapeum ];
   };
+  data-lens_slash_beta_slash_transducers = (data-lens // {
+    pname = "data-lens/beta/transducers";
+    systems = [ "data-lens/beta/transducers" "data-lens" ];
+    lispLibs = [ alexandria ];
+  });
+  data-lens_slash_transducers_slash_test = (data-lens // {
+    pname = "data-lens/transducers/test";
+    systems = [ "data-lens/transducers/test" "data-lens" ];
+    lispLibs = [ alexandria fiveam ];
+  });
   data-sift = {
     pname = "data-sift";
     createAsd = false;
@@ -26042,6 +27347,11 @@ rec {
     systems = [ "date-calc" ];
     lispLibs = [  ];
   };
+  date-calc_slash_test = (date-calc // {
+    pname = "date-calc/test";
+    systems = [ "date-calc/test" "date-calc" ];
+    lispLibs = [ fiveam serapeum ];
+  });
   datum-comments = {
     pname = "datum-comments";
     createAsd = false;
@@ -26055,6 +27365,11 @@ rec {
     systems = [ "datum-comments" ];
     lispLibs = [  ];
   };
+  datum-comments_slash_test = (datum-comments // {
+    pname = "datum-comments/test";
+    systems = [ "datum-comments/test" "datum-comments" ];
+    lispLibs = [  ];
+  });
   dbus = {
     pname = "dbus";
     createAsd = false;
@@ -26172,6 +27487,11 @@ rec {
     systems = [ "defconfig" ];
     lispLibs = [ alexandria trivial-cltl2 ];
   };
+  defconfig_slash_tests = (defconfig // {
+    pname = "defconfig/tests";
+    systems = [ "defconfig/tests" "defconfig" ];
+    lispLibs = [ fiveam ];
+  });
   defenum = {
     pname = "defenum";
     createAsd = false;
@@ -26471,6 +27791,16 @@ rec {
     systems = [ "delta-debug" ];
     lispLibs = [ alexandria curry-compose-reader-macros named-readtables ];
   };
+  delta-debug_slash_delta = (delta-debug // {
+    pname = "delta-debug/delta";
+    systems = [ "delta-debug/delta" "delta-debug" ];
+    lispLibs = [ alexandria curry-compose-reader-macros diff metabang-bind split-sequence trivial-shell ];
+  });
+  delta-debug_slash_test = (delta-debug // {
+    pname = "delta-debug/test";
+    systems = [ "delta-debug/test" "delta-debug" ];
+    lispLibs = [ alexandria curry-compose-reader-macros stefil ];
+  });
   dendrite = {
     pname = "dendrite";
     createAsd = false;
@@ -26770,6 +28100,11 @@ rec {
     systems = [ "destructuring-bind-star" ];
     lispLibs = [  ];
   };
+  destructuring-bind-star_slash_test = (destructuring-bind-star // {
+    pname = "destructuring-bind-star/test";
+    systems = [ "destructuring-bind-star/test" "destructuring-bind-star" ];
+    lispLibs = [  ];
+  });
   dexador = {
     pname = "dexador";
     createAsd = false;
@@ -26809,6 +28144,16 @@ rec {
     systems = [ "dfio" ];
     lispLibs = [ alexandria anaphora data-frame dexador fare-csv let-plus ];
   };
+  dfio_slash_json = (dfio // {
+    pname = "dfio/json";
+    systems = [ "dfio/json" "dfio" ];
+    lispLibs = [ yason ];
+  });
+  dfio_slash_tests = (dfio // {
+    pname = "dfio/tests";
+    systems = [ "dfio/tests" "dfio" ];
+    lispLibs = [ clunit2 ];
+  });
   diff = {
     pname = "diff";
     createAsd = false;
@@ -26835,6 +28180,11 @@ rec {
     systems = [ "diff-match-patch" ];
     lispLibs = [ cl-ppcre iterate ];
   };
+  diff-match-patch_slash_test = (diff-match-patch // {
+    pname = "diff-match-patch/test";
+    systems = [ "diff-match-patch/test" "diff-match-patch" ];
+    lispLibs = [ cl-interpol fiveam ];
+  });
   dirt = {
     pname = "dirt";
     createAsd = false;
@@ -27303,6 +28653,81 @@ rec {
     systems = [ "dufy" ];
     lispLibs = [ alexandria cl-ppcre ];
   };
+  dufy_slash_core = {
+    pname = "dufy/core";
+    createAsd = false;
+    version = "20210531-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/dufy/2021-05-31/dufy-20210531-git.tgz";
+      sha256 = "10qyrc5xkivwm6xmcfls1alad83ck7b2yyxbnhgc2vmnrk6j1012";
+      system = "dufy/core";
+      asd = "dufy";
+    });
+    systems = [ "dufy/core" ];
+    lispLibs = [ alexandria ];
+  };
+  dufy_slash_examples = (dufy // {
+    pname = "dufy/examples";
+    systems = [ "dufy/examples" "dufy" ];
+    lispLibs = [ alexandria iterate lispbuilder-sdl lparallel ];
+  });
+  dufy_slash_extra-data = {
+    pname = "dufy/extra-data";
+    createAsd = false;
+    version = "20210531-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/dufy/2021-05-31/dufy-20210531-git.tgz";
+      sha256 = "10qyrc5xkivwm6xmcfls1alad83ck7b2yyxbnhgc2vmnrk6j1012";
+      system = "dufy/extra-data";
+      asd = "dufy";
+    });
+    systems = [ "dufy/extra-data" ];
+    lispLibs = [ alexandria ];
+  };
+  dufy_slash_hsluv = {
+    pname = "dufy/hsluv";
+    createAsd = false;
+    version = "20210531-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/dufy/2021-05-31/dufy-20210531-git.tgz";
+      sha256 = "10qyrc5xkivwm6xmcfls1alad83ck7b2yyxbnhgc2vmnrk6j1012";
+      system = "dufy/hsluv";
+      asd = "dufy";
+    });
+    systems = [ "dufy/hsluv" ];
+    lispLibs = [ alexandria ];
+  };
+  dufy_slash_internal = {
+    pname = "dufy/internal";
+    createAsd = false;
+    version = "20210531-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/dufy/2021-05-31/dufy-20210531-git.tgz";
+      sha256 = "10qyrc5xkivwm6xmcfls1alad83ck7b2yyxbnhgc2vmnrk6j1012";
+      system = "dufy/internal";
+      asd = "dufy";
+    });
+    systems = [ "dufy/internal" ];
+    lispLibs = [ alexandria ];
+  };
+  dufy_slash_munsell = {
+    pname = "dufy/munsell";
+    createAsd = false;
+    version = "20210531-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/dufy/2021-05-31/dufy-20210531-git.tgz";
+      sha256 = "10qyrc5xkivwm6xmcfls1alad83ck7b2yyxbnhgc2vmnrk6j1012";
+      system = "dufy/munsell";
+      asd = "dufy";
+    });
+    systems = [ "dufy/munsell" ];
+    lispLibs = [ alexandria cl-ppcre ];
+  };
+  dufy_slash_test = (dufy // {
+    pname = "dufy/test";
+    systems = [ "dufy/test" "dufy" ];
+    lispLibs = [ alexandria cl-csv fiveam parse-float ];
+  });
   duologue = {
     pname = "duologue";
     createAsd = false;
@@ -27484,6 +28909,107 @@ rec {
     });
     systems = [ "easy-audio" ];
     lispLibs = [ alexandria flexi-streams ];
+  };
+  easy-audio_slash_ape = {
+    pname = "easy-audio/ape";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
+      sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
+      system = "easy-audio/ape";
+      asd = "easy-audio";
+    });
+    systems = [ "easy-audio/ape" ];
+    lispLibs = [ alexandria flexi-streams ];
+  };
+  easy-audio_slash_bitreader = {
+    pname = "easy-audio/bitreader";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
+      sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
+      system = "easy-audio/bitreader";
+      asd = "easy-audio";
+    });
+    systems = [ "easy-audio/bitreader" ];
+    lispLibs = [ alexandria ];
+  };
+  easy-audio_slash_core = {
+    pname = "easy-audio/core";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
+      sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
+      system = "easy-audio/core";
+      asd = "easy-audio";
+    });
+    systems = [ "easy-audio/core" ];
+    lispLibs = [  ];
+  };
+  easy-audio_slash_examples = (easy-audio // {
+    pname = "easy-audio/examples";
+    systems = [ "easy-audio/examples" "easy-audio" ];
+    lispLibs = [  ];
+  });
+  easy-audio_slash_general-decoders = {
+    pname = "easy-audio/general-decoders";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
+      sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
+      system = "easy-audio/general-decoders";
+      asd = "easy-audio";
+    });
+    systems = [ "easy-audio/general-decoders" ];
+    lispLibs = [  ];
+  };
+  easy-audio_slash_ogg = {
+    pname = "easy-audio/ogg";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
+      sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
+      system = "easy-audio/ogg";
+      asd = "easy-audio";
+    });
+    systems = [ "easy-audio/ogg" ];
+    lispLibs = [ alexandria ];
+  };
+  easy-audio_slash_tests = (easy-audio // {
+    pname = "easy-audio/tests";
+    systems = [ "easy-audio/tests" "easy-audio" ];
+    lispLibs = [ fiveam md5 ];
+  });
+  easy-audio_slash_utils = {
+    pname = "easy-audio/utils";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
+      sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
+      system = "easy-audio/utils";
+      asd = "easy-audio";
+    });
+    systems = [ "easy-audio/utils" ];
+    lispLibs = [  ];
+  };
+  easy-audio_slash_wv = {
+    pname = "easy-audio/wv";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
+      sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
+      system = "easy-audio/wv";
+      asd = "easy-audio";
+    });
+    systems = [ "easy-audio/wv" ];
+    lispLibs = [ alexandria ];
   };
   easy-bind = {
     pname = "easy-bind";
@@ -27706,6 +29232,16 @@ rec {
     systems = [ "eclector-concrete-syntax-tree" ];
     lispLibs = [ alexandria concrete-syntax-tree eclector ];
   };
+  eclector-concrete-syntax-tree_slash_test = (eclector-concrete-syntax-tree // {
+    pname = "eclector-concrete-syntax-tree/test";
+    systems = [ "eclector-concrete-syntax-tree/test" "eclector-concrete-syntax-tree" ];
+    lispLibs = [ alexandria eclector fiveam ];
+  });
+  eclector_slash_test = (eclector // {
+    pname = "eclector/test";
+    systems = [ "eclector/test" "eclector" ];
+    lispLibs = [ alexandria fiveam ];
+  });
   eco = {
     pname = "eco";
     createAsd = false;
@@ -27797,6 +29333,11 @@ rec {
     systems = [ "elf" ];
     lispLibs = [ alexandria cl-ppcre com_dot_gigamonkeys_dot_binary-data flexi-streams metabang-bind split-sequence trivial-shell ];
   };
+  elf_slash_test = (elf // {
+    pname = "elf/test";
+    systems = [ "elf/test" "elf" ];
+    lispLibs = [ alexandria metabang-bind stefil trivial-timeout ];
+  });
   enhanced-boolean = {
     pname = "enhanced-boolean";
     createAsd = false;
@@ -28109,6 +29650,11 @@ rec {
     systems = [ "esrap" ];
     lispLibs = [ alexandria trivial-with-current-source-form ];
   };
+  esrap_slash_tests = (esrap // {
+    pname = "esrap/tests";
+    systems = [ "esrap/tests" "esrap" ];
+    lispLibs = [ fiveam ];
+  });
   esrap-liquid = {
     pname = "esrap-liquid";
     createAsd = false;
@@ -28239,6 +29785,11 @@ rec {
     systems = [ "eventbus" ];
     lispLibs = [ simplet-asdf ];
   };
+  eventbus_slash_test = (eventbus // {
+    pname = "eventbus/test";
+    systems = [ "eventbus/test" "eventbus" ];
+    lispLibs = [ simplet simplet-asdf ];
+  });
   eventfd = {
     pname = "eventfd";
     createAsd = false;
@@ -28330,6 +29881,11 @@ rec {
     systems = [ "exscribe" ];
     lispLibs = [ alexandria fare-memoization fare-scripts fare-utils quri scribble trivia_dot_quasiquote ];
   };
+  exscribe_slash_typeset = (exscribe // {
+    pname = "exscribe/typeset";
+    systems = [ "exscribe/typeset" "exscribe" ];
+    lispLibs = [ cl-typesetting ];
+  });
   ext-blog = {
     pname = "ext-blog";
     createAsd = false;
@@ -28486,6 +30042,21 @@ rec {
     systems = [ "colnew" ];
     lispLibs = [ f2cl ];
   };
+  colnew_slash_test-1 = (colnew // {
+    pname = "colnew/test-1";
+    systems = [ "colnew/test-1" "colnew" ];
+    lispLibs = [  ];
+  });
+  colnew_slash_test-2 = (colnew // {
+    pname = "colnew/test-2";
+    systems = [ "colnew/test-2" "colnew" ];
+    lispLibs = [  ];
+  });
+  colnew_slash_test-3 = (colnew // {
+    pname = "colnew/test-3";
+    systems = [ "colnew/test-3" "colnew" ];
+    lispLibs = [  ];
+  });
   f2cl = {
     pname = "f2cl";
     createAsd = false;
@@ -28551,6 +30122,61 @@ rec {
     systems = [ "fishpack" ];
     lispLibs = [ f2cl ];
   };
+  fishpack_slash_test-hstcrt = (fishpack // {
+    pname = "fishpack/test-hstcrt";
+    systems = [ "fishpack/test-hstcrt" "fishpack" ];
+    lispLibs = [  ];
+  });
+  fishpack_slash_test-hstcsp = (fishpack // {
+    pname = "fishpack/test-hstcsp";
+    systems = [ "fishpack/test-hstcsp" "fishpack" ];
+    lispLibs = [  ];
+  });
+  fishpack_slash_test-hstcyl = (fishpack // {
+    pname = "fishpack/test-hstcyl";
+    systems = [ "fishpack/test-hstcyl" "fishpack" ];
+    lispLibs = [  ];
+  });
+  fishpack_slash_test-hstplr = (fishpack // {
+    pname = "fishpack/test-hstplr";
+    systems = [ "fishpack/test-hstplr" "fishpack" ];
+    lispLibs = [  ];
+  });
+  fishpack_slash_test-hstssp = (fishpack // {
+    pname = "fishpack/test-hstssp";
+    systems = [ "fishpack/test-hstssp" "fishpack" ];
+    lispLibs = [  ];
+  });
+  fishpack_slash_test-hwscrt = (fishpack // {
+    pname = "fishpack/test-hwscrt";
+    systems = [ "fishpack/test-hwscrt" "fishpack" ];
+    lispLibs = [  ];
+  });
+  fishpack_slash_test-hwscsp = (fishpack // {
+    pname = "fishpack/test-hwscsp";
+    systems = [ "fishpack/test-hwscsp" "fishpack" ];
+    lispLibs = [  ];
+  });
+  fishpack_slash_test-hwscyl = (fishpack // {
+    pname = "fishpack/test-hwscyl";
+    systems = [ "fishpack/test-hwscyl" "fishpack" ];
+    lispLibs = [  ];
+  });
+  fishpack_slash_test-hwsplr = (fishpack // {
+    pname = "fishpack/test-hwsplr";
+    systems = [ "fishpack/test-hwsplr" "fishpack" ];
+    lispLibs = [  ];
+  });
+  fishpack_slash_test-hwsssp = (fishpack // {
+    pname = "fishpack/test-hwsssp";
+    systems = [ "fishpack/test-hwsssp" "fishpack" ];
+    lispLibs = [  ];
+  });
+  fishpack_slash_test-sepx4 = (fishpack // {
+    pname = "fishpack/test-sepx4";
+    systems = [ "fishpack/test-sepx4" "fishpack" ];
+    lispLibs = [  ];
+  });
   hompack = {
     pname = "hompack";
     createAsd = false;
@@ -28564,6 +30190,21 @@ rec {
     systems = [ "hompack" ];
     lispLibs = [ blas-hompack f2cl ];
   };
+  hompack_slash_test-mainf = (hompack // {
+    pname = "hompack/test-mainf";
+    systems = [ "hompack/test-mainf" "hompack" ];
+    lispLibs = [  ];
+  });
+  hompack_slash_test-mainp = (hompack // {
+    pname = "hompack/test-mainp";
+    systems = [ "hompack/test-mainp" "hompack" ];
+    lispLibs = [  ];
+  });
+  hompack_slash_test-mains = (hompack // {
+    pname = "hompack/test-mains";
+    systems = [ "hompack/test-mains" "hompack" ];
+    lispLibs = [  ];
+  });
   lapack = {
     pname = "lapack";
     createAsd = false;
@@ -28577,6 +30218,50 @@ rec {
     systems = [ "lapack" ];
     lispLibs = [ blas-complex blas-package blas-real f2cl ];
   };
+  lapack_slash_complex = {
+    pname = "lapack/complex";
+    createAsd = false;
+    version = "20200925-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
+      sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
+      system = "lapack/complex";
+      asd = "lapack";
+    });
+    systems = [ "lapack/complex" ];
+    lispLibs = [ blas-complex blas-package blas-real ];
+  };
+  lapack_slash_package = {
+    pname = "lapack/package";
+    createAsd = false;
+    version = "20200925-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
+      sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
+      system = "lapack/package";
+      asd = "lapack";
+    });
+    systems = [ "lapack/package" ];
+    lispLibs = [ blas-package ];
+  };
+  lapack_slash_real = {
+    pname = "lapack/real";
+    createAsd = false;
+    version = "20200925-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
+      sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
+      system = "lapack/real";
+      asd = "lapack";
+    });
+    systems = [ "lapack/real" ];
+    lispLibs = [ blas-package blas-real ];
+  };
+  lapack_slash_tests = (lapack // {
+    pname = "lapack/tests";
+    systems = [ "lapack/tests" "lapack" ];
+    lispLibs = [ rt ];
+  });
   minpack = {
     pname = "minpack";
     createAsd = false;
@@ -28590,6 +30275,16 @@ rec {
     systems = [ "minpack" ];
     lispLibs = [ f2cl ];
   };
+  minpack_slash_test-hybrd = (minpack // {
+    pname = "minpack/test-hybrd";
+    systems = [ "minpack/test-hybrd" "minpack" ];
+    lispLibs = [  ];
+  });
+  minpack_slash_test-lmdif = (minpack // {
+    pname = "minpack/test-lmdif";
+    systems = [ "minpack/test-lmdif" "minpack" ];
+    lispLibs = [  ];
+  });
   odepack = {
     pname = "odepack";
     createAsd = false;
@@ -28602,6 +30297,130 @@ rec {
     });
     systems = [ "odepack" ];
     lispLibs = [ f2cl ];
+  };
+  odepack_slash_blas-util = {
+    pname = "odepack/blas-util";
+    createAsd = false;
+    version = "20200925-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
+      sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
+      system = "odepack/blas-util";
+      asd = "odepack";
+    });
+    systems = [ "odepack/blas-util" ];
+    lispLibs = [  ];
+  };
+  odepack_slash_lsoda = {
+    pname = "odepack/lsoda";
+    createAsd = false;
+    version = "20200925-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
+      sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
+      system = "odepack/lsoda";
+      asd = "odepack";
+    });
+    systems = [ "odepack/lsoda" ];
+    lispLibs = [  ];
+  };
+  odepack_slash_lsoda-demo = {
+    pname = "odepack/lsoda-demo";
+    createAsd = false;
+    version = "20200925-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
+      sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
+      system = "odepack/lsoda-demo";
+      asd = "odepack";
+    });
+    systems = [ "odepack/lsoda-demo" ];
+    lispLibs = [  ];
+  };
+  odepack_slash_lsodar = {
+    pname = "odepack/lsodar";
+    createAsd = false;
+    version = "20200925-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
+      sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
+      system = "odepack/lsodar";
+      asd = "odepack";
+    });
+    systems = [ "odepack/lsodar" ];
+    lispLibs = [  ];
+  };
+  odepack_slash_lsodar-demo = {
+    pname = "odepack/lsodar-demo";
+    createAsd = false;
+    version = "20200925-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
+      sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
+      system = "odepack/lsodar-demo";
+      asd = "odepack";
+    });
+    systems = [ "odepack/lsodar-demo" ];
+    lispLibs = [  ];
+  };
+  odepack_slash_lsode = {
+    pname = "odepack/lsode";
+    createAsd = false;
+    version = "20200925-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
+      sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
+      system = "odepack/lsode";
+      asd = "odepack";
+    });
+    systems = [ "odepack/lsode" ];
+    lispLibs = [  ];
+  };
+  odepack_slash_lsode-demo = {
+    pname = "odepack/lsode-demo";
+    createAsd = false;
+    version = "20200925-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
+      sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
+      system = "odepack/lsode-demo";
+      asd = "odepack";
+    });
+    systems = [ "odepack/lsode-demo" ];
+    lispLibs = [  ];
+  };
+  odepack_slash_lsodi-demo = (odepack // {
+    pname = "odepack/lsodi-demo";
+    systems = [ "odepack/lsodi-demo" "odepack" ];
+    lispLibs = [  ];
+  });
+  odepack_slash_lsodkr-demo = (odepack // {
+    pname = "odepack/lsodkr-demo";
+    systems = [ "odepack/lsodkr-demo" "odepack" ];
+    lispLibs = [  ];
+  });
+  odepack_slash_lsodpk-demo = (odepack // {
+    pname = "odepack/lsodpk-demo";
+    systems = [ "odepack/lsodpk-demo" "odepack" ];
+    lispLibs = [  ];
+  });
+  odepack_slash_lsoibt-demo = (odepack // {
+    pname = "odepack/lsoibt-demo";
+    systems = [ "odepack/lsoibt-demo" "odepack" ];
+    lispLibs = [  ];
+  });
+  odepack_slash_package = {
+    pname = "odepack/package";
+    createAsd = false;
+    version = "20200925-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
+      sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
+      system = "odepack/package";
+      asd = "odepack";
+    });
+    systems = [ "odepack/package" ];
+    lispLibs = [  ];
   };
   quadpack = {
     pname = "quadpack";
@@ -28616,6 +30435,24 @@ rec {
     systems = [ "quadpack" ];
     lispLibs = [ f2cl ];
   };
+  quadpack_slash_mach-par = {
+    pname = "quadpack/mach-par";
+    createAsd = false;
+    version = "20200925-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
+      sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
+      system = "quadpack/mach-par";
+      asd = "quadpack";
+    });
+    systems = [ "quadpack/mach-par" ];
+    lispLibs = [  ];
+  };
+  quadpack_slash_tests = (quadpack // {
+    pname = "quadpack/tests";
+    systems = [ "quadpack/tests" "quadpack" ];
+    lispLibs = [ rt ];
+  });
   toms419 = {
     pname = "toms419";
     createAsd = false;
@@ -28629,6 +30466,11 @@ rec {
     systems = [ "toms419" ];
     lispLibs = [ f2cl ];
   };
+  toms419_slash_test = (toms419 // {
+    pname = "toms419/test";
+    systems = [ "toms419/test" "toms419" ];
+    lispLibs = [  ];
+  });
   toms715 = {
     pname = "toms715";
     createAsd = false;
@@ -28642,6 +30484,11 @@ rec {
     systems = [ "toms715" ];
     lispLibs = [ f2cl ];
   };
+  toms715_slash_tests = (toms715 // {
+    pname = "toms715/tests";
+    systems = [ "toms715/tests" "toms715" ];
+    lispLibs = [  ];
+  });
   toms717 = {
     pname = "toms717";
     createAsd = false;
@@ -28655,6 +30502,11 @@ rec {
     systems = [ "toms717" ];
     lispLibs = [ f2cl ];
   };
+  toms717_slash_tests = (toms717 // {
+    pname = "toms717/tests";
+    systems = [ "toms717/tests" "toms717" ];
+    lispLibs = [  ];
+  });
   fact-base = {
     pname = "fact-base";
     createAsd = false;
@@ -28720,6 +30572,11 @@ rec {
     systems = [ "fare-memoization" ];
     lispLibs = [  ];
   };
+  fare-memoization_slash_test = (fare-memoization // {
+    pname = "fare-memoization/test";
+    systems = [ "fare-memoization/test" "fare-memoization" ];
+    lispLibs = [ hu_dot_dwim_dot_stefil ];
+  });
   fare-mop = {
     pname = "fare-mop";
     createAsd = false;
@@ -29331,6 +31188,11 @@ rec {
     systems = [ "fiveam" ];
     lispLibs = [ alexandria net_dot_didierverna_dot_asdf-flv trivial-backtrace ];
   };
+  fiveam_slash_test = (fiveam // {
+    pname = "fiveam/test";
+    systems = [ "fiveam/test" "fiveam" ];
+    lispLibs = [  ];
+  });
   fiveam-asdf = {
     pname = "fiveam-asdf";
     createAsd = false;
@@ -29357,6 +31219,16 @@ rec {
     systems = [ "fixed" ];
     lispLibs = [  ];
   };
+  fixed_slash_real-time = (fixed // {
+    pname = "fixed/real-time";
+    systems = [ "fixed/real-time" "fixed" ];
+    lispLibs = [  ];
+  });
+  fixed_slash_test = (fixed // {
+    pname = "fixed/test";
+    systems = [ "fixed/test" "fixed" ];
+    lispLibs = [ fiveam ];
+  });
   flac-metadata = {
     pname = "flac-metadata";
     createAsd = false;
@@ -29682,6 +31554,11 @@ rec {
     systems = [ "net.didierverna.focus.setup" ];
     lispLibs = [  ];
   };
+  net_dot_didierverna_dot_focus_dot_setup_slash_flv = (net_dot_didierverna_dot_focus_dot_setup // {
+    pname = "net.didierverna.focus.setup/flv";
+    systems = [ "net.didierverna.focus.setup/flv" "net.didierverna.focus.setup" ];
+    lispLibs = [  ];
+  });
   fof = {
     pname = "fof";
     createAsd = false;
@@ -29694,6 +31571,19 @@ rec {
     });
     systems = [ "fof" ];
     lispLibs = [ alexandria hu_dot_dwim_dot_defclass-star local-time magicffi named-readtables osicat serapeum str trivia trivial-package-local-nicknames ];
+  };
+  fof_slash_mf = {
+    pname = "fof/mf";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/fof/2021-12-30/fof-20211230-git.tgz";
+      sha256 = "0ipy51q2fw03xk9rqcyzbq2b9c32npc1gl3c53rdjywpak7zwwg6";
+      system = "fof/mf";
+      asd = "fof";
+    });
+    systems = [ "fof/mf" ];
+    lispLibs = [  ];
   };
   folio = {
     pname = "folio";
@@ -30176,6 +32066,11 @@ rec {
     systems = [ "freebsd-sysctl" ];
     lispLibs = [ cffi cffi-grovel ];
   };
+  freebsd-sysctl_slash_tests = (freebsd-sysctl // {
+    pname = "freebsd-sysctl/tests";
+    systems = [ "freebsd-sysctl/tests" "freebsd-sysctl" ];
+    lispLibs = [ fiveam ];
+  });
   freesound = {
     pname = "freesound";
     createAsd = false;
@@ -30202,6 +32097,19 @@ rec {
     systems = [ "fresnel" ];
     lispLibs = [ fare-quasiquote-extras gt trivial-package-local-nicknames ];
   };
+  fresnel_slash_readtable = {
+    pname = "fresnel/readtable";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/fresnel/2021-12-30/fresnel-20211230-git.tgz";
+      sha256 = "0whxhnfnjpyqfxadvbwk8m0bxjcdqa9rm1w851fh85q9c6mg9kfr";
+      system = "fresnel/readtable";
+      asd = "fresnel";
+    });
+    systems = [ "fresnel/readtable" ];
+    lispLibs = [ cl-interpol fare-quasiquote-extras gt ];
+  };
   froute = {
     pname = "froute";
     createAsd = false;
@@ -30215,6 +32123,16 @@ rec {
     systems = [ "froute" ];
     lispLibs = [ cl-ppcre closer-mop ];
   };
+  froute_slash_hunchentoot = (froute // {
+    pname = "froute/hunchentoot";
+    systems = [ "froute/hunchentoot" "froute" ];
+    lispLibs = [ hunchentoot ];
+  });
+  froute_slash_test = (froute // {
+    pname = "froute/test";
+    systems = [ "froute/test" "froute" ];
+    lispLibs = [ lisp-unit ];
+  });
   frpc = {
     pname = "frpc";
     createAsd = false;
@@ -30293,6 +32211,11 @@ rec {
     systems = [ "fset" ];
     lispLibs = [ misc-extensions mt19937 named-readtables ];
   };
+  fset_slash_test = (fset // {
+    pname = "fset/test";
+    systems = [ "fset/test" "fset" ];
+    lispLibs = [  ];
+  });
   fsocket = {
     pname = "fsocket";
     createAsd = false;
@@ -30371,6 +32294,11 @@ rec {
     systems = [ "function-cache-clsql" ];
     lispLibs = [ clsql clsql-helper function-cache ];
   };
+  function-cache_slash_test = (function-cache // {
+    pname = "function-cache/test";
+    systems = [ "function-cache/test" "function-cache" ];
+    lispLibs = [ lisp-unit2 ];
+  });
   functional-trees = {
     pname = "functional-trees";
     createAsd = false;
@@ -30423,6 +32351,98 @@ rec {
     systems = [ "fxml" ];
     lispLibs = [ alexandria babel flexi-streams named-readtables quri serapeum split-sequence trivial-gray-streams ];
   };
+  fxml_slash_css-selectors = (fxml // {
+    pname = "fxml/css-selectors";
+    systems = [ "fxml/css-selectors" "fxml" ];
+    lispLibs = [ alexandria css-selectors xpath ];
+  });
+  fxml_slash_cxml = (fxml // {
+    pname = "fxml/cxml";
+    systems = [ "fxml/cxml" "fxml" ];
+    lispLibs = [ cxml ];
+  });
+  fxml_slash_dom = {
+    pname = "fxml/dom";
+    createAsd = false;
+    version = "20210228-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/fxml/2021-02-28/fxml-20210228-git.tgz";
+      sha256 = "1vxdb1cjjqi986f72bggnw1s4yzv12g4li7vn4y49b6lphshr8lm";
+      system = "fxml/dom";
+      asd = "fxml";
+    });
+    systems = [ "fxml/dom" ];
+    lispLibs = [ alexandria babel flexi-streams named-readtables quri serapeum split-sequence trivial-gray-streams ];
+  };
+  fxml_slash_html5 = (fxml // {
+    pname = "fxml/html5";
+    systems = [ "fxml/html5" "fxml" ];
+    lispLibs = [ alexandria cl-html5-parser fset quri serapeum xpath ];
+  });
+  fxml_slash_klacks = {
+    pname = "fxml/klacks";
+    createAsd = false;
+    version = "20210228-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/fxml/2021-02-28/fxml-20210228-git.tgz";
+      sha256 = "1vxdb1cjjqi986f72bggnw1s4yzv12g4li7vn4y49b6lphshr8lm";
+      system = "fxml/klacks";
+      asd = "fxml";
+    });
+    systems = [ "fxml/klacks" ];
+    lispLibs = [ alexandria babel flexi-streams named-readtables quri serapeum split-sequence trivial-gray-streams ];
+  };
+  fxml_slash_runes = {
+    pname = "fxml/runes";
+    createAsd = false;
+    version = "20210228-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/fxml/2021-02-28/fxml-20210228-git.tgz";
+      sha256 = "1vxdb1cjjqi986f72bggnw1s4yzv12g4li7vn4y49b6lphshr8lm";
+      system = "fxml/runes";
+      asd = "fxml";
+    });
+    systems = [ "fxml/runes" ];
+    lispLibs = [ babel named-readtables serapeum trivial-gray-streams ];
+  };
+  fxml_slash_sanitize = (fxml // {
+    pname = "fxml/sanitize";
+    systems = [ "fxml/sanitize" "fxml" ];
+    lispLibs = [ alexandria quri serapeum ];
+  });
+  fxml_slash_sanitize_slash_test = (fxml // {
+    pname = "fxml/sanitize/test";
+    systems = [ "fxml/sanitize/test" "fxml" ];
+    lispLibs = [ alexandria cl-html5-parser fiveam fset quri serapeum xpath ];
+  });
+  fxml_slash_stp = (fxml // {
+    pname = "fxml/stp";
+    systems = [ "fxml/stp" "fxml" ];
+    lispLibs = [ alexandria xpath ];
+  });
+  fxml_slash_test = (fxml // {
+    pname = "fxml/test";
+    systems = [ "fxml/test" "fxml" ];
+    lispLibs = [ alexandria babel cxml cxml-rng fiveam flexi-streams named-readtables quri serapeum split-sequence trivial-gray-streams uiop xpath ];
+  });
+  fxml_slash_xml = {
+    pname = "fxml/xml";
+    createAsd = false;
+    version = "20210228-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/fxml/2021-02-28/fxml-20210228-git.tgz";
+      sha256 = "1vxdb1cjjqi986f72bggnw1s4yzv12g4li7vn4y49b6lphshr8lm";
+      system = "fxml/xml";
+      asd = "fxml";
+    });
+    systems = [ "fxml/xml" ];
+    lispLibs = [ alexandria babel flexi-streams named-readtables quri serapeum split-sequence trivial-gray-streams ];
+  };
+  fxml_slash_xpath = (fxml // {
+    pname = "fxml/xpath";
+    systems = [ "fxml/xpath" "fxml" ];
+    lispLibs = [ alexandria xpath ];
+  });
   gadgets = {
     pname = "gadgets";
     createAsd = false;
@@ -30995,6 +33015,16 @@ rec {
     systems = [ "generic-cl.util" ];
     lispLibs = [ generic-cl ];
   };
+  generic-cl_dot_util_slash_test = (generic-cl_dot_util // {
+    pname = "generic-cl.util/test";
+    systems = [ "generic-cl.util/test" "generic-cl.util" ];
+    lispLibs = [ alexandria anaphora arrows fiveam ];
+  });
+  generic-cl_slash_test = (generic-cl // {
+    pname = "generic-cl/test";
+    systems = [ "generic-cl/test" "generic-cl" ];
+    lispLibs = [ fiveam ];
+  });
   generic-comparability = {
     pname = "generic-comparability";
     createAsd = false;
@@ -31216,6 +33246,11 @@ rec {
     systems = [ "geodesic" ];
     lispLibs = [  ];
   };
+  geodesic_slash_test = (geodesic // {
+    pname = "geodesic/test";
+    systems = [ "geodesic/test" "geodesic" ];
+    lispLibs = [ _1am parse-number split-sequence ];
+  });
   geowkt = {
     pname = "geowkt";
     createAsd = false;
@@ -31671,6 +33706,11 @@ rec {
     systems = [ "gooptest" ];
     lispLibs = [ alexandria babel cffi cl-autowrap cl-plus-c uiop ];
   };
+  gooptest_slash_examples = (gooptest // {
+    pname = "gooptest/examples";
+    systems = [ "gooptest/examples" "gooptest" ];
+    lispLibs = [  ];
+  });
   graph = {
     pname = "graph";
     createAsd = false;
@@ -31787,6 +33827,32 @@ rec {
     });
     systems = [ "gtirb" ];
     lispLibs = [ alexandria asdf-package-system cl-intbytes cl-interval curry-compose-reader-macros graph named-readtables proto protobuf trivia trivial-package-local-nicknames trivial-utf-8 ];
+  };
+  gtirb_slash_run-dot = {
+    pname = "gtirb/run-dot";
+    createAsd = false;
+    version = "quicklisp-dd18337d-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/gtirb/2021-10-20/gtirb-quicklisp-dd18337d-git.tgz";
+      sha256 = "0dpchsshnlh3jb9rg1zdf63mr5l33vhjdxgxx2vqg0nh1sh41zn1";
+      system = "gtirb/run-dot";
+      asd = "gtirb";
+    });
+    systems = [ "gtirb/run-dot" ];
+    lispLibs = [  ];
+  };
+  gtirb_slash_run-update = {
+    pname = "gtirb/run-update";
+    createAsd = false;
+    version = "quicklisp-dd18337d-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/gtirb/2021-10-20/gtirb-quicklisp-dd18337d-git.tgz";
+      sha256 = "0dpchsshnlh3jb9rg1zdf63mr5l33vhjdxgxx2vqg0nh1sh41zn1";
+      system = "gtirb/run-update";
+      asd = "gtirb";
+    });
+    systems = [ "gtirb/run-update" ];
+    lispLibs = [  ];
   };
   proto = {
     pname = "proto";
@@ -31918,6 +33984,11 @@ rec {
     systems = [ "gute" ];
     lispLibs = [ alexandria cl-mathstats cl-ppcre cl-strings conium ];
   };
+  gute_slash_tests = (gute // {
+    pname = "gute/tests";
+    systems = [ "gute/tests" "gute" ];
+    lispLibs = [ lisp-unit ];
+  });
   gzip-stream = {
     pname = "gzip-stream";
     createAsd = false;
@@ -32126,6 +34197,11 @@ rec {
     systems = [ "herodotus" ];
     lispLibs = [ alexandria cl-ppcre yason ];
   };
+  herodotus_slash_tests = (herodotus // {
+    pname = "herodotus/tests";
+    systems = [ "herodotus/tests" "herodotus" ];
+    lispLibs = [ rove ];
+  });
   hh-aws = {
     pname = "hh-aws";
     createAsd = false;
@@ -32243,6 +34319,11 @@ rec {
     systems = [ "horse-html" ];
     lispLibs = [ parenscript ];
   };
+  horse-html_slash_tests = (horse-html // {
+    pname = "horse-html/tests";
+    systems = [ "horse-html/tests" "horse-html" ];
+    lispLibs = [ fiveam ];
+  });
   house = {
     pname = "house";
     createAsd = false;
@@ -32256,6 +34337,11 @@ rec {
     systems = [ "house" ];
     lispLibs = [ alexandria anaphora bordeaux-threads cl-fad cl-json cl-ppcre flexi-streams lisp-unit optima prove-asdf quri session-token split-sequence trivial-features usocket ];
   };
+  house_slash_test = (house // {
+    pname = "house/test";
+    systems = [ "house/test" "house" ];
+    lispLibs = [ prove-asdf test-utils ];
+  });
   ht-simple-ajax = {
     pname = "ht-simple-ajax";
     createAsd = false;
@@ -32425,6 +34511,11 @@ rec {
     systems = [ "hu.dwim.bluez" ];
     lispLibs = [ alexandria cffi cffi-libffi hu_dot_dwim_dot_asdf ];
   };
+  hu_dot_dwim_dot_bluez_slash_fancy = (hu_dot_dwim_dot_bluez // {
+    pname = "hu.dwim.bluez/fancy";
+    systems = [ "hu.dwim.bluez/fancy" "hu.dwim.bluez" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar ];
+  });
   hu_dot_dwim_dot_common = {
     pname = "hu.dwim.common";
     createAsd = false;
@@ -32659,6 +34750,37 @@ rec {
     systems = [ "hu.dwim.def+swank" ];
     lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def swank ];
   };
+  hu_dot_dwim_dot_def_slash_documentation = {
+    pname = "hu.dwim.def/documentation";
+    createAsd = false;
+    version = "stable-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/hu.dwim.def/2021-12-30/hu.dwim.def-stable-git.tgz";
+      sha256 = "1scjj9g2bn58l8i1g1brdqzrajy4bb63dqkwlcydcvk36iskpyab";
+      system = "hu.dwim.def/documentation";
+      asd = "hu.dwim.def";
+    });
+    systems = [ "hu.dwim.def/documentation" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_presentation hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def optima ];
+  };
+  hu_dot_dwim_dot_def_slash_namespace = (hu_dot_dwim_dot_def // {
+    pname = "hu.dwim.def/namespace";
+    systems = [ "hu.dwim.def/namespace" "hu.dwim.def" ];
+    lispLibs = [ bordeaux-threads hu_dot_dwim_dot_asdf hu_dot_dwim_dot_util trivial-garbage ];
+  });
+  hu_dot_dwim_dot_def_slash_test = {
+    pname = "hu.dwim.def/test";
+    createAsd = false;
+    version = "stable-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/hu.dwim.def/2021-12-30/hu.dwim.def-stable-git.tgz";
+      sha256 = "1scjj9g2bn58l8i1g1brdqzrajy4bb63dqkwlcydcvk36iskpyab";
+      system = "hu.dwim.def/test";
+      asd = "hu.dwim.def";
+    });
+    systems = [ "hu.dwim.def/test" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def optima ];
+  };
   hu_dot_dwim_dot_defclass-star = {
     pname = "hu.dwim.defclass-star";
     createAsd = false;
@@ -32724,6 +34846,16 @@ rec {
     systems = [ "hu.dwim.defclass-star+swank" ];
     lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star swank ];
   };
+  hu_dot_dwim_dot_defclass-star_slash_documentation = (hu_dot_dwim_dot_defclass-star // {
+    pname = "hu.dwim.defclass-star/documentation";
+    systems = [ "hu.dwim.defclass-star/documentation" "hu.dwim.defclass-star" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_presentation hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank ];
+  });
+  hu_dot_dwim_dot_defclass-star_slash_test = (hu_dot_dwim_dot_defclass-star // {
+    pname = "hu.dwim.defclass-star/test";
+    systems = [ "hu.dwim.defclass-star/test" "hu.dwim.defclass-star" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_common hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank ];
+  });
   hu_dot_dwim_dot_delico = {
     pname = "hu.dwim.delico";
     createAsd = false;
@@ -32737,6 +34869,16 @@ rec {
     systems = [ "hu.dwim.delico" ];
     lispLibs = [ contextl hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_walker ];
   };
+  hu_dot_dwim_dot_delico_slash_documentation = (hu_dot_dwim_dot_delico // {
+    pname = "hu.dwim.delico/documentation";
+    systems = [ "hu.dwim.delico/documentation" "hu.dwim.delico" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_presentation hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_util hu_dot_dwim_dot_walker ];
+  });
+  hu_dot_dwim_dot_delico_slash_test = (hu_dot_dwim_dot_delico // {
+    pname = "hu.dwim.delico/test";
+    systems = [ "hu.dwim.delico/test" "hu.dwim.delico" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_util ];
+  });
   hu_dot_dwim_dot_graphviz = {
     pname = "hu.dwim.graphviz";
     createAsd = false;
@@ -33426,6 +35568,26 @@ rec {
     systems = [ "hu.dwim.sdl" ];
     lispLibs = [ alexandria cffi cffi-libffi hu_dot_dwim_dot_asdf ];
   };
+  hu_dot_dwim_dot_sdl_slash_fancy = (hu_dot_dwim_dot_sdl // {
+    pname = "hu.dwim.sdl/fancy";
+    systems = [ "hu.dwim.sdl/fancy" "hu.dwim.sdl" ];
+    lispLibs = [ alexandria cffi cffi-libffi hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_syntax-sugar ];
+  });
+  hu_dot_dwim_dot_sdl_slash_gfx = (hu_dot_dwim_dot_sdl // {
+    pname = "hu.dwim.sdl/gfx";
+    systems = [ "hu.dwim.sdl/gfx" "hu.dwim.sdl" ];
+    lispLibs = [ alexandria cffi cffi-libffi ];
+  });
+  hu_dot_dwim_dot_sdl_slash_image = (hu_dot_dwim_dot_sdl // {
+    pname = "hu.dwim.sdl/image";
+    systems = [ "hu.dwim.sdl/image" "hu.dwim.sdl" ];
+    lispLibs = [ alexandria cffi cffi-libffi ];
+  });
+  hu_dot_dwim_dot_sdl_slash_ttf = (hu_dot_dwim_dot_sdl // {
+    pname = "hu.dwim.sdl/ttf";
+    systems = [ "hu.dwim.sdl/ttf" "hu.dwim.sdl" ];
+    lispLibs = [ alexandria cffi cffi-libffi ];
+  });
   hu_dot_dwim_dot_serializer = {
     pname = "hu.dwim.serializer";
     createAsd = false;
@@ -33517,6 +35679,11 @@ rec {
     systems = [ "hu.dwim.stefil+swank" ];
     lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_stefil swank ];
   };
+  hu_dot_dwim_dot_stefil_slash_test = (hu_dot_dwim_dot_stefil // {
+    pname = "hu.dwim.stefil/test";
+    systems = [ "hu.dwim.stefil/test" "hu.dwim.stefil" ];
+    lispLibs = [  ];
+  });
   hu_dot_dwim_dot_syntax-sugar = {
     pname = "hu.dwim.syntax-sugar";
     createAsd = false;
@@ -33556,6 +35723,16 @@ rec {
     systems = [ "hu.dwim.syntax-sugar.test" ];
     lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_walker ];
   };
+  hu_dot_dwim_dot_syntax-sugar_slash_lambda-with-bang-args = (hu_dot_dwim_dot_syntax-sugar // {
+    pname = "hu.dwim.syntax-sugar/lambda-with-bang-args";
+    systems = [ "hu.dwim.syntax-sugar/lambda-with-bang-args" "hu.dwim.syntax-sugar" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_walker ];
+  });
+  hu_dot_dwim_dot_syntax-sugar_slash_unicode = (hu_dot_dwim_dot_syntax-sugar // {
+    pname = "hu.dwim.syntax-sugar/unicode";
+    systems = [ "hu.dwim.syntax-sugar/unicode" "hu.dwim.syntax-sugar" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf ];
+  });
   hu_dot_dwim_dot_uri = {
     pname = "hu.dwim.uri";
     createAsd = false;
@@ -33634,6 +35811,94 @@ rec {
     systems = [ "hu.dwim.util.test" ];
     lispLibs = [ babel babel-streams bordeaux-threads cl-l10n cl-ppcre closer-mop command-line-arguments cxml drakma hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_delico hu_dot_dwim_dot_logger hu_dot_dwim_dot_perec_dot_postgresql hu_dot_dwim_dot_quasi-quote_dot_xml hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def_plus_swank hu_dot_dwim_dot_syntax-sugar hu_dot_dwim_dot_util hu_dot_dwim_dot_util_plus_iolib hu_dot_dwim_dot_web-server_dot_application iolib swank uiop ];
   };
+  hu_dot_dwim_dot_util_slash_authorization = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/authorization";
+    systems = [ "hu.dwim.util/authorization" "hu.dwim.util" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_logger hu_dot_dwim_dot_partial-eval hu_dot_dwim_dot_walker ];
+  });
+  hu_dot_dwim_dot_util_slash_command-line = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/command-line";
+    systems = [ "hu.dwim.util/command-line" "hu.dwim.util" ];
+    lispLibs = [ command-line-arguments hu_dot_dwim_dot_asdf uiop ];
+  });
+  hu_dot_dwim_dot_util_slash_error-handling = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/error-handling";
+    systems = [ "hu.dwim.util/error-handling" "hu.dwim.util" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def ];
+  });
+  hu_dot_dwim_dot_util_slash_error-handling_plus_swank = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/error-handling+swank";
+    systems = [ "hu.dwim.util/error-handling+swank" "hu.dwim.util" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def swank ];
+  });
+  hu_dot_dwim_dot_util_slash_finite-state-machine = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/finite-state-machine";
+    systems = [ "hu.dwim.util/finite-state-machine" "hu.dwim.util" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def ];
+  });
+  hu_dot_dwim_dot_util_slash_flexml = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/flexml";
+    systems = [ "hu.dwim.util/flexml" "hu.dwim.util" ];
+    lispLibs = [ cl-ppcre cxml hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def ];
+  });
+  hu_dot_dwim_dot_util_slash_i18n = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/i18n";
+    systems = [ "hu.dwim.util/i18n" "hu.dwim.util" ];
+    lispLibs = [ cl-l10n hu_dot_dwim_dot_asdf ];
+  });
+  hu_dot_dwim_dot_util_slash_linear-mapping = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/linear-mapping";
+    systems = [ "hu.dwim.util/linear-mapping" "hu.dwim.util" ];
+    lispLibs = [ bordeaux-threads hu_dot_dwim_dot_asdf ];
+  });
+  hu_dot_dwim_dot_util_slash_mop = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/mop";
+    systems = [ "hu.dwim.util/mop" "hu.dwim.util" ];
+    lispLibs = [ closer-mop hu_dot_dwim_dot_asdf ];
+  });
+  hu_dot_dwim_dot_util_slash_production = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/production";
+    systems = [ "hu.dwim.util/production" "hu.dwim.util" ];
+    lispLibs = [ command-line-arguments hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_logger hu_dot_dwim_dot_perec_dot_postgresql hu_dot_dwim_dot_util_plus_iolib hu_dot_dwim_dot_web-server_dot_application iolib swank uiop ];
+  });
+  hu_dot_dwim_dot_util_slash_soap = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/soap";
+    systems = [ "hu.dwim.util/soap" "hu.dwim.util" ];
+    lispLibs = [ babel babel-streams cl-ppcre cxml drakma hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_logger hu_dot_dwim_dot_quasi-quote_dot_xml ];
+  });
+  hu_dot_dwim_dot_util_slash_source = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/source";
+    systems = [ "hu.dwim.util/source" "hu.dwim.util" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_syntax-sugar swank ];
+  });
+  hu_dot_dwim_dot_util_slash_standard-process = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/standard-process";
+    systems = [ "hu.dwim.util/standard-process" "hu.dwim.util" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_delico hu_dot_dwim_dot_logger ];
+  });
+  hu_dot_dwim_dot_util_slash_temporary-files = {
+    pname = "hu.dwim.util/temporary-files";
+    createAsd = false;
+    version = "stable-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/hu.dwim.util/2021-12-30/hu.dwim.util-stable-git.tgz";
+      sha256 = "01f0kvvaa94zkz5zzfaf8cbiihlp0l6627q3hmc0k154j3mdarmi";
+      system = "hu.dwim.util/temporary-files";
+      asd = "hu.dwim.util";
+    });
+    systems = [ "hu.dwim.util/temporary-files" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_util_plus_iolib iolib ];
+  };
+  hu_dot_dwim_dot_util_slash_threads = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/threads";
+    systems = [ "hu.dwim.util/threads" "hu.dwim.util" ];
+    lispLibs = [ bordeaux-threads hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def ];
+  });
+  hu_dot_dwim_dot_util_slash_worker-group = (hu_dot_dwim_dot_util // {
+    pname = "hu.dwim.util/worker-group";
+    systems = [ "hu.dwim.util/worker-group" "hu.dwim.util" ];
+    lispLibs = [ bordeaux-threads hu_dot_dwim_dot_asdf hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_logger ];
+  });
   hu_dot_dwim_dot_walker = {
     pname = "hu.dwim.walker";
     createAsd = false;
@@ -33647,6 +35912,16 @@ rec {
     systems = [ "hu.dwim.walker" ];
     lispLibs = [ alexandria anaphora closer-mop contextl hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_contextl hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_util metabang-bind ];
   };
+  hu_dot_dwim_dot_walker_slash_documentation = (hu_dot_dwim_dot_walker // {
+    pname = "hu.dwim.walker/documentation";
+    systems = [ "hu.dwim.walker/documentation" "hu.dwim.walker" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_presentation hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_stefil_plus_swank hu_dot_dwim_dot_util ];
+  });
+  hu_dot_dwim_dot_walker_slash_test = (hu_dot_dwim_dot_walker // {
+    pname = "hu.dwim.walker/test";
+    systems = [ "hu.dwim.walker/test" "hu.dwim.walker" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_stefil_plus_hu_dot_dwim_dot_def hu_dot_dwim_dot_stefil_plus_swank hu_dot_dwim_dot_util ];
+  });
   hu_dot_dwim_dot_web-server = {
     pname = "hu.dwim.web-server";
     createAsd = false;
@@ -33764,6 +36039,16 @@ rec {
     systems = [ "hu.dwim.zlib" ];
     lispLibs = [ alexandria cffi cffi-libffi hu_dot_dwim_dot_asdf ];
   };
+  hu_dot_dwim_dot_zlib_slash_fancy = (hu_dot_dwim_dot_zlib // {
+    pname = "hu.dwim.zlib/fancy";
+    systems = [ "hu.dwim.zlib/fancy" "hu.dwim.zlib" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common hu_dot_dwim_dot_syntax-sugar ];
+  });
+  hu_dot_dwim_dot_zlib_slash_test = (hu_dot_dwim_dot_zlib // {
+    pname = "hu.dwim.zlib/test";
+    systems = [ "hu.dwim.zlib/test" "hu.dwim.zlib" ];
+    lispLibs = [ hu_dot_dwim_dot_asdf hu_dot_dwim_dot_stefil ];
+  });
   huffman = {
     pname = "huffman";
     createAsd = false;
@@ -33985,6 +36270,11 @@ rec {
     systems = [ "hyperobject" ];
     lispLibs = [ clsql kmrcl ];
   };
+  hyperobject_slash_test = (hyperobject // {
+    pname = "hyperobject/test";
+    systems = [ "hyperobject/test" "hyperobject" ];
+    lispLibs = [ rt ];
+  });
   hyperspec = {
     pname = "hyperspec";
     createAsd = false;
@@ -34167,6 +36457,26 @@ rec {
     systems = [ "imago" ];
     lispLibs = [ alexandria array-operations cl-jpeg polymorphic-functions serapeum zlib ];
   };
+  imago_slash_jpeg-turbo = (imago // {
+    pname = "imago/jpeg-turbo";
+    systems = [ "imago/jpeg-turbo" "imago" ];
+    lispLibs = [ jpeg-turbo ];
+  });
+  imago_slash_jupyter = (imago // {
+    pname = "imago/jupyter";
+    systems = [ "imago/jupyter" "imago" ];
+    lispLibs = [ cl-base64 common-lisp-jupyter flexi-streams ];
+  });
+  imago_slash_pngload = (imago // {
+    pname = "imago/pngload";
+    systems = [ "imago/pngload" "imago" ];
+    lispLibs = [ pngload ];
+  });
+  imago_slash_tests = (imago // {
+    pname = "imago/tests";
+    systems = [ "imago/tests" "imago" ];
+    lispLibs = [ fiveam ];
+  });
   immutable-struct = {
     pname = "immutable-struct";
     createAsd = false;
@@ -34193,6 +36503,11 @@ rec {
     systems = [ "incf-cl" ];
     lispLibs = [ cl-ppcre ];
   };
+  incf-cl_slash_tests = (incf-cl // {
+    pname = "incf-cl/tests";
+    systems = [ "incf-cl/tests" "incf-cl" ];
+    lispLibs = [ fiasco uiop ];
+  });
   incognito-keywords = {
     pname = "incognito-keywords";
     createAsd = false;
@@ -34232,6 +36547,11 @@ rec {
     systems = [ "inferior-shell" ];
     lispLibs = [ alexandria fare-mop fare-quasiquote-extras fare-utils trivia trivia_dot_quasiquote ];
   };
+  inferior-shell_slash_test = (inferior-shell // {
+    pname = "inferior-shell/test";
+    systems = [ "inferior-shell/test" "inferior-shell" ];
+    lispLibs = [ hu_dot_dwim_dot_stefil ];
+  });
   infix-dollar-reader = {
     pname = "infix-dollar-reader";
     createAsd = false;
@@ -34674,6 +36994,115 @@ rec {
     systems = [ "iolib.examples" ];
     lispLibs = [ bordeaux-threads iolib iolib_dot_asdf iolib_dot_base iolib_dot_conf ];
   };
+  iolib_slash_multiplex = {
+    pname = "iolib/multiplex";
+    createAsd = false;
+    version = "v0.8.4";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
+      sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
+      system = "iolib/multiplex";
+      asd = "iolib";
+    });
+    systems = [ "iolib/multiplex" ];
+    lispLibs = [ cffi cffi-grovel iolib_dot_asdf iolib_dot_base iolib_dot_conf trivial-features ];
+  };
+  iolib_slash_os = {
+    pname = "iolib/os";
+    createAsd = false;
+    version = "v0.8.4";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
+      sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
+      system = "iolib/os";
+      asd = "iolib";
+    });
+    systems = [ "iolib/os" ];
+    lispLibs = [ cffi cffi-grovel iolib_dot_asdf iolib_dot_base iolib_dot_conf trivial-features ];
+  };
+  iolib_slash_pathnames = {
+    pname = "iolib/pathnames";
+    createAsd = false;
+    version = "v0.8.4";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
+      sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
+      system = "iolib/pathnames";
+      asd = "iolib";
+    });
+    systems = [ "iolib/pathnames" ];
+    lispLibs = [ cffi cffi-grovel iolib_dot_asdf iolib_dot_base iolib_dot_conf trivial-features ];
+  };
+  iolib_slash_sockets = {
+    pname = "iolib/sockets";
+    createAsd = false;
+    version = "v0.8.4";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
+      sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
+      system = "iolib/sockets";
+      asd = "iolib";
+    });
+    systems = [ "iolib/sockets" ];
+    lispLibs = [ babel bordeaux-threads cffi cffi-grovel idna iolib_dot_asdf iolib_dot_base iolib_dot_conf swap-bytes trivial-features ];
+  };
+  iolib_slash_streams = {
+    pname = "iolib/streams";
+    createAsd = false;
+    version = "v0.8.4";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
+      sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
+      system = "iolib/streams";
+      asd = "iolib";
+    });
+    systems = [ "iolib/streams" ];
+    lispLibs = [ cffi cffi-grovel iolib_dot_asdf iolib_dot_base iolib_dot_conf trivial-features ];
+  };
+  iolib_slash_syscalls = {
+    pname = "iolib/syscalls";
+    createAsd = false;
+    version = "v0.8.4";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
+      sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
+      system = "iolib/syscalls";
+      asd = "iolib";
+    });
+    systems = [ "iolib/syscalls" ];
+    lispLibs = [ cffi cffi-grovel iolib_dot_asdf iolib_dot_base iolib_dot_conf trivial-features ];
+  };
+  iolib_slash_tests = (iolib // {
+    pname = "iolib/tests";
+    systems = [ "iolib/tests" "iolib" ];
+    lispLibs = [ cffi cffi-grovel fiveam iolib_dot_asdf iolib_dot_base iolib_dot_conf trivial-features ];
+  });
+  iolib_slash_trivial-sockets = {
+    pname = "iolib/trivial-sockets";
+    createAsd = false;
+    version = "v0.8.4";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
+      sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
+      system = "iolib/trivial-sockets";
+      asd = "iolib";
+    });
+    systems = [ "iolib/trivial-sockets" ];
+    lispLibs = [ babel bordeaux-threads cffi cffi-grovel idna iolib_dot_asdf iolib_dot_base iolib_dot_conf swap-bytes trivial-features ];
+  };
+  iolib_slash_zstreams = {
+    pname = "iolib/zstreams";
+    createAsd = false;
+    version = "v0.8.4";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
+      sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
+      system = "iolib/zstreams";
+      asd = "iolib";
+    });
+    systems = [ "iolib/zstreams" ];
+    lispLibs = [ bordeaux-threads cffi cffi-grovel iolib_dot_asdf iolib_dot_base iolib_dot_conf trivial-features ];
+  };
   ip-interfaces = {
     pname = "ip-interfaces";
     createAsd = false;
@@ -34739,6 +37168,1168 @@ rec {
     systems = [ "ironclad-text" ];
     lispLibs = [ flexi-streams ironclad ];
   };
+  ironclad_slash_aead_slash_eax = {
+    pname = "ironclad/aead/eax";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/aead/eax";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/aead/eax" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_aead_slash_etm = {
+    pname = "ironclad/aead/etm";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/aead/etm";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/aead/etm" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_aead_slash_gcm = {
+    pname = "ironclad/aead/gcm";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/aead/gcm";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/aead/gcm" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_aeads = {
+    pname = "ironclad/aeads";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/aeads";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/aeads" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_aes = {
+    pname = "ironclad/cipher/aes";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/aes";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/aes" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_arcfour = {
+    pname = "ironclad/cipher/arcfour";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/arcfour";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/arcfour" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_aria = {
+    pname = "ironclad/cipher/aria";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/aria";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/aria" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_blowfish = {
+    pname = "ironclad/cipher/blowfish";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/blowfish";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/blowfish" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_camellia = {
+    pname = "ironclad/cipher/camellia";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/camellia";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/camellia" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_cast5 = {
+    pname = "ironclad/cipher/cast5";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/cast5";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/cast5" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_chacha = {
+    pname = "ironclad/cipher/chacha";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/chacha";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/chacha" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_des = {
+    pname = "ironclad/cipher/des";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/des";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/des" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_idea = {
+    pname = "ironclad/cipher/idea";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/idea";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/idea" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_kalyna = {
+    pname = "ironclad/cipher/kalyna";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/kalyna";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/kalyna" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_keystream = {
+    pname = "ironclad/cipher/keystream";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/keystream";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/keystream" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_kuznyechik = {
+    pname = "ironclad/cipher/kuznyechik";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/kuznyechik";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/kuznyechik" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_misty1 = {
+    pname = "ironclad/cipher/misty1";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/misty1";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/misty1" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_rc2 = {
+    pname = "ironclad/cipher/rc2";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/rc2";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/rc2" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_rc5 = {
+    pname = "ironclad/cipher/rc5";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/rc5";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/rc5" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_rc6 = {
+    pname = "ironclad/cipher/rc6";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/rc6";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/rc6" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_salsa20 = {
+    pname = "ironclad/cipher/salsa20";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/salsa20";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/salsa20" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_seed = {
+    pname = "ironclad/cipher/seed";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/seed";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/seed" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_serpent = {
+    pname = "ironclad/cipher/serpent";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/serpent";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/serpent" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_sm4 = {
+    pname = "ironclad/cipher/sm4";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/sm4";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/sm4" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_sosemanuk = {
+    pname = "ironclad/cipher/sosemanuk";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/sosemanuk";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/sosemanuk" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_square = {
+    pname = "ironclad/cipher/square";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/square";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/square" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_tea = {
+    pname = "ironclad/cipher/tea";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/tea";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/tea" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_threefish = {
+    pname = "ironclad/cipher/threefish";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/threefish";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/threefish" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_twofish = {
+    pname = "ironclad/cipher/twofish";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/twofish";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/twofish" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_xchacha = {
+    pname = "ironclad/cipher/xchacha";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/xchacha";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/xchacha" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_xor = {
+    pname = "ironclad/cipher/xor";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/xor";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/xor" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_xsalsa20 = {
+    pname = "ironclad/cipher/xsalsa20";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/xsalsa20";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/xsalsa20" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_cipher_slash_xtea = {
+    pname = "ironclad/cipher/xtea";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/cipher/xtea";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/cipher/xtea" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_ciphers = {
+    pname = "ironclad/ciphers";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/ciphers";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/ciphers" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_core = {
+    pname = "ironclad/core";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/core";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/core" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_adler32 = {
+    pname = "ironclad/digest/adler32";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/adler32";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/adler32" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_blake2 = {
+    pname = "ironclad/digest/blake2";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/blake2";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/blake2" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_blake2s = {
+    pname = "ironclad/digest/blake2s";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/blake2s";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/blake2s" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_crc24 = {
+    pname = "ironclad/digest/crc24";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/crc24";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/crc24" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_crc32 = {
+    pname = "ironclad/digest/crc32";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/crc32";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/crc32" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_groestl = {
+    pname = "ironclad/digest/groestl";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/groestl";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/groestl" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_jh = {
+    pname = "ironclad/digest/jh";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/jh";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/jh" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_kupyna = {
+    pname = "ironclad/digest/kupyna";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/kupyna";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/kupyna" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_md2 = {
+    pname = "ironclad/digest/md2";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/md2";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/md2" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_md4 = {
+    pname = "ironclad/digest/md4";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/md4";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/md4" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_md5 = {
+    pname = "ironclad/digest/md5";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/md5";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/md5" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_ripemd-128 = {
+    pname = "ironclad/digest/ripemd-128";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/ripemd-128";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/ripemd-128" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_ripemd-160 = {
+    pname = "ironclad/digest/ripemd-160";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/ripemd-160";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/ripemd-160" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_sha1 = {
+    pname = "ironclad/digest/sha1";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/sha1";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/sha1" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_sha256 = {
+    pname = "ironclad/digest/sha256";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/sha256";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/sha256" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_sha3 = {
+    pname = "ironclad/digest/sha3";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/sha3";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/sha3" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_sha512 = {
+    pname = "ironclad/digest/sha512";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/sha512";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/sha512" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_skein = {
+    pname = "ironclad/digest/skein";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/skein";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/skein" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_sm3 = {
+    pname = "ironclad/digest/sm3";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/sm3";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/sm3" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_streebog = {
+    pname = "ironclad/digest/streebog";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/streebog";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/streebog" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_tiger = {
+    pname = "ironclad/digest/tiger";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/tiger";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/tiger" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_tree-hash = {
+    pname = "ironclad/digest/tree-hash";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/tree-hash";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/tree-hash" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digest_slash_whirlpool = {
+    pname = "ironclad/digest/whirlpool";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digest/whirlpool";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digest/whirlpool" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_digests = {
+    pname = "ironclad/digests";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/digests";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/digests" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_kdf_slash_argon2 = {
+    pname = "ironclad/kdf/argon2";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/kdf/argon2";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/kdf/argon2" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_kdf_slash_bcrypt = {
+    pname = "ironclad/kdf/bcrypt";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/kdf/bcrypt";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/kdf/bcrypt" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_kdf_slash_hmac = {
+    pname = "ironclad/kdf/hmac";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/kdf/hmac";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/kdf/hmac" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_kdf_slash_password-hash = {
+    pname = "ironclad/kdf/password-hash";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/kdf/password-hash";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/kdf/password-hash" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_kdf_slash_pkcs5 = {
+    pname = "ironclad/kdf/pkcs5";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/kdf/pkcs5";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/kdf/pkcs5" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_kdf_slash_scrypt = {
+    pname = "ironclad/kdf/scrypt";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/kdf/scrypt";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/kdf/scrypt" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_kdfs = {
+    pname = "ironclad/kdfs";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/kdfs";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/kdfs" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_mac_slash_blake2-mac = {
+    pname = "ironclad/mac/blake2-mac";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/mac/blake2-mac";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/mac/blake2-mac" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_mac_slash_blake2s-mac = {
+    pname = "ironclad/mac/blake2s-mac";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/mac/blake2s-mac";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/mac/blake2s-mac" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_mac_slash_cmac = {
+    pname = "ironclad/mac/cmac";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/mac/cmac";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/mac/cmac" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_mac_slash_gmac = {
+    pname = "ironclad/mac/gmac";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/mac/gmac";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/mac/gmac" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_mac_slash_hmac = {
+    pname = "ironclad/mac/hmac";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/mac/hmac";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/mac/hmac" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_mac_slash_poly1305 = {
+    pname = "ironclad/mac/poly1305";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/mac/poly1305";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/mac/poly1305" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_mac_slash_siphash = {
+    pname = "ironclad/mac/siphash";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/mac/siphash";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/mac/siphash" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_mac_slash_skein-mac = {
+    pname = "ironclad/mac/skein-mac";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/mac/skein-mac";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/mac/skein-mac" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_macs = {
+    pname = "ironclad/macs";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/macs";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/macs" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_prng_slash_fortuna = {
+    pname = "ironclad/prng/fortuna";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/prng/fortuna";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/prng/fortuna" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_prngs = {
+    pname = "ironclad/prngs";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/prngs";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/prngs" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_public-key_slash_curve25519 = {
+    pname = "ironclad/public-key/curve25519";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/public-key/curve25519";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/public-key/curve25519" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_public-key_slash_curve448 = {
+    pname = "ironclad/public-key/curve448";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/public-key/curve448";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/public-key/curve448" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_public-key_slash_dsa = {
+    pname = "ironclad/public-key/dsa";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/public-key/dsa";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/public-key/dsa" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_public-key_slash_ed25519 = {
+    pname = "ironclad/public-key/ed25519";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/public-key/ed25519";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/public-key/ed25519" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_public-key_slash_ed448 = {
+    pname = "ironclad/public-key/ed448";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/public-key/ed448";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/public-key/ed448" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_public-key_slash_elgamal = {
+    pname = "ironclad/public-key/elgamal";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/public-key/elgamal";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/public-key/elgamal" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_public-key_slash_rsa = {
+    pname = "ironclad/public-key/rsa";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/public-key/rsa";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/public-key/rsa" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_public-key_slash_secp256k1 = {
+    pname = "ironclad/public-key/secp256k1";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/public-key/secp256k1";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/public-key/secp256k1" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_public-key_slash_secp256r1 = {
+    pname = "ironclad/public-key/secp256r1";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/public-key/secp256r1";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/public-key/secp256r1" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_public-key_slash_secp384r1 = {
+    pname = "ironclad/public-key/secp384r1";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/public-key/secp384r1";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/public-key/secp384r1" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_public-key_slash_secp521r1 = {
+    pname = "ironclad/public-key/secp521r1";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/public-key/secp521r1";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/public-key/secp521r1" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_public-keys = {
+    pname = "ironclad/public-keys";
+    createAsd = false;
+    version = "v0.56";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
+      sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
+      system = "ironclad/public-keys";
+      asd = "ironclad";
+    });
+    systems = [ "ironclad/public-keys" ];
+    lispLibs = [ bordeaux-threads ];
+  };
+  ironclad_slash_tests = (ironclad // {
+    pname = "ironclad/tests";
+    systems = [ "ironclad/tests" "ironclad" ];
+    lispLibs = [ rt ];
+  });
   eclecticse_dot_iso-8601-date = {
     pname = "eclecticse.iso-8601-date";
     createAsd = false;
@@ -34765,6 +38356,11 @@ rec {
     systems = [ "iterate" ];
     lispLibs = [  ];
   };
+  iterate_slash_tests = (iterate // {
+    pname = "iterate/tests";
+    systems = [ "iterate/tests" "iterate" ];
+    lispLibs = [  ];
+  });
   iterate-clsql = {
     pname = "iterate-clsql";
     createAsd = false;
@@ -34986,6 +38582,11 @@ rec {
     systems = [ "jingoh.tester.test" ];
     lispLibs = [ jingoh jingoh_dot_tester ];
   };
+  jingoh_slash_test = (jingoh // {
+    pname = "jingoh/test";
+    systems = [ "jingoh/test" "jingoh" ];
+    lispLibs = [ named-readtables ];
+  });
   jonathan = {
     pname = "jonathan";
     createAsd = false;
@@ -35064,6 +38665,11 @@ rec {
     systems = [ "jpeg-turbo" ];
     lispLibs = [ cffi cffi-grovel ];
   };
+  jpeg-turbo_slash_tests = (jpeg-turbo // {
+    pname = "jpeg-turbo/tests";
+    systems = [ "jpeg-turbo/tests" "jpeg-turbo" ];
+    lispLibs = [ fiveam ];
+  });
   jpl-queues = {
     pname = "jpl-queues";
     createAsd = false;
@@ -35337,6 +38943,37 @@ rec {
     systems = [ "keystone" ];
     lispLibs = [ cffi cffi-grovel gt static-vectors trivial-features ];
   };
+  keystone_slash_raw = {
+    pname = "keystone/raw";
+    createAsd = false;
+    version = "20200427-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/keystone/2020-04-27/keystone-20200427-git.tgz";
+      sha256 = "04fczbkihf87qyp9f1sv45h69xrvdmcmxkv4m868q8zqw6z48hlj";
+      system = "keystone/raw";
+      asd = "keystone";
+    });
+    systems = [ "keystone/raw" ];
+    lispLibs = [ cffi cffi-grovel gt static-vectors ];
+  };
+  keystone_slash_raw-test = {
+    pname = "keystone/raw-test";
+    createAsd = false;
+    version = "20200427-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/keystone/2020-04-27/keystone-20200427-git.tgz";
+      sha256 = "04fczbkihf87qyp9f1sv45h69xrvdmcmxkv4m868q8zqw6z48hlj";
+      system = "keystone/raw-test";
+      asd = "keystone";
+    });
+    systems = [ "keystone/raw-test" ];
+    lispLibs = [ cffi cffi-grovel gt static-vectors stefil ];
+  };
+  keystone_slash_test = (keystone // {
+    pname = "keystone/test";
+    systems = [ "keystone/test" "keystone" ];
+    lispLibs = [ cffi cffi-grovel gt static-vectors stefil ];
+  });
   kl-verify = {
     pname = "kl-verify";
     createAsd = false;
@@ -35376,6 +39013,11 @@ rec {
     systems = [ "kmrcl" ];
     lispLibs = [  ];
   };
+  kmrcl_slash_test = (kmrcl // {
+    pname = "kmrcl/test";
+    systems = [ "kmrcl/test" "kmrcl" ];
+    lispLibs = [ rt ];
+  });
   l-math = {
     pname = "l-math";
     createAsd = false;
@@ -36130,6 +39772,11 @@ rec {
     systems = [ "let-plus" ];
     lispLibs = [ alexandria anaphora ];
   };
+  let-plus_slash_tests = (let-plus // {
+    pname = "let-plus/tests";
+    systems = [ "let-plus/tests" "let-plus" ];
+    lispLibs = [ lift ];
+  });
   letrec = {
     pname = "letrec";
     createAsd = false;
@@ -36520,6 +40167,11 @@ rec {
     systems = [ "linear-programming-glpk" ];
     lispLibs = [ cffi linear-programming ];
   };
+  linear-programming-glpk_slash_test = (linear-programming-glpk // {
+    pname = "linear-programming-glpk/test";
+    systems = [ "linear-programming-glpk/test" "linear-programming-glpk" ];
+    lispLibs = [ fiveam ];
+  });
   linedit = {
     pname = "linedit";
     createAsd = false;
@@ -36572,6 +40224,21 @@ rec {
     systems = [ "linux-packaging-tests" ];
     lispLibs = [ linux-packaging osicat sqlite wild-package-inferred-system ];
   };
+  linux-packaging-tests_slash_deb = (linux-packaging-tests // {
+    pname = "linux-packaging-tests/deb";
+    systems = [ "linux-packaging-tests/deb" "linux-packaging-tests" ];
+    lispLibs = [ linux-packaging ];
+  });
+  linux-packaging-tests_slash_pacman = (linux-packaging-tests // {
+    pname = "linux-packaging-tests/pacman";
+    systems = [ "linux-packaging-tests/pacman" "linux-packaging-tests" ];
+    lispLibs = [ linux-packaging ];
+  });
+  linux-packaging-tests_slash_rpm = (linux-packaging-tests // {
+    pname = "linux-packaging-tests/rpm";
+    systems = [ "linux-packaging-tests/rpm" "linux-packaging-tests" ];
+    lispLibs = [ linux-packaging ];
+  });
   lionchat = {
     pname = "lionchat";
     createAsd = false;
@@ -36636,6 +40303,32 @@ rec {
     });
     systems = [ "lisp-chat" ];
     lispLibs = [ bordeaux-threads cl-readline usocket ];
+  };
+  lisp-chat_slash_client = {
+    pname = "lisp-chat/client";
+    createAsd = false;
+    version = "20210228-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/lisp-chat/2021-02-28/lisp-chat-20210228-git.tgz";
+      sha256 = "0gh78lb6m2790j5z64qij6v1s5yr501idbppg2ccyayl4f8bdpzi";
+      system = "lisp-chat/client";
+      asd = "lisp-chat";
+    });
+    systems = [ "lisp-chat/client" ];
+    lispLibs = [ bordeaux-threads cl-readline usocket ];
+  };
+  lisp-chat_slash_server = {
+    pname = "lisp-chat/server";
+    createAsd = false;
+    version = "20210228-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/lisp-chat/2021-02-28/lisp-chat-20210228-git.tgz";
+      sha256 = "0gh78lb6m2790j5z64qij6v1s5yr501idbppg2ccyayl4f8bdpzi";
+      system = "lisp-chat/server";
+      asd = "lisp-chat";
+    });
+    systems = [ "lisp-chat/server" ];
+    lispLibs = [ bordeaux-threads usocket ];
   };
   ckr-tables = {
     pname = "ckr-tables";
@@ -36715,6 +40408,11 @@ rec {
     systems = [ "com.google.flag" ];
     lispLibs = [ com_dot_google_dot_base ];
   };
+  com_dot_google_dot_flag_slash_test = (com_dot_google_dot_flag // {
+    pname = "com.google.flag/test";
+    systems = [ "com.google.flag/test" "com.google.flag" ];
+    lispLibs = [ hu_dot_dwim_dot_stefil ];
+  });
   lil = {
     pname = "lil";
     createAsd = false;
@@ -36727,6 +40425,19 @@ rec {
     });
     systems = [ "lil" ];
     lispLibs = [ alexandria closer-mop fare-memoization fare-utils ];
+  };
+  lil_slash_test = {
+    pname = "lil/test";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/lisp-interface-library/2021-12-30/lisp-interface-library-20211230-git.tgz";
+      sha256 = "0cd6109pzz9b4z0r0b7ibmmaph802ddpzfkk416snfn1mkrdn0gn";
+      system = "lil/test";
+      asd = "lil";
+    });
+    systems = [ "lil/test" ];
+    lispLibs = [  ];
   };
   lisp-interface-library = {
     pname = "lisp-interface-library";
@@ -36754,6 +40465,11 @@ rec {
     systems = [ "lisp-invocation" ];
     lispLibs = [  ];
   };
+  lisp-invocation_slash_all = (lisp-invocation // {
+    pname = "lisp-invocation/all";
+    systems = [ "lisp-invocation/all" "lisp-invocation" ];
+    lispLibs = [  ];
+  });
   lisp-namespace = {
     pname = "lisp-namespace";
     createAsd = false;
@@ -36819,6 +40535,11 @@ rec {
     systems = [ "lisp-stat" ];
     lispLibs = [ alexandria array-operations data-frame dexador dfio let-plus num-utils select split-sequence ];
   };
+  lisp-stat_slash_tests = (lisp-stat // {
+    pname = "lisp-stat/tests";
+    systems = [ "lisp-stat/tests" "lisp-stat" ];
+    lispLibs = [ parachute ];
+  });
   lisp-unit = {
     pname = "lisp-unit";
     createAsd = false;
@@ -37404,6 +41125,16 @@ rec {
     systems = [ "list-named-class" ];
     lispLibs = [ alexandria closer-mop ];
   };
+  list-named-class_slash_protest = (list-named-class // {
+    pname = "list-named-class/protest";
+    systems = [ "list-named-class/protest" "list-named-class" ];
+    lispLibs = [ protest ];
+  });
+  list-named-class_slash_test = (list-named-class // {
+    pname = "list-named-class/test";
+    systems = [ "list-named-class/test" "list-named-class" ];
+    lispLibs = [ _1am ];
+  });
   listoflist = {
     pname = "listoflist";
     createAsd = false;
@@ -37443,6 +41174,11 @@ rec {
     systems = [ "listopia-bench" ];
     lispLibs = [ listopia prove prove-asdf trivial-benchmark ];
   };
+  listopia_slash_tests = (listopia // {
+    pname = "listopia/tests";
+    systems = [ "listopia/tests" "listopia" ];
+    lispLibs = [ rove ];
+  });
   literate-demo = {
     pname = "literate-demo";
     createAsd = false;
@@ -37495,6 +41231,11 @@ rec {
     systems = [ "litterae-test-system" ];
     lispLibs = [  ];
   };
+  litterae_slash_tests = (litterae // {
+    pname = "litterae/tests";
+    systems = [ "litterae/tests" "litterae" ];
+    lispLibs = [ litterae-test-system rove ];
+  });
   livesupport = {
     pname = "livesupport";
     createAsd = false;
@@ -37547,6 +41288,11 @@ rec {
     systems = [ "lmdb" ];
     lispLibs = [ alexandria bordeaux-threads cl-reexport mgl-pax osicat trivial-features trivial-garbage trivial-utf-8 ];
   };
+  lmdb_slash_test = (lmdb // {
+    pname = "lmdb/test";
+    systems = [ "lmdb/test" "lmdb" ];
+    lispLibs = [  ];
+  });
   lml = {
     pname = "lml";
     createAsd = false;
@@ -37638,6 +41384,11 @@ rec {
     systems = [ "local-time" ];
     lispLibs = [ uiop ];
   };
+  local-time_slash_test = (local-time // {
+    pname = "local-time/test";
+    systems = [ "local-time/test" "local-time" ];
+    lispLibs = [ hu_dot_dwim_dot_stefil ];
+  });
   cl-postgres_plus_local-time-duration = {
     pname = "cl-postgres+local-time-duration";
     createAsd = false;
@@ -37716,6 +41467,16 @@ rec {
     systems = [ "log4cl.log4sly" ];
     lispLibs = [ log4cl slynk ];
   };
+  log4cl_slash_syslog = (log4cl // {
+    pname = "log4cl/syslog";
+    systems = [ "log4cl/syslog" "log4cl" ];
+    lispLibs = [  ];
+  });
+  log4cl_slash_test = (log4cl // {
+    pname = "log4cl/test";
+    systems = [ "log4cl/test" "log4cl" ];
+    lispLibs = [ stefil ];
+  });
   log4cl-extras = {
     pname = "log4cl-extras";
     createAsd = false;
@@ -37924,6 +41685,19 @@ rec {
     systems = [ "lsx" ];
     lispLibs = [ closer-mop named-readtables ];
   };
+  lsx_slash_tests = {
+    pname = "lsx/tests";
+    createAsd = false;
+    version = "20211020-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/lsx/2021-10-20/lsx-20211020-git.tgz";
+      sha256 = "1wghn6fy2jk8xwr69bk3ykj8mgwq4qmif87k9zqpvvx7yfb9x46k";
+      system = "lsx/tests";
+      asd = "lsx";
+    });
+    systems = [ "lsx/tests" ];
+    lispLibs = [ rove ];
+  };
   ltk = {
     pname = "ltk";
     createAsd = false;
@@ -38041,6 +41815,11 @@ rec {
     systems = [ "macrodynamics" ];
     lispLibs = [ alexandria ];
   };
+  macrodynamics_slash_test = (macrodynamics // {
+    pname = "macrodynamics/test";
+    systems = [ "macrodynamics/test" "macrodynamics" ];
+    lispLibs = [ check-it fiasco ];
+  });
   macroexpand-dammit = {
     pname = "macroexpand-dammit";
     createAsd = false;
@@ -38106,6 +41885,11 @@ rec {
     systems = [ "magicffi" ];
     lispLibs = [ cffi cffi-grovel cl-ppcre ];
   };
+  magicffi_slash_test = (magicffi // {
+    pname = "magicffi/test";
+    systems = [ "magicffi/test" "magicffi" ];
+    lispLibs = [ fiveam ];
+  });
   magicl = {
     pname = "magicl";
     createAsd = false;
@@ -38169,6 +41953,71 @@ rec {
       asd = "magicl-transcendental";
     });
     systems = [ "magicl-transcendental" ];
+    lispLibs = [ abstract-classes alexandria cffi cffi-libffi interface policy-cond ];
+  };
+  magicl_slash_core = {
+    pname = "magicl/core";
+    createAsd = false;
+    version = "v0.9.1";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/magicl/2021-04-11/magicl-v0.9.1.tgz";
+      sha256 = "0x9p55qin399jhr5md88nij8fv78b64xjhww7ys364pkjnx8ak9v";
+      system = "magicl/core";
+      asd = "magicl";
+    });
+    systems = [ "magicl/core" ];
+    lispLibs = [ abstract-classes alexandria cffi cffi-libffi interface policy-cond ];
+  };
+  magicl_slash_ext = {
+    pname = "magicl/ext";
+    createAsd = false;
+    version = "v0.9.1";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/magicl/2021-04-11/magicl-v0.9.1.tgz";
+      sha256 = "0x9p55qin399jhr5md88nij8fv78b64xjhww7ys364pkjnx8ak9v";
+      system = "magicl/ext";
+      asd = "magicl";
+    });
+    systems = [ "magicl/ext" ];
+    lispLibs = [ cffi cffi-libffi ];
+  };
+  magicl_slash_ext-blas = {
+    pname = "magicl/ext-blas";
+    createAsd = false;
+    version = "v0.9.1";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/magicl/2021-04-11/magicl-v0.9.1.tgz";
+      sha256 = "0x9p55qin399jhr5md88nij8fv78b64xjhww7ys364pkjnx8ak9v";
+      system = "magicl/ext-blas";
+      asd = "magicl";
+    });
+    systems = [ "magicl/ext-blas" ];
+    lispLibs = [ abstract-classes alexandria cffi cffi-libffi interface policy-cond ];
+  };
+  magicl_slash_ext-expokit = {
+    pname = "magicl/ext-expokit";
+    createAsd = false;
+    version = "v0.9.1";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/magicl/2021-04-11/magicl-v0.9.1.tgz";
+      sha256 = "0x9p55qin399jhr5md88nij8fv78b64xjhww7ys364pkjnx8ak9v";
+      system = "magicl/ext-expokit";
+      asd = "magicl";
+    });
+    systems = [ "magicl/ext-expokit" ];
+    lispLibs = [ abstract-classes alexandria cffi cffi-libffi interface policy-cond ];
+  };
+  magicl_slash_ext-lapack = {
+    pname = "magicl/ext-lapack";
+    createAsd = false;
+    version = "v0.9.1";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/magicl/2021-04-11/magicl-v0.9.1.tgz";
+      sha256 = "0x9p55qin399jhr5md88nij8fv78b64xjhww7ys364pkjnx8ak9v";
+      system = "magicl/ext-lapack";
+      asd = "magicl";
+    });
+    systems = [ "magicl/ext-lapack" ];
     lispLibs = [ abstract-classes alexandria cffi cffi-libffi interface policy-cond ];
   };
   maiden = {
@@ -38873,6 +42722,177 @@ rec {
     systems = [ "math" ];
     lispLibs = [ cl-utilities font-discovery vgplot ];
   };
+  math_slash_2d-array = {
+    pname = "math/2d-array";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
+      sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
+      system = "math/2d-array";
+      asd = "math";
+    });
+    systems = [ "math/2d-array" ];
+    lispLibs = [  ];
+  };
+  math_slash_appr = {
+    pname = "math/appr";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
+      sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
+      system = "math/appr";
+      asd = "math";
+    });
+    systems = [ "math/appr" ];
+    lispLibs = [ cl-utilities ];
+  };
+  math_slash_arr-matr = {
+    pname = "math/arr-matr";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
+      sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
+      system = "math/arr-matr";
+      asd = "math";
+    });
+    systems = [ "math/arr-matr" ];
+    lispLibs = [ cl-utilities ];
+  };
+  math_slash_coord = {
+    pname = "math/coord";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
+      sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
+      system = "math/coord";
+      asd = "math";
+    });
+    systems = [ "math/coord" ];
+    lispLibs = [  ];
+  };
+  math_slash_core = {
+    pname = "math/core";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
+      sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
+      system = "math/core";
+      asd = "math";
+    });
+    systems = [ "math/core" ];
+    lispLibs = [  ];
+  };
+  math_slash_docs = (math // {
+    pname = "math/docs";
+    systems = [ "math/docs" "math" ];
+    lispLibs = [ codex mnas-package ];
+  });
+  math_slash_geom = {
+    pname = "math/geom";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
+      sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
+      system = "math/geom";
+      asd = "math";
+    });
+    systems = [ "math/geom" ];
+    lispLibs = [  ];
+  };
+  math_slash_gnuplot = {
+    pname = "math/gnuplot";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
+      sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
+      system = "math/gnuplot";
+      asd = "math";
+    });
+    systems = [ "math/gnuplot" ];
+    lispLibs = [ font-discovery vgplot ];
+  };
+  math_slash_list-matr = {
+    pname = "math/list-matr";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
+      sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
+      system = "math/list-matr";
+      asd = "math";
+    });
+    systems = [ "math/list-matr" ];
+    lispLibs = [ cl-utilities ];
+  };
+  math_slash_ls-gauss = {
+    pname = "math/ls-gauss";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
+      sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
+      system = "math/ls-gauss";
+      asd = "math";
+    });
+    systems = [ "math/ls-gauss" ];
+    lispLibs = [ cl-utilities ];
+  };
+  math_slash_ls-rotation = {
+    pname = "math/ls-rotation";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
+      sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
+      system = "math/ls-rotation";
+      asd = "math";
+    });
+    systems = [ "math/ls-rotation" ];
+    lispLibs = [  ];
+  };
+  math_slash_ls-solve = (math // {
+    pname = "math/ls-solve";
+    systems = [ "math/ls-solve" "math" ];
+    lispLibs = [ gsll ];
+  });
+  math_slash_smooth = {
+    pname = "math/smooth";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
+      sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
+      system = "math/smooth";
+      asd = "math";
+    });
+    systems = [ "math/smooth" ];
+    lispLibs = [  ];
+  };
+  math_slash_stat = {
+    pname = "math/stat";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
+      sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
+      system = "math/stat";
+      asd = "math";
+    });
+    systems = [ "math/stat" ];
+    lispLibs = [  ];
+  };
+  math_slash_tests = (math // {
+    pname = "math/tests";
+    systems = [ "math/tests" "math" ];
+    lispLibs = [ fiveam ];
+  });
   mathkit = {
     pname = "mathkit";
     createAsd = false;
@@ -39055,6 +43075,19 @@ rec {
     systems = [ "clim-examples" ];
     lispLibs = [ alexandria clim closer-mop mcclim mcclim-bezier mcclim-raster-image ];
   };
+  clim-examples_slash_superapp = {
+    pname = "clim-examples/superapp";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
+      sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
+      system = "clim-examples/superapp";
+      asd = "clim-examples";
+    });
+    systems = [ "clim-examples/superapp" ];
+    lispLibs = [ bordeaux-threads mcclim ];
+  };
   clim-lisp = {
     pname = "clim-lisp";
     createAsd = false;
@@ -39094,6 +43127,11 @@ rec {
     systems = [ "clim-pdf" ];
     lispLibs = [ cl-pdf clim-basic clim-postscript clim-postscript-font flexi-streams ];
   };
+  clim-pdf_slash_test = (clim-pdf // {
+    pname = "clim-pdf/test";
+    systems = [ "clim-pdf/test" "clim-pdf" ];
+    lispLibs = [ fiveam mcclim ];
+  });
   clim-postscript = {
     pname = "clim-postscript";
     createAsd = false;
@@ -39120,6 +43158,11 @@ rec {
     systems = [ "clim-postscript-font" ];
     lispLibs = [ clim-basic mcclim-backend-common ];
   };
+  clim-postscript_slash_test = (clim-postscript // {
+    pname = "clim-postscript/test";
+    systems = [ "clim-postscript/test" "clim-postscript" ];
+    lispLibs = [ fiveam mcclim ];
+  });
   clouseau = {
     pname = "clouseau";
     createAsd = false;
@@ -39133,6 +43176,11 @@ rec {
     systems = [ "clouseau" ];
     lispLibs = [ closer-mop mcclim ];
   };
+  clouseau_slash_test = (clouseau // {
+    pname = "clouseau/test";
+    systems = [ "clouseau/test" "clouseau" ];
+    lispLibs = [ fiveam ];
+  });
   conditional-commands = {
     pname = "conditional-commands";
     createAsd = false;
@@ -39159,6 +43207,11 @@ rec {
     systems = [ "drei-mcclim" ];
     lispLibs = [ automaton clim-core esa-mcclim flexichain mcclim-fonts persistent swank ];
   };
+  drei-mcclim_slash_test = (drei-mcclim // {
+    pname = "drei-mcclim/test";
+    systems = [ "drei-mcclim/test" "drei-mcclim" ];
+    lispLibs = [ automaton fiveam ];
+  });
   esa-mcclim = {
     pname = "esa-mcclim";
     createAsd = false;
@@ -39211,6 +43264,11 @@ rec {
     systems = [ "mcclim-backend-common" ];
     lispLibs = [ clim ];
   };
+  mcclim-backend-common_slash_test = (mcclim-backend-common // {
+    pname = "mcclim-backend-common/test";
+    systems = [ "mcclim-backend-common/test" "mcclim-backend-common" ];
+    lispLibs = [ fiveam ];
+  });
   mcclim-bezier = {
     pname = "mcclim-bezier";
     createAsd = false;
@@ -39223,6 +43281,32 @@ rec {
     });
     systems = [ "mcclim-bezier" ];
     lispLibs = [ clim clim-pdf clim-postscript mcclim-clx mcclim-null mcclim-render ];
+  };
+  mcclim-bezier_slash_clx = {
+    pname = "mcclim-bezier/clx";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
+      sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
+      system = "mcclim-bezier/clx";
+      asd = "mcclim-bezier";
+    });
+    systems = [ "mcclim-bezier/clx" ];
+    lispLibs = [ clim clim-pdf clim-postscript mcclim-clx mcclim-null mcclim-render ];
+  };
+  mcclim-bezier_slash_core = {
+    pname = "mcclim-bezier/core";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
+      sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
+      system = "mcclim-bezier/core";
+      asd = "mcclim-bezier";
+    });
+    systems = [ "mcclim-bezier/core" ];
+    lispLibs = [ clim clim-pdf clim-postscript mcclim-null mcclim-render ];
   };
   mcclim-bitmaps = {
     pname = "mcclim-bitmaps";
@@ -39289,6 +43373,19 @@ rec {
     systems = [ "mcclim-fonts" ];
     lispLibs = [ clim-basic ];
   };
+  mcclim-fonts_slash_truetype = {
+    pname = "mcclim-fonts/truetype";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
+      sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
+      system = "mcclim-fonts/truetype";
+      asd = "mcclim-fonts";
+    });
+    systems = [ "mcclim-fonts/truetype" ];
+    lispLibs = [ alexandria cl-aa cl-dejavu cl-paths-ttf cl-vectors clim-basic zpb-ttf ];
+  };
   mcclim-franz = {
     pname = "mcclim-franz";
     createAsd = false;
@@ -39328,6 +43425,19 @@ rec {
     systems = [ "mcclim-layouts" ];
     lispLibs = [  ];
   };
+  mcclim-layouts_slash_tab = {
+    pname = "mcclim-layouts/tab";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
+      sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
+      system = "mcclim-layouts/tab";
+      asd = "mcclim-layouts";
+    });
+    systems = [ "mcclim-layouts/tab" ];
+    lispLibs = [ clim ];
+  };
   mcclim-null = {
     pname = "mcclim-null";
     createAsd = false;
@@ -39354,6 +43464,11 @@ rec {
     systems = [ "mcclim-raster-image" ];
     lispLibs = [ clim-basic mcclim-backend-common mcclim-render ];
   };
+  mcclim-raster-image_slash_test = (mcclim-raster-image // {
+    pname = "mcclim-raster-image/test";
+    systems = [ "mcclim-raster-image/test" "mcclim-raster-image" ];
+    lispLibs = [ fiveam mcclim ];
+  });
   mcclim-render = {
     pname = "mcclim-render";
     createAsd = false;
@@ -39380,6 +43495,42 @@ rec {
     systems = [ "mcclim-tree-with-cross-edges" ];
     lispLibs = [ mcclim ];
   };
+  mcclim_slash_extensions = {
+    pname = "mcclim/extensions";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
+      sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
+      system = "mcclim/extensions";
+      asd = "mcclim";
+    });
+    systems = [ "mcclim/extensions" ];
+    lispLibs = [ clim clim-pdf clim-postscript conditional-commands mcclim-bezier mcclim-bitmaps mcclim-franz ];
+  };
+  mcclim_slash_looks = {
+    pname = "mcclim/looks";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
+      sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
+      system = "mcclim/looks";
+      asd = "mcclim";
+    });
+    systems = [ "mcclim/looks" ];
+    lispLibs = [ clim mcclim-clx mcclim-clx-fb mcclim-null ];
+  };
+  mcclim_slash_test = (mcclim // {
+    pname = "mcclim/test";
+    systems = [ "mcclim/test" "mcclim" ];
+    lispLibs = [ fiveam ];
+  });
+  mcclim_slash_test-util = (mcclim // {
+    pname = "mcclim/test-util";
+    systems = [ "mcclim/test-util" "mcclim" ];
+    lispLibs = [ fiveam ];
+  });
   persistent = {
     pname = "persistent";
     createAsd = false;
@@ -39404,6 +43555,19 @@ rec {
       asd = "scigraph";
     });
     systems = [ "scigraph" ];
+    lispLibs = [ mcclim ];
+  };
+  scigraph_slash_dwim = {
+    pname = "scigraph/dwim";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
+      sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
+      system = "scigraph/dwim";
+      asd = "scigraph";
+    });
+    systems = [ "scigraph/dwim" ];
     lispLibs = [ mcclim ];
   };
   slim = {
@@ -39445,6 +43609,11 @@ rec {
     systems = [ "media-types" ];
     lispLibs = [ alexandria cl-ppcre serapeum ];
   };
+  media-types_slash_tests = (media-types // {
+    pname = "media-types/tests";
+    systems = [ "media-types/tests" "media-types" ];
+    lispLibs = [ fiveam ];
+  });
   mel-base = {
     pname = "mel-base";
     createAsd = false;
@@ -39575,6 +43744,16 @@ rec {
     systems = [ "metacopy-with-contextl" ];
     lispLibs = [ contextl metacopy ];
   };
+  metacopy-with-contextl_slash_test = (metacopy-with-contextl // {
+    pname = "metacopy-with-contextl/test";
+    systems = [ "metacopy-with-contextl/test" "metacopy-with-contextl" ];
+    lispLibs = [ lift metacopy ];
+  });
+  metacopy_slash_test = (metacopy // {
+    pname = "metacopy/test";
+    systems = [ "metacopy/test" "metacopy" ];
+    lispLibs = [ lift ];
+  });
   metalock = {
     pname = "metalock";
     createAsd = false;
@@ -39640,6 +43819,19 @@ rec {
     systems = [ "metatilities-test" ];
     lispLibs = [ lift metatilities ];
   };
+  metatilities_slash_with-lift = {
+    pname = "metatilities/with-lift";
+    createAsd = false;
+    version = "20180228-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/metatilities/2018-02-28/metatilities-20180228-git.tgz";
+      sha256 = "0vqhndnhrv40ixkj5lslr0h2fy79609gi0wgbqzcz82vkyx9d6vd";
+      system = "metatilities/with-lift";
+      asd = "metatilities";
+    });
+    systems = [ "metatilities/with-lift" ];
+    lispLibs = [ lift metatilities-base ];
+  };
   metatilities-base = {
     pname = "metatilities-base";
     createAsd = false;
@@ -39679,6 +43871,11 @@ rec {
     systems = [ "metering" ];
     lispLibs = [  ];
   };
+  metering_slash_test = (metering // {
+    pname = "metering/test";
+    systems = [ "metering/test" "metering" ];
+    lispLibs = [ fiveam ];
+  });
   method-combination-utilities = {
     pname = "method-combination-utilities";
     createAsd = false;
@@ -39783,6 +43980,31 @@ rec {
     systems = [ "mgl-pax" ];
     lispLibs = [ alexandria named-readtables pythonic-string-reader swank ];
   };
+  mgl-pax_slash_document = (mgl-pax // {
+    pname = "mgl-pax/document";
+    systems = [ "mgl-pax/document" "mgl-pax" ];
+    lispLibs = [ _3bmd _3bmd-ext-code-blocks colorize md5 ];
+  });
+  mgl-pax_slash_full = (mgl-pax // {
+    pname = "mgl-pax/full";
+    systems = [ "mgl-pax/full" "mgl-pax" ];
+    lispLibs = [ _3bmd _3bmd-ext-code-blocks colorize md5 ];
+  });
+  mgl-pax_slash_navigate = (mgl-pax // {
+    pname = "mgl-pax/navigate";
+    systems = [ "mgl-pax/navigate" "mgl-pax" ];
+    lispLibs = [  ];
+  });
+  mgl-pax_slash_test = (mgl-pax // {
+    pname = "mgl-pax/test";
+    systems = [ "mgl-pax/test" "mgl-pax" ];
+    lispLibs = [ _3bmd _3bmd-ext-code-blocks colorize md5 ];
+  });
+  mgl-pax_slash_transcribe = (mgl-pax // {
+    pname = "mgl-pax/transcribe";
+    systems = [ "mgl-pax/transcribe" "mgl-pax" ];
+    lispLibs = [  ];
+  });
   mgrs = {
     pname = "mgrs";
     createAsd = false;
@@ -39796,6 +44018,11 @@ rec {
     systems = [ "mgrs" ];
     lispLibs = [ utm-ups ];
   };
+  mgrs_slash_tests = (mgrs // {
+    pname = "mgrs/tests";
+    systems = [ "mgrs/tests" "mgrs" ];
+    lispLibs = [ fiveam ];
+  });
   micmac = {
     pname = "micmac";
     createAsd = false;
@@ -39809,6 +44036,11 @@ rec {
     systems = [ "micmac" ];
     lispLibs = [ mgl-pax ];
   };
+  micmac_slash_test = (micmac // {
+    pname = "micmac/test";
+    systems = [ "micmac/test" "micmac" ];
+    lispLibs = [  ];
+  });
   midi = {
     pname = "midi";
     createAsd = false;
@@ -40160,6 +44392,81 @@ rec {
     systems = [ "mnas-graph" ];
     lispLibs = [ mnas-hash-table ];
   };
+  mnas-graph_slash_core = {
+    pname = "mnas-graph/core";
+    createAsd = false;
+    version = "20211020-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-graph/2021-10-20/mnas-graph-20211020-git.tgz";
+      sha256 = "17xw5m5mhsv50kqlchbgqrxfjfmv84s7mrd320x8yw4yn2fsp4wi";
+      system = "mnas-graph/core";
+      asd = "mnas-graph";
+    });
+    systems = [ "mnas-graph/core" ];
+    lispLibs = [ mnas-hash-table ];
+  };
+  mnas-graph_slash_demos = {
+    pname = "mnas-graph/demos";
+    createAsd = false;
+    version = "20211020-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-graph/2021-10-20/mnas-graph-20211020-git.tgz";
+      sha256 = "17xw5m5mhsv50kqlchbgqrxfjfmv84s7mrd320x8yw4yn2fsp4wi";
+      system = "mnas-graph/demos";
+      asd = "mnas-graph";
+    });
+    systems = [ "mnas-graph/demos" ];
+    lispLibs = [ mnas-hash-table ];
+  };
+  mnas-graph_slash_docs = (mnas-graph // {
+    pname = "mnas-graph/docs";
+    systems = [ "mnas-graph/docs" "mnas-graph" ];
+    lispLibs = [ codex mnas-package ];
+  });
+  mnas-graph_slash_filter = {
+    pname = "mnas-graph/filter";
+    createAsd = false;
+    version = "20211020-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-graph/2021-10-20/mnas-graph-20211020-git.tgz";
+      sha256 = "17xw5m5mhsv50kqlchbgqrxfjfmv84s7mrd320x8yw4yn2fsp4wi";
+      system = "mnas-graph/filter";
+      asd = "mnas-graph";
+    });
+    systems = [ "mnas-graph/filter" ];
+    lispLibs = [  ];
+  };
+  mnas-graph_slash_printer-viewer = {
+    pname = "mnas-graph/printer-viewer";
+    createAsd = false;
+    version = "20211020-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-graph/2021-10-20/mnas-graph-20211020-git.tgz";
+      sha256 = "17xw5m5mhsv50kqlchbgqrxfjfmv84s7mrd320x8yw4yn2fsp4wi";
+      system = "mnas-graph/printer-viewer";
+      asd = "mnas-graph";
+    });
+    systems = [ "mnas-graph/printer-viewer" ];
+    lispLibs = [  ];
+  };
+  mnas-graph_slash_tests = (mnas-graph // {
+    pname = "mnas-graph/tests";
+    systems = [ "mnas-graph/tests" "mnas-graph" ];
+    lispLibs = [ fiveam ];
+  });
+  mnas-graph_slash_view = {
+    pname = "mnas-graph/view";
+    createAsd = false;
+    version = "20211020-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-graph/2021-10-20/mnas-graph-20211020-git.tgz";
+      sha256 = "17xw5m5mhsv50kqlchbgqrxfjfmv84s7mrd320x8yw4yn2fsp4wi";
+      system = "mnas-graph/view";
+      asd = "mnas-graph";
+    });
+    systems = [ "mnas-graph/view" ];
+    lispLibs = [ mnas-hash-table ];
+  };
   mnas-hash-table = {
     pname = "mnas-hash-table";
     createAsd = false;
@@ -40173,6 +44480,16 @@ rec {
     systems = [ "mnas-hash-table" ];
     lispLibs = [  ];
   };
+  mnas-hash-table_slash_docs = (mnas-hash-table // {
+    pname = "mnas-hash-table/docs";
+    systems = [ "mnas-hash-table/docs" "mnas-hash-table" ];
+    lispLibs = [ codex ];
+  });
+  mnas-hash-table_slash_tests = (mnas-hash-table // {
+    pname = "mnas-hash-table/tests";
+    systems = [ "mnas-hash-table/tests" "mnas-hash-table" ];
+    lispLibs = [ fiveam ];
+  });
   mnas-package = {
     pname = "mnas-package";
     createAsd = false;
@@ -40185,6 +44502,107 @@ rec {
     });
     systems = [ "mnas-package" ];
     lispLibs = [ alexandria closer-mop inferior-shell mnas-graph mnas-string slynk ];
+  };
+  mnas-package_slash_docs = (mnas-package // {
+    pname = "mnas-package/docs";
+    systems = [ "mnas-package/docs" "mnas-package" ];
+    lispLibs = [ codex ];
+  });
+  mnas-package_slash_example = {
+    pname = "mnas-package/example";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
+      sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
+      system = "mnas-package/example";
+      asd = "mnas-package";
+    });
+    systems = [ "mnas-package/example" ];
+    lispLibs = [  ];
+  };
+  mnas-package_slash_make = {
+    pname = "mnas-package/make";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
+      sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
+      system = "mnas-package/make";
+      asd = "mnas-package";
+    });
+    systems = [ "mnas-package/make" ];
+    lispLibs = [ alexandria closer-mop mnas-graph slynk ];
+  };
+  mnas-package_slash_obj = {
+    pname = "mnas-package/obj";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
+      sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
+      system = "mnas-package/obj";
+      asd = "mnas-package";
+    });
+    systems = [ "mnas-package/obj" ];
+    lispLibs = [ closer-mop ];
+  };
+  mnas-package_slash_pkg = {
+    pname = "mnas-package/pkg";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
+      sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
+      system = "mnas-package/pkg";
+      asd = "mnas-package";
+    });
+    systems = [ "mnas-package/pkg" ];
+    lispLibs = [ alexandria closer-mop slynk ];
+  };
+  mnas-package_slash_sec = {
+    pname = "mnas-package/sec";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
+      sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
+      system = "mnas-package/sec";
+      asd = "mnas-package";
+    });
+    systems = [ "mnas-package/sec" ];
+    lispLibs = [ alexandria closer-mop mnas-graph mnas-string slynk ];
+  };
+  mnas-package_slash_sys = {
+    pname = "mnas-package/sys";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
+      sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
+      system = "mnas-package/sys";
+      asd = "mnas-package";
+    });
+    systems = [ "mnas-package/sys" ];
+    lispLibs = [ alexandria ];
+  };
+  mnas-package_slash_tests = (mnas-package // {
+    pname = "mnas-package/tests";
+    systems = [ "mnas-package/tests" "mnas-package" ];
+    lispLibs = [ fiveam ];
+  });
+  mnas-package_slash_view = {
+    pname = "mnas-package/view";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
+      sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
+      system = "mnas-package/view";
+      asd = "mnas-package";
+    });
+    systems = [ "mnas-package/view" ];
+    lispLibs = [ alexandria closer-mop mnas-graph slynk ];
   };
   mnas-path = {
     pname = "mnas-path";
@@ -40199,6 +44617,11 @@ rec {
     systems = [ "mnas-path" ];
     lispLibs = [ cl-fad ];
   };
+  mnas-path_slash_docs = (mnas-path // {
+    pname = "mnas-path/docs";
+    systems = [ "mnas-path/docs" "mnas-path" ];
+    lispLibs = [ codex mnas-package ];
+  });
   mnas-string = {
     pname = "mnas-string";
     createAsd = false;
@@ -40211,6 +44634,81 @@ rec {
     });
     systems = [ "mnas-string" ];
     lispLibs = [ cl-ppcre ];
+  };
+  mnas-string_slash_core = {
+    pname = "mnas-string/core";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-string/2021-12-30/mnas-string-20211230-git.tgz";
+      sha256 = "0r68hqmfr49j8p234mxczvx71vb5znxp86dwq61bgkail5xbp45d";
+      system = "mnas-string/core";
+      asd = "mnas-string";
+    });
+    systems = [ "mnas-string/core" ];
+    lispLibs = [ cl-ppcre ];
+  };
+  mnas-string_slash_db = {
+    pname = "mnas-string/db";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-string/2021-12-30/mnas-string-20211230-git.tgz";
+      sha256 = "0r68hqmfr49j8p234mxczvx71vb5znxp86dwq61bgkail5xbp45d";
+      system = "mnas-string/db";
+      asd = "mnas-string";
+    });
+    systems = [ "mnas-string/db" ];
+    lispLibs = [ cl-ppcre ];
+  };
+  mnas-string_slash_docs = (mnas-string // {
+    pname = "mnas-string/docs";
+    systems = [ "mnas-string/docs" "mnas-string" ];
+    lispLibs = [ codex mnas-package ];
+  });
+  mnas-string_slash_parse = {
+    pname = "mnas-string/parse";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-string/2021-12-30/mnas-string-20211230-git.tgz";
+      sha256 = "0r68hqmfr49j8p234mxczvx71vb5znxp86dwq61bgkail5xbp45d";
+      system = "mnas-string/parse";
+      asd = "mnas-string";
+    });
+    systems = [ "mnas-string/parse" ];
+    lispLibs = [ cl-ppcre ];
+  };
+  mnas-string_slash_print = {
+    pname = "mnas-string/print";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-string/2021-12-30/mnas-string-20211230-git.tgz";
+      sha256 = "0r68hqmfr49j8p234mxczvx71vb5znxp86dwq61bgkail5xbp45d";
+      system = "mnas-string/print";
+      asd = "mnas-string";
+    });
+    systems = [ "mnas-string/print" ];
+    lispLibs = [  ];
+  };
+  mnas-string_slash_tests = (mnas-string // {
+    pname = "mnas-string/tests";
+    systems = [ "mnas-string/tests" "mnas-string" ];
+    lispLibs = [ fiveam ];
+  });
+  mnas-string_slash_translit = {
+    pname = "mnas-string/translit";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/mnas-string/2021-12-30/mnas-string-20211230-git.tgz";
+      sha256 = "0r68hqmfr49j8p234mxczvx71vb5znxp86dwq61bgkail5xbp45d";
+      system = "mnas-string/translit";
+      asd = "mnas-string";
+    });
+    systems = [ "mnas-string/translit" ];
+    lispLibs = [  ];
   };
   mockingbird = {
     pname = "mockingbird";
@@ -40576,6 +45074,21 @@ rec {
     systems = [ "monomyth" ];
     lispLibs = [ alexandria babel cl-algebraic-data-type cl-rabbit cl-store clack closer-mop flexi-streams fset iterate jonathan ningle optima pzmq rutils stmx trivia uuid verbose woo ];
   };
+  monomyth_slash_basic-example-master = (monomyth // {
+    pname = "monomyth/basic-example-master";
+    systems = [ "monomyth/basic-example-master" "monomyth" ];
+    lispLibs = [ rove ];
+  });
+  monomyth_slash_basic-example-worker = (monomyth // {
+    pname = "monomyth/basic-example-worker";
+    systems = [ "monomyth/basic-example-worker" "monomyth" ];
+    lispLibs = [ rove ];
+  });
+  monomyth_slash_tests = (monomyth // {
+    pname = "monomyth/tests";
+    systems = [ "monomyth/tests" "monomyth" ];
+    lispLibs = [ cl-mock dexador lparallel quri rove ];
+  });
   lucene-in-action-tests = {
     pname = "lucene-in-action-tests";
     createAsd = false;
@@ -40680,6 +45193,11 @@ rec {
     systems = [ "more-conditions" ];
     lispLibs = [ alexandria closer-mop ];
   };
+  more-conditions_slash_test = (more-conditions // {
+    pname = "more-conditions/test";
+    systems = [ "more-conditions/test" "more-conditions" ];
+    lispLibs = [ fiveam let-plus ];
+  });
   mp3-duration = {
     pname = "mp3-duration";
     createAsd = false;
@@ -40927,6 +45445,21 @@ rec {
     systems = [ "mutility" ];
     lispLibs = [ alexandria closer-mop local-time ];
   };
+  mutility_slash_loopy = (mutility // {
+    pname = "mutility/loopy";
+    systems = [ "mutility/loopy" "mutility" ];
+    lispLibs = [ trivial-do ];
+  });
+  mutility_slash_test-helpers = (mutility // {
+    pname = "mutility/test-helpers";
+    systems = [ "mutility/test-helpers" "mutility" ];
+    lispLibs = [  ];
+  });
+  mutility_slash_tests = (mutility // {
+    pname = "mutility/tests";
+    systems = [ "mutility/tests" "mutility" ];
+    lispLibs = [ fiveam trivial-do ];
+  });
   mw-equiv = {
     pname = "mw-equiv";
     createAsd = false;
@@ -41122,6 +45655,16 @@ rec {
     systems = [ "named-readtables" ];
     lispLibs = [  ];
   };
+  named-readtables_slash_doc = (named-readtables // {
+    pname = "named-readtables/doc";
+    systems = [ "named-readtables/doc" "named-readtables" ];
+    lispLibs = [ mgl-pax ];
+  });
+  named-readtables_slash_test = (named-readtables // {
+    pname = "named-readtables/test";
+    systems = [ "named-readtables/test" "named-readtables" ];
+    lispLibs = [  ];
+  });
   nanovg-blob = {
     pname = "nanovg-blob";
     createAsd = false;
@@ -41187,6 +45730,11 @@ rec {
     systems = [ "nbd" ];
     lispLibs = [ bordeaux-threads flexi-streams lisp-binary wild-package-inferred-system ];
   };
+  nbd_slash_simple-in-memory = (nbd // {
+    pname = "nbd/simple-in-memory";
+    systems = [ "nbd/simple-in-memory" "nbd" ];
+    lispLibs = [ wild-package-inferred-system ];
+  });
   neo4cl = {
     pname = "neo4cl";
     createAsd = false;
@@ -41265,6 +45813,16 @@ rec {
     systems = [ "neural-classifier" ];
     lispLibs = [ magicl snakes ];
   };
+  neural-classifier_slash_mnist = (neural-classifier // {
+    pname = "neural-classifier/mnist";
+    systems = [ "neural-classifier/mnist" "neural-classifier" ];
+    lispLibs = [ nibbles ];
+  });
+  neural-classifier_slash_tests = (neural-classifier // {
+    pname = "neural-classifier/tests";
+    systems = [ "neural-classifier/tests" "neural-classifier" ];
+    lispLibs = [ fiveam nibbles ];
+  });
   new-op = {
     pname = "new-op";
     createAsd = false;
@@ -41291,6 +45849,11 @@ rec {
     systems = [ "nibbles" ];
     lispLibs = [  ];
   };
+  nibbles_slash_tests = (nibbles // {
+    pname = "nibbles/tests";
+    systems = [ "nibbles/tests" "nibbles" ];
+    lispLibs = [ rt ];
+  });
   nineveh = {
     pname = "nineveh";
     createAsd = false;
@@ -41525,6 +46088,11 @@ rec {
     systems = [ "num-utils" ];
     lispLibs = [ alexandria anaphora array-operations let-plus select ];
   };
+  num-utils_slash_tests = (num-utils // {
+    pname = "num-utils/tests";
+    systems = [ "num-utils/tests" "num-utils" ];
+    lispLibs = [ fiveam select ];
+  });
   numpy-file-format = {
     pname = "numpy-file-format";
     createAsd = false;
@@ -41538,6 +46106,11 @@ rec {
     systems = [ "numpy-file-format" ];
     lispLibs = [ ieee-floats trivial-features ];
   };
+  numpy-file-format_slash_tests = (numpy-file-format // {
+    pname = "numpy-file-format/tests";
+    systems = [ "numpy-file-format/tests" "numpy-file-format" ];
+    lispLibs = [ uiop ];
+  });
   nyaml = {
     pname = "nyaml";
     createAsd = false;
@@ -41551,6 +46124,11 @@ rec {
     systems = [ "nyaml" ];
     lispLibs = [ alexandria babel cl-ppcre esrap fare-quasiquote fare-quasiquote-extras parse-number trivia ];
   };
+  nyaml_slash_test = (nyaml // {
+    pname = "nyaml/test";
+    systems = [ "nyaml/test" "nyaml" ];
+    lispLibs = [ alexandria esrap parachute split-sequence yason ];
+  });
   nyxt = {
     pname = "nyxt";
     createAsd = false;
@@ -41577,6 +46155,301 @@ rec {
     systems = [ "nyxt-ubuntu-package" ];
     lispLibs = [ bordeaux-threads cl-cffi-gtk cl-gobject-introspection cl-webkit2 linux-packaging nyxt wild-package-inferred-system ];
   };
+  nyxt_slash_analysis = {
+    pname = "nyxt/analysis";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/analysis";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/analysis" ];
+    lispLibs = [ alexandria cl-ppcre serapeum str ];
+  };
+  nyxt_slash_benchmark = (nyxt // {
+    pname = "nyxt/benchmark";
+    systems = [ "nyxt/benchmark" "nyxt" ];
+    lispLibs = [ alexandria trivial-benchmark ];
+  });
+  nyxt_slash_class-star = {
+    pname = "nyxt/class-star";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/class-star";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/class-star" ];
+    lispLibs = [ alexandria hu_dot_dwim_dot_defclass-star moptilities ];
+  };
+  nyxt_slash_class-star_slash_tests = {
+    pname = "nyxt/class-star/tests";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/class-star/tests";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/class-star/tests" ];
+    lispLibs = [ alexandria hu_dot_dwim_dot_defclass-star moptilities prove ];
+  };
+  nyxt_slash_clean-fasls = {
+    pname = "nyxt/clean-fasls";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/clean-fasls";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/clean-fasls" ];
+    lispLibs = [ swank ];
+  };
+  nyxt_slash_download-manager = {
+    pname = "nyxt/download-manager";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/download-manager";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/download-manager" ];
+    lispLibs = [ calispel cl-ppcre dexador log4cl quri str ];
+  };
+  nyxt_slash_download-manager_slash_tests = {
+    pname = "nyxt/download-manager/tests";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/download-manager/tests";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/download-manager/tests" ];
+    lispLibs = [ calispel cl-ppcre dexador log4cl prove quri str ];
+  };
+  nyxt_slash_gi-gtk = (nyxt // {
+    pname = "nyxt/gi-gtk";
+    systems = [ "nyxt/gi-gtk" "nyxt" ];
+    lispLibs = [ bordeaux-threads cl-cffi-gtk cl-gobject-introspection cl-webkit2 ];
+  });
+  nyxt_slash_gi-gtk-application = (nyxt // {
+    pname = "nyxt/gi-gtk-application";
+    systems = [ "nyxt/gi-gtk-application" "nyxt" ];
+    lispLibs = [ bordeaux-threads cl-cffi-gtk cl-gobject-introspection cl-webkit2 ];
+  });
+  nyxt_slash_gtk = (nyxt // {
+    pname = "nyxt/gtk";
+    systems = [ "nyxt/gtk" "nyxt" ];
+    lispLibs = [ cl-cffi-gtk cl-webkit2 ];
+  });
+  nyxt_slash_gtk-application = (nyxt // {
+    pname = "nyxt/gtk-application";
+    systems = [ "nyxt/gtk-application" "nyxt" ];
+    lispLibs = [ cl-cffi-gtk cl-webkit2 ];
+  });
+  nyxt_slash_history-tree = {
+    pname = "nyxt/history-tree";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/history-tree";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/history-tree" ];
+    lispLibs = [ alexandria cl-custom-hash-table hu_dot_dwim_dot_defclass-star local-time moptilities trivial-package-local-nicknames ];
+  };
+  nyxt_slash_history-tree_slash_tests = {
+    pname = "nyxt/history-tree/tests";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/history-tree/tests";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/history-tree/tests" ];
+    lispLibs = [ alexandria cl-custom-hash-table hu_dot_dwim_dot_defclass-star local-time moptilities prove str trivial-package-local-nicknames ];
+  };
+  nyxt_slash_keymap = {
+    pname = "nyxt/keymap";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/keymap";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/keymap" ];
+    lispLibs = [ alexandria fset str ];
+  };
+  nyxt_slash_keymap_slash_tests = {
+    pname = "nyxt/keymap/tests";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/keymap/tests";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/keymap/tests" ];
+    lispLibs = [ alexandria fset prove str ];
+  };
+  nyxt_slash_ospm = {
+    pname = "nyxt/ospm";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/ospm";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/ospm" ];
+    lispLibs = [ alexandria calispel cl-ppcre hu_dot_dwim_dot_defclass-star local-time moptilities named-readtables serapeum str trivia ];
+  };
+  nyxt_slash_ospm_slash_tests = {
+    pname = "nyxt/ospm/tests";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/ospm/tests";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/ospm/tests" ];
+    lispLibs = [ alexandria calispel cl-ppcre hu_dot_dwim_dot_defclass-star local-time moptilities named-readtables prove serapeum str trivia ];
+  };
+  nyxt_slash_password-manager = {
+    pname = "nyxt/password-manager";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/password-manager";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/password-manager" ];
+    lispLibs = [ alexandria bordeaux-threads cl-ppcre hu_dot_dwim_dot_defclass-star moptilities serapeum str trivial-clipboard uiop ];
+  };
+  nyxt_slash_prompter = {
+    pname = "nyxt/prompter";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/prompter";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/prompter" ];
+    lispLibs = [ alexandria calispel cl-containers closer-mop hu_dot_dwim_dot_defclass-star lparallel moptilities serapeum str trivial-package-local-nicknames ];
+  };
+  nyxt_slash_prompter_slash_tests = {
+    pname = "nyxt/prompter/tests";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/prompter/tests";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/prompter/tests" ];
+    lispLibs = [ alexandria calispel cl-containers closer-mop hu_dot_dwim_dot_defclass-star lparallel moptilities prove serapeum str trivial-package-local-nicknames ];
+  };
+  nyxt_slash_submodules = {
+    pname = "nyxt/submodules";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/submodules";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/submodules" ];
+    lispLibs = [  ];
+  };
+  nyxt_slash_tests = (nyxt // {
+    pname = "nyxt/tests";
+    systems = [ "nyxt/tests" "nyxt" ];
+    lispLibs = [ prove ];
+  });
+  nyxt_slash_text-buffer = {
+    pname = "nyxt/text-buffer";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/text-buffer";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/text-buffer" ];
+    lispLibs = [ cluffer ];
+  };
+  nyxt_slash_theme = {
+    pname = "nyxt/theme";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/theme";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/theme" ];
+    lispLibs = [ alexandria cl-css hu_dot_dwim_dot_defclass-star moptilities serapeum ];
+  };
+  nyxt_slash_theme_slash_tests = {
+    pname = "nyxt/theme/tests";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/theme/tests";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/theme/tests" ];
+    lispLibs = [ alexandria cl-css hu_dot_dwim_dot_defclass-star moptilities prove serapeum ];
+  };
+  nyxt_slash_user-interface = {
+    pname = "nyxt/user-interface";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
+      sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
+      system = "nyxt/user-interface";
+      asd = "nyxt";
+    });
+    systems = [ "nyxt/user-interface" ];
+    lispLibs = [ spinneret ];
+  };
+  nyxt_slash_version = (nyxt // {
+    pname = "nyxt/version";
+    systems = [ "nyxt/version" "nyxt" ];
+    lispLibs = [  ];
+  });
   object-class = {
     pname = "object-class";
     createAsd = false;
@@ -41863,6 +46736,11 @@ rec {
     systems = [ "opticl-doc" ];
     lispLibs = [ alexandria cl-containers cl-markdown opticl ];
   };
+  opticl_slash_test = (opticl // {
+    pname = "opticl/test";
+    systems = [ "opticl/test" "opticl" ];
+    lispLibs = [ fiveam ];
+  });
   opticl-core = {
     pname = "opticl-core";
     createAsd = false;
@@ -42019,6 +46897,11 @@ rec {
     systems = [ "osicat" ];
     lispLibs = [ alexandria cffi cffi-grovel trivial-features ];
   };
+  osicat_slash_tests = (osicat // {
+    pname = "osicat/tests";
+    systems = [ "osicat/tests" "osicat" ];
+    lispLibs = [ rt ];
+  });
   osmpbf = {
     pname = "osmpbf";
     createAsd = false;
@@ -42162,6 +47045,11 @@ rec {
     systems = [ "packet-crafting" ];
     lispLibs = [ lisp-binary ];
   };
+  packet-crafting_slash_tests = (packet-crafting // {
+    pname = "packet-crafting/tests";
+    systems = [ "packet-crafting/tests" "packet-crafting" ];
+    lispLibs = [ rove ];
+  });
   paiprolog = {
     pname = "paiprolog";
     createAsd = false;
@@ -42565,6 +47453,11 @@ rec {
     systems = [ "parse-number" ];
     lispLibs = [  ];
   };
+  parse-number_slash_tests = (parse-number // {
+    pname = "parse-number/tests";
+    systems = [ "parse-number/tests" "parse-number" ];
+    lispLibs = [  ];
+  });
   parse-number-range = {
     pname = "parse-number-range";
     createAsd = false;
@@ -42604,6 +47497,11 @@ rec {
     systems = [ "parseq" ];
     lispLibs = [  ];
   };
+  parseq_slash_test = (parseq // {
+    pname = "parseq/test";
+    systems = [ "parseq/test" "parseq" ];
+    lispLibs = [  ];
+  });
   parser_dot_common-rules = {
     pname = "parser.common-rules";
     createAsd = false;
@@ -42630,6 +47528,16 @@ rec {
     systems = [ "parser.common-rules.operators" ];
     lispLibs = [ alexandria architecture_dot_builder-protocol esrap let-plus parser_dot_common-rules ];
   };
+  parser_dot_common-rules_dot_operators_slash_test = (parser_dot_common-rules_dot_operators // {
+    pname = "parser.common-rules.operators/test";
+    systems = [ "parser.common-rules.operators/test" "parser.common-rules.operators" ];
+    lispLibs = [ alexandria fiveam let-plus parser_dot_common-rules ];
+  });
+  parser_dot_common-rules_slash_test = (parser_dot_common-rules // {
+    pname = "parser.common-rules/test";
+    systems = [ "parser.common-rules/test" "parser.common-rules" ];
+    lispLibs = [ alexandria fiveam let-plus ];
+  });
   parser_dot_ini = {
     pname = "parser.ini";
     createAsd = false;
@@ -42643,6 +47551,11 @@ rec {
     systems = [ "parser.ini" ];
     lispLibs = [ alexandria architecture_dot_builder-protocol esrap let-plus more-conditions parser_dot_common-rules ];
   };
+  parser_dot_ini_slash_test = (parser_dot_ini // {
+    pname = "parser.ini/test";
+    systems = [ "parser.ini/test" "parser.ini" ];
+    lispLibs = [ alexandria fiveam let-plus ];
+  });
   parsley = {
     pname = "parsley";
     createAsd = false;
@@ -42669,6 +47582,16 @@ rec {
     systems = [ "parsnip" ];
     lispLibs = [ alexandria ];
   };
+  parsnip_slash_examples = (parsnip // {
+    pname = "parsnip/examples";
+    systems = [ "parsnip/examples" "parsnip" ];
+    lispLibs = [ alexandria ];
+  });
+  parsnip_slash_test = (parsnip // {
+    pname = "parsnip/test";
+    systems = [ "parsnip/test" "parsnip" ];
+    lispLibs = [ alexandria parachute ];
+  });
   patchwork = {
     pname = "patchwork";
     createAsd = false;
@@ -42851,6 +47774,11 @@ rec {
     systems = [ "perceptual-hashes" ];
     lispLibs = [ array-operations imago jpeg-turbo ];
   };
+  perceptual-hashes_slash_tests = (perceptual-hashes // {
+    pname = "perceptual-hashes/tests";
+    systems = [ "perceptual-hashes/tests" "perceptual-hashes" ];
+    lispLibs = [ fiveam ];
+  });
   periodic-table = {
     pname = "periodic-table";
     createAsd = false;
@@ -43150,6 +48078,21 @@ rec {
     systems = [ "petri" ];
     lispLibs = [ _1am alexandria closer-mop phoe-toolbox split-sequence ];
   };
+  petri_slash_graph = (petri // {
+    pname = "petri/graph";
+    systems = [ "petri/graph" "petri" ];
+    lispLibs = [ cl-dot ];
+  });
+  petri_slash_test = (petri // {
+    pname = "petri/test";
+    systems = [ "petri/test" "petri" ];
+    lispLibs = [ _1am alexandria bordeaux-threads lparallel trivial-backtrace ];
+  });
+  petri_slash_threaded = (petri // {
+    pname = "petri/threaded";
+    systems = [ "petri/threaded" "petri" ];
+    lispLibs = [ bordeaux-threads lparallel trivial-backtrace ];
+  });
   pettomato-deque = {
     pname = "pettomato-deque";
     createAsd = false;
@@ -43241,6 +48184,19 @@ rec {
     systems = [ "phoe-toolbox" ];
     lispLibs = [ alexandria closer-mop trivial-indent ];
   };
+  phoe-toolbox_slash_bag = {
+    pname = "phoe-toolbox/bag";
+    createAsd = false;
+    version = "20210124-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/phoe-toolbox/2021-01-24/phoe-toolbox-20210124-git.tgz";
+      sha256 = "0bzbgs4lkhw93y1cwrs9kp5yiyz8sg4885cnvi83dzzbla9b74kv";
+      system = "phoe-toolbox/bag";
+      asd = "phoe-toolbox";
+    });
+    systems = [ "phoe-toolbox/bag" ];
+    lispLibs = [ alexandria ];
+  };
   physical-quantities = {
     pname = "physical-quantities";
     createAsd = false;
@@ -43254,6 +48210,11 @@ rec {
     systems = [ "physical-quantities" ];
     lispLibs = [ parseq ];
   };
+  physical-quantities_slash_test = (physical-quantities // {
+    pname = "physical-quantities/test";
+    systems = [ "physical-quantities/test" "physical-quantities" ];
+    lispLibs = [  ];
+  });
   picl = {
     pname = "picl";
     createAsd = false;
@@ -43267,6 +48228,16 @@ rec {
     systems = [ "picl" ];
     lispLibs = [ alexandria defclass-std ];
   };
+  picl_slash_iterate = (picl // {
+    pname = "picl/iterate";
+    systems = [ "picl/iterate" "picl" ];
+    lispLibs = [ alexandria iterate ];
+  });
+  picl_slash_tests = (picl // {
+    pname = "picl/tests";
+    systems = [ "picl/tests" "picl" ];
+    lispLibs = [ alexandria fiveam generic-cl iterate ];
+  });
   piggyback-parameters = {
     pname = "piggyback-parameters";
     createAsd = false;
@@ -43280,6 +48251,11 @@ rec {
     systems = [ "piggyback-parameters" ];
     lispLibs = [ trivial-hashtable-serialize trivial-json-codec trivial-pooled-database ];
   };
+  piggyback-parameters_slash_test = (piggyback-parameters // {
+    pname = "piggyback-parameters/test";
+    systems = [ "piggyback-parameters/test" "piggyback-parameters" ];
+    lispLibs = [ fiveam ];
+  });
   pileup = {
     pname = "pileup";
     createAsd = false;
@@ -43436,6 +48412,11 @@ rec {
     systems = [ "xpath" ];
     lispLibs = [ cl-ppcre cxml parse-number yacc ];
   };
+  xpath_slash_test = (xpath // {
+    pname = "xpath/test";
+    systems = [ "xpath/test" "xpath" ];
+    lispLibs = [  ];
+  });
   plokami = {
     pname = "plokami";
     createAsd = false;
@@ -43462,6 +48443,24 @@ rec {
     systems = [ "plot" ];
     lispLibs = [ alexandria cl-who lass ];
   };
+  plot_slash_text = {
+    pname = "plot/text";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/plot/2021-12-09/plot-20211209-git.tgz";
+      sha256 = "1bcsv37kszjhqd93njn51k0ss4gn8l2v9vh4f7n64jhyh3s0a5b8";
+      system = "plot/text";
+      asd = "plot";
+    });
+    systems = [ "plot/text" ];
+    lispLibs = [ cl-spark iterate num-utils select ];
+  };
+  plot_slash_vglt = (plot // {
+    pname = "plot/vglt";
+    systems = [ "plot/vglt" "plot" ];
+    lispLibs = [ dfio let-plus yason ];
+  });
   pludeck = {
     pname = "pludeck";
     createAsd = false;
@@ -43696,6 +48695,11 @@ rec {
     systems = [ "polymorphic-functions" ];
     lispLibs = [ alexandria cl-form-types closer-mop compiler-macro-notes ctype fiveam introspect-environment ];
   };
+  polymorphic-functions_slash_swank = (polymorphic-functions // {
+    pname = "polymorphic-functions/swank";
+    systems = [ "polymorphic-functions/swank" "polymorphic-functions" ];
+    lispLibs = [ swank ];
+  });
   pooler = {
     pname = "pooler";
     createAsd = false;
@@ -43735,6 +48739,16 @@ rec {
     systems = [ "portable-condition-system.integration" ];
     lispLibs = [ portable-condition-system trivial-custom-debugger ];
   };
+  portable-condition-system_dot_integration_slash_test = (portable-condition-system_dot_integration // {
+    pname = "portable-condition-system.integration/test";
+    systems = [ "portable-condition-system.integration/test" "portable-condition-system.integration" ];
+    lispLibs = [  ];
+  });
+  portable-condition-system_slash_test = (portable-condition-system // {
+    pname = "portable-condition-system/test";
+    systems = [ "portable-condition-system/test" "portable-condition-system" ];
+    lispLibs = [  ];
+  });
   portable-threads = {
     pname = "portable-threads";
     createAsd = false;
@@ -43748,6 +48762,11 @@ rec {
     systems = [ "portable-threads" ];
     lispLibs = [  ];
   };
+  portable-threads_slash_test = (portable-threads // {
+    pname = "portable-threads/test";
+    systems = [ "portable-threads/test" "portable-threads" ];
+    lispLibs = [  ];
+  });
   acl-compat = {
     pname = "acl-compat";
     createAsd = false;
@@ -43839,6 +48858,16 @@ rec {
     systems = [ "cl-postgres" ];
     lispLibs = [ cl-base64 ironclad md5 split-sequence uax-15 usocket ];
   };
+  cl-postgres_slash_simple-date-tests = (cl-postgres // {
+    pname = "cl-postgres/simple-date-tests";
+    systems = [ "cl-postgres/simple-date-tests" "cl-postgres" ];
+    lispLibs = [ fiveam simple-date uiop ];
+  });
+  cl-postgres_slash_tests = (cl-postgres // {
+    pname = "cl-postgres/tests";
+    systems = [ "cl-postgres/tests" "cl-postgres" ];
+    lispLibs = [ fiveam uiop ];
+  });
   postmodern = {
     pname = "postmodern";
     createAsd = false;
@@ -43852,6 +48881,11 @@ rec {
     systems = [ "postmodern" ];
     lispLibs = [ alexandria bordeaux-threads cl-postgres closer-mop global-vars s-sql split-sequence uiop ];
   };
+  postmodern_slash_tests = (postmodern // {
+    pname = "postmodern/tests";
+    systems = [ "postmodern/tests" "postmodern" ];
+    lispLibs = [ cl-postgres cl-postgres_plus_local-time fiveam local-time s-sql simple-date uiop ];
+  });
   s-sql = {
     pname = "s-sql";
     createAsd = false;
@@ -43865,6 +48899,11 @@ rec {
     systems = [ "s-sql" ];
     lispLibs = [ alexandria cl-postgres ];
   };
+  s-sql_slash_tests = (s-sql // {
+    pname = "s-sql/tests";
+    systems = [ "s-sql/tests" "s-sql" ];
+    lispLibs = [ cl-postgres fiveam postmodern uiop ];
+  });
   simple-date = {
     pname = "simple-date";
     createAsd = false;
@@ -43878,6 +48917,16 @@ rec {
     systems = [ "simple-date" ];
     lispLibs = [  ];
   };
+  simple-date_slash_postgres-glue = (simple-date // {
+    pname = "simple-date/postgres-glue";
+    systems = [ "simple-date/postgres-glue" "simple-date" ];
+    lispLibs = [ cl-postgres fiveam uiop ];
+  });
+  simple-date_slash_tests = (simple-date // {
+    pname = "simple-date/tests";
+    systems = [ "simple-date/tests" "simple-date" ];
+    lispLibs = [ fiveam ];
+  });
   postmodern-localtime = {
     pname = "postmodern-localtime";
     createAsd = false;
@@ -44645,6 +49694,167 @@ rec {
     systems = [ "protest" ];
     lispLibs = [ alexandria closer-mop moptilities trivial-garbage ];
   };
+  protest_slash_1am = {
+    pname = "protest/1am";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
+      sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
+      system = "protest/1am";
+      asd = "protest";
+    });
+    systems = [ "protest/1am" ];
+    lispLibs = [ _1am alexandria closer-mop named-readtables trivial-garbage ];
+  };
+  protest_slash_base = {
+    pname = "protest/base";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
+      sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
+      system = "protest/base";
+      asd = "protest";
+    });
+    systems = [ "protest/base" ];
+    lispLibs = [ alexandria closer-mop trivial-garbage ];
+  };
+  protest_slash_common = {
+    pname = "protest/common";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
+      sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
+      system = "protest/common";
+      asd = "protest";
+    });
+    systems = [ "protest/common" ];
+    lispLibs = [ alexandria closer-mop moptilities trivial-garbage ];
+  };
+  protest_slash_common_slash_addressed = {
+    pname = "protest/common/addressed";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
+      sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
+      system = "protest/common/addressed";
+      asd = "protest";
+    });
+    systems = [ "protest/common/addressed" ];
+    lispLibs = [ alexandria closer-mop moptilities trivial-garbage ];
+  };
+  protest_slash_common_slash_date = {
+    pname = "protest/common/date";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
+      sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
+      system = "protest/common/date";
+      asd = "protest";
+    });
+    systems = [ "protest/common/date" ];
+    lispLibs = [ alexandria closer-mop moptilities trivial-garbage ];
+  };
+  protest_slash_common_slash_handling = {
+    pname = "protest/common/handling";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
+      sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
+      system = "protest/common/handling";
+      asd = "protest";
+    });
+    systems = [ "protest/common/handling" ];
+    lispLibs = [ alexandria closer-mop moptilities trivial-garbage ];
+  };
+  protest_slash_common_slash_killable = {
+    pname = "protest/common/killable";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
+      sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
+      system = "protest/common/killable";
+      asd = "protest";
+    });
+    systems = [ "protest/common/killable" ];
+    lispLibs = [ alexandria closer-mop moptilities trivial-garbage ];
+  };
+  protest_slash_common_slash_named = {
+    pname = "protest/common/named";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
+      sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
+      system = "protest/common/named";
+      asd = "protest";
+    });
+    systems = [ "protest/common/named" ];
+    lispLibs = [ alexandria closer-mop moptilities trivial-garbage ];
+  };
+  protest_slash_ftype = {
+    pname = "protest/ftype";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
+      sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
+      system = "protest/ftype";
+      asd = "protest";
+    });
+    systems = [ "protest/ftype" ];
+    lispLibs = [ alexandria ];
+  };
+  protest_slash_parachute = {
+    pname = "protest/parachute";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
+      sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
+      system = "protest/parachute";
+      asd = "protest";
+    });
+    systems = [ "protest/parachute" ];
+    lispLibs = [ alexandria closer-mop named-readtables parachute trivial-garbage ];
+  };
+  protest_slash_protocol = {
+    pname = "protest/protocol";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
+      sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
+      system = "protest/protocol";
+      asd = "protest";
+    });
+    systems = [ "protest/protocol" ];
+    lispLibs = [ alexandria closer-mop moptilities trivial-garbage ];
+  };
+  protest_slash_test = (protest // {
+    pname = "protest/test";
+    systems = [ "protest/test" "protest" ];
+    lispLibs = [ _1am alexandria closer-mop named-readtables trivial-garbage ];
+  });
+  protest_slash_test-case = {
+    pname = "protest/test-case";
+    createAsd = false;
+    version = "20201220-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
+      sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
+      system = "protest/test-case";
+      asd = "protest";
+    });
+    systems = [ "protest/test-case" ];
+    lispLibs = [ alexandria closer-mop trivial-garbage ];
+  };
   protobuf = {
     pname = "protobuf";
     createAsd = false;
@@ -44671,6 +49881,11 @@ rec {
     systems = [ "varint" ];
     lispLibs = [ com_dot_google_dot_base nibbles ];
   };
+  varint_slash_test = (varint // {
+    pname = "varint/test";
+    systems = [ "varint/test" "varint" ];
+    lispLibs = [ hu_dot_dwim_dot_stefil ];
+  });
   cl-test-more = {
     pname = "cl-test-more";
     createAsd = false;
@@ -44827,6 +50042,11 @@ rec {
     systems = [ "puri" ];
     lispLibs = [  ];
   };
+  puri_slash_test = (puri // {
+    pname = "puri/test";
+    systems = [ "puri/test" "puri" ];
+    lispLibs = [ ptester ];
+  });
   purl = {
     pname = "purl";
     createAsd = false;
@@ -44970,6 +50190,11 @@ rec {
     systems = [ "qbase64" ];
     lispLibs = [ metabang-bind trivial-gray-streams ];
   };
+  qbase64_slash_test = (qbase64 // {
+    pname = "qbase64/test";
+    systems = [ "qbase64/test" "qbase64" ];
+    lispLibs = [ fiveam temporary-file ];
+  });
   qbook = {
     pname = "qbook";
     createAsd = false;
@@ -45007,6 +50232,19 @@ rec {
       asd = "qlot";
     });
     systems = [ "qlot" ];
+    lispLibs = [  ];
+  };
+  qlot_slash_command = {
+    pname = "qlot/command";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/qlot/2021-12-09/qlot-20211209-git.tgz";
+      sha256 = "0iaq4ri590z05254r9dn1cwsd5ha1n0bmj4m1a93f1m8zsk59pwy";
+      system = "qlot/command";
+      asd = "qlot";
+    });
+    systems = [ "qlot/command" ];
     lispLibs = [  ];
   };
   qmynd = {
@@ -46101,6 +51339,11 @@ rec {
     systems = [ "quick-patch" ];
     lispLibs = [  ];
   };
+  quick-patch_slash_tests = (quick-patch // {
+    pname = "quick-patch/tests";
+    systems = [ "quick-patch/tests" "quick-patch" ];
+    lispLibs = [ cl-mock fiveam str tmpdir ];
+  });
   quickapp = {
     pname = "quickapp";
     createAsd = false;
@@ -46309,6 +51552,36 @@ rec {
     systems = [ "cl-quil-tests" ];
     lispLibs = [ alexa alexandria cl-permutation cl-ppcre cl-quil fiasco magicl qvm uiop yacc ];
   };
+  cl-quil_slash_quilec = (cl-quil // {
+    pname = "cl-quil/quilec";
+    systems = [ "cl-quil/quilec" "cl-quil" ];
+    lispLibs = [ alexandria magicl ];
+  });
+  cl-quil_slash_quilec-tests = (cl-quil // {
+    pname = "cl-quil/quilec-tests";
+    systems = [ "cl-quil/quilec-tests" "cl-quil" ];
+    lispLibs = [ alexandria fiasco magicl qvm ];
+  });
+  cl-quil_slash_quilt = (cl-quil // {
+    pname = "cl-quil/quilt";
+    systems = [ "cl-quil/quilt" "cl-quil" ];
+    lispLibs = [  ];
+  });
+  cl-quil_slash_quilt-tests = (cl-quil // {
+    pname = "cl-quil/quilt-tests";
+    systems = [ "cl-quil/quilt-tests" "cl-quil" ];
+    lispLibs = [ cl-quil-tests ];
+  });
+  cl-quil_slash_tools = (cl-quil // {
+    pname = "cl-quil/tools";
+    systems = [ "cl-quil/tools" "cl-quil" ];
+    lispLibs = [ common-lisp-jupyter swank ];
+  });
+  cl-quil_slash_tools-tests = (cl-quil // {
+    pname = "cl-quil/tools-tests";
+    systems = [ "cl-quil/tools-tests" "cl-quil" ];
+    lispLibs = [ cl-quil-tests common-lisp-jupyter swank ];
+  });
   quilc = {
     pname = "quilc";
     createAsd = false;
@@ -46699,6 +51972,16 @@ rec {
     systems = [ "rcl" ];
     lispLibs = [ bordeaux-threads cffi named-readtables prove-asdf simple-tasks trivial-garbage ];
   };
+  rcl_slash_prove = (rcl // {
+    pname = "rcl/prove";
+    systems = [ "rcl/prove" "rcl" ];
+    lispLibs = [ prove prove-asdf ];
+  });
+  rcl_slash_test = (rcl // {
+    pname = "rcl/test";
+    systems = [ "rcl/test" "rcl" ];
+    lispLibs = [ fiveam ];
+  });
   re = {
     pname = "re";
     createAsd = false;
@@ -47401,6 +52684,11 @@ rec {
     systems = [ "retrospectiff" ];
     lispLibs = [ cl-jpeg com_dot_gigamonkeys_dot_binary-data deflate flexi-streams ieee-floats opticl-core ];
   };
+  retrospectiff_slash_test = (retrospectiff // {
+    pname = "retrospectiff/test";
+    systems = [ "retrospectiff/test" "retrospectiff" ];
+    lispLibs = [ fiveam ];
+  });
   reversi = {
     pname = "reversi";
     createAsd = false;
@@ -47426,6 +52714,19 @@ rec {
     });
     systems = [ "rfc2109" ];
     lispLibs = [ split-sequence ];
+  };
+  rfc2109_slash_test = {
+    pname = "rfc2109/test";
+    createAsd = false;
+    version = "20151218-darcs";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/rfc2109/2015-12-18/rfc2109-20151218-darcs.tgz";
+      sha256 = "1y767qjv5jxyfqzp0zpw96yz95mb8hhpjj9dn2i6b92r0z2vr42d";
+      system = "rfc2109/test";
+      asd = "rfc2109";
+    });
+    systems = [ "rfc2109/test" ];
+    lispLibs = [ fiveam split-sequence ];
   };
   rfc2388 = {
     pname = "rfc2388";
@@ -47479,6 +52780,16 @@ rec {
     systems = [ "roan" ];
     lispLibs = [ alexandria asdf-encodings binascii cl-fad cl-interpol cl-ppcre drakma iterate local-time named-readtables plump uuid zip ];
   };
+  roan_slash_doc = (roan // {
+    pname = "roan/doc";
+    systems = [ "roan/doc" "roan" ];
+    lispLibs = [ alexandria asdf-encodings cl-fad cl-ppcre iterate trivial-documentation ];
+  });
+  roan_slash_test = (roan // {
+    pname = "roan/test";
+    systems = [ "roan/test" "roan" ];
+    lispLibs = [ alexandria asdf-encodings cl-fad cl-ppcre iterate lisp-unit2 ];
+  });
   rock = {
     pname = "rock";
     createAsd = false;
@@ -47843,6 +53154,11 @@ rec {
     systems = [ "ryeboy" ];
     lispLibs = [ alexandria com_dot_google_dot_base protobuf prove-asdf usocket ];
   };
+  ryeboy_slash_test = (ryeboy // {
+    pname = "ryeboy/test";
+    systems = [ "ryeboy/test" "ryeboy" ];
+    lispLibs = [ prove prove-asdf ];
+  });
   s-base64 = {
     pname = "s-base64";
     createAsd = false;
@@ -48012,6 +53328,11 @@ rec {
     systems = [ "safe-read" ];
     lispLibs = [ local-time trivial-garbage ];
   };
+  safe-read_slash_test = (safe-read // {
+    pname = "safe-read/test";
+    systems = [ "safe-read/test" "safe-read" ];
+    lispLibs = [  ];
+  });
   safety-params = {
     pname = "safety-params";
     createAsd = false;
@@ -48025,6 +53346,11 @@ rec {
     systems = [ "safety-params" ];
     lispLibs = [ alexandria parse-number ];
   };
+  safety-params_slash_tests = (safety-params // {
+    pname = "safety-params/tests";
+    systems = [ "safety-params/tests" "safety-params" ];
+    lispLibs = [ rove ];
+  });
   salza2 = {
     pname = "salza2";
     createAsd = false;
@@ -48038,6 +53364,11 @@ rec {
     systems = [ "salza2" ];
     lispLibs = [ trivial-gray-streams ];
   };
+  salza2_slash_test = (salza2 // {
+    pname = "salza2/test";
+    systems = [ "salza2/test" "salza2" ];
+    lispLibs = [ chipz flexi-streams parachute ];
+  });
   sandalphon_dot_lambda-list = {
     pname = "sandalphon.lambda-list";
     createAsd = false;
@@ -48064,6 +53395,11 @@ rec {
     systems = [ "sanity-clause" ];
     lispLibs = [ alexandria arrows cl-ppcre closer-mop local-time parse-float quri str trivial-types ];
   };
+  sanity-clause_slash_test = (sanity-clause // {
+    pname = "sanity-clause/test";
+    systems = [ "sanity-clause/test" "sanity-clause" ];
+    lispLibs = [ rove ];
+  });
   sapaclisp = {
     pname = "sapaclisp";
     createAsd = false;
@@ -48220,6 +53556,11 @@ rec {
     systems = [ "scribble" ];
     lispLibs = [ fare-memoization fare-quasiquote-readtable fare-utils meta ];
   };
+  scribble_slash_test = (scribble // {
+    pname = "scribble/test";
+    systems = [ "scribble/test" "scribble" ];
+    lispLibs = [ babel hu_dot_dwim_dot_stefil ];
+  });
   scriptl = {
     pname = "scriptl";
     createAsd = false;
@@ -48363,6 +53704,110 @@ rec {
     systems = [ "software-evolution-library" ];
     lispLibs = [ asdf-package-system atomics cffi-grovel deploy gt ];
   };
+  software-evolution-library_slash_deploy-tree-sitter-interface = {
+    pname = "software-evolution-library/deploy-tree-sitter-interface";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
+      sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
+      system = "software-evolution-library/deploy-tree-sitter-interface";
+      asd = "software-evolution-library";
+    });
+    systems = [ "software-evolution-library/deploy-tree-sitter-interface" ];
+    lispLibs = [ deploy ];
+  };
+  software-evolution-library_slash_run-dump-store = {
+    pname = "software-evolution-library/run-dump-store";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
+      sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
+      system = "software-evolution-library/run-dump-store";
+      asd = "software-evolution-library";
+    });
+    systems = [ "software-evolution-library/run-dump-store" ];
+    lispLibs = [  ];
+  };
+  software-evolution-library_slash_run-rest-server = {
+    pname = "software-evolution-library/run-rest-server";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
+      sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
+      system = "software-evolution-library/run-rest-server";
+      asd = "software-evolution-library";
+    });
+    systems = [ "software-evolution-library/run-rest-server" ];
+    lispLibs = [  ];
+  };
+  software-evolution-library_slash_run-test-parse = {
+    pname = "software-evolution-library/run-test-parse";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
+      sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
+      system = "software-evolution-library/run-test-parse";
+      asd = "software-evolution-library";
+    });
+    systems = [ "software-evolution-library/run-test-parse" ];
+    lispLibs = [  ];
+  };
+  software-evolution-library_slash_run-tree-sitter-interface = {
+    pname = "software-evolution-library/run-tree-sitter-interface";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
+      sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
+      system = "software-evolution-library/run-tree-sitter-interface";
+      asd = "software-evolution-library";
+    });
+    systems = [ "software-evolution-library/run-tree-sitter-interface" ];
+    lispLibs = [  ];
+  };
+  software-evolution-library_slash_run-tree-sitter-py-generator = {
+    pname = "software-evolution-library/run-tree-sitter-py-generator";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
+      sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
+      system = "software-evolution-library/run-tree-sitter-py-generator";
+      asd = "software-evolution-library";
+    });
+    systems = [ "software-evolution-library/run-tree-sitter-py-generator" ];
+    lispLibs = [  ];
+  };
+  software-evolution-library_slash_terminal = {
+    pname = "software-evolution-library/terminal";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
+      sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
+      system = "software-evolution-library/terminal";
+      asd = "software-evolution-library";
+    });
+    systems = [ "software-evolution-library/terminal" ];
+    lispLibs = [ cffi cffi-grovel cl-interpol gt ];
+  };
+  software-evolution-library_slash_utility_slash_fare-qq = {
+    pname = "software-evolution-library/utility/fare-qq";
+    createAsd = false;
+    version = "20211230-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
+      sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
+      system = "software-evolution-library/utility/fare-qq";
+      asd = "software-evolution-library";
+    });
+    systems = [ "software-evolution-library/utility/fare-qq" ];
+    lispLibs = [ fare-quasiquote-extras ];
+  };
   select = {
     pname = "select";
     createAsd = false;
@@ -48376,6 +53821,11 @@ rec {
     systems = [ "select" ];
     lispLibs = [ alexandria anaphora let-plus ];
   };
+  select_slash_tests = (select // {
+    pname = "select/tests";
+    systems = [ "select/tests" "select" ];
+    lispLibs = [ fiveam ];
+  });
   select-file = {
     pname = "select-file";
     createAsd = false;
@@ -48454,6 +53904,11 @@ rec {
     systems = [ "serapeum" ];
     lispLibs = [ alexandria babel bordeaux-threads global-vars introspect-environment parse-declarations-1_dot_0 parse-number split-sequence string-case trivia trivial-cltl2 trivial-file-size trivial-garbage trivial-macroexpand-all ];
   };
+  serapeum_slash_docs = (serapeum // {
+    pname = "serapeum/docs";
+    systems = [ "serapeum/docs" "serapeum" ];
+    lispLibs = [ cl-ppcre swank ];
+  });
   serializable-object = {
     pname = "serializable-object";
     createAsd = false;
@@ -48636,6 +54091,11 @@ rec {
     systems = [ "shasht" ];
     lispLibs = [ closer-mop trivial-do ];
   };
+  shasht_slash_test = (shasht // {
+    pname = "shasht/test";
+    systems = [ "shasht/test" "shasht" ];
+    lispLibs = [ alexandria parachute ];
+  });
   sheeple = {
     pname = "sheeple";
     createAsd = false;
@@ -48739,6 +54199,73 @@ rec {
     });
     systems = [ "shop3-thmpr-api" ];
     lispLibs = [ shop3 ];
+  };
+  shop3_slash_common = {
+    pname = "shop3/common";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/shop3/2021-12-09/shop3-20211209-git.tgz";
+      sha256 = "0gw5z70pk0ddjihsikzqd8xzraa21lnndggnsgqh3wg9npgmxifd";
+      system = "shop3/common";
+      asd = "shop3";
+    });
+    systems = [ "shop3/common" ];
+    lispLibs = [ alexandria iterate ];
+  };
+  shop3_slash_openstacks = (shop3 // {
+    pname = "shop3/openstacks";
+    systems = [ "shop3/openstacks" "shop3" ];
+    lispLibs = [  ];
+  });
+  shop3_slash_plan-grapher = (shop3 // {
+    pname = "shop3/plan-grapher";
+    systems = [ "shop3/plan-grapher" "shop3" ];
+    lispLibs = [ cl-dot ];
+  });
+  shop3_slash_rovers = (shop3 // {
+    pname = "shop3/rovers";
+    systems = [ "shop3/rovers" "shop3" ];
+    lispLibs = [  ];
+  });
+  shop3_slash_test-unifier = {
+    pname = "shop3/test-unifier";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/shop3/2021-12-09/shop3-20211209-git.tgz";
+      sha256 = "0gw5z70pk0ddjihsikzqd8xzraa21lnndggnsgqh3wg9npgmxifd";
+      system = "shop3/test-unifier";
+      asd = "shop3";
+    });
+    systems = [ "shop3/test-unifier" ];
+    lispLibs = [ alexandria fiveam-asdf ];
+  };
+  shop3_slash_theorem-prover = {
+    pname = "shop3/theorem-prover";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/shop3/2021-12-09/shop3-20211209-git.tgz";
+      sha256 = "0gw5z70pk0ddjihsikzqd8xzraa21lnndggnsgqh3wg9npgmxifd";
+      system = "shop3/theorem-prover";
+      asd = "shop3";
+    });
+    systems = [ "shop3/theorem-prover" ];
+    lispLibs = [ alexandria iterate ];
+  };
+  shop3_slash_unifier = {
+    pname = "shop3/unifier";
+    createAsd = false;
+    version = "20211209-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/shop3/2021-12-09/shop3-20211209-git.tgz";
+      sha256 = "0gw5z70pk0ddjihsikzqd8xzraa21lnndggnsgqh3wg9npgmxifd";
+      system = "shop3/unifier";
+      asd = "shop3";
+    });
+    systems = [ "shop3/unifier" ];
+    lispLibs = [  ];
   };
   should-test = {
     pname = "should-test";
@@ -48909,6 +54436,11 @@ rec {
     systems = [ "simple-neural-network" ];
     lispLibs = [ cl-store lparallel ];
   };
+  simple-neural-network_slash_test = (simple-neural-network // {
+    pname = "simple-neural-network/test";
+    systems = [ "simple-neural-network/test" "simple-neural-network" ];
+    lispLibs = [ chipz fiveam uiop ];
+  });
   simple-parallel-tasks = {
     pname = "simple-parallel-tasks";
     createAsd = false;
@@ -49026,6 +54558,11 @@ rec {
     systems = [ "simplet-asdf" ];
     lispLibs = [  ];
   };
+  simplet_slash_test = (simplet // {
+    pname = "simplet/test";
+    systems = [ "simplet/test" "simplet" ];
+    lispLibs = [  ];
+  });
   simplified-types = {
     pname = "simplified-types";
     createAsd = false;
@@ -49091,6 +54628,11 @@ rec {
     systems = [ "sip-hash" ];
     lispLibs = [ com_dot_google_dot_base nibbles ];
   };
+  sip-hash_slash_test = (sip-hash // {
+    pname = "sip-hash/test";
+    systems = [ "sip-hash/test" "sip-hash" ];
+    lispLibs = [ hu_dot_dwim_dot_stefil ];
+  });
   skeleton-creator = {
     pname = "skeleton-creator";
     createAsd = false;
@@ -49104,6 +54646,11 @@ rec {
     systems = [ "skeleton-creator" ];
     lispLibs = [ cl-fad cl-ppcre conf simplet-asdf ];
   };
+  skeleton-creator_slash_test = (skeleton-creator // {
+    pname = "skeleton-creator/test";
+    systems = [ "skeleton-creator/test" "skeleton-creator" ];
+    lispLibs = [ simplet simplet-asdf ];
+  });
   sketch = {
     pname = "sketch";
     createAsd = false;
@@ -49247,6 +54794,16 @@ rec {
     systems = [ "slite" ];
     lispLibs = [ fiveam str ];
   };
+  slite_slash_parachute = (slite // {
+    pname = "slite/parachute";
+    systems = [ "slite/parachute" "slite" ];
+    lispLibs = [ parachute ];
+  });
+  slite_slash_tests = (slite // {
+    pname = "slite/tests";
+    systems = [ "slite/tests" "slite" ];
+    lispLibs = [ parachute ];
+  });
   eclecticse_dot_slk-581 = {
     pname = "eclecticse.slk-581";
     createAsd = false;
@@ -49299,6 +54856,51 @@ rec {
     systems = [ "slynk" ];
     lispLibs = [  ];
   };
+  slynk_slash_arglists = (slynk // {
+    pname = "slynk/arglists";
+    systems = [ "slynk/arglists" "slynk" ];
+    lispLibs = [  ];
+  });
+  slynk_slash_fancy-inspector = (slynk // {
+    pname = "slynk/fancy-inspector";
+    systems = [ "slynk/fancy-inspector" "slynk" ];
+    lispLibs = [  ];
+  });
+  slynk_slash_indentation = (slynk // {
+    pname = "slynk/indentation";
+    systems = [ "slynk/indentation" "slynk" ];
+    lispLibs = [  ];
+  });
+  slynk_slash_mrepl = (slynk // {
+    pname = "slynk/mrepl";
+    systems = [ "slynk/mrepl" "slynk" ];
+    lispLibs = [  ];
+  });
+  slynk_slash_package-fu = (slynk // {
+    pname = "slynk/package-fu";
+    systems = [ "slynk/package-fu" "slynk" ];
+    lispLibs = [  ];
+  });
+  slynk_slash_profiler = (slynk // {
+    pname = "slynk/profiler";
+    systems = [ "slynk/profiler" "slynk" ];
+    lispLibs = [  ];
+  });
+  slynk_slash_retro = (slynk // {
+    pname = "slynk/retro";
+    systems = [ "slynk/retro" "slynk" ];
+    lispLibs = [  ];
+  });
+  slynk_slash_stickers = (slynk // {
+    pname = "slynk/stickers";
+    systems = [ "slynk/stickers" "slynk" ];
+    lispLibs = [  ];
+  });
+  slynk_slash_trace-dialog = (slynk // {
+    pname = "slynk/trace-dialog";
+    systems = [ "slynk/trace-dialog" "slynk" ];
+    lispLibs = [  ];
+  });
   smackjack = {
     pname = "smackjack";
     createAsd = false;
@@ -49403,6 +55005,11 @@ rec {
     systems = [ "snappy" ];
     lispLibs = [ com_dot_google_dot_base nibbles varint ];
   };
+  snappy_slash_test = (snappy // {
+    pname = "snappy/test";
+    systems = [ "snappy/test" "snappy" ];
+    lispLibs = [ acm-random hu_dot_dwim_dot_stefil nibbles ];
+  });
   snark = {
     pname = "snark";
     createAsd = false;
@@ -49806,6 +55413,11 @@ rec {
     systems = [ "special-functions" ];
     lispLibs = [ float-features num-utils ];
   };
+  special-functions_slash_tests = (special-functions // {
+    pname = "special-functions/tests";
+    systems = [ "special-functions/tests" "special-functions" ];
+    lispLibs = [ cl-variates fiveam select ];
+  });
   specialization-store = {
     pname = "specialization-store";
     createAsd = false;
@@ -49897,6 +55509,19 @@ rec {
     systems = [ "spell" ];
     lispLibs = [  ];
   };
+  spell_slash_simple = {
+    pname = "spell/simple";
+    createAsd = false;
+    version = "20190307-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/spell/2019-03-07/spell-20190307-git.tgz";
+      sha256 = "1ifhx5q0iz80i9zwgcpv3w7xpp92ar9grz25008wnqzaayhfl020";
+      system = "spell/simple";
+      asd = "spell";
+    });
+    systems = [ "spell/simple" ];
+    lispLibs = [  ];
+  };
   spellcheck = {
     pname = "spellcheck";
     createAsd = false;
@@ -49923,6 +55548,21 @@ rec {
     systems = [ "spinneret" ];
     lispLibs = [ alexandria cl-ppcre global-vars parenscript serapeum trivial-gray-streams ];
   };
+  spinneret_slash_cl-markdown = (spinneret // {
+    pname = "spinneret/cl-markdown";
+    systems = [ "spinneret/cl-markdown" "spinneret" ];
+    lispLibs = [ cl-markdown ];
+  });
+  spinneret_slash_ps = (spinneret // {
+    pname = "spinneret/ps";
+    systems = [ "spinneret/ps" "spinneret" ];
+    lispLibs = [ parenscript ];
+  });
+  spinneret_slash_tests = (spinneret // {
+    pname = "spinneret/tests";
+    systems = [ "spinneret/tests" "spinneret" ];
+    lispLibs = [ cl-markdown fiveam parenscript serapeum ];
+  });
   split-sequence = {
     pname = "split-sequence";
     createAsd = false;
@@ -49936,6 +55576,11 @@ rec {
     systems = [ "split-sequence" ];
     lispLibs = [  ];
   };
+  split-sequence_slash_tests = (split-sequence // {
+    pname = "split-sequence/tests";
+    systems = [ "split-sequence/tests" "split-sequence" ];
+    lispLibs = [ fiveam ];
+  });
   stars = {
     pname = "stars";
     createAsd = false;
@@ -50144,6 +55789,11 @@ rec {
     systems = [ "static-dispatch" ];
     lispLibs = [ agutil alexandria anaphora arrows cl-environments cl-form-types closer-mop iterate optima ];
   };
+  static-dispatch_slash_test = (static-dispatch // {
+    pname = "static-dispatch/test";
+    systems = [ "static-dispatch/test" "static-dispatch" ];
+    lispLibs = [ fiveam ];
+  });
   static-vectors = {
     pname = "static-vectors";
     createAsd = false;
@@ -50157,6 +55807,11 @@ rec {
     systems = [ "static-vectors" ];
     lispLibs = [ alexandria cffi cffi-grovel ];
   };
+  static-vectors_slash_test = (static-vectors // {
+    pname = "static-vectors/test";
+    systems = [ "static-vectors/test" "static-vectors" ];
+    lispLibs = [ fiveam ];
+  });
   stealth-mixin = {
     pname = "stealth-mixin";
     createAsd = false;
@@ -50274,6 +55929,11 @@ rec {
     systems = [ "strict-function" ];
     lispLibs = [ alexandria trivia ];
   };
+  strict-function_slash_test = (strict-function // {
+    pname = "strict-function/test";
+    systems = [ "strict-function/test" "strict-function" ];
+    lispLibs = [ alexandria rove ];
+  });
   string-case = {
     pname = "string-case";
     createAsd = false;
@@ -50807,6 +56467,11 @@ rec {
     systems = [ "swank-client" ];
     lispLibs = [ bordeaux-threads com_dot_google_dot_base swank usocket ];
   };
+  swank-client_slash_test = (swank-client // {
+    pname = "swank-client/test";
+    systems = [ "swank-client/test" "swank-client" ];
+    lispLibs = [ hu_dot_dwim_dot_stefil ];
+  });
   swank-crew = {
     pname = "swank-crew";
     createAsd = false;
@@ -50820,6 +56485,11 @@ rec {
     systems = [ "swank-crew" ];
     lispLibs = [ bordeaux-threads com_dot_google_dot_base swank-client ];
   };
+  swank-crew_slash_test = (swank-crew // {
+    pname = "swank-crew/test";
+    systems = [ "swank-crew/test" "swank-crew" ];
+    lispLibs = [ hu_dot_dwim_dot_stefil ];
+  });
   swank-protocol = {
     pname = "swank-protocol";
     createAsd = false;
@@ -50859,6 +56529,11 @@ rec {
     systems = [ "swap-bytes" ];
     lispLibs = [ trivial-features ];
   };
+  swap-bytes_slash_test = (swap-bytes // {
+    pname = "swap-bytes/test";
+    systems = [ "swap-bytes/test" "swap-bytes" ];
+    lispLibs = [ fiveam ];
+  });
   sxql = {
     pname = "sxql";
     createAsd = false;
@@ -51431,6 +57106,11 @@ rec {
     systems = [ "org.tfeb.hax" ];
     lispLibs = [ closer-mop ];
   };
+  org_dot_tfeb_dot_hax_slash_test = (org_dot_tfeb_dot_hax // {
+    pname = "org.tfeb.hax/test";
+    systems = [ "org.tfeb.hax/test" "org.tfeb.hax" ];
+    lispLibs = [ parachute ];
+  });
   org_dot_tfeb_dot_tools = {
     pname = "org.tfeb.tools";
     createAsd = false;
@@ -51652,6 +57332,11 @@ rec {
     systems = [ "tinaa-test" ];
     lispLibs = [ lift tinaa ];
   };
+  tinaa_slash_with-cl-markdown = (tinaa // {
+    pname = "tinaa/with-cl-markdown";
+    systems = [ "tinaa/with-cl-markdown" "tinaa" ];
+    lispLibs = [ cl-markdown ];
+  });
   tm = {
     pname = "tm";
     createAsd = false;
@@ -51834,6 +57519,11 @@ rec {
     systems = [ "translate" ];
     lispLibs = [  ];
   };
+  translate_slash_test = (translate // {
+    pname = "translate/test";
+    systems = [ "translate/test" "translate" ];
+    lispLibs = [ fiveam ];
+  });
   translate-client = {
     pname = "translate-client";
     createAsd = false;
@@ -51873,6 +57563,11 @@ rec {
     systems = [ "tree-search" ];
     lispLibs = [  ];
   };
+  tree-search_slash_test = (tree-search // {
+    pname = "tree-search/test";
+    systems = [ "tree-search/test" "tree-search" ];
+    lispLibs = [ fiveam ];
+  });
   treedb = {
     pname = "treedb";
     createAsd = false;
@@ -52003,6 +57698,11 @@ rec {
     systems = [ "trivia.benchmark" ];
     lispLibs = [ iterate optima trivia trivia_dot_balland2006 ];
   };
+  trivia_dot_benchmark_slash_run = (trivia_dot_benchmark // {
+    pname = "trivia.benchmark/run";
+    systems = [ "trivia.benchmark/run" "trivia.benchmark" ];
+    lispLibs = [  ];
+  });
   trivia_dot_cffi = {
     pname = "trivia.cffi";
     createAsd = false;
@@ -52328,6 +58028,11 @@ rec {
     systems = [ "trivial-continuation" ];
     lispLibs = [ log4cl trivial-utilities ];
   };
+  trivial-continuation_slash_test = (trivial-continuation // {
+    pname = "trivial-continuation/test";
+    systems = [ "trivial-continuation/test" "trivial-continuation" ];
+    lispLibs = [ fiveam ];
+  });
   trivial-coverage = {
     pname = "trivial-coverage";
     createAsd = false;
@@ -52354,6 +58059,11 @@ rec {
     systems = [ "trivial-custom-debugger" ];
     lispLibs = [  ];
   };
+  trivial-custom-debugger_slash_test = (trivial-custom-debugger // {
+    pname = "trivial-custom-debugger/test";
+    systems = [ "trivial-custom-debugger/test" "trivial-custom-debugger" ];
+    lispLibs = [ parachute ];
+  });
   trivial-debug-console = {
     pname = "trivial-debug-console";
     createAsd = false;
@@ -52445,6 +58155,11 @@ rec {
     systems = [ "trivial-ed-functions" ];
     lispLibs = [  ];
   };
+  trivial-ed-functions_slash_test = (trivial-ed-functions // {
+    pname = "trivial-ed-functions/test";
+    systems = [ "trivial-ed-functions/test" "trivial-ed-functions" ];
+    lispLibs = [ parachute ];
+  });
   trivial-escapes = {
     pname = "trivial-escapes";
     createAsd = false;
@@ -52575,6 +58290,11 @@ rec {
     systems = [ "trivial-file-size" ];
     lispLibs = [ uiop ];
   };
+  trivial-file-size_slash_tests = (trivial-file-size // {
+    pname = "trivial-file-size/tests";
+    systems = [ "trivial-file-size/tests" "trivial-file-size" ];
+    lispLibs = [ fiveam ];
+  });
   trivial-garbage = {
     pname = "trivial-garbage";
     createAsd = false;
@@ -52588,6 +58308,11 @@ rec {
     systems = [ "trivial-garbage" ];
     lispLibs = [  ];
   };
+  trivial-garbage_slash_tests = (trivial-garbage // {
+    pname = "trivial-garbage/tests";
+    systems = [ "trivial-garbage/tests" "trivial-garbage" ];
+    lispLibs = [ rt ];
+  });
   trivial-gray-streams = {
     pname = "trivial-gray-streams";
     createAsd = false;
@@ -52874,6 +58599,11 @@ rec {
     systems = [ "trivial-monitored-thread" ];
     lispLibs = [ iterate log4cl trivial-utilities ];
   };
+  trivial-monitored-thread_slash_test = (trivial-monitored-thread // {
+    pname = "trivial-monitored-thread/test";
+    systems = [ "trivial-monitored-thread/test" "trivial-monitored-thread" ];
+    lispLibs = [ fiveam ];
+  });
   trivial-msi = {
     pname = "trivial-msi";
     createAsd = false;
@@ -52926,6 +58656,11 @@ rec {
     systems = [ "trivial-object-lock" ];
     lispLibs = [ bordeaux-threads iterate log4cl trivial-utilities ];
   };
+  trivial-object-lock_slash_test = (trivial-object-lock // {
+    pname = "trivial-object-lock/test";
+    systems = [ "trivial-object-lock/test" "trivial-object-lock" ];
+    lispLibs = [ fiveam ];
+  });
   trivial-octet-streams = {
     pname = "trivial-octet-streams";
     createAsd = false;
@@ -53004,6 +58739,11 @@ rec {
     systems = [ "trivial-package-locks" ];
     lispLibs = [  ];
   };
+  trivial-package-locks_slash_test = (trivial-package-locks // {
+    pname = "trivial-package-locks/test";
+    systems = [ "trivial-package-locks/test" "trivial-package-locks" ];
+    lispLibs = [ parachute ];
+  });
   trivial-package-manager = {
     pname = "trivial-package-manager";
     createAsd = false;
@@ -53277,6 +59017,11 @@ rec {
     systems = [ "trivial-timer" ];
     lispLibs = [ bordeaux-threads chanl iterate log4cl trivial-utilities ];
   };
+  trivial-timer_slash_test = (trivial-timer // {
+    pname = "trivial-timer/test";
+    systems = [ "trivial-timer/test" "trivial-timer" ];
+    lispLibs = [ fiveam ];
+  });
   trivial-timers = {
     pname = "trivial-timers";
     createAsd = false;
@@ -53329,6 +59074,16 @@ rec {
     systems = [ "trivial-utf-8" ];
     lispLibs = [  ];
   };
+  trivial-utf-8_slash_doc = (trivial-utf-8 // {
+    pname = "trivial-utf-8/doc";
+    systems = [ "trivial-utf-8/doc" "trivial-utf-8" ];
+    lispLibs = [ mgl-pax ];
+  });
+  trivial-utf-8_slash_tests = (trivial-utf-8 // {
+    pname = "trivial-utf-8/tests";
+    systems = [ "trivial-utf-8/tests" "trivial-utf-8" ];
+    lispLibs = [  ];
+  });
   trivial-utilities = {
     pname = "trivial-utilities";
     createAsd = false;
@@ -53355,6 +59110,11 @@ rec {
     systems = [ "trivial-variable-bindings" ];
     lispLibs = [ iterate trivial-utilities ];
   };
+  trivial-variable-bindings_slash_test = (trivial-variable-bindings // {
+    pname = "trivial-variable-bindings/test";
+    systems = [ "trivial-variable-bindings/test" "trivial-variable-bindings" ];
+    lispLibs = [ fiveam ];
+  });
   trivial-wish = {
     pname = "trivial-wish";
     createAsd = false;
@@ -53589,6 +59349,11 @@ rec {
     systems = [ "ttt" ];
     lispLibs = [  ];
   };
+  ttt_slash_tests = (ttt // {
+    pname = "ttt/tests";
+    systems = [ "ttt/tests" "ttt" ];
+    lispLibs = [ lisp-unit ];
+  });
   twfy = {
     pname = "twfy";
     createAsd = false;
@@ -53693,6 +59458,11 @@ rec {
     systems = [ "uax-15" ];
     lispLibs = [ cl-ppcre split-sequence ];
   };
+  uax-15_slash_tests = (uax-15 // {
+    pname = "uax-15/tests";
+    systems = [ "uax-15/tests" "uax-15" ];
+    lispLibs = [ cl-ppcre parachute split-sequence ];
+  });
   uax-9 = {
     pname = "uax-9";
     createAsd = false;
@@ -54096,6 +59866,11 @@ rec {
     systems = [ "unix-opts" ];
     lispLibs = [  ];
   };
+  unix-opts_slash_tests = (unix-opts // {
+    pname = "unix-opts/tests";
+    systems = [ "unix-opts/tests" "unix-opts" ];
+    lispLibs = [  ];
+  });
   uri-template = {
     pname = "uri-template";
     createAsd = false;
@@ -54213,6 +59988,11 @@ rec {
     systems = [ "utilities.binary-dump" ];
     lispLibs = [ alexandria let-plus nibbles ];
   };
+  utilities_dot_binary-dump_slash_test = (utilities_dot_binary-dump // {
+    pname = "utilities.binary-dump/test";
+    systems = [ "utilities.binary-dump/test" "utilities.binary-dump" ];
+    lispLibs = [ alexandria fiveam let-plus nibbles split-sequence ];
+  });
   utilities_dot_print-items = {
     pname = "utilities.print-items";
     createAsd = false;
@@ -54226,6 +60006,11 @@ rec {
     systems = [ "utilities.print-items" ];
     lispLibs = [ alexandria ];
   };
+  utilities_dot_print-items_slash_test = (utilities_dot_print-items // {
+    pname = "utilities.print-items/test";
+    systems = [ "utilities.print-items/test" "utilities.print-items" ];
+    lispLibs = [ fiveam ];
+  });
   utilities_dot_print-tree = {
     pname = "utilities.print-tree";
     createAsd = false;
@@ -54239,6 +60024,11 @@ rec {
     systems = [ "utilities.print-tree" ];
     lispLibs = [ alexandria uiop ];
   };
+  utilities_dot_print-tree_slash_test = (utilities_dot_print-tree // {
+    pname = "utilities.print-tree/test";
+    systems = [ "utilities.print-tree/test" "utilities.print-tree" ];
+    lispLibs = [ alexandria fiveam uiop ];
+  });
   utility = {
     pname = "utility";
     createAsd = false;
@@ -54317,6 +60107,11 @@ rec {
     systems = [ "utm-ups" ];
     lispLibs = [  ];
   };
+  utm-ups_slash_tests = (utm-ups // {
+    pname = "utm-ups/tests";
+    systems = [ "utm-ups/tests" "utm-ups" ];
+    lispLibs = [ fiveam ];
+  });
   uuid = {
     pname = "uuid";
     createAsd = false;
@@ -54343,6 +60138,11 @@ rec {
     systems = [ "validate-list" ];
     lispLibs = [ alexandria arithmetic-operators-as-words lisp-unit ];
   };
+  validate-list_slash_tests = (validate-list // {
+    pname = "validate-list/tests";
+    systems = [ "validate-list/tests" "validate-list" ];
+    lispLibs = [ lisp-unit ];
+  });
   varjo = {
     pname = "varjo";
     createAsd = false;
@@ -54850,6 +60650,11 @@ rec {
     systems = [ "vk" ];
     lispLibs = [ alexandria cffi rove ];
   };
+  vk_slash_tests = (vk // {
+    pname = "vk/tests";
+    systems = [ "vk/tests" "vk" ];
+    lispLibs = [ rove ];
+  });
   vom = {
     pname = "vom";
     createAsd = false;
@@ -54876,6 +60681,11 @@ rec {
     systems = [ "vom-json" ];
     lispLibs = [ jonathan local-time vom ];
   };
+  vom-json_slash_test = (vom-json // {
+    pname = "vom-json/test";
+    systems = [ "vom-json/test" "vom-json" ];
+    lispLibs = [ rove ];
+  });
   vp-trees = {
     pname = "vp-trees";
     createAsd = false;
@@ -54889,6 +60699,11 @@ rec {
     systems = [ "vp-trees" ];
     lispLibs = [  ];
   };
+  vp-trees_slash_tests = (vp-trees // {
+    pname = "vp-trees/tests";
+    systems = [ "vp-trees/tests" "vp-trees" ];
+    lispLibs = [ fiveam ];
+  });
   wallstreetflets = {
     pname = "wallstreetflets";
     createAsd = false;
@@ -54915,6 +60730,11 @@ rec {
     systems = [ "wasm-encoder" ];
     lispLibs = [ agutil alexandria babel flexi-streams generic-cl ieee-floats trivia ];
   };
+  wasm-encoder_slash_test = (wasm-encoder // {
+    pname = "wasm-encoder/test";
+    systems = [ "wasm-encoder/test" "wasm-encoder" ];
+    lispLibs = [ fiveam ];
+  });
   water = {
     pname = "water";
     createAsd = false;
@@ -55201,6 +61021,19 @@ rec {
     systems = [ "whofields" ];
     lispLibs = [ asdf-package-system cl-who ];
   };
+  whofields_slash_test = {
+    pname = "whofields/test";
+    createAsd = false;
+    version = "20211020-git";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/whofields/2021-10-20/whofields-20211020-git.tgz";
+      sha256 = "1scpzzfdw5g7qsayhznjyzns8lxx4fvv2jxd0vr9vnxad3vm977x";
+      system = "whofields/test";
+      asd = "whofields";
+    });
+    systems = [ "whofields/test" ];
+    lispLibs = [  ];
+  };
   foo-wild = {
     pname = "foo-wild";
     createAsd = false;
@@ -55227,6 +61060,11 @@ rec {
     systems = [ "wild-package-inferred-system" ];
     lispLibs = [  ];
   };
+  wild-package-inferred-system_slash_test = (wild-package-inferred-system // {
+    pname = "wild-package-inferred-system/test";
+    systems = [ "wild-package-inferred-system/test" "wild-package-inferred-system" ];
+    lispLibs = [ fiveam ];
+  });
   winhttp = {
     pname = "winhttp";
     createAsd = false;
@@ -55253,6 +61091,11 @@ rec {
     systems = [ "winlock" ];
     lispLibs = [ cffi named-readtables serapeum ];
   };
+  winlock_slash_test = (winlock // {
+    pname = "winlock/test";
+    systems = [ "winlock/test" "winlock" ];
+    lispLibs = [ fiveam ];
+  });
   with-c-syntax = {
     pname = "with-c-syntax";
     createAsd = false;
@@ -55461,6 +61304,11 @@ rec {
     systems = [ "workout-timer" ];
     lispLibs = [ cffi-toolchain command-line-arguments local-time mixalot mixalot-vorbis vorbisfile-ffi ];
   };
+  workout-timer_slash_static = (workout-timer // {
+    pname = "workout-timer/static";
+    systems = [ "workout-timer/static" "workout-timer" ];
+    lispLibs = [ cffi-toolchain ];
+  });
   wu-decimal = {
     pname = "wu-decimal";
     createAsd = false;
@@ -55669,6 +61517,11 @@ rec {
     systems = [ "xml-emitter" ];
     lispLibs = [ cl-utilities ];
   };
+  xml-emitter_slash_tests = (xml-emitter // {
+    pname = "xml-emitter/tests";
+    systems = [ "xml-emitter/tests" "xml-emitter" ];
+    lispLibs = [ _1am ];
+  });
   xml-mop = {
     pname = "xml-mop";
     createAsd = false;
@@ -55708,6 +61561,11 @@ rec {
     systems = [ "xml.location-and-local-time" ];
     lispLibs = [ local-time xml_dot_location ];
   };
+  xml_dot_location_slash_test = (xml_dot_location // {
+    pname = "xml.location/test";
+    systems = [ "xml.location/test" "xml.location" ];
+    lispLibs = [ lift ];
+  });
   xmls = {
     pname = "xmls";
     createAsd = false;
@@ -55721,6 +61579,21 @@ rec {
     systems = [ "xmls" ];
     lispLibs = [  ];
   };
+  xmls_slash_octets = (xmls // {
+    pname = "xmls/octets";
+    systems = [ "xmls/octets" "xmls" ];
+    lispLibs = [ cl-ppcre flexi-streams ];
+  });
+  xmls_slash_test = (xmls // {
+    pname = "xmls/test";
+    systems = [ "xmls/test" "xmls" ];
+    lispLibs = [  ];
+  });
+  xmls_slash_unit-test = (xmls // {
+    pname = "xmls/unit-test";
+    systems = [ "xmls/unit-test" "xmls" ];
+    lispLibs = [ fiveam ];
+  });
   xptest = {
     pname = "xptest";
     createAsd = false;
@@ -55786,6 +61659,11 @@ rec {
     systems = [ "yaclml" ];
     lispLibs = [ arnesi iterate ];
   };
+  yaclml_slash_test = (yaclml // {
+    pname = "yaclml/test";
+    systems = [ "yaclml/test" "yaclml" ];
+    lispLibs = [ fiveam ];
+  });
   yason = {
     pname = "yason";
     createAsd = false;

@@ -5,6 +5,6 @@ in
 
 pkgs.mkShell {
   buildInputs = [
-    (nix-cl.sbclWithPackages (ps: with ps; [ str dexador cl-ppcre sqlite ]))
+    (nix-cl.sbclWithPackages (ps: with ps; [ alexandria str dexador cl-ppcre sqlite ]))
   ];
 }
