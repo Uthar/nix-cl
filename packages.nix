@@ -238,6 +238,7 @@ let
                                        :toplevel #'nyxt:entry-point)
     '';
 
+    # Run with WEBKIT_FORCE_SANDBOX=0 if getting a runtime error in webkitgtk-2.34.4
     installPhase = ql.nyxt.installPhase + ''
       rm -v $out/nyxt
       mkdir -p $out/bin
@@ -246,7 +247,6 @@ let
         --prefix LD_LIBRARY_PATH : $LD_LIBRARY_PATH \
         --prefix XDG_DATA_DIRS : $XDG_ICON_DIRS \
         --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
-        --set WEBKIT_FORCE_SANDBOX 0 \
         --prefix GIO_EXTRA_MODULES ":" ${pkgs.dconf.lib}/lib/gio/modules/ \
         --prefix GIO_EXTRA_MODULES ":" ${pkgs.glib-networking}/lib/gio/modules/
     '';
