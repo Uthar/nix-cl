@@ -120,16 +120,16 @@
 
 (defun parse-systems ()
   (loop for system in *systems*
-        for master-system = (first (str:split "/" system))
+        for master = (system-master system)
         for asd = (find-asd system)
-        for create-asd? = (unless (string= asd master-system) asd)
+        for missing-asd = (unless (string= asd master) asd)
         for project = (find-project system)
         for release = (find-release (getf project :project))
         for deps = (getf project :deps)
-        collect `(:asd ,(if create-asd? system asd)
+        collect `(:asd ,asd
                   :system ,system
                   :deps ,deps
-                  :create-asd? ,create-asd?
+                  :missing-asd ,missing-asd
                   :url ,(getf release :url)
                   :sha1 ,(getf release :sha1)
                   :version ,(getf release :version))))
@@ -163,10 +163,10 @@
          for system = (getf pkg :system)
          for deps = (remove-if (lambda (dep) (string= dep "asdf")) (getf pkg :deps))
          for url = (getf pkg :url)
-         for create-asd? = (getf pkg :create-asd?)
+         for missing-asd = (getf pkg :missing-asd)
          for sha256 = (nix-prefetch-tarball url)
          for version = (getf pkg :version)
-         collect (make-nix-package asd system create-asd? version url sha256 deps))))
+         collect (make-nix-package asd system missing-asd version url sha256 deps))))
 
 (defun system-master (system)
   (first (str:split "/" system)))
@@ -174,7 +174,7 @@
 (defun slashy? (system)
   (str:contains? "/" system))
 
-(defun make-nix-package (asd system create-asd? version url sha256 deps)
+(defun make-nix-package (asd system missing-asd version url sha256 deps)
   (let ((master (system-master system)))
     (cond ((and (slashy? system)
                 (find master deps :test #'string=))
@@ -209,8 +209,8 @@
                           ((:attrs
                             . (("url" . (:string . ,url))
                                ("sha256" . (:string . ,sha256))
-                               ("system" . (:string . ,system))
-                               ("asd" . (:string . ,(or create-asd? asd)))))))))
+                               ("system" . (:string . ,master))
+                               ("asd" . (:string . ,(or missing-asd asd)))))))))
                    ("systems" . (:list . ((:string . ,system))))
                    ("lispLibs" . (:list . ,(mapcar (lambda (dep) `(:symbol . ,dep)) deps))))))))))
 

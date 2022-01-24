@@ -46,7 +46,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/3b-bmfont/2020-04-27/3b-bmfont-20200427-git.tgz";
       sha256 = "12sgf7m0h6fqzhvkas7vmci6mprj3j3fnz778jlbqbsydln6v2yc";
-      system = "3b-bmfont/common";
+      system = "3b-bmfont";
       asd = "3b-bmfont";
     });
     systems = [ "3b-bmfont/common" ];
@@ -58,7 +58,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/3b-bmfont/2020-04-27/3b-bmfont-20200427-git.tgz";
       sha256 = "12sgf7m0h6fqzhvkas7vmci6mprj3j3fnz778jlbqbsydln6v2yc";
-      system = "3b-bmfont/json";
+      system = "3b-bmfont";
       asd = "3b-bmfont";
     });
     systems = [ "3b-bmfont/json" ];
@@ -70,7 +70,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/3b-bmfont/2020-04-27/3b-bmfont-20200427-git.tgz";
       sha256 = "12sgf7m0h6fqzhvkas7vmci6mprj3j3fnz778jlbqbsydln6v2yc";
-      system = "3b-bmfont/text";
+      system = "3b-bmfont";
       asd = "3b-bmfont";
     });
     systems = [ "3b-bmfont/text" ];
@@ -82,7 +82,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/3b-bmfont/2020-04-27/3b-bmfont-20200427-git.tgz";
       sha256 = "12sgf7m0h6fqzhvkas7vmci6mprj3j3fnz778jlbqbsydln6v2yc";
-      system = "3b-bmfont/xml";
+      system = "3b-bmfont";
       asd = "3b-bmfont";
     });
     systems = [ "3b-bmfont/xml" ];
@@ -1293,7 +1293,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/asdf-finalizers/2017-04-03/asdf-finalizers-20170403-git.tgz";
       sha256 = "1w56c9yjjydjshsgqxz57qlp2v3r4ilbisnsgiqphvxnhvd41y0v";
-      system = "asdf-finalizers-test/1";
+      system = "asdf-finalizers-test";
       asd = "asdf-finalizers-test";
     });
     systems = [ "asdf-finalizers-test/1" ];
@@ -1305,7 +1305,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/asdf-finalizers/2017-04-03/asdf-finalizers-20170403-git.tgz";
       sha256 = "1w56c9yjjydjshsgqxz57qlp2v3r4ilbisnsgiqphvxnhvd41y0v";
-      system = "asdf-finalizers-test/2";
+      system = "asdf-finalizers-test";
       asd = "asdf-finalizers-test";
     });
     systems = [ "asdf-finalizers-test/2" ];
@@ -2044,7 +2044,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/binpack/2020-12-20/binpack-20201220-git.tgz";
       sha256 = "1vp69dyvcgrbqr14mhs3z246kp6x57bpw8p8rgvjd87xb86gnzzq";
-      system = "binpack-test/2";
+      system = "binpack-test";
       asd = "binpack-test";
     });
     systems = [ "binpack-test/2" ];
@@ -2056,7 +2056,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/binpack/2020-12-20/binpack-20201220-git.tgz";
       sha256 = "1vp69dyvcgrbqr14mhs3z246kp6x57bpw8p8rgvjd87xb86gnzzq";
-      system = "binpack-test/common";
+      system = "binpack-test";
       asd = "binpack-test";
     });
     systems = [ "binpack-test/common" ];
@@ -2068,7 +2068,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/binpack/2020-12-20/binpack-20201220-git.tgz";
       sha256 = "1vp69dyvcgrbqr14mhs3z246kp6x57bpw8p8rgvjd87xb86gnzzq";
-      system = "binpack/2";
+      system = "binpack";
       asd = "binpack";
     });
     systems = [ "binpack/2" ];
@@ -3681,7 +3681,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
       sha256 = "17ryim4xilb1rzxydfr7595dnhqkk02lmrbkqrkvi9091shi4cj3";
-      system = "cffi-tests/example";
+      system = "cffi-tests";
       asd = "cffi-tests";
     });
     systems = [ "cffi-tests/example" ];
@@ -4249,7 +4249,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl+ssl/2021-12-30/cl+ssl-20211230-git.tgz";
       sha256 = "0y5k9d2h9j38g4jgifi996w1sfz5gr8325x4vm2wgmrca27s561x";
-      system = "cl+ssl/config";
+      system = "cl+ssl";
       asd = "cl+ssl";
     });
     systems = [ "cl+ssl/config" ];
@@ -5853,7 +5853,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-capstone/2020-10-16/cl-capstone-20201016-git.tgz";
       sha256 = "0xysxiv385m3rs3m62xpsrrdf32j6778bpkydr4j0vc3p9dfv52j";
-      system = "capstone/raw";
+      system = "capstone";
       asd = "capstone";
     });
     systems = [ "capstone/raw" ];
@@ -5865,7 +5865,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-capstone/2020-10-16/cl-capstone-20201016-git.tgz";
       sha256 = "0xysxiv385m3rs3m62xpsrrdf32j6778bpkydr4j0vc3p9dfv52j";
-      system = "capstone/raw-test";
+      system = "capstone";
       asd = "capstone";
     });
     systems = [ "capstone/raw-test" ];
@@ -13258,7 +13258,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-html-readme/2021-02-28/cl-html-readme-quicklisp-current-release-fa304a63-git.tgz";
       sha256 = "01z2ykfhg7wx7sz4kp1c6cj9ffbpppnfgfd2jpizd7f5id2wi3cb";
-      system = "cl-html-readme/doc";
+      system = "cl-html-readme";
       asd = "cl-html-readme";
     });
     systems = [ "cl-html-readme/doc" ];
@@ -13270,7 +13270,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-html-readme/2021-02-28/cl-html-readme-quicklisp-current-release-fa304a63-git.tgz";
       sha256 = "01z2ykfhg7wx7sz4kp1c6cj9ffbpppnfgfd2jpizd7f5id2wi3cb";
-      system = "cl-html-readme/test";
+      system = "cl-html-readme";
       asd = "cl-html-readme";
     });
     systems = [ "cl-html-readme/test" ];
@@ -13801,7 +13801,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-json-pointer/2021-04-11/cl-json-pointer-20210411-git.tgz";
       sha256 = "0mmi8v7b4584cxc6176rsa0w4jmcw8pd3zhxrc3qwnv9g126n33g";
-      system = "cl-json-pointer/core";
+      system = "cl-json-pointer";
       asd = "cl-json-pointer";
     });
     systems = [ "cl-json-pointer/core" ];
@@ -13813,7 +13813,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-json-pointer/2021-04-11/cl-json-pointer-20210411-git.tgz";
       sha256 = "0mmi8v7b4584cxc6176rsa0w4jmcw8pd3zhxrc3qwnv9g126n33g";
-      system = "cl-json-pointer/st-json-support";
+      system = "cl-json-pointer";
       asd = "cl-json-pointer";
     });
     systems = [ "cl-json-pointer/st-json-support" ];
@@ -14056,7 +14056,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-kraken/2021-12-30/cl-kraken-20211230-git.tgz";
       sha256 = "1nnyi9xpb59nxyzby5yhjvyxr8dx5x9xa705igbrvggghg27z4kp";
-      system = "cl-kraken/tests";
+      system = "cl-kraken";
       asd = "cl-kraken";
     });
     systems = [ "cl-kraken/tests" ];
@@ -16724,7 +16724,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-opengl/2019-11-30/cl-opengl-20191130-git.tgz";
       sha256 = "0mhqmll09f079pnd6mgswz9nvr6h5n27d4q7zpmm2igf1v460id7";
-      system = "cl-opengl/es2";
+      system = "cl-opengl";
       asd = "cl-opengl";
     });
     systems = [ "cl-opengl/es2" ];
@@ -17822,7 +17822,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-python/2020-04-27/cl-python-20200427-git.tgz";
       sha256 = "17j1n60yhc4cdxwbzbmjxk8dywx3my34k8b1gpiwxpq6jgzbh46c";
-      system = "clpython/basic";
+      system = "clpython";
       asd = "clpython";
     });
     systems = [ "clpython/basic" ];
@@ -17834,7 +17834,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-python/2020-04-27/cl-python-20200427-git.tgz";
       sha256 = "17j1n60yhc4cdxwbzbmjxk8dywx3my34k8b1gpiwxpq6jgzbh46c";
-      system = "clpython/compiler";
+      system = "clpython";
       asd = "clpython";
     });
     systems = [ "clpython/compiler" ];
@@ -17846,7 +17846,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-python/2020-04-27/cl-python-20200427-git.tgz";
       sha256 = "17j1n60yhc4cdxwbzbmjxk8dywx3my34k8b1gpiwxpq6jgzbh46c";
-      system = "clpython/contrib";
+      system = "clpython";
       asd = "clpython";
     });
     systems = [ "clpython/contrib" ];
@@ -17858,7 +17858,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-python/2020-04-27/cl-python-20200427-git.tgz";
       sha256 = "17j1n60yhc4cdxwbzbmjxk8dywx3my34k8b1gpiwxpq6jgzbh46c";
-      system = "clpython/lib";
+      system = "clpython";
       asd = "clpython";
     });
     systems = [ "clpython/lib" ];
@@ -17870,7 +17870,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-python/2020-04-27/cl-python-20200427-git.tgz";
       sha256 = "17j1n60yhc4cdxwbzbmjxk8dywx3my34k8b1gpiwxpq6jgzbh46c";
-      system = "clpython/parser";
+      system = "clpython";
       asd = "clpython";
     });
     systems = [ "clpython/parser" ];
@@ -17882,7 +17882,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-python/2020-04-27/cl-python-20200427-git.tgz";
       sha256 = "17j1n60yhc4cdxwbzbmjxk8dywx3my34k8b1gpiwxpq6jgzbh46c";
-      system = "clpython/runtime";
+      system = "clpython";
       asd = "clpython";
     });
     systems = [ "clpython/runtime" ];
@@ -18677,7 +18677,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-scripting/2021-10-20/cl-scripting-20211020-git.tgz";
       sha256 = "1xi8klkn4fhmcrnhxzxvl0rj68dc7az6l2hc10560g9jvblcmmpp";
-      system = "cl-scripting/test";
+      system = "cl-scripting";
       asd = "cl-scripting";
     });
     systems = [ "cl-scripting/test" ];
@@ -19062,7 +19062,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-skkserv/2020-12-20/cl-skkserv-20201220-git.tgz";
       sha256 = "1khbfsvf70dyrrkbwcblzd6bkgx1z6k9ras57inmv2lqqr93m5l4";
-      system = "cl-skkserv/core";
+      system = "cl-skkserv";
       asd = "cl-skkserv";
     });
     systems = [ "cl-skkserv/core" ];
@@ -19074,7 +19074,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-skkserv/2020-12-20/cl-skkserv-20201220-git.tgz";
       sha256 = "1khbfsvf70dyrrkbwcblzd6bkgx1z6k9ras57inmv2lqqr93m5l4";
-      system = "cl-skkserv/google-ime";
+      system = "cl-skkserv";
       asd = "cl-skkserv";
     });
     systems = [ "cl-skkserv/google-ime" ];
@@ -19086,7 +19086,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-skkserv/2020-12-20/cl-skkserv-20201220-git.tgz";
       sha256 = "1khbfsvf70dyrrkbwcblzd6bkgx1z6k9ras57inmv2lqqr93m5l4";
-      system = "cl-skkserv/mixed";
+      system = "cl-skkserv";
       asd = "cl-skkserv";
     });
     systems = [ "cl-skkserv/mixed" ];
@@ -19098,7 +19098,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-skkserv/2020-12-20/cl-skkserv-20201220-git.tgz";
       sha256 = "1khbfsvf70dyrrkbwcblzd6bkgx1z6k9ras57inmv2lqqr93m5l4";
-      system = "cl-skkserv/skk";
+      system = "cl-skkserv";
       asd = "cl-skkserv";
     });
     systems = [ "cl-skkserv/skk" ];
@@ -20417,7 +20417,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-unicode/2021-02-28/cl-unicode-20210228-git.tgz";
       sha256 = "1a9gbzvi5gj3z9gcia1rgmnk0dzgc82vz47bgnfvhn4q0c7mvk31";
-      system = "cl-unicode/base";
+      system = "cl-unicode";
       asd = "cl-unicode";
     });
     systems = [ "cl-unicode/base" ];
@@ -20429,7 +20429,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-unicode/2021-02-28/cl-unicode-20210228-git.tgz";
       sha256 = "1a9gbzvi5gj3z9gcia1rgmnk0dzgc82vz47bgnfvhn4q0c7mvk31";
-      system = "cl-unicode/build";
+      system = "cl-unicode";
       asd = "cl-unicode";
     });
     systems = [ "cl-unicode/build" ];
@@ -21732,7 +21732,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/claw/2020-10-16/claw-stable-git.tgz";
       sha256 = "146yv0hc4hmk72562ssj2d41143pp84dcbd1h7f4nx1c7hf2bb0d";
-      system = "claw/cffi";
+      system = "claw";
       asd = "claw";
     });
     systems = [ "claw/cffi" ];
@@ -21744,7 +21744,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/claw/2020-10-16/claw-stable-git.tgz";
       sha256 = "146yv0hc4hmk72562ssj2d41143pp84dcbd1h7f4nx1c7hf2bb0d";
-      system = "claw/spec";
+      system = "claw";
       asd = "claw";
     });
     systems = [ "claw/spec" ];
@@ -21756,7 +21756,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/claw/2020-10-16/claw-stable-git.tgz";
       sha256 = "146yv0hc4hmk72562ssj2d41143pp84dcbd1h7f4nx1c7hf2bb0d";
-      system = "claw/util";
+      system = "claw";
       asd = "claw";
     });
     systems = [ "claw/util" ];
@@ -21768,7 +21768,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/claw/2020-10-16/claw-stable-git.tgz";
       sha256 = "146yv0hc4hmk72562ssj2d41143pp84dcbd1h7f4nx1c7hf2bb0d";
-      system = "claw/wrapper";
+      system = "claw";
       asd = "claw";
     });
     systems = [ "claw/wrapper" ];
@@ -24825,7 +24825,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cxml/2020-06-10/cxml-20200610-git.tgz";
       sha256 = "18fls3bx7vmnxfa6qara8fxp316d8kb3izar0kysvqg6l0a45a51";
-      system = "cxml/dom";
+      system = "cxml";
       asd = "cxml";
     });
     systems = [ "cxml/dom" ];
@@ -24837,7 +24837,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cxml/2020-06-10/cxml-20200610-git.tgz";
       sha256 = "18fls3bx7vmnxfa6qara8fxp316d8kb3izar0kysvqg6l0a45a51";
-      system = "cxml/klacks";
+      system = "cxml";
       asd = "cxml";
     });
     systems = [ "cxml/klacks" ];
@@ -24849,7 +24849,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cxml/2020-06-10/cxml-20200610-git.tgz";
       sha256 = "18fls3bx7vmnxfa6qara8fxp316d8kb3izar0kysvqg6l0a45a51";
-      system = "cxml/test";
+      system = "cxml";
       asd = "cxml";
     });
     systems = [ "cxml/test" ];
@@ -24861,7 +24861,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cxml/2020-06-10/cxml-20200610-git.tgz";
       sha256 = "18fls3bx7vmnxfa6qara8fxp316d8kb3izar0kysvqg6l0a45a51";
-      system = "cxml/xml";
+      system = "cxml";
       asd = "cxml";
     });
     systems = [ "cxml/xml" ];
@@ -26520,7 +26520,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/dufy/2021-05-31/dufy-20210531-git.tgz";
       sha256 = "10qyrc5xkivwm6xmcfls1alad83ck7b2yyxbnhgc2vmnrk6j1012";
-      system = "dufy/core";
+      system = "dufy";
       asd = "dufy";
     });
     systems = [ "dufy/core" ];
@@ -26537,7 +26537,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/dufy/2021-05-31/dufy-20210531-git.tgz";
       sha256 = "10qyrc5xkivwm6xmcfls1alad83ck7b2yyxbnhgc2vmnrk6j1012";
-      system = "dufy/extra-data";
+      system = "dufy";
       asd = "dufy";
     });
     systems = [ "dufy/extra-data" ];
@@ -26549,7 +26549,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/dufy/2021-05-31/dufy-20210531-git.tgz";
       sha256 = "10qyrc5xkivwm6xmcfls1alad83ck7b2yyxbnhgc2vmnrk6j1012";
-      system = "dufy/hsluv";
+      system = "dufy";
       asd = "dufy";
     });
     systems = [ "dufy/hsluv" ];
@@ -26561,7 +26561,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/dufy/2021-05-31/dufy-20210531-git.tgz";
       sha256 = "10qyrc5xkivwm6xmcfls1alad83ck7b2yyxbnhgc2vmnrk6j1012";
-      system = "dufy/internal";
+      system = "dufy";
       asd = "dufy";
     });
     systems = [ "dufy/internal" ];
@@ -26573,7 +26573,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/dufy/2021-05-31/dufy-20210531-git.tgz";
       sha256 = "10qyrc5xkivwm6xmcfls1alad83ck7b2yyxbnhgc2vmnrk6j1012";
-      system = "dufy/munsell";
+      system = "dufy";
       asd = "dufy";
     });
     systems = [ "dufy/munsell" ];
@@ -26758,7 +26758,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
       sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
-      system = "easy-audio/ape";
+      system = "easy-audio";
       asd = "easy-audio";
     });
     systems = [ "easy-audio/ape" ];
@@ -26770,7 +26770,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
       sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
-      system = "easy-audio/bitreader";
+      system = "easy-audio";
       asd = "easy-audio";
     });
     systems = [ "easy-audio/bitreader" ];
@@ -26782,7 +26782,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
       sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
-      system = "easy-audio/core";
+      system = "easy-audio";
       asd = "easy-audio";
     });
     systems = [ "easy-audio/core" ];
@@ -26799,7 +26799,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
       sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
-      system = "easy-audio/general-decoders";
+      system = "easy-audio";
       asd = "easy-audio";
     });
     systems = [ "easy-audio/general-decoders" ];
@@ -26811,7 +26811,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
       sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
-      system = "easy-audio/ogg";
+      system = "easy-audio";
       asd = "easy-audio";
     });
     systems = [ "easy-audio/ogg" ];
@@ -26828,7 +26828,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
       sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
-      system = "easy-audio/utils";
+      system = "easy-audio";
       asd = "easy-audio";
     });
     systems = [ "easy-audio/utils" ];
@@ -26840,7 +26840,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/easy-audio/2021-12-09/easy-audio-20211209-git.tgz";
       sha256 = "14gv0c6b03bf15ppypnbq2q6awghqs0hiwx1kncz8q265nvzxjai";
-      system = "easy-audio/wv";
+      system = "easy-audio";
       asd = "easy-audio";
     });
     systems = [ "easy-audio/wv" ];
@@ -27975,7 +27975,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
       sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
-      system = "lapack/complex";
+      system = "lapack";
       asd = "lapack";
     });
     systems = [ "lapack/complex" ];
@@ -27987,7 +27987,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
       sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
-      system = "lapack/package";
+      system = "lapack";
       asd = "lapack";
     });
     systems = [ "lapack/package" ];
@@ -27999,7 +27999,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
       sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
-      system = "lapack/real";
+      system = "lapack";
       asd = "lapack";
     });
     systems = [ "lapack/real" ];
@@ -28050,7 +28050,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
       sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
-      system = "odepack/blas-util";
+      system = "odepack";
       asd = "odepack";
     });
     systems = [ "odepack/blas-util" ];
@@ -28062,7 +28062,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
       sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
-      system = "odepack/lsoda";
+      system = "odepack";
       asd = "odepack";
     });
     systems = [ "odepack/lsoda" ];
@@ -28074,7 +28074,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
       sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
-      system = "odepack/lsoda-demo";
+      system = "odepack";
       asd = "odepack";
     });
     systems = [ "odepack/lsoda-demo" ];
@@ -28086,7 +28086,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
       sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
-      system = "odepack/lsodar";
+      system = "odepack";
       asd = "odepack";
     });
     systems = [ "odepack/lsodar" ];
@@ -28098,7 +28098,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
       sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
-      system = "odepack/lsodar-demo";
+      system = "odepack";
       asd = "odepack";
     });
     systems = [ "odepack/lsodar-demo" ];
@@ -28110,7 +28110,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
       sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
-      system = "odepack/lsode";
+      system = "odepack";
       asd = "odepack";
     });
     systems = [ "odepack/lsode" ];
@@ -28122,7 +28122,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
       sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
-      system = "odepack/lsode-demo";
+      system = "odepack";
       asd = "odepack";
     });
     systems = [ "odepack/lsode-demo" ];
@@ -28154,7 +28154,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
       sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
-      system = "odepack/package";
+      system = "odepack";
       asd = "odepack";
     });
     systems = [ "odepack/package" ];
@@ -28178,7 +28178,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/f2cl/2020-09-25/f2cl-20200925-git.tgz";
       sha256 = "0kq1lrz0sg4kj64w0ysihnfwi65pami362fs2mvpyf1yhgxmq08y";
-      system = "quadpack/mach-par";
+      system = "quadpack";
       asd = "quadpack";
     });
     systems = [ "quadpack/mach-par" ];
@@ -29231,7 +29231,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/fof/2021-12-30/fof-20211230-git.tgz";
       sha256 = "0ipy51q2fw03xk9rqcyzbq2b9c32npc1gl3c53rdjywpak7zwwg6";
-      system = "fof/mf";
+      system = "fof";
       asd = "fof";
     });
     systems = [ "fof/mf" ];
@@ -29716,7 +29716,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/fresnel/2021-12-30/fresnel-20211230-git.tgz";
       sha256 = "0whxhnfnjpyqfxadvbwk8m0bxjcdqa9rm1w851fh85q9c6mg9kfr";
-      system = "fresnel/readtable";
+      system = "fresnel";
       asd = "fresnel";
     });
     systems = [ "fresnel/readtable" ];
@@ -29962,7 +29962,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/fxml/2021-02-28/fxml-20210228-git.tgz";
       sha256 = "1vxdb1cjjqi986f72bggnw1s4yzv12g4li7vn4y49b6lphshr8lm";
-      system = "fxml/dom";
+      system = "fxml";
       asd = "fxml";
     });
     systems = [ "fxml/dom" ];
@@ -29979,7 +29979,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/fxml/2021-02-28/fxml-20210228-git.tgz";
       sha256 = "1vxdb1cjjqi986f72bggnw1s4yzv12g4li7vn4y49b6lphshr8lm";
-      system = "fxml/klacks";
+      system = "fxml";
       asd = "fxml";
     });
     systems = [ "fxml/klacks" ];
@@ -29991,7 +29991,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/fxml/2021-02-28/fxml-20210228-git.tgz";
       sha256 = "1vxdb1cjjqi986f72bggnw1s4yzv12g4li7vn4y49b6lphshr8lm";
-      system = "fxml/runes";
+      system = "fxml";
       asd = "fxml";
     });
     systems = [ "fxml/runes" ];
@@ -30023,7 +30023,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/fxml/2021-02-28/fxml-20210228-git.tgz";
       sha256 = "1vxdb1cjjqi986f72bggnw1s4yzv12g4li7vn4y49b6lphshr8lm";
-      system = "fxml/xml";
+      system = "fxml";
       asd = "fxml";
     });
     systems = [ "fxml/xml" ];
@@ -31320,7 +31320,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/gtirb/2021-10-20/gtirb-quicklisp-dd18337d-git.tgz";
       sha256 = "0dpchsshnlh3jb9rg1zdf63mr5l33vhjdxgxx2vqg0nh1sh41zn1";
-      system = "gtirb/run-dot";
+      system = "gtirb";
       asd = "gtirb";
     });
     systems = [ "gtirb/run-dot" ];
@@ -31332,7 +31332,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/gtirb/2021-10-20/gtirb-quicklisp-dd18337d-git.tgz";
       sha256 = "0dpchsshnlh3jb9rg1zdf63mr5l33vhjdxgxx2vqg0nh1sh41zn1";
-      system = "gtirb/run-update";
+      system = "gtirb";
       asd = "gtirb";
     });
     systems = [ "gtirb/run-update" ];
@@ -32173,7 +32173,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/hu.dwim.def/2021-12-30/hu.dwim.def-stable-git.tgz";
       sha256 = "1scjj9g2bn58l8i1g1brdqzrajy4bb63dqkwlcydcvk36iskpyab";
-      system = "hu.dwim.def/documentation";
+      system = "hu.dwim.def";
       asd = "hu.dwim.def";
     });
     systems = [ "hu.dwim.def/documentation" ];
@@ -32190,7 +32190,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/hu.dwim.def/2021-12-30/hu.dwim.def-stable-git.tgz";
       sha256 = "1scjj9g2bn58l8i1g1brdqzrajy4bb63dqkwlcydcvk36iskpyab";
-      system = "hu.dwim.def/test";
+      system = "hu.dwim.def";
       asd = "hu.dwim.def";
     });
     systems = [ "hu.dwim.def/test" ];
@@ -33222,7 +33222,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/hu.dwim.util/2021-12-30/hu.dwim.util-stable-git.tgz";
       sha256 = "01f0kvvaa94zkz5zzfaf8cbiihlp0l6627q3hmc0k154j3mdarmi";
-      system = "hu.dwim.util/temporary-files";
+      system = "hu.dwim.util";
       asd = "hu.dwim.util";
     });
     systems = [ "hu.dwim.util/temporary-files" ];
@@ -34259,7 +34259,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
       sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
-      system = "iolib/multiplex";
+      system = "iolib";
       asd = "iolib";
     });
     systems = [ "iolib/multiplex" ];
@@ -34271,7 +34271,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
       sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
-      system = "iolib/os";
+      system = "iolib";
       asd = "iolib";
     });
     systems = [ "iolib/os" ];
@@ -34283,7 +34283,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
       sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
-      system = "iolib/pathnames";
+      system = "iolib";
       asd = "iolib";
     });
     systems = [ "iolib/pathnames" ];
@@ -34295,7 +34295,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
       sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
-      system = "iolib/sockets";
+      system = "iolib";
       asd = "iolib";
     });
     systems = [ "iolib/sockets" ];
@@ -34307,7 +34307,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
       sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
-      system = "iolib/streams";
+      system = "iolib";
       asd = "iolib";
     });
     systems = [ "iolib/streams" ];
@@ -34319,7 +34319,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
       sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
-      system = "iolib/syscalls";
+      system = "iolib";
       asd = "iolib";
     });
     systems = [ "iolib/syscalls" ];
@@ -34336,7 +34336,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
       sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
-      system = "iolib/trivial-sockets";
+      system = "iolib";
       asd = "iolib";
     });
     systems = [ "iolib/trivial-sockets" ];
@@ -34348,7 +34348,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/iolib/2021-06-30/iolib-v0.8.4.tgz";
       sha256 = "1f43jqqqwp9n7xksqxw91myapsdbc2dxck6nd6flakbnp9haylyq";
-      system = "iolib/zstreams";
+      system = "iolib";
       asd = "iolib";
     });
     systems = [ "iolib/zstreams" ];
@@ -34420,7 +34420,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/aead/eax";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/aead/eax" ];
@@ -34432,7 +34432,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/aead/etm";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/aead/etm" ];
@@ -34444,7 +34444,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/aead/gcm";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/aead/gcm" ];
@@ -34456,7 +34456,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/aeads";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/aeads" ];
@@ -34468,7 +34468,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/aes";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/aes" ];
@@ -34480,7 +34480,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/arcfour";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/arcfour" ];
@@ -34492,7 +34492,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/aria";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/aria" ];
@@ -34504,7 +34504,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/blowfish";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/blowfish" ];
@@ -34516,7 +34516,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/camellia";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/camellia" ];
@@ -34528,7 +34528,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/cast5";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/cast5" ];
@@ -34540,7 +34540,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/chacha";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/chacha" ];
@@ -34552,7 +34552,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/des";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/des" ];
@@ -34564,7 +34564,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/idea";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/idea" ];
@@ -34576,7 +34576,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/kalyna";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/kalyna" ];
@@ -34588,7 +34588,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/keystream";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/keystream" ];
@@ -34600,7 +34600,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/kuznyechik";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/kuznyechik" ];
@@ -34612,7 +34612,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/misty1";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/misty1" ];
@@ -34624,7 +34624,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/rc2";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/rc2" ];
@@ -34636,7 +34636,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/rc5";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/rc5" ];
@@ -34648,7 +34648,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/rc6";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/rc6" ];
@@ -34660,7 +34660,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/salsa20";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/salsa20" ];
@@ -34672,7 +34672,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/seed";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/seed" ];
@@ -34684,7 +34684,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/serpent";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/serpent" ];
@@ -34696,7 +34696,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/sm4";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/sm4" ];
@@ -34708,7 +34708,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/sosemanuk";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/sosemanuk" ];
@@ -34720,7 +34720,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/square";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/square" ];
@@ -34732,7 +34732,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/tea";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/tea" ];
@@ -34744,7 +34744,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/threefish";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/threefish" ];
@@ -34756,7 +34756,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/twofish";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/twofish" ];
@@ -34768,7 +34768,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/xchacha";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/xchacha" ];
@@ -34780,7 +34780,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/xor";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/xor" ];
@@ -34792,7 +34792,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/xsalsa20";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/xsalsa20" ];
@@ -34804,7 +34804,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/cipher/xtea";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/cipher/xtea" ];
@@ -34816,7 +34816,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/ciphers";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/ciphers" ];
@@ -34828,7 +34828,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/core";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/core" ];
@@ -34840,7 +34840,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/adler32";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/adler32" ];
@@ -34852,7 +34852,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/blake2";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/blake2" ];
@@ -34864,7 +34864,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/blake2s";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/blake2s" ];
@@ -34876,7 +34876,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/crc24";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/crc24" ];
@@ -34888,7 +34888,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/crc32";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/crc32" ];
@@ -34900,7 +34900,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/groestl";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/groestl" ];
@@ -34912,7 +34912,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/jh";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/jh" ];
@@ -34924,7 +34924,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/kupyna";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/kupyna" ];
@@ -34936,7 +34936,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/md2";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/md2" ];
@@ -34948,7 +34948,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/md4";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/md4" ];
@@ -34960,7 +34960,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/md5";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/md5" ];
@@ -34972,7 +34972,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/ripemd-128";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/ripemd-128" ];
@@ -34984,7 +34984,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/ripemd-160";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/ripemd-160" ];
@@ -34996,7 +34996,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/sha1";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/sha1" ];
@@ -35008,7 +35008,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/sha256";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/sha256" ];
@@ -35020,7 +35020,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/sha3";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/sha3" ];
@@ -35032,7 +35032,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/sha512";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/sha512" ];
@@ -35044,7 +35044,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/skein";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/skein" ];
@@ -35056,7 +35056,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/sm3";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/sm3" ];
@@ -35068,7 +35068,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/streebog";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/streebog" ];
@@ -35080,7 +35080,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/tiger";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/tiger" ];
@@ -35092,7 +35092,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/tree-hash";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/tree-hash" ];
@@ -35104,7 +35104,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digest/whirlpool";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digest/whirlpool" ];
@@ -35116,7 +35116,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/digests";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/digests" ];
@@ -35128,7 +35128,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/kdf/argon2";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/kdf/argon2" ];
@@ -35140,7 +35140,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/kdf/bcrypt";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/kdf/bcrypt" ];
@@ -35152,7 +35152,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/kdf/hmac";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/kdf/hmac" ];
@@ -35164,7 +35164,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/kdf/password-hash";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/kdf/password-hash" ];
@@ -35176,7 +35176,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/kdf/pkcs5";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/kdf/pkcs5" ];
@@ -35188,7 +35188,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/kdf/scrypt";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/kdf/scrypt" ];
@@ -35200,7 +35200,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/kdfs";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/kdfs" ];
@@ -35212,7 +35212,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/mac/blake2-mac";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/mac/blake2-mac" ];
@@ -35224,7 +35224,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/mac/blake2s-mac";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/mac/blake2s-mac" ];
@@ -35236,7 +35236,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/mac/cmac";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/mac/cmac" ];
@@ -35248,7 +35248,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/mac/gmac";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/mac/gmac" ];
@@ -35260,7 +35260,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/mac/hmac";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/mac/hmac" ];
@@ -35272,7 +35272,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/mac/poly1305";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/mac/poly1305" ];
@@ -35284,7 +35284,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/mac/siphash";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/mac/siphash" ];
@@ -35296,7 +35296,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/mac/skein-mac";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/mac/skein-mac" ];
@@ -35308,7 +35308,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/macs";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/macs" ];
@@ -35320,7 +35320,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/prng/fortuna";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/prng/fortuna" ];
@@ -35332,7 +35332,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/prngs";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/prngs" ];
@@ -35344,7 +35344,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/public-key/curve25519";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/public-key/curve25519" ];
@@ -35356,7 +35356,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/public-key/curve448";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/public-key/curve448" ];
@@ -35368,7 +35368,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/public-key/dsa";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/public-key/dsa" ];
@@ -35380,7 +35380,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/public-key/ed25519";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/public-key/ed25519" ];
@@ -35392,7 +35392,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/public-key/ed448";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/public-key/ed448" ];
@@ -35404,7 +35404,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/public-key/elgamal";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/public-key/elgamal" ];
@@ -35416,7 +35416,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/public-key/rsa";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/public-key/rsa" ];
@@ -35428,7 +35428,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/public-key/secp256k1";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/public-key/secp256k1" ];
@@ -35440,7 +35440,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/public-key/secp256r1";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/public-key/secp256r1" ];
@@ -35452,7 +35452,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/public-key/secp384r1";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/public-key/secp384r1" ];
@@ -35464,7 +35464,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/public-key/secp521r1";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/public-key/secp521r1" ];
@@ -35476,7 +35476,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/ironclad/2021-10-20/ironclad-v0.56.tgz";
       sha256 = "0dhakily94vswl8a6q9ad0af8nk4pnvfgx7sw9kxl1wdq1pkg3ni";
-      system = "ironclad/public-keys";
+      system = "ironclad";
       asd = "ironclad";
     });
     systems = [ "ironclad/public-keys" ];
@@ -36060,7 +36060,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/keystone/2020-04-27/keystone-20200427-git.tgz";
       sha256 = "04fczbkihf87qyp9f1sv45h69xrvdmcmxkv4m868q8zqw6z48hlj";
-      system = "keystone/raw";
+      system = "keystone";
       asd = "keystone";
     });
     systems = [ "keystone/raw" ];
@@ -36072,7 +36072,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/keystone/2020-04-27/keystone-20200427-git.tgz";
       sha256 = "04fczbkihf87qyp9f1sv45h69xrvdmcmxkv4m868q8zqw6z48hlj";
-      system = "keystone/raw-test";
+      system = "keystone";
       asd = "keystone";
     });
     systems = [ "keystone/raw-test" ];
@@ -37319,7 +37319,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/lisp-chat/2021-02-28/lisp-chat-20210228-git.tgz";
       sha256 = "0gh78lb6m2790j5z64qij6v1s5yr501idbppg2ccyayl4f8bdpzi";
-      system = "lisp-chat/client";
+      system = "lisp-chat";
       asd = "lisp-chat";
     });
     systems = [ "lisp-chat/client" ];
@@ -37331,7 +37331,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/lisp-chat/2021-02-28/lisp-chat-20210228-git.tgz";
       sha256 = "0gh78lb6m2790j5z64qij6v1s5yr501idbppg2ccyayl4f8bdpzi";
-      system = "lisp-chat/server";
+      system = "lisp-chat";
       asd = "lisp-chat";
     });
     systems = [ "lisp-chat/server" ];
@@ -37432,7 +37432,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/lisp-interface-library/2021-12-30/lisp-interface-library-20211230-git.tgz";
       sha256 = "0cd6109pzz9b4z0r0b7ibmmaph802ddpzfkk416snfn1mkrdn0gn";
-      system = "lil/test";
+      system = "lil";
       asd = "lil";
     });
     systems = [ "lil/test" ];
@@ -38598,7 +38598,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/lsx/2021-10-20/lsx-20211020-git.tgz";
       sha256 = "1wghn6fy2jk8xwr69bk3ykj8mgwq4qmif87k9zqpvvx7yfb9x46k";
-      system = "lsx/tests";
+      system = "lsx";
       asd = "lsx";
     });
     systems = [ "lsx/tests" ];
@@ -38848,7 +38848,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/magicl/2021-04-11/magicl-v0.9.1.tgz";
       sha256 = "0x9p55qin399jhr5md88nij8fv78b64xjhww7ys364pkjnx8ak9v";
-      system = "magicl/core";
+      system = "magicl";
       asd = "magicl";
     });
     systems = [ "magicl/core" ];
@@ -38860,7 +38860,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/magicl/2021-04-11/magicl-v0.9.1.tgz";
       sha256 = "0x9p55qin399jhr5md88nij8fv78b64xjhww7ys364pkjnx8ak9v";
-      system = "magicl/ext";
+      system = "magicl";
       asd = "magicl";
     });
     systems = [ "magicl/ext" ];
@@ -38872,7 +38872,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/magicl/2021-04-11/magicl-v0.9.1.tgz";
       sha256 = "0x9p55qin399jhr5md88nij8fv78b64xjhww7ys364pkjnx8ak9v";
-      system = "magicl/ext-blas";
+      system = "magicl";
       asd = "magicl";
     });
     systems = [ "magicl/ext-blas" ];
@@ -38884,7 +38884,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/magicl/2021-04-11/magicl-v0.9.1.tgz";
       sha256 = "0x9p55qin399jhr5md88nij8fv78b64xjhww7ys364pkjnx8ak9v";
-      system = "magicl/ext-expokit";
+      system = "magicl";
       asd = "magicl";
     });
     systems = [ "magicl/ext-expokit" ];
@@ -38896,7 +38896,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/magicl/2021-04-11/magicl-v0.9.1.tgz";
       sha256 = "0x9p55qin399jhr5md88nij8fv78b64xjhww7ys364pkjnx8ak9v";
-      system = "magicl/ext-lapack";
+      system = "magicl";
       asd = "magicl";
     });
     systems = [ "magicl/ext-lapack" ];
@@ -39556,7 +39556,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
       sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
-      system = "math/2d-array";
+      system = "math";
       asd = "math";
     });
     systems = [ "math/2d-array" ];
@@ -39568,7 +39568,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
       sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
-      system = "math/appr";
+      system = "math";
       asd = "math";
     });
     systems = [ "math/appr" ];
@@ -39580,7 +39580,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
       sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
-      system = "math/arr-matr";
+      system = "math";
       asd = "math";
     });
     systems = [ "math/arr-matr" ];
@@ -39592,7 +39592,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
       sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
-      system = "math/coord";
+      system = "math";
       asd = "math";
     });
     systems = [ "math/coord" ];
@@ -39604,7 +39604,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
       sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
-      system = "math/core";
+      system = "math";
       asd = "math";
     });
     systems = [ "math/core" ];
@@ -39621,7 +39621,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
       sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
-      system = "math/geom";
+      system = "math";
       asd = "math";
     });
     systems = [ "math/geom" ];
@@ -39633,7 +39633,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
       sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
-      system = "math/gnuplot";
+      system = "math";
       asd = "math";
     });
     systems = [ "math/gnuplot" ];
@@ -39645,7 +39645,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
       sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
-      system = "math/list-matr";
+      system = "math";
       asd = "math";
     });
     systems = [ "math/list-matr" ];
@@ -39657,7 +39657,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
       sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
-      system = "math/ls-gauss";
+      system = "math";
       asd = "math";
     });
     systems = [ "math/ls-gauss" ];
@@ -39669,7 +39669,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
       sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
-      system = "math/ls-rotation";
+      system = "math";
       asd = "math";
     });
     systems = [ "math/ls-rotation" ];
@@ -39686,7 +39686,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
       sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
-      system = "math/smooth";
+      system = "math";
       asd = "math";
     });
     systems = [ "math/smooth" ];
@@ -39698,7 +39698,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/math/2021-12-30/math-20211230-git.tgz";
       sha256 = "0h4zxc3z7k34396085shx2wikppqh8zf2d45i55s65whv7hh04vk";
-      system = "math/stat";
+      system = "math";
       asd = "math";
     });
     systems = [ "math/stat" ];
@@ -39883,7 +39883,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
       sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
-      system = "clim-examples/superapp";
+      system = "clim-examples";
       asd = "clim-examples";
     });
     systems = [ "clim-examples/superapp" ];
@@ -40076,7 +40076,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
       sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
-      system = "mcclim-bezier/clx";
+      system = "mcclim-bezier";
       asd = "mcclim-bezier";
     });
     systems = [ "mcclim-bezier/clx" ];
@@ -40088,7 +40088,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
       sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
-      system = "mcclim-bezier/core";
+      system = "mcclim-bezier";
       asd = "mcclim-bezier";
     });
     systems = [ "mcclim-bezier/core" ];
@@ -40160,7 +40160,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
       sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
-      system = "mcclim-fonts/truetype";
+      system = "mcclim-fonts";
       asd = "mcclim-fonts";
     });
     systems = [ "mcclim-fonts/truetype" ];
@@ -40208,7 +40208,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
       sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
-      system = "mcclim-layouts/tab";
+      system = "mcclim-layouts";
       asd = "mcclim-layouts";
     });
     systems = [ "mcclim-layouts/tab" ];
@@ -40273,7 +40273,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
       sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
-      system = "mcclim/extensions";
+      system = "mcclim";
       asd = "mcclim";
     });
     systems = [ "mcclim/extensions" ];
@@ -40285,7 +40285,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
       sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
-      system = "mcclim/looks";
+      system = "mcclim";
       asd = "mcclim";
     });
     systems = [ "mcclim/looks" ];
@@ -40331,7 +40331,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mcclim/2021-12-30/mcclim-20211230-git.tgz";
       sha256 = "1fhlx5v027a3yxmxkv0pm6kgyd895598cjgs0f5dc96wjilqc04x";
-      system = "scigraph/dwim";
+      system = "scigraph";
       asd = "scigraph";
     });
     systems = [ "scigraph/dwim" ];
@@ -40574,7 +40574,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/metatilities/2018-02-28/metatilities-20180228-git.tgz";
       sha256 = "0vqhndnhrv40ixkj5lslr0h2fy79609gi0wgbqzcz82vkyx9d6vd";
-      system = "metatilities/with-lift";
+      system = "metatilities";
       asd = "metatilities";
     });
     systems = [ "metatilities/with-lift" ];
@@ -41106,7 +41106,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-graph/2021-10-20/mnas-graph-20211020-git.tgz";
       sha256 = "17xw5m5mhsv50kqlchbgqrxfjfmv84s7mrd320x8yw4yn2fsp4wi";
-      system = "mnas-graph/core";
+      system = "mnas-graph";
       asd = "mnas-graph";
     });
     systems = [ "mnas-graph/core" ];
@@ -41118,7 +41118,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-graph/2021-10-20/mnas-graph-20211020-git.tgz";
       sha256 = "17xw5m5mhsv50kqlchbgqrxfjfmv84s7mrd320x8yw4yn2fsp4wi";
-      system = "mnas-graph/demos";
+      system = "mnas-graph";
       asd = "mnas-graph";
     });
     systems = [ "mnas-graph/demos" ];
@@ -41135,7 +41135,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-graph/2021-10-20/mnas-graph-20211020-git.tgz";
       sha256 = "17xw5m5mhsv50kqlchbgqrxfjfmv84s7mrd320x8yw4yn2fsp4wi";
-      system = "mnas-graph/filter";
+      system = "mnas-graph";
       asd = "mnas-graph";
     });
     systems = [ "mnas-graph/filter" ];
@@ -41147,7 +41147,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-graph/2021-10-20/mnas-graph-20211020-git.tgz";
       sha256 = "17xw5m5mhsv50kqlchbgqrxfjfmv84s7mrd320x8yw4yn2fsp4wi";
-      system = "mnas-graph/printer-viewer";
+      system = "mnas-graph";
       asd = "mnas-graph";
     });
     systems = [ "mnas-graph/printer-viewer" ];
@@ -41164,7 +41164,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-graph/2021-10-20/mnas-graph-20211020-git.tgz";
       sha256 = "17xw5m5mhsv50kqlchbgqrxfjfmv84s7mrd320x8yw4yn2fsp4wi";
-      system = "mnas-graph/view";
+      system = "mnas-graph";
       asd = "mnas-graph";
     });
     systems = [ "mnas-graph/view" ];
@@ -41215,7 +41215,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
       sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
-      system = "mnas-package/example";
+      system = "mnas-package";
       asd = "mnas-package";
     });
     systems = [ "mnas-package/example" ];
@@ -41227,7 +41227,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
       sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
-      system = "mnas-package/make";
+      system = "mnas-package";
       asd = "mnas-package";
     });
     systems = [ "mnas-package/make" ];
@@ -41239,7 +41239,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
       sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
-      system = "mnas-package/obj";
+      system = "mnas-package";
       asd = "mnas-package";
     });
     systems = [ "mnas-package/obj" ];
@@ -41251,7 +41251,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
       sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
-      system = "mnas-package/pkg";
+      system = "mnas-package";
       asd = "mnas-package";
     });
     systems = [ "mnas-package/pkg" ];
@@ -41263,7 +41263,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
       sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
-      system = "mnas-package/sec";
+      system = "mnas-package";
       asd = "mnas-package";
     });
     systems = [ "mnas-package/sec" ];
@@ -41275,7 +41275,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
       sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
-      system = "mnas-package/sys";
+      system = "mnas-package";
       asd = "mnas-package";
     });
     systems = [ "mnas-package/sys" ];
@@ -41292,7 +41292,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-package/2021-12-09/mnas-package-20211209-git.tgz";
       sha256 = "0c77qqlxms3wmw5zmiqy8bqxn9g8jvj2m2sxivr0pjj3wamcgxhw";
-      system = "mnas-package/view";
+      system = "mnas-package";
       asd = "mnas-package";
     });
     systems = [ "mnas-package/view" ];
@@ -41333,7 +41333,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-string/2021-12-30/mnas-string-20211230-git.tgz";
       sha256 = "0r68hqmfr49j8p234mxczvx71vb5znxp86dwq61bgkail5xbp45d";
-      system = "mnas-string/core";
+      system = "mnas-string";
       asd = "mnas-string";
     });
     systems = [ "mnas-string/core" ];
@@ -41345,7 +41345,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-string/2021-12-30/mnas-string-20211230-git.tgz";
       sha256 = "0r68hqmfr49j8p234mxczvx71vb5znxp86dwq61bgkail5xbp45d";
-      system = "mnas-string/db";
+      system = "mnas-string";
       asd = "mnas-string";
     });
     systems = [ "mnas-string/db" ];
@@ -41362,7 +41362,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-string/2021-12-30/mnas-string-20211230-git.tgz";
       sha256 = "0r68hqmfr49j8p234mxczvx71vb5znxp86dwq61bgkail5xbp45d";
-      system = "mnas-string/parse";
+      system = "mnas-string";
       asd = "mnas-string";
     });
     systems = [ "mnas-string/parse" ];
@@ -41374,7 +41374,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-string/2021-12-30/mnas-string-20211230-git.tgz";
       sha256 = "0r68hqmfr49j8p234mxczvx71vb5znxp86dwq61bgkail5xbp45d";
-      system = "mnas-string/print";
+      system = "mnas-string";
       asd = "mnas-string";
     });
     systems = [ "mnas-string/print" ];
@@ -41391,7 +41391,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/mnas-string/2021-12-30/mnas-string-20211230-git.tgz";
       sha256 = "0r68hqmfr49j8p234mxczvx71vb5znxp86dwq61bgkail5xbp45d";
-      system = "mnas-string/translit";
+      system = "mnas-string";
       asd = "mnas-string";
     });
     systems = [ "mnas-string/translit" ];
@@ -42743,7 +42743,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/analysis";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/analysis" ];
@@ -42760,7 +42760,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/class-star";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/class-star" ];
@@ -42772,7 +42772,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/class-star/tests";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/class-star/tests" ];
@@ -42784,7 +42784,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/clean-fasls";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/clean-fasls" ];
@@ -42796,7 +42796,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/download-manager";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/download-manager" ];
@@ -42808,7 +42808,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/download-manager/tests";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/download-manager/tests" ];
@@ -42840,7 +42840,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/history-tree";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/history-tree" ];
@@ -42852,7 +42852,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/history-tree/tests";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/history-tree/tests" ];
@@ -42864,7 +42864,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/keymap";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/keymap" ];
@@ -42876,7 +42876,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/keymap/tests";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/keymap/tests" ];
@@ -42888,7 +42888,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/ospm";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/ospm" ];
@@ -42900,7 +42900,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/ospm/tests";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/ospm/tests" ];
@@ -42912,7 +42912,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/password-manager";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/password-manager" ];
@@ -42924,7 +42924,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/prompter";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/prompter" ];
@@ -42936,7 +42936,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/prompter/tests";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/prompter/tests" ];
@@ -42948,7 +42948,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/submodules";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/submodules" ];
@@ -42965,7 +42965,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/text-buffer";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/text-buffer" ];
@@ -42977,7 +42977,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/theme";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/theme" ];
@@ -42989,7 +42989,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/theme/tests";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/theme/tests" ];
@@ -43001,7 +43001,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/nyxt/2021-12-30/nyxt-20211230-git.tgz";
       sha256 = "1r8fvjgrn79ylsj34gf2kkimmw6xhmd8y2afkly1bibgyz8xc9bd";
-      system = "nyxt/user-interface";
+      system = "nyxt";
       asd = "nyxt";
     });
     systems = [ "nyxt/user-interface" ];
@@ -44624,7 +44624,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/phoe-toolbox/2021-01-24/phoe-toolbox-20210124-git.tgz";
       sha256 = "0bzbgs4lkhw93y1cwrs9kp5yiyz8sg4885cnvi83dzzbla9b74kv";
-      system = "phoe-toolbox/bag";
+      system = "phoe-toolbox";
       asd = "phoe-toolbox";
     });
     systems = [ "phoe-toolbox/bag" ];
@@ -44865,7 +44865,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/plot/2021-12-09/plot-20211209-git.tgz";
       sha256 = "1bcsv37kszjhqd93njn51k0ss4gn8l2v9vh4f7n64jhyh3s0a5b8";
-      system = "plot/text";
+      system = "plot";
       asd = "plot";
     });
     systems = [ "plot/text" ];
@@ -46024,7 +46024,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
       sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
-      system = "protest/1am";
+      system = "protest";
       asd = "protest";
     });
     systems = [ "protest/1am" ];
@@ -46036,7 +46036,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
       sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
-      system = "protest/base";
+      system = "protest";
       asd = "protest";
     });
     systems = [ "protest/base" ];
@@ -46048,7 +46048,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
       sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
-      system = "protest/common";
+      system = "protest";
       asd = "protest";
     });
     systems = [ "protest/common" ];
@@ -46060,7 +46060,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
       sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
-      system = "protest/common/addressed";
+      system = "protest";
       asd = "protest";
     });
     systems = [ "protest/common/addressed" ];
@@ -46072,7 +46072,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
       sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
-      system = "protest/common/date";
+      system = "protest";
       asd = "protest";
     });
     systems = [ "protest/common/date" ];
@@ -46084,7 +46084,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
       sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
-      system = "protest/common/handling";
+      system = "protest";
       asd = "protest";
     });
     systems = [ "protest/common/handling" ];
@@ -46096,7 +46096,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
       sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
-      system = "protest/common/killable";
+      system = "protest";
       asd = "protest";
     });
     systems = [ "protest/common/killable" ];
@@ -46108,7 +46108,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
       sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
-      system = "protest/common/named";
+      system = "protest";
       asd = "protest";
     });
     systems = [ "protest/common/named" ];
@@ -46120,7 +46120,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
       sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
-      system = "protest/ftype";
+      system = "protest";
       asd = "protest";
     });
     systems = [ "protest/ftype" ];
@@ -46132,7 +46132,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
       sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
-      system = "protest/parachute";
+      system = "protest";
       asd = "protest";
     });
     systems = [ "protest/parachute" ];
@@ -46144,7 +46144,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
       sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
-      system = "protest/protocol";
+      system = "protest";
       asd = "protest";
     });
     systems = [ "protest/protocol" ];
@@ -46161,7 +46161,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/protest/2020-12-20/protest-20201220-git.tgz";
       sha256 = "0q7vk7ji4mjd0xfp18sim5daqzgb3k7mmbm93vvwz18bdwy6cj9h";
-      system = "protest/test-case";
+      system = "protest";
       asd = "protest";
     });
     systems = [ "protest/test-case" ];
@@ -46524,7 +46524,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/qlot/2021-12-09/qlot-20211209-git.tgz";
       sha256 = "0iaq4ri590z05254r9dn1cwsd5ha1n0bmj4m1a93f1m8zsk59pwy";
-      system = "qlot/command";
+      system = "qlot";
       asd = "qlot";
     });
     systems = [ "qlot/command" ];
@@ -48818,7 +48818,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/rfc2109/2015-12-18/rfc2109-20151218-darcs.tgz";
       sha256 = "1y767qjv5jxyfqzp0zpw96yz95mb8hhpjj9dn2i6b92r0z2vr42d";
-      system = "rfc2109/test";
+      system = "rfc2109";
       asd = "rfc2109";
     });
     systems = [ "rfc2109/test" ];
@@ -49734,7 +49734,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
       sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
-      system = "software-evolution-library/deploy-tree-sitter-interface";
+      system = "software-evolution-library";
       asd = "software-evolution-library";
     });
     systems = [ "software-evolution-library/deploy-tree-sitter-interface" ];
@@ -49746,7 +49746,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
       sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
-      system = "software-evolution-library/run-dump-store";
+      system = "software-evolution-library";
       asd = "software-evolution-library";
     });
     systems = [ "software-evolution-library/run-dump-store" ];
@@ -49758,7 +49758,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
       sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
-      system = "software-evolution-library/run-rest-server";
+      system = "software-evolution-library";
       asd = "software-evolution-library";
     });
     systems = [ "software-evolution-library/run-rest-server" ];
@@ -49770,7 +49770,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
       sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
-      system = "software-evolution-library/run-test-parse";
+      system = "software-evolution-library";
       asd = "software-evolution-library";
     });
     systems = [ "software-evolution-library/run-test-parse" ];
@@ -49782,7 +49782,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
       sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
-      system = "software-evolution-library/run-tree-sitter-interface";
+      system = "software-evolution-library";
       asd = "software-evolution-library";
     });
     systems = [ "software-evolution-library/run-tree-sitter-interface" ];
@@ -49794,7 +49794,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
       sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
-      system = "software-evolution-library/run-tree-sitter-py-generator";
+      system = "software-evolution-library";
       asd = "software-evolution-library";
     });
     systems = [ "software-evolution-library/run-tree-sitter-py-generator" ];
@@ -49806,7 +49806,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
       sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
-      system = "software-evolution-library/terminal";
+      system = "software-evolution-library";
       asd = "software-evolution-library";
     });
     systems = [ "software-evolution-library/terminal" ];
@@ -49818,7 +49818,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/sel/2021-12-30/sel-20211230-git.tgz";
       sha256 = "0rmgigkx09w2zv06wz6l6iwyg8kyczklr3mnssh1985d5w778psb";
-      system = "software-evolution-library/utility/fare-qq";
+      system = "software-evolution-library";
       asd = "software-evolution-library";
     });
     systems = [ "software-evolution-library/utility/fare-qq" ];
@@ -50193,7 +50193,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/shop3/2021-12-09/shop3-20211209-git.tgz";
       sha256 = "0gw5z70pk0ddjihsikzqd8xzraa21lnndggnsgqh3wg9npgmxifd";
-      system = "shop3/common";
+      system = "shop3";
       asd = "shop3";
     });
     systems = [ "shop3/common" ];
@@ -50220,7 +50220,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/shop3/2021-12-09/shop3-20211209-git.tgz";
       sha256 = "0gw5z70pk0ddjihsikzqd8xzraa21lnndggnsgqh3wg9npgmxifd";
-      system = "shop3/test-unifier";
+      system = "shop3";
       asd = "shop3";
     });
     systems = [ "shop3/test-unifier" ];
@@ -50232,7 +50232,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/shop3/2021-12-09/shop3-20211209-git.tgz";
       sha256 = "0gw5z70pk0ddjihsikzqd8xzraa21lnndggnsgqh3wg9npgmxifd";
-      system = "shop3/theorem-prover";
+      system = "shop3";
       asd = "shop3";
     });
     systems = [ "shop3/theorem-prover" ];
@@ -50244,7 +50244,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/shop3/2021-12-09/shop3-20211209-git.tgz";
       sha256 = "0gw5z70pk0ddjihsikzqd8xzraa21lnndggnsgqh3wg9npgmxifd";
-      system = "shop3/unifier";
+      system = "shop3";
       asd = "shop3";
     });
     systems = [ "shop3/unifier" ];
@@ -51409,7 +51409,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/spell/2019-03-07/spell-20190307-git.tgz";
       sha256 = "1ifhx5q0iz80i9zwgcpv3w7xpp92ar9grz25008wnqzaayhfl020";
-      system = "spell/simple";
+      system = "spell";
       asd = "spell";
     });
     systems = [ "spell/simple" ];
@@ -56512,7 +56512,7 @@ rec {
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/whofields/2021-10-20/whofields-20211020-git.tgz";
       sha256 = "1scpzzfdw5g7qsayhznjyzns8lxx4fvv2jxd0vr9vnxad3vm977x";
-      system = "whofields/test";
+      system = "whofields";
       asd = "whofields";
     });
     systems = [ "whofields/test" ];
