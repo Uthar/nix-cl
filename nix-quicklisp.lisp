@@ -197,7 +197,8 @@
                                       (string= x "asdf")))
                                 (union
                                  (getf (find-project master) :deps)
-                                 deps :key #'string)))))))))))
+                                 deps
+                                 :test #'string=)))))))))))
           (t
            `(,system
              . (:attrs
