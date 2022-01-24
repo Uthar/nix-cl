@@ -44,6 +44,13 @@
 (defun nix-list (things)
   (format nil "[ ~{~A~^ ~} ]" (mapcar 'nix-eval things)))
 
+;; Path names are alphanumeric and can include the symbols +-._?= and
+;; must not begin with a period.
+(defun make-pname (string)
+  (replace-regexes '("^[.]" "[^a-zA-Z0-9+-._?=]")
+                   '("_" "_")
+                   string))
+
 (defvar *nix-attrs-depth* 0)
 
 (defun nix-attrs (keyvals)
@@ -182,7 +189,7 @@
              . (:merge
                 . ((:symbol . ,master)
                    (:attrs
-                    . (("pname" . (:string . ,system))
+                    . (("pname" . (:string . ,(make-pname system)))
                        ("systems"
                         . (:list
                            . ((:string . ,master)
@@ -202,7 +209,7 @@
           (t
            `(,system
              . (:attrs
-                . (("pname" . (:string . ,system))
+                . (("pname" . (:string . ,(make-pname system)))
                    ("version" . (:string . ,version))
                    ("src"
                     . (:funcall
