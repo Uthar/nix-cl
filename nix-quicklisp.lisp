@@ -135,14 +135,12 @@
   (loop for system in *systems*
         for master = (system-master system)
         for asd = (find-asd system)
-        for missing-asd = (unless (string= asd master) asd)
         for project = (find-project system)
         for release = (find-release (getf project :project))
         for deps = (getf project :deps)
         collect `(:asd ,asd
                   :system ,system
                   :deps ,deps
-                  :missing-asd ,missing-asd
                   :url ,(getf release :url)
                   :sha1 ,(getf release :sha1)
                   :version ,(getf release :version))))
@@ -176,12 +174,11 @@
          for system = (getf pkg :system)
          for deps = (remove-if (lambda (dep) (string= dep "asdf")) (getf pkg :deps))
          for url = (getf pkg :url)
-         for missing-asd = (getf pkg :missing-asd)
          for sha256 = (nix-prefetch-tarball url)
          for version = (getf pkg :version)
-         collect (make-nix-package asd system missing-asd version url sha256 deps))))
+         collect (make-nix-package asd system version url sha256 deps))))
 
-(defun make-nix-package (asd system missing-asd version url sha256 deps)
+(defun make-nix-package (asd system version url sha256 deps)
   (let ((master (system-master system)))
     (cond ((and (slashy? system)
                 (find master deps :test #'string=))
@@ -218,7 +215,7 @@
                             . (("url" . (:string . ,url))
                                ("sha256" . (:string . ,sha256))
                                ("system" . (:string . ,master))
-                               ("asd" . (:string . ,(or missing-asd asd)))))))))
+                               ("asd" . (:string . ,asd))))))))
                    ("systems" . (:list . ((:string . ,system))))
                    ("lispLibs" . (:list . ,(mapcar (lambda (dep) `(:symbol . ,dep)) deps))))))))))
 
