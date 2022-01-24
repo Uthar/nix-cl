@@ -121,6 +121,12 @@
                          collect (third (str:words line)))
                    :test #'string=))
 
+(defun system-master (system)
+  (first (str:split "/" system)))
+
+(defun slashy? (system)
+  (str:contains? "/" system))
+
 (defun find-asd (system)
   "Find the asd to which `system` belongs."
   (getf (find-project system) :asd))
@@ -174,12 +180,6 @@
          for sha256 = (nix-prefetch-tarball url)
          for version = (getf pkg :version)
          collect (make-nix-package asd system missing-asd version url sha256 deps))))
-
-(defun system-master (system)
-  (first (str:split "/" system)))
-
-(defun slashy? (system)
-  (str:contains? "/" system))
 
 (defun make-nix-package (asd system missing-asd version url sha256 deps)
   (let ((master (system-master system)))
