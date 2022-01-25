@@ -157,6 +157,8 @@ let
             concatMapStringsSep "\\|" (replaceStrings ["." "+"] ["[.]" "[+]"]) systems;
         in
       ''
+        runHook preInstall
+
         mkdir -pv $out
         cp -r * $out
 
@@ -164,6 +166,8 @@ let
         find $out -name "*.asd" \
         | grep -v "/\(${mkSystemsRegex systems}\)\.asd$" \
         | xargs rm -fv || true
+
+        runHook postInstall
       '';
 
       # Not sure if it's needed, but caused problems with SBCL

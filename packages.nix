@@ -254,6 +254,44 @@ let
 
   nyxt = nyxt-gtk;
 
+  cotd = build-asdf-system {
+    pname = "cotd";
+    version = "2022-01-13";
+    src = builtins.fetchTarball {
+      url = "https://github.com/gwathlobal/CotD/archive/3d5faebfcba4e8884e5031e773dea38f5d013ef4.tar.gz";
+      sha256 = "03k0nhcgk99b3xby9c719xrxqfapvl345kdnji29l05y9xp080sr";
+    };
+
+    lispLibs = with ql; [
+      lispbuilder-sdl
+      bordeaux-threads
+      defenum
+      cl-store
+      log4cl
+    ];
+
+    patches = [ ./patches/cotd-runtime-dir.patch ];
+
+    buildInputs = [ pkgs.makeWrapper ];
+
+    buildScript = pkgs.writeText "build-nyxt.lisp" ''
+      (require :asdf)
+      (asdf:load-system :cotd)
+      (sb-ext:save-lisp-and-die "cotd" :executable t
+                                       #+sb-core-compression :compression
+                                       #+sb-core-compression t
+                                       :toplevel #'cotd:cotd-main)
+    '';
+
+    postInstall = ''
+      rm -v $out/cotd
+      mkdir -p $out/bin
+      cp -v cotd $out/bin
+      wrapProgram $out/bin/cotd \
+        --prefix LD_LIBRARY_PATH : $LD_LIBRARY_PATH
+    '';
+  };
+
   };
 
 in packages
