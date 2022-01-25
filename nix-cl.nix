@@ -26,10 +26,26 @@ let
         else foldl walk (acc ++ node.lispLibs) node.lispLibs;
     in unique (walk [] { inherit lispLibs; });
 
+  # Stolen from python-packages.nix
+  # Actually no idea how this works
+  makeOverridableLispPackage = f: origArgs:
+    let
+      ff = f origArgs;
+      overrideWith = newArgs: origArgs // (if pkgs.lib.isFunction newArgs then newArgs origArgs else newArgs);
+    in
+      if builtins.isAttrs ff then (ff // {
+        overrideLispAttrs = newArgs: makeOverridableLispPackage f (overrideWith newArgs);
+      })
+      else if builtins.isFunction ff then {
+        overrideLispAttrs = newArgs: makeOverridableLispPackage f (overrideWith newArgs);
+        __functor = self: ff;
+      }
+      else ff;
+
   #
   # Wrapper around stdenv.mkDerivation for building ASDF systems.
   #
-  build-asdf-system =
+  build-asdf-system = makeOverridableLispPackage (
     { pname,
       version,
       src ? null,
@@ -174,7 +190,7 @@ let
       dontStrip = true;
       dontFixup = true;
 
-    } // args);
+    } // args));
 
   # Need to do that because we always want to compile straight from
   # `src` for go-to-definition to work in SLIME.
