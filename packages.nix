@@ -50,7 +50,10 @@ let
     systems = [ "asdf" "uiop" ];
   };
 
-  uiop = asdf;
+  uiop = build-with-compile-into-pwd {
+    inherit (asdf) version src systems;
+    pname = "uiop";
+  };
 
   cffi = let
     jna = pkgs.fetchMavenArtifact {
