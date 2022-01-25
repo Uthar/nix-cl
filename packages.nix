@@ -127,6 +127,7 @@ let
       ql.closer-mop
     ];
     systems = [ "com.inuoe.jzon" ];
+    asd = "com.inuoe.jzon";
   };
 
   cl-notify = build-asdf-system {
