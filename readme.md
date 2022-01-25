@@ -76,7 +76,15 @@ export LD_LIBRARY_PATH='/nix/store/5fzyj1yc7vki7kxi9xp1jvdmj6ijmkqi-sqlite-3.35.
 exec "/nix/store/kaqv0iqv5kwrh3qq8z5n74x46sj2ra8k-sbcl-2.2.0/bin/sbcl"  "$@"
 ```
 
-ASDF is then able to find the system definition files and load the precompiled FASLs.
+ASDF is then able to find the system definition files and load the precompiled FASLs:
+
+```
+* (asdf:system-source-directory :sqlite)
+#P"/nix/store/4zxpi2vdb6wjbv8cxizzar1ilsmwn57c-sqlite-20190813-git/"
+* (asdf:system-source-directory :hunchentoot)
+#P"/nix/store/4n4gfjwb6zamb97ymx0963qdgbk6jlzz-hunchentoot-v1.3.0/"
+*
+```
 
 ### Supported Lisps
 
@@ -138,6 +146,8 @@ In particular I had such problems with `cl-ana`, `generic-cl`, among others.
 - https://github.com/SquircleSpace/ql2nix
 - https://github.com/NixOS/nixpkgs/tree/master/pkgs/development/lisp-modules
 - https://github.com/jasom/ql2nix
+- https://github.com/teu5us/cl2nix
+- https://git.sr.ht/~remexre/clnix
 
 ## license
 
