@@ -269,6 +269,49 @@ let
       pkg = substituteLib qlPkg;
     in pkg // { lispLibs = map substituteLib pkg.lispLibs; };
 
+  # FIXME move it out
+  setAttr = lib.setAttr;
+  getAttr = lib.getAttr;
+  hasAttr = lib.hasAttr;
+  attrNames = lib.attrNames;
+  attrValues = lib.attrValues;
+  filterAttrs = lib.filterAttrs;
+  mapAttrs = lib.mapAttrs;
+  concat = lib.concat;
+  id = lib.id;
+
+  frequencies = xs:
+    let
+      getFreq = x: freqs:
+        if hasAttr x freqs
+        then getAttr x freqs
+        else 0;
+      lp = xs: freqs:
+        if builtins.length xs == 0
+        then freqs
+        else
+          let
+            x = toString (head xs);
+          in lp (tail xs) (setAttr freqs x (1 + (getFreq x freqs)));
+    in lp xs {};
+
+  zipmap = ks: vs:
+    let
+      lp = ks: vs: attrs:
+        if length ks == 0
+        then attrs
+        else lp (tail ks) (tail vs) (setAttr attrs (head ks) (head vs));
+    in
+      assert length ks == length vs;
+      lp ks vs {};
+
+  contains = xs: x:
+    if length xs == 0
+    then false
+    else if (head xs) == x
+    then true
+    else contains (tail xs) x;
+
   # Creates a lisp wrapper with `packages` installed
   #
   # `packages` is a function that takes `clpkgs` - a set of lisp
