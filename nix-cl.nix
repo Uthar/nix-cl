@@ -328,21 +328,41 @@ let
       lispLibs =
         let
           libs = packages clpkgs;
-          asds = map (lib.getAttr "asd") (flattenedDeps libs);
+          asdCounts = frequencies (map (lib.getAttr "asd") (flattenedDeps libs));
+          duplicates = attrNames (filterAttrs (n: v: v > 1) asdCounts);
         in
-          if length asds == length (unique asds)
+          if length duplicates == 0
           then libs
           else throw ''
-            Duplicate .asd's in [ ${toString asds} ]
+            Duplicate .asd's: [ ${toString duplicates} ]
 
             This ambiguity will create loading problems where ASDF
             could try to compile into ${storeDir}.
 
-            This frequently happens with "slashy" systems.
+            This frequently happens when manually selecting slashy
+            systems in `packages`, because they conflict with the
+            auto-generated systems by providing the same asd files.
 
-            Instead of having multiple slashy systems in `lispLibs`,
-            have just the parent system, but with the desired slashy
-            systems appended to its `systems` via `overrideLispAttrs`.
+            Assuming these two possible scenarios:
+
+            1. Multiple "slashy" systems, belonging to the same parent
+               system, exist in `packages`.
+
+            2. A slashy system has been put in `packages`, such that
+               another system providing the same asd file exists
+               somewhere deeper in the dependency tree.
+
+            The following fixes can be attempted:
+
+            1. Instead of having multiple slashy systems in
+               `packages`, have just the parent system, but with the
+               desired slashy systems appended to its `systems` via
+               `overrideLispAttrs`.
+
+            2. Instead of having the slashy system in `packages`,
+               build a `lispPackages` where the parent system is
+               overridden to contain the slashy system in its
+               `systems`.
           '';
       buildInputs = with pkgs; [ makeWrapper ];
       systems = [];
