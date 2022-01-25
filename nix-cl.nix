@@ -333,37 +333,41 @@ let
         in
           if length duplicates == 0
           then libs
-          else throw ''
-            Duplicate .asd's: [ ${toString duplicates} ]
+          else
+            # For each duplicate asd:
+            # 1. Collect all `packages` providing that 'asd'
+            # 2. Merge their dependencies
+            # 3. Merge the system names
+            # 4. Collect a package with the merged dependencies and system names
+            # Create a package list where the relevant master packages
+            # are replaced with the collected package.
+            # Use that package list to create the lisp wrapper.
+            let
+              overrides =
+                map
+                  (asd:
+                    let
+                      providers = filter (lib: lib.asd == asd) libs;
+                      lispLibs = unique (concatMap (lib: lib.lispLibs) providers);
+                      systems = unique (concatMap (lib: lib.systems) providers);
+                      master =
+                        findFirst
+                          (x: x.pname == asd) # FIXME check nix pname rules
+                          (throw "No master system containing ${asd}")
+                          (attrValues clpkgs);
+                    in master.overrideLispAttrs (o: {
+                      inherit lispLibs;
+                      inherit systems;
+                    }))
+                  duplicates;
+              packages' =
+                (concat
+                  (filter (lib: !(contains duplicates lib.asd)) libs)
+                  overrides);
+            in
+              # FIXME: what about other packages that depend on thinkgs in `packages'`?
+              packages';
 
-            This ambiguity will create loading problems where ASDF
-            could try to compile into ${storeDir}.
-
-            This frequently happens when manually selecting slashy
-            systems in `packages`, because they conflict with the
-            auto-generated systems by providing the same asd files.
-
-            Assuming these two possible scenarios:
-
-            1. Multiple "slashy" systems, belonging to the same parent
-               system, exist in `packages`.
-
-            2. A slashy system has been put in `packages`, such that
-               another system providing the same asd file exists
-               somewhere deeper in the dependency tree.
-
-            The following fixes can be attempted:
-
-            1. Instead of having multiple slashy systems in
-               `packages`, have just the parent system, but with the
-               desired slashy systems appended to its `systems` via
-               `overrideLispAttrs`.
-
-            2. Instead of having the slashy system in `packages`,
-               build a `lispPackages` where the parent system is
-               overridden to contain the slashy system in its
-               `systems`.
-          '';
       buildInputs = with pkgs; [ makeWrapper ];
       systems = [];
     }).overrideAttrs(o: {
