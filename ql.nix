@@ -78,6 +78,9 @@ let
     sdl2 = pkg: {
       nativeLibs = [ SDL2 ];
     };
+    lispbuilder-sdl-cffi = pkg: {
+      nativeLibs = [ SDL ];
+    };
     cl-opengl = pkg: {
       nativeLibs = [ libGL ];
     };
