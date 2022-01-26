@@ -78,6 +78,27 @@ let
     then true
     else contains (tail xs) x;
 
+  # Return a modified dependency tree, where each lispLibs is the
+  # result of applying f to it
+  editTree = lispLibs: f:
+    let
+      editLib = lib:
+        if length lib.lispLibs == 0
+        then lib
+        else lib.overrideLispAttrs(o: {
+          lispLibs = map editLib (f o.lispLibs);
+        });
+      tmpPkg = build-asdf-system {
+        pname = "__editTree";
+        version = "__editTree";
+        lisp = "__editTree";
+        src = null;
+        systems = [];
+        inherit lispLibs;
+      };
+      fixed = editLib tmpPkg;
+    in fixed.lispLibs;
+
   # Returns a flattened dependency tree without duplicates
   flattenedDeps = lispLibs:
     let
@@ -346,7 +367,8 @@ let
       lispLibs =
         let
           libs = packages clpkgs;
-          asdCounts = frequencies (map (lib.getAttr "asd") (flattenedDeps libs));
+          libsFlat = flattenedDeps libs;
+          asdCounts = frequencies (map (lib.getAttr "asd") libsFlat);
           duplicates = attrNames (filterAttrs (n: v: v > 1) asdCounts);
         in
           if length duplicates == 0
@@ -361,11 +383,12 @@ let
             # are replaced with the collected package.
             # Use that package list to create the lisp wrapper.
             let
-              overrides =
-                map
+              overrides = zipmap
+                duplicates
+                (map
                   (asd:
                     let
-                      providers = filter (lib: lib.asd == asd) libs;
+                      providers = filter (lib: lib.asd == asd) libsFlat;
                       lispLibs = unique (concatMap (lib: lib.lispLibs) providers);
                       systems = unique (concatMap (lib: lib.systems) providers);
                       master =
@@ -377,14 +400,20 @@ let
                       inherit lispLibs;
                       inherit systems;
                     }))
-                  duplicates;
-              packages' =
-                (concat
-                  (filter (lib: !(contains duplicates lib.asd)) libs)
-                  overrides);
-            in
-              # FIXME: what about other packages that depend on thinkgs in `packages'`?
-              packages';
+                  duplicates);
+              # Edit dependency tree, replacing each thing that
+              # provides 'asd' with the corresponding 'override'
+              lispLibs' =
+                editTree
+                  libs
+                  (libs:
+                    map
+                      (lib:
+                        if contains duplicates lib.asd
+                        then getAttr lib.asd overrides
+                        else lib)
+                      libs);
+            in unique lispLibs';
 
       buildInputs = with pkgs; [ makeWrapper ];
       systems = [];
