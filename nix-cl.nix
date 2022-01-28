@@ -43,6 +43,7 @@ let
   inherit (builtins)
     head
     tail
+    elem
     split
     storeDir;
 
@@ -70,13 +71,6 @@ let
     in
       assert length ks == length vs;
       lp ks vs {};
-
-  contains = xs: x:
-    if length xs == 0
-    then false
-    else if (head xs) == x
-    then true
-    else contains (tail xs) x;
 
   # Return a modified dependency tree, where each lispLibs is the
   # result of applying f to it
@@ -372,7 +366,7 @@ let
         });
       overrides = zipmap duplicates (map combineSlashySubsystems duplicates);
       replaceLib = lib:
-        if contains duplicates lib.asd
+        if elem lib.asd duplicates
         then getAttr lib.asd overrides
         else lib;
       lispLibs' = editTree libs (map replaceLib);
