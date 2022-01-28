@@ -356,50 +356,27 @@ let
       libsFlat = flattenedDeps libs;
       asdCounts = frequencies (map (lib.getAttr "asd") libsFlat);
       duplicates = attrNames (filterAttrs (n: v: v > 1) asdCounts);
-    in
-      if length duplicates == 0
-      then libs
-      else
-        # For each duplicate asd:
-        # 1. Collect all `packages` providing that 'asd'
-        # 2. Merge their dependencies
-        # 3. Merge the system names
-        # 4. Collect a package with the merged dependencies and system names
-        # Create a package list where the relevant master packages
-        # are replaced with the collected package.
-        # Use that package list to create the lisp wrapper.
+      combineSlashySubsystems = asd:
         let
-          overrides = zipmap
-            duplicates
-            (map
-              (asd:
-                let
-                  providers = filter (lib: lib.asd == asd) libsFlat;
-                  lispLibs = unique (concatMap (lib: lib.lispLibs) providers);
-                  systems = unique (concatMap (lib: lib.systems) providers);
-                  master =
-                    findFirst
-                      (x: x.pname == asd) # FIXME check nix pname rules
-                      (throw "No master system containing ${asd}")
-                      (attrValues clpkgs);
-                in master.overrideLispAttrs (o: {
-                  inherit lispLibs;
-                  inherit systems;
-                }))
-              duplicates);
-          # Edit dependency tree, replacing each thing that
-          # provides 'asd' with the corresponding 'override'
-          lispLibs' =
-            editTree
-              libs
-              (libs:
-                map
-                  (lib:
-                    if contains duplicates lib.asd
-                    then getAttr lib.asd overrides
-                    else lib)
-                  libs);
-        in unique lispLibs';
+          providers = filter (lib: lib.asd == asd) libsFlat;
+          lispLibs = unique (concatMap (lib: lib.lispLibs) providers);
+          systems = unique (concatMap (lib: lib.systems) providers);
+          master =
+            findFirst
+              (x: x.pname == asd) # FIXME check nix pname rules
+              (throw "No master system containing ${asd}")
+              (attrValues clpkgs);
+        in master.overrideLispAttrs (o: {
+          inherit lispLibs;
+          inherit systems;
+        });
+      overrides = zipmap duplicates (map combineSlashySubsystems duplicates);
+      replaceLib = lib:
+        if contains duplicates lib.asd
+        then getAttr lib.asd overrides
+        else lib;
+      lispLibs' = editTree libs (map replaceLib);
+    in unique lispLibs';
 
   # Creates a lisp wrapper with `packages` installed
   #
