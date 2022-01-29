@@ -361,10 +361,13 @@ let
               (x: x.pname == asd) # FIXME check nix pname rules
               (throw "No master system containing ${asd}")
               (attrValues clpkgs);
-          asds = map (getAttr "asd") (flattenedDeps lispLibs);
+          mergedLibsFlat = flattenedDeps lispLibs;
+          mergedLibsAsds = map (getAttr "asd") mergedLibsFlat;
+          mergedLibsMap = zipmap mergedLibsAsds mergedLibsFlat;
+          circular = filterAttrs (n: v: elem asd (map (getAttr "asd") v.lispLibs)) mergedLibsMap;
         in
-          if elem master.asd asds
-          then throw "Circular dependency in ${master.asd}"
+          if length (attrNames circular) > 0
+          then throw "Circular dependency between ${asd} and ${concatStringsSep ", " (attrNames circular)}"
           else master.overrideLispAttrs (o: {
             inherit lispLibs;
             inherit systems;
