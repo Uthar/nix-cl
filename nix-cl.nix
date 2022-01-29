@@ -312,6 +312,7 @@ let
       inherit lisp;
       inherit quicklispPackagesFor;
       inherit fixupFor;
+      inherit fixDuplicateAsds;
       build-asdf-system = build-asdf-system';
     };
 

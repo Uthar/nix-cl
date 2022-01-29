@@ -1,11 +1,25 @@
-{ build-asdf-system, lisp, quicklispPackagesFor, fixupFor, pkgs, ... }:
+{ build-asdf-system, fixDuplicateAsds, lisp, quicklispPackagesFor, fixupFor, pkgs, ... }:
 
 let
 
+  inherit (pkgs.lib)
+    makeLibraryPath
+    makeSearchPath
+    setAttr
+    hasAttr
+    optionals
+  ;
+
+  build-with-fix-duplicate-asds = args:
+    build-asdf-system (args // {
+      lispLibs =
+        fixDuplicateAsds
+          (optionals (hasAttr "lispLibs" args) args.lispLibs)
+          (ql // packages);
+    });
+
   ql = quicklispPackagesFor { inherit lisp; fixup = fixupFor packages; };
 
-  makeLibraryPath = pkgs.lib.makeLibraryPath;
-  makeSearchPath = pkgs.lib.makeSearchPath;
 
   # Used by builds that would otherwise attempt to write into storeDir.
   #
@@ -16,7 +30,7 @@ let
   # E.g. cl-unicode creating .txt files during compilation
   build-with-compile-into-pwd = args:
     let
-      build = (build-asdf-system (args // { version = args.version + "-build"; }))
+      build = (build-with-fix-duplicate-asds (args // { version = args.version + "-build"; }))
         .overrideAttrs(o: {
           buildPhase = with builtins; ''
             mkdir __fasls
@@ -32,7 +46,7 @@ let
             cp -r * $out
           '';
         });
-    in build-asdf-system (args // {
+    in build-with-fix-duplicate-asds (args // {
       # Patches are already applied in `build`
       patches = [];
       src = build;
@@ -62,7 +76,7 @@ let
       version = "5.9.0";
       sha256 = "0qbis8acv04fi902qzak1mbagqaxcsv2zyp7b8y4shs5nj0cgz7a";
     };
-  in build-asdf-system {
+  in build-with-fix-duplicate-asds {
     src =  builtins.fetchTarball {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
       sha256 = "17ryim4xilb1rzxydfr7595dnhqkk02lmrbkqrkvi9091shi4cj3";
@@ -91,7 +105,7 @@ let
     ];
   };
 
-  quri = build-asdf-system {
+  quri = build-with-fix-duplicate-asds {
     src = pkgs.stdenv.mkDerivation {
       pname = "patched";
       version = "source";
@@ -119,7 +133,7 @@ let
     ];
   };
 
-  jzon = build-asdf-system {
+  jzon = build-with-fix-duplicate-asds {
     src = builtins.fetchTarball {
       url = "https://github.com/Zulu-Inuoe/jzon/archive/6b201d4208ac3f9721c461105b282c94139bed29.tar.gz";
       sha256 = "01d4a78pjb1amx5amdb966qwwk9vblysm1li94n3g26mxy5zc2k3";
@@ -133,7 +147,7 @@ let
     asd = "com.inuoe.jzon";
   };
 
-  cl-notify = build-asdf-system {
+  cl-notify = build-with-fix-duplicate-asds {
     pname = "cl-notify";
     version = "20080904-138ca7038";
     src = builtins.fetchTarball {
@@ -154,7 +168,7 @@ let
     nativeLibs = [ pkgs.fuse ];
   };
 
-  cl-containers = build-asdf-system {
+  cl-containers = build-with-fix-duplicate-asds {
     inherit (ql.cl-containers) pname version src;
     lispLibs = ql.cl-containers.lispLibs ++ [ ql.moptilities ];
     systems = [ "cl-containers" "cl-containers/with-moptilities" ];
@@ -168,7 +182,7 @@ let
     '';
   };
 
-  clx-truetype = build-asdf-system {
+  clx-truetype = build-with-fix-duplicate-asds {
     pname = "clx-truetype";
     version = "20160825-git";
     src = builtins.fetchTarball {
@@ -181,7 +195,7 @@ let
     ];
   };
 
-  mgl = build-asdf-system {
+  mgl = build-with-fix-duplicate-asds {
     pname = "mgl";
     version = "2021-10-07";
     src = builtins.fetchTarball {
@@ -195,7 +209,7 @@ let
     systems = [ "mgl" "mgl/test" ];
   };
 
-  mgl-mat = build-asdf-system {
+  mgl-mat = build-with-fix-duplicate-asds {
     pname = "mgl-mat";
     version = "2021-10-11";
     src = builtins.fetchTarball {
@@ -210,7 +224,7 @@ let
     systems = [ "mgl-mat" "mgl-mat/test" ];
   };
 
-  nyxt-gtk = build-asdf-system {
+  nyxt-gtk = build-with-fix-duplicate-asds {
     inherit (ql.nyxt) pname lisp;
     version = "2.2.4";
 
