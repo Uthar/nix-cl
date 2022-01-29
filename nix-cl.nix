@@ -360,10 +360,14 @@ let
               (x: x.pname == asd) # FIXME check nix pname rules
               (throw "No master system containing ${asd}")
               (attrValues clpkgs);
-        in master.overrideLispAttrs (o: {
-          inherit lispLibs;
-          inherit systems;
-        });
+          asds = map (getAttr "asd") (flattenedDeps lispLibs);
+        in
+          if elem master.asd asds
+          then throw "Circular dependency in ${master.asd}"
+          else master.overrideLispAttrs (o: {
+            inherit lispLibs;
+            inherit systems;
+          });
       overrides = zipmap duplicates (map combineSlashySubsystems duplicates);
       replaceLib = lib:
         if elem lib.asd duplicates
