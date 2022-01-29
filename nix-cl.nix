@@ -368,7 +368,10 @@ let
             inherit lispLibs;
             inherit systems;
           });
-      overrides = zipmap duplicates (map combineSlashySubsystems duplicates);
+      overrides =
+        zipmap
+          duplicates
+          (map combineSlashySubsystems duplicates);
       replaceLib = lib:
         if elem lib.asd duplicates
         then getAttr lib.asd overrides
