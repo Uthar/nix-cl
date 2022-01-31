@@ -23,6 +23,7 @@ let
     id
     concat
     concatMap
+    mutuallyExclusive
     findFirst
     setAttr
     getAttr
@@ -152,15 +153,15 @@ let
       # such as when using reverse domain naming.
       systems ? [ pname ],
 
-      # The .asd file that this package provides
-      asd ? pname,
+      # The .asd files that this package provides
+      asds ? systems,
 
       # Other args to mkDerivation
       ...
     } @ args:
 
     stdenv.mkDerivation (rec {
-      inherit pname version nativeLibs javaLibs lispLibs lisp systems asd;
+      inherit pname version nativeLibs javaLibs lispLibs lisp systems asds;
 
       src = if builtins.length patches > 0
             then apply-patches args
@@ -349,11 +350,11 @@ let
   fixDuplicateAsds = libs: clpkgs:
     let
       libsFlat = flattenedDeps libs;
-      asdCounts = frequencies (map (lib.getAttr "asd") libsFlat);
+      asdCounts = frequencies (concatMap (getAttr "asds") libsFlat);
       duplicates = attrNames (filterAttrs (n: v: v > 1) asdCounts);
       combineSlashySubsystems = asd:
         let
-          providers = filter (lib: lib.asd == asd) libsFlat;
+          providers = filter (lib: elem asd lib.asds) libsFlat;
           lispLibs = unique (concatMap (lib: lib.lispLibs) providers);
           systems = unique (concatMap (lib: lib.systems) providers);
           master =
@@ -361,13 +362,13 @@ let
               (x: x.pname == asd) # FIXME check nix pname rules
               (throw "No master system containing ${asd}")
               (attrValues clpkgs);
-          mergedLibsFlat = flattenedDeps lispLibs;
-          mergedLibsAsds = map (getAttr "asd") mergedLibsFlat;
-          mergedLibsMap = zipmap mergedLibsAsds mergedLibsFlat;
-          circular = filterAttrs (n: v: elem asd (map (getAttr "asd") v.lispLibs)) mergedLibsMap;
+          circular =
+            filter
+              (lib: elem asd (concatMap (getAttr "asds") lib.lispLibs))
+              (flattenedDeps lispLibs);
         in
-          if length (attrNames circular) > 0
-          then throw "Circular dependency between ${asd} and ${concatStringsSep ", " (attrNames circular)}"
+          if length circular > 0
+          then throw "Circular dependency between ${asd} and ${concatStringsSep ", " (map (getAttr "pname") circular)}"
           else master.overrideLispAttrs (o: {
             inherit lispLibs;
             inherit systems;
@@ -377,8 +378,12 @@ let
           duplicates
           (map combineSlashySubsystems duplicates);
       replaceLib = lib:
-        if elem lib.asd duplicates
-        then getAttr lib.asd overrides
+        if !mutuallyExclusive lib.asds duplicates
+        then
+          findFirst
+            (v: !mutuallyExclusive v.asds lib.asds)
+            (throw "BUG! Missing override for ${toString lib.asds}")
+            (attrValues overrides)
         else lib;
       lispLibs' = editTree libs (map replaceLib);
     in unique lispLibs';

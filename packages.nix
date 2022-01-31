@@ -144,7 +144,6 @@ let
       ql.closer-mop
     ];
     systems = [ "com.inuoe.jzon" ];
-    asd = "com.inuoe.jzon";
   };
 
   cl-notify = build-with-fix-duplicate-asds {
@@ -273,7 +272,7 @@ let
   nyxt = nyxt-gtk;
 
   simple-date_slash_postgres-glue = build-with-fix-duplicate-asds {
-    inherit (ql.simple-date_slash_postgres-glue) pname version src systems asd;
+    inherit (ql.simple-date_slash_postgres-glue) pname version src systems asds;
     lispLibs = ql.simple-date_slash_postgres-glue.lispLibs ++ [
       ql.cl-postgres_slash_tests
     ];
