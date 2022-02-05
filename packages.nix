@@ -271,6 +271,13 @@ let
 
   nyxt = nyxt-gtk;
 
+  s-sql_slash_tests = build-with-fix-duplicate-asds {
+    inherit (ql.s-sql_slash_tests) pname version src systems asds;
+    lispLibs = ql.s-sql_slash_tests.lispLibs ++ [
+      ql.cl-postgres_slash_tests
+    ];
+  };
+
   simple-date_slash_postgres-glue = build-with-fix-duplicate-asds {
     inherit (ql.simple-date_slash_postgres-glue) pname version src systems asds;
     lispLibs = ql.simple-date_slash_postgres-glue.lispLibs ++ [
