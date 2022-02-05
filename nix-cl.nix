@@ -357,11 +357,8 @@ let
           providers = filter (lib: elem asd lib.asds) libsFlat;
           lispLibs = unique (concatMap (lib: lib.lispLibs) providers);
           systems = unique (concatMap (lib: lib.systems) providers);
-          master =
-            findFirst
-              (x: x.pname == asd) # FIXME check nix pname rules
-              (throw "No master system containing ${asd}")
-              (attrValues clpkgs);
+          # OK as long as asd is a valid Nix pname
+          master = clpkgs.${asd};
           circular =
             filter
               (lib: elem asd (concatMap (getAttr "asds") lib.lispLibs))
