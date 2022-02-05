@@ -50,7 +50,10 @@ let
     systems = [ "asdf" "uiop" ];
   };
 
-  uiop = asdf;
+  uiop = build-with-compile-into-pwd {
+    inherit (asdf) version src systems;
+    pname = "uiop";
+  };
 
   cffi = let
     jna = pkgs.fetchMavenArtifact {
@@ -127,6 +130,7 @@ let
       ql.closer-mop
     ];
     systems = [ "com.inuoe.jzon" ];
+    asd = "com.inuoe.jzon";
   };
 
   cl-notify = build-asdf-system {

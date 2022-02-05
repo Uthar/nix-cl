@@ -76,12 +76,15 @@ let
       # such as when using reverse domain naming.
       systems ? [ pname ],
 
+      # The .asd file that this package provides
+      asd ? pname,
+
       # Other args to mkDerivation
       ...
     } @ args:
 
     stdenv.mkDerivation (rec {
-      inherit pname version nativeLibs javaLibs lispLibs lisp systems;
+      inherit pname version nativeLibs javaLibs lispLibs lisp systems asd;
 
       src = if builtins.length patches > 0
             then apply-patches args
@@ -266,6 +269,49 @@ let
       pkg = substituteLib qlPkg;
     in pkg // { lispLibs = map substituteLib pkg.lispLibs; };
 
+  # FIXME move it out
+  setAttr = lib.setAttr;
+  getAttr = lib.getAttr;
+  hasAttr = lib.hasAttr;
+  attrNames = lib.attrNames;
+  attrValues = lib.attrValues;
+  filterAttrs = lib.filterAttrs;
+  mapAttrs = lib.mapAttrs;
+  concat = lib.concat;
+  id = lib.id;
+
+  frequencies = xs:
+    let
+      getFreq = x: freqs:
+        if hasAttr x freqs
+        then getAttr x freqs
+        else 0;
+      lp = xs: freqs:
+        if builtins.length xs == 0
+        then freqs
+        else
+          let
+            x = toString (head xs);
+          in lp (tail xs) (setAttr freqs x (1 + (getFreq x freqs)));
+    in lp xs {};
+
+  zipmap = ks: vs:
+    let
+      lp = ks: vs: attrs:
+        if length ks == 0
+        then attrs
+        else lp (tail ks) (tail vs) (setAttr attrs (head ks) (head vs));
+    in
+      assert length ks == length vs;
+      lp ks vs {};
+
+  contains = xs: x:
+    if length xs == 0
+    then false
+    else if (head xs) == x
+    then true
+    else contains (tail xs) x;
+
   # Creates a lisp wrapper with `packages` installed
   #
   # `packages` is a function that takes `clpkgs` - a set of lisp
@@ -279,7 +325,45 @@ let
       src = null;
       pname = baseNameOf (head (split " " lisp));
       version = "with-packages";
-      lispLibs = packages clpkgs;
+      lispLibs =
+        let
+          libs = packages clpkgs;
+          asdCounts = frequencies (map (lib.getAttr "asd") (flattenedDeps libs));
+          duplicates = attrNames (filterAttrs (n: v: v > 1) asdCounts);
+        in
+          if length duplicates == 0
+          then libs
+          else throw ''
+            Duplicate .asd's: [ ${toString duplicates} ]
+
+            This ambiguity will create loading problems where ASDF
+            could try to compile into ${storeDir}.
+
+            This frequently happens when manually selecting slashy
+            systems in `packages`, because they conflict with the
+            auto-generated systems by providing the same asd files.
+
+            Assuming these two possible scenarios:
+
+            1. Multiple "slashy" systems, belonging to the same parent
+               system, exist in `packages`.
+
+            2. A slashy system has been put in `packages`, such that
+               another system providing the same asd file exists
+               somewhere deeper in the dependency tree.
+
+            The following fixes can be attempted:
+
+            1. Instead of having multiple slashy systems in
+               `packages`, have just the parent system, but with the
+               desired slashy systems appended to its `systems` via
+               `overrideLispAttrs`.
+
+            2. Instead of having the slashy system in `packages`,
+               build a `lispPackages` where the parent system is
+               overridden to contain the slashy system in its
+               `systems`.
+          '';
       buildInputs = with pkgs; [ makeWrapper ];
       systems = [];
     }).overrideAttrs(o: {

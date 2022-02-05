@@ -1,4 +1,6 @@
 (require :asdf)
+(asdf:load-system :alexandria)
+(use-package :alexandria)
 (asdf:load-system :str)
 (asdf:load-system :cl-ppcre)
 (asdf:load-system :dexador)
@@ -18,8 +20,8 @@
 
 (defun nixify-symbol (string)
   (flet ((fix-special-chars (str)
-           (replace-regexes '("[+]$" "[+]" "[.]")
-                            '("_plus" "_plus_" "_dot_")
+           (replace-regexes '("[+]$" "[+][/]" "[+]" "[.]" "[/]")
+                            '("_plus" "_plus/" "_plus_" "_dot_" "_slash_")
                             str)))
     (if (ppcre:scan "^[0-9]" string)
         (str:concat "_" (fix-special-chars string))
@@ -30,15 +32,24 @@
   (nixify-symbol (format nil "~a" object)))
 
 (defun nix-eval (exp)
+  (assert (consp exp))
   (ecase (car exp)
     (:string (nix-string (cdr exp)))
     (:list (nix-list (cdr exp)))
-    (:funcall (apply 'nix-funcall (cdr exp)))
+    (:funcall (apply #'nix-funcall (cdr exp)))
     (:attrs (nix-attrs (cdr exp)))
+    (:merge (apply #'nix-merge (cdr exp)))
     (:symbol (nix-symbol (cdr exp)))))
 
 (defun nix-list (things)
   (format nil "[ ~{~A~^ ~} ]" (mapcar 'nix-eval things)))
+
+;; Path names are alphanumeric and can include the symbols +-._?= and
+;; must not begin with a period.
+(defun make-pname (string)
+  (replace-regexes '("^[.]" "[^a-zA-Z0-9+-._?=]")
+                   '("_" "_")
+                   string))
 
 (defvar *nix-attrs-depth* 0)
 
@@ -64,6 +75,11 @@
           (nixify-symbol fun)
           (mapcar 'nix-eval args)))
 
+(defun nix-merge (a b)
+  (format nil "(~a // ~b)"
+          (nix-eval a)
+          (nix-eval b)))
+
 ;; FIXME: preload these text files into a hash table/sqlite for faster acccess
 
 (let ((systems-url "https://beta.quicklisp.org/dist/quicklisp/2021-12-30/systems.txt")
@@ -80,20 +96,13 @@
                   :deps ,(nthcdr 3 words))))
 
 (defun find-project (system)
+  "Find the project to which `system` belongs."
   (loop for project in *projects*
         if (string= (getf project :system) system)
           do (return project)))
 
-(defun find-systems (asd)
-  "find the entry for asdf system `system-file`"
-  (loop for project in *projects*
-        when (and (string= (getf project :asd) asd)
-                  ;; ignore "special' systems per asdf docs
-                  (not (str:contains? "/" (getf project :system))))
-          collect (getf project :system)))
-
 (defun find-release (project)
-  "find the release entry for project `project-name`"
+  "Find the release to which `project` belongs."
   (loop for line in *releases.txt*
         for words = (str:words line)
         if (string= (first words) project)
@@ -109,63 +118,29 @@
 
 (defvar *systems* (remove-duplicates
                    (loop for line in *systems.txt*
-                         for sys = (third (str:words line))
-                         when (not (str:contains? "/" sys))
-                         collect sys)
+                         collect (third (str:words line)))
                    :test #'string=))
 
+(defun system-master (system)
+  (first (str:split "/" system)))
 
-(defun find-system (system-name)
-  (loop for project in *projects*
-        when (string= (getf project :system) system-name)
-          do (return project)))
+(defun slashy? (system)
+  (str:contains? "/" system))
 
 (defun find-asd (system)
-  "Find the asd where this system belongs - that asd can be put in lispLibs"
-  (getf (find-system system) :asd))
+  "Find the asd to which `system` belongs."
+  (getf (find-project system) :asd))
 
 (defun parse-systems ()
   (loop for system in *systems*
-        ;; No need to merge dependencies: a system is the unit of granularity, not the '.asd'
-
-        ;; If the asd is not equal to the system name, we need to make
-        ;; a notice that an asd will have to be created
-
-        ;; Only in case no other system depends on this system, we can
-        ;; later merge all systems belonging to one project to a
-        ;; single package
-
+        for master = (system-master system)
         for asd = (find-asd system)
-
-        ;; FIXME the optimization from above comment
-        ;; for outside-referrers (find-outside-referrers system)
-
-        ;; pass the name of the asd to be copied
-        ;; gonna have to think about if should remove system
-        ;; declarations from the created asd
-        ;; e.g. is asdf gonna try to buiild system 'asd' from
-        ;; 'system.asd' later on?
-        ;; i.e., scenario: asdf hits `system` in `system.asd`, but
-        ;; `system` depends on `asd`, so asdf tries to build it from
-        ;; the declaration `system.asd` instead of from `asd.asd`
-        ;; Does this happen? XXX: check
-        for create-asd? = (when (not (string= asd system)) asd)
-
-        ;; gotta use hash table instead of plist...
         for project = (find-project system)
         for release = (find-release (getf project :project))
-
         for deps = (getf project :deps)
-
-        for systems = (list system)
-
-        collect `(:asd ,(if create-asd? system asd)
-                  :systems ,systems
-
-                  ;; not needed if we create the missing asds
+        collect `(:asd ,asd
+                  :system ,system
                   :deps ,deps
-                  :create-asd? ,create-asd?
-
                   :url ,(getf release :url)
                   :sha1 ,(getf release :sha1)
                   :version ,(getf release :version))))
@@ -196,39 +171,59 @@
    'nix-attrs
    (loop for pkg in *systems-parsed*
          for asd = (getf pkg :asd)
-         for systems = (getf pkg :systems)
-         for deps = (getf pkg :deps)
+         for system = (getf pkg :system)
+         for deps = (remove-if (lambda (dep) (string= dep "asdf")) (getf pkg :deps))
          for url = (getf pkg :url)
-         for createAsd = (getf pkg :create-asd?)
          for sha256 = (nix-prefetch-tarball url)
          for version = (getf pkg :version)
+         collect (make-nix-package asd system version url sha256 deps))))
 
-         ;; join deps of all `systems`
-         for alldeps
-           = (loop with all = deps
-                   for sys in systems
-                   do (setf all (union all (getf (find-system sys) :deps) :test 'string=))
-                   finally (return all))
+(defun make-nix-package (asd system version url sha256 deps)
+  (let ((master (system-master system)))
+    (cond ((and (slashy? system)
+                (find master deps :test #'string=))
+           `(,system
+             . (:merge
+                . ((:symbol . ,master)
+                   (:attrs
+                    . (("pname" . (:string . ,(make-pname system)))
+                       ("systems"
+                        . (:list
+                           . ((:string . ,master)
+                              (:string . ,system))))
+                       ("lispLibs"
+                        . (:list
+                           . ,(mapcar
+                               (lambda (dep) `(:symbol . ,dep))
+                               (remove-if
+                                (lambda (x)
+                                  (or (string= x master)
+                                      (string= x "asdf")))
+                                (union
+                                 (getf (find-project master) :deps)
+                                 deps
+                                 :test #'string=)))))))))))
+          (t
+           `(,system
+             . (:attrs
+                . (("pname" . (:string . ,(make-pname system)))
+                   ("version" . (:string . ,version))
 
-         collect `(,asd
-                   . (:attrs
-                      . (("pname" . (:string . ,asd))
-                         ("createAsd" . ,(if createAsd `(:string . ,createAsd) `(:symbol . "false")))
-                         ("version" . (:string . ,version))
-                         ("src" . (:funcall . ("createAsd" ((:attrs
-                                                                . (("url" . (:string . ,url))
-                                                                   ("sha256" . (:string . ,sha256))
-                                                                   ("system" . (:string . ,asd))
-                                                                   ("asd" . (:string . ,(or createAsd asd)))))))))
-                         ("systems" . (:list . ,(mapcar (lambda (sys) `(:string . ,sys)) systems)))
-                         ("lispLibs" . (:list . ,(mapcar (lambda (dep) `(:symbol . ,dep))
-                                                         (remove-if (lambda (dep) (or (string= dep "asdf")
-                                                                                      (string= dep asd))) alldeps))))))))))
+                   ;; Not necessarily the asd from QL data, but the
+                   ;; one that this system ends up providing after
+                   ;; possibly creating it in `createAsd`.
+                   ("asd" . (:string . ,master))
 
-
-;;
-;; FIXME Remove other system definitions than `system` from `asd`
-;;
+                   ("src"
+                    . (:funcall
+                       . ("createAsd"
+                          ((:attrs
+                            . (("url" . (:string . ,url))
+                               ("sha256" . (:string . ,sha256))
+                               ("system" . (:string . ,master))
+                               ("asd" . (:string . ,asd))))))))
+                   ("systems" . (:list . ((:string . ,system))))
+                   ("lispLibs" . (:list . ,(mapcar (lambda (dep) `(:symbol . ,dep)) deps))))))))))
 
 (defun write-nix-packages (outfile)
   (with-open-file (stream outfile :direction :output :if-exists :supersede)
@@ -239,6 +234,13 @@
 
 with builtins;
 
+# Ensures that every non-slashy `system` exists in a unique .asd file.
+# (Think cl-async-base being declared in cl-async.asd upstream)
+#
+# This is required because we're building and loading a system called
+# `system`, not `asd`, so otherwise `system` would not be loadable
+# without building and loading `asd` first.
+#
 let createAsd = { url, sha256, asd, system }:
    let
      src = fetchTarball { inherit url sha256; };
