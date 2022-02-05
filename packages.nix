@@ -3,6 +3,7 @@
 let
 
   inherit (pkgs.lib)
+    head
     makeLibraryPath
     makeSearchPath
     setAttr
@@ -11,12 +12,10 @@ let
   ;
 
   build-with-fix-duplicate-asds = args:
-    build-asdf-system (args // {
-      lispLibs =
-        fixDuplicateAsds
-          (optionals (hasAttr "lispLibs" args) args.lispLibs)
-          (ql // packages);
-    });
+    head
+      (fixDuplicateAsds
+        [(build-asdf-system args)]
+        (ql // packages));
 
   ql = quicklispPackagesFor { inherit lisp; fixup = fixupFor packages; };
 
