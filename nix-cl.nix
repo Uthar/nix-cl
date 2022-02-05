@@ -12,10 +12,87 @@
 
 { pkgs, lib, stdenv, ... }:
 
-with lib.lists;
-with lib.strings;
 
 let
+
+  inherit (lib)
+    length
+    filter
+    foldl
+    unique
+    id
+    concat
+    concatMap
+    mutuallyExclusive
+    findFirst
+    setAttr
+    getAttr
+    hasAttr
+    attrNames
+    attrValues
+    filterAttrs
+    mapAttrs
+    splitString
+    concatStringsSep
+    concatMapStringsSep
+    replaceStrings
+    optionalString
+    makeLibraryPath
+    makeSearchPath
+  ;
+
+  inherit (builtins)
+    head
+    tail
+    elem
+    split
+    storeDir;
+
+  frequencies = xs:
+    let
+      getFreq = x: freqs:
+        if hasAttr x freqs
+        then getAttr x freqs
+        else 0;
+      lp = xs: freqs:
+        if builtins.length xs == 0
+        then freqs
+        else
+          let
+            x = toString (head xs);
+          in lp (tail xs) (setAttr freqs x (1 + (getFreq x freqs)));
+    in lp xs {};
+
+  zipmap = ks: vs:
+    let
+      lp = ks: vs: attrs:
+        if length ks == 0
+        then attrs
+        else lp (tail ks) (tail vs) (setAttr attrs (head ks) (head vs));
+    in
+      assert length ks == length vs;
+      lp ks vs {};
+
+  # Return a modified dependency tree, where each lispLibs is the
+  # result of applying f to it
+  editTree = lispLibs: f:
+    let
+      editLib = lib:
+        if length lib.lispLibs == 0
+        then lib
+        else lib.overrideLispAttrs(o: {
+          lispLibs = map editLib (f o.lispLibs);
+        });
+      tmpPkg = build-asdf-system {
+        pname = "__editTree";
+        version = "__editTree";
+        lisp = "__editTree";
+        src = null;
+        systems = [];
+        inherit lispLibs;
+      };
+      fixed = editLib tmpPkg;
+    in fixed.lispLibs;
 
   # Returns a flattened dependency tree without duplicates
   flattenedDeps = lispLibs:
@@ -76,15 +153,15 @@ let
       # such as when using reverse domain naming.
       systems ? [ pname ],
 
-      # The .asd file that this package provides
-      asd ? pname,
+      # The .asd files that this package provides
+      asds ? systems,
 
       # Other args to mkDerivation
       ...
     } @ args:
 
     stdenv.mkDerivation (rec {
-      inherit pname version nativeLibs javaLibs lispLibs lisp systems asd;
+      inherit pname version nativeLibs javaLibs lispLibs lisp systems asds;
 
       src = if builtins.length patches > 0
             then apply-patches args
@@ -236,6 +313,7 @@ let
       inherit lisp;
       inherit quicklispPackagesFor;
       inherit fixupFor;
+      inherit fixDuplicateAsds;
       build-asdf-system = build-asdf-system';
     };
 
@@ -269,48 +347,46 @@ let
       pkg = substituteLib qlPkg;
     in pkg // { lispLibs = map substituteLib pkg.lispLibs; };
 
-  # FIXME move it out
-  setAttr = lib.setAttr;
-  getAttr = lib.getAttr;
-  hasAttr = lib.hasAttr;
-  attrNames = lib.attrNames;
-  attrValues = lib.attrValues;
-  filterAttrs = lib.filterAttrs;
-  mapAttrs = lib.mapAttrs;
-  concat = lib.concat;
-  id = lib.id;
-
-  frequencies = xs:
+  fixDuplicateAsds = libs: clpkgs:
     let
-      getFreq = x: freqs:
-        if hasAttr x freqs
-        then getAttr x freqs
-        else 0;
-      lp = xs: freqs:
-        if builtins.length xs == 0
-        then freqs
-        else
-          let
-            x = toString (head xs);
-          in lp (tail xs) (setAttr freqs x (1 + (getFreq x freqs)));
-    in lp xs {};
-
-  zipmap = ks: vs:
-    let
-      lp = ks: vs: attrs:
-        if length ks == 0
-        then attrs
-        else lp (tail ks) (tail vs) (setAttr attrs (head ks) (head vs));
-    in
-      assert length ks == length vs;
-      lp ks vs {};
-
-  contains = xs: x:
-    if length xs == 0
-    then false
-    else if (head xs) == x
-    then true
-    else contains (tail xs) x;
+      libsFlat = flattenedDeps libs;
+      asdCounts = frequencies (concatMap (getAttr "asds") libsFlat);
+      duplicates = attrNames (filterAttrs (n: v: v > 1) asdCounts);
+      combineSlashySubsystems = asd:
+        let
+          providers = filter (lib: elem asd lib.asds) libsFlat;
+          lispLibs = unique (concatMap (lib: lib.lispLibs) providers);
+          systems = unique (concatMap (lib: lib.systems) providers);
+          master =
+            findFirst
+              (x: x.pname == asd) # FIXME check nix pname rules
+              (throw "No master system containing ${asd}")
+              (attrValues clpkgs);
+          circular =
+            filter
+              (lib: elem asd (concatMap (getAttr "asds") lib.lispLibs))
+              (flattenedDeps lispLibs);
+        in
+          if length circular > 0
+          then throw "Circular dependency between ${asd} and ${concatStringsSep ", " (map (getAttr "pname") circular)}"
+          else master.overrideLispAttrs (o: {
+            inherit lispLibs;
+            inherit systems;
+          });
+      overrides =
+        zipmap
+          duplicates
+          (map combineSlashySubsystems duplicates);
+      replaceLib = lib:
+        if !mutuallyExclusive lib.asds duplicates
+        then
+          findFirst
+            (v: !mutuallyExclusive v.asds lib.asds)
+            (throw "BUG! Missing override for ${toString lib.asds}")
+            (attrValues overrides)
+        else lib;
+      lispLibs' = editTree libs (map replaceLib);
+    in unique lispLibs';
 
   # Creates a lisp wrapper with `packages` installed
   #
@@ -325,45 +401,7 @@ let
       src = null;
       pname = baseNameOf (head (split " " lisp));
       version = "with-packages";
-      lispLibs =
-        let
-          libs = packages clpkgs;
-          asdCounts = frequencies (map (lib.getAttr "asd") (flattenedDeps libs));
-          duplicates = attrNames (filterAttrs (n: v: v > 1) asdCounts);
-        in
-          if length duplicates == 0
-          then libs
-          else throw ''
-            Duplicate .asd's: [ ${toString duplicates} ]
-
-            This ambiguity will create loading problems where ASDF
-            could try to compile into ${storeDir}.
-
-            This frequently happens when manually selecting slashy
-            systems in `packages`, because they conflict with the
-            auto-generated systems by providing the same asd files.
-
-            Assuming these two possible scenarios:
-
-            1. Multiple "slashy" systems, belonging to the same parent
-               system, exist in `packages`.
-
-            2. A slashy system has been put in `packages`, such that
-               another system providing the same asd file exists
-               somewhere deeper in the dependency tree.
-
-            The following fixes can be attempted:
-
-            1. Instead of having multiple slashy systems in
-               `packages`, have just the parent system, but with the
-               desired slashy systems appended to its `systems` via
-               `overrideLispAttrs`.
-
-            2. Instead of having the slashy system in `packages`,
-               build a `lispPackages` where the parent system is
-               overridden to contain the slashy system in its
-               `systems`.
-          '';
+      lispLibs = fixDuplicateAsds (packages clpkgs) clpkgs;
       buildInputs = with pkgs; [ makeWrapper ];
       systems = [];
     }).overrideAttrs(o: {

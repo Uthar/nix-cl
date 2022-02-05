@@ -212,7 +212,7 @@
                    ;; Not necessarily the asd from QL data, but the
                    ;; one that this system ends up providing after
                    ;; possibly creating it in `createAsd`.
-                   ("asd" . (:string . ,master))
+                   ("asds" . (:list . ((:string . ,master))))
 
                    ("src"
                     . (:funcall
