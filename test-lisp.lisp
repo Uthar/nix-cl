@@ -34,40 +34,47 @@
   (write-char #\[ *error-output*)
   (write-char #\K *error-output*))
 
-(defparameter errors nil)
+(declaim (type fixnum errors))
+(defglobal errors 0)
 
 (dolist (pkg packages)
   (sb-thread:wait-on-semaphore sem)
   (sb-thread:make-thread
    (lambda ()
-     (unwind-protect
-          (let ((code
-                  (setf
-                   (gethash pkg statuses)
-                   (nth-value 2
-                     (uiop:run-program
-                      (format nil nix-build lisp pkg)
-                      :ignore-error-status t)))))
-            (sb-thread:with-mutex (log-lock)
-              (clear-line)
-              (format *error-output* "[~a/~a] ~[OK~:;ERROR~] ~a~[~:;~%~]"
-                      (hash-table-count statuses)
-                      (length packages)
-                      code
-                      pkg
-                      code)
-              (force-output *error-output*))
-            (unless (or errors (zerop code))
-              (setf errors t)))
-       (sb-thread:signal-semaphore sem)))))
+     (handler-case
+         (unwind-protect
+              (let ((code
+                      (setf
+                       (gethash pkg statuses)
+                       (nth-value 2
+                                  (uiop:run-program
+                                   (format nil nix-build lisp pkg)
+                                   :ignore-error-status t)))))
+                (sb-thread:with-mutex (log-lock)
+                  (clear-line)
+                  (format *error-output* "[~a/~a] ~[OK~:;ERROR~] ~a~[~:;~%~]"
+                          (hash-table-count statuses)
+                          (length packages)
+                          code
+                          pkg
+                          code)
+                  (force-output *error-output*))
+                (unless (zerop code)
+                  (sb-ext:atomic-incf errors)))
+           (sb-thread:signal-semaphore sem))
+       (error (e)
+         (format t "~a~%" e)
+         (sb-ext:quit :recklessly-p t :unix-status 1))))))
 
 (sb-thread:wait-on-semaphore sem :n cpu-count)
 
-(format *error-output* "~%Done.")
+(format *error-output* "~%Done (~a/~a)."
+        (- (length packages) errors)
+        (length packages))
 
-(when errors
-  (format *error-output* "~%~%Errors: ")
+(when (plusp errors)
+  (format *error-output* "~%~%~a Errors: " errors)
   (maphash (lambda (k v)
              (unless (zerop v)
-               (format *error-output* "~%~a" k)))
+               (format *error-output* "~%  ~a" k)))
            statuses))
