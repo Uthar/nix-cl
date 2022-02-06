@@ -64,16 +64,6 @@ let
           in lp (tail xs) (setAttr freqs x (1 + (getFreq x freqs)));
     in lp xs {};
 
-  zipmap = ks: vs:
-    let
-      lp = ks: vs: attrs:
-        if length ks == 0
-        then attrs
-        else lp (tail ks) (tail vs) (setAttr attrs (head ks) (head vs));
-    in
-      assert length ks == length vs;
-      lp ks vs {};
-
   # Return a modified dependency tree, where each lispLibs is the
   # result of applying f to it
   editTree = lispLibs: f:
