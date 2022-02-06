@@ -368,8 +368,6 @@ let
         in
           if length circular > 0
           then master.overrideLispAttrs (o: {
-            pname = ''${master.pname}_and_${concatStringsSep "_and_" circularAsds}'';
-            version = "amalgamation";
             lispLibs =
               editTree
                 (unique (lispLibs ++ circularLibs))
