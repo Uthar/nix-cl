@@ -37,6 +37,7 @@ let
     concatMapStringsSep
     replaceStrings
     removeSuffix
+    hasInfix
     optionalString
     makeLibraryPath
     makeSearchPath
@@ -381,6 +382,7 @@ let
           else master.overrideLispAttrs (o: {
             inherit lispLibs;
             inherit systems;
+            asds = filter (x: !hasInfix "/" x) systems;
           });
       overrides = map combineSlashySubsystems duplicates;
       overriddenAsds = concatMap (getAttr "asds") overrides;
