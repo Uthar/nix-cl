@@ -90,6 +90,14 @@ let
     javaLibs = [ jna ];
   };
 
+  cffi-libffi = build-asdf-system {
+    inherit (ql.cffi-libffi) pname version asds lispLibs nativeLibs nativeBuildInputs;
+    src = builtins.fetchTarball {
+      url = "https://github.com/cffi/cffi/archive/3f842b92ef808900bf20dae92c2d74232c2f6d3a.tar.gz";
+      sha256 = "1jilvmbbfrmb23j07lwmkbffc6r35wnvas5s4zjc84i856ccclm2";
+    };
+  };
+
   cl-unicode = build-with-compile-into-pwd {
     pname = "cl-unicode";
     version = "0.1.6";
