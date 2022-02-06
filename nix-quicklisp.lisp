@@ -180,6 +180,14 @@
 
 (defun make-nix-package (asd system version url sha256 deps)
   (let ((master (system-master system)))
+    (when (slashy? system)
+      (dolist (s *systems*)
+        (unless (string= s system)
+          (let ((pkg (find-project s)))
+            (when (and (member asd (getf pkg :deps) :test #'string=)
+                       (member (getf pkg :asd) deps :test #'string=)
+                       (string/= (getf pkg :asd) asd))
+              (format t "Circular dependency between ~a and ~a~%" system s))))))
     (cond ((and (slashy? system)
                 (find master deps :test #'string=))
            `(,system
