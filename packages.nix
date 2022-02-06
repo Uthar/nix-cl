@@ -3,6 +3,7 @@
 let
 
   inherit (pkgs.lib)
+    head
     makeLibraryPath
     makeSearchPath
     setAttr
@@ -11,12 +12,10 @@ let
   ;
 
   build-with-fix-duplicate-asds = args:
-    build-asdf-system (args // {
-      lispLibs =
-        fixDuplicateAsds
-          (optionals (hasAttr "lispLibs" args) args.lispLibs)
-          (ql // packages);
-    });
+    head
+      (fixDuplicateAsds
+        [(build-asdf-system args)]
+        (ql // packages));
 
   ql = quicklispPackagesFor { inherit lisp; fixup = fixupFor packages; };
 
@@ -270,6 +269,13 @@ let
   };
 
   nyxt = nyxt-gtk;
+
+  s-sql_slash_tests = build-with-fix-duplicate-asds {
+    inherit (ql.s-sql_slash_tests) pname version src systems asds;
+    lispLibs = ql.s-sql_slash_tests.lispLibs ++ [
+      ql.cl-postgres_slash_tests
+    ];
+  };
 
   simple-date_slash_postgres-glue = build-with-fix-duplicate-asds {
     inherit (ql.simple-date_slash_postgres-glue) pname version src systems asds;

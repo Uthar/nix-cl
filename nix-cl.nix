@@ -357,33 +357,43 @@ let
           providers = filter (lib: elem asd lib.asds) libsFlat;
           lispLibs = unique (concatMap (lib: lib.lispLibs) providers);
           systems = unique (concatMap (lib: lib.systems) providers);
-          master =
-            findFirst
-              (x: x.pname == asd) # FIXME check nix pname rules
-              (throw "No master system containing ${asd}")
-              (attrValues clpkgs);
+          # OK as long as asd is a valid Nix pname
+          master = clpkgs.${asd};
           circular =
             filter
               (lib: elem asd (concatMap (getAttr "asds") lib.lispLibs))
               (flattenedDeps lispLibs);
+          circularAsds = concatMap (getAttr "asds") circular;
+          circularSystems = concatMap (getAttr "systems") circular;
+          circularLibs = concatMap (getAttr "lispLibs") circular;
         in
           if length circular > 0
-          then throw "Circular dependency between ${asd} and ${concatStringsSep ", " (map (getAttr "pname") circular)}"
+          then master.overrideLispAttrs (o: {
+            pname = ''${master.pname}_and_${concatStringsSep "_and_" circularAsds}'';
+            version = "amalgamation";
+            lispLibs =
+              editTree
+                (unique (lispLibs ++ circularLibs))
+                (filter
+                  (lib:
+                    mutuallyExclusive lib.asds (master.asds ++ circularAsds)));
+            systems = systems ++ circularSystems;
+            asds = master.asds ++ circularAsds;
+          })
           else master.overrideLispAttrs (o: {
             inherit lispLibs;
             inherit systems;
           });
-      overrides =
-        zipmap
-          duplicates
-          (map combineSlashySubsystems duplicates);
+      overrides = map combineSlashySubsystems duplicates;
+      overriddenAsds = concatMap (getAttr "asds") overrides;
       replaceLib = lib:
-        if !mutuallyExclusive lib.asds duplicates
+        if !mutuallyExclusive lib.asds overriddenAsds
+        # FIXME what if multiple overrides have conflicting asds?
         then
           findFirst
-            (v: !mutuallyExclusive v.asds lib.asds)
+            (override: !mutuallyExclusive override.asds lib.asds)
             (throw "BUG! Missing override for ${toString lib.asds}")
-            (attrValues overrides)
+            overrides
         else lib;
       lispLibs' = editTree libs (map replaceLib);
     in unique lispLibs';
