@@ -319,9 +319,9 @@ let
     };
 
   # Build the set of packages imported from quicklisp using `lisp`
-  quicklispPackagesFor = { lisp, fixup ? lib.id }:
+  quicklispPackagesFor = { lisp, fixup ? lib.id, build ? build-asdf-system }:
     let
-      build-asdf-system' = body: build-asdf-system (body // {
+      build-asdf-system' = body: build (body // {
         inherit lisp;
       });
     in import ./ql.nix {
@@ -445,7 +445,16 @@ let
   lispPackagesFor = lisp:
     let
       packages = commonLispPackagesFor lisp;
-      qlPackages = quicklispPackagesFor { inherit lisp; fixup = fixupFor packages; };
+      build-with-fix-duplicate-asds = args:
+        head
+          (fixDuplicateAsds
+            [(build-asdf-system args)]
+            (lispPackagesFor lisp));
+      qlPackages = quicklispPackagesFor {
+        inherit lisp;
+        fixup = fixupFor packages;
+        build = build-with-fix-duplicate-asds;
+      };
     in qlPackages // packages;
 
   commonLispPackages = rec {
