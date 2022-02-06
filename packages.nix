@@ -230,6 +230,11 @@ let
     systems = [ "mgl-mat" "mgl-mat/test" ];
   };
 
+  mathkit = build-asdf-system {
+    inherit (ql.mathkit) pname version src asds lisp;
+    lispLibs = ql.mathkit.lispLibs ++ [ ql.sb-cga ];
+  };
+
   nyxt-gtk = build-with-fix-duplicate-asds {
     inherit (ql.nyxt) pname lisp;
     version = "2.2.4";
