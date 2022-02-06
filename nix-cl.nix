@@ -36,6 +36,7 @@ let
     concatStringsSep
     concatMapStringsSep
     replaceStrings
+    removeSuffix
     optionalString
     makeLibraryPath
     makeSearchPath
@@ -347,6 +348,14 @@ let
       pkg = substituteLib qlPkg;
     in pkg // { lispLibs = map substituteLib pkg.lispLibs; };
 
+  makeAttrName = str:
+    removeSuffix
+      "_"
+      (replaceStrings
+        ["+" "." "/"]
+        ["_plus_" "_dot_" "_slash_"]
+        str);
+
   fixDuplicateAsds = libs: clpkgs:
     let
       libsFlat = flattenedDeps libs;
@@ -357,8 +366,7 @@ let
           providers = filter (lib: elem asd lib.asds) libsFlat;
           lispLibs = unique (concatMap (lib: lib.lispLibs) providers);
           systems = unique (concatMap (lib: lib.systems) providers);
-          # OK as long as asd is a valid Nix pname
-          master = clpkgs.${asd};
+          master = clpkgs.${makeAttrName asd};
           circular =
             filter
               (lib: elem asd (concatMap (getAttr "asds") lib.lispLibs))
