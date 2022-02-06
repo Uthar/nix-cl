@@ -90,6 +90,15 @@ let
     cl-glut = pkg: {
       nativeLibs = [ freeglut ];
     };
+    cl-glfw = pkg: {
+      nativeLibs = [ glfw ];
+    };
+    cl-glfw-opengl-core = pkg: {
+      nativeLibs = [ libGL ];
+    };
+    cl-glfw3 = pkg: {
+      nativeLibs = [ glfw ];
+    };
     lev = pkg: {
       nativeLibs = [ libev ];
     };
