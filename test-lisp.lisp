@@ -37,19 +37,35 @@
 (declaim (type fixnum errors))
 (defglobal errors 0)
 
+(defmacro when-let (bindings &rest body)
+  (reduce
+   (lambda (expansion form)
+     (destructuring-bind (var test) form
+       (let ((testsym (gensym (symbol-name var))))
+         `(let ((,testsym ,test))
+            (when ,testsym
+              (let ((,var ,testsym))
+                ,expansion))))))
+   (reverse bindings)
+   :initial-value `(progn ,@body)))
+
 (dolist (pkg packages)
   (sb-thread:wait-on-semaphore sem)
   (sb-thread:make-thread
    (lambda ()
      (handler-case
          (unwind-protect
-              (let ((code
-                      (setf
-                       (gethash pkg statuses)
-                       (nth-value 2
-                                  (uiop:run-program
-                                   (format nil nix-build lisp pkg)
-                                   :ignore-error-status t)))))
+              (multiple-value-bind (out err code)
+                  (uiop:run-program
+                   (format nil nix-build lisp pkg)
+                   :error-output '(:string :stripped t)
+                   :ignore-error-status t)
+                (declare (ignorable err))
+                (setf (gethash pkg statuses) code)
+                (when-let ((pos (search "LOAD-FOREIGN-LIBRARY-ERROR" err :test #'string=))
+                           (lines (uiop:split-string (subseq err pos) :separator '(#\Newline))))
+                  (setf (gethash pkg statuses)
+                        (fourth lines)))
                 (sb-thread:with-mutex (log-lock)
                   (clear-line)
                   (format *error-output* "[~a/~a] ~[OK~:;ERROR~] ~a~[~:;~%~]"
@@ -68,13 +84,13 @@
 
 (sb-thread:wait-on-semaphore sem :n cpu-count)
 
-(format *error-output* "~%Done (~a/~a)."
+(format t "~%Done (~a/~a)."
         (- (length packages) errors)
         (length packages))
 
 (when (plusp errors)
-  (format *error-output* "~%~%~a Errors: " errors)
+  (format t "~%~%~a Errors: " errors)
   (maphash (lambda (k v)
-             (unless (zerop v)
-               (format *error-output* "~%  ~a" k)))
+             (unless (and (numberp v) (zerop v))
+               (format t "~%  ~a: ~a" k v)))
            statuses))
