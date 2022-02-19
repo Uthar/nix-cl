@@ -34,14 +34,14 @@
 (defun nix-eval (exp)
   (assert (consp exp))
   (ecase (car exp)
-    (:string (nix-string (cdr exp)))
-    (:list (nix-list (cdr exp)))
-    (:funcall (apply #'nix-funcall (cdr exp)))
+    (:string (nix-string (cadr exp)))
+    (:list (apply #'nix-list (rest exp)))
+    (:funcall (apply #'nix-funcall (rest exp)))
     (:attrs (nix-attrs (cdr exp)))
     (:merge (apply #'nix-merge (cdr exp)))
-    (:symbol (nix-symbol (cdr exp)))))
+    (:symbol (nix-symbol (cadr exp)))))
 
-(defun nix-list (things)
+(defun nix-list (&rest things)
   (format nil "[ ~{~A~^ ~} ]" (mapcar 'nix-eval things)))
 
 ;; Path names are alphanumeric and can include the symbols +-._?= and
@@ -65,12 +65,12 @@
               "{~%*depth*~{~{~A = ~A;~}~^~%*depth*~}~%*depth-1*}"))
             (mapcar (lambda (keyval)
                       (let ((key (car keyval))
-                            (val (cdr keyval)))
+                            (val (cadr keyval)))
                         (list (nix-symbol key)
                               (nix-eval val))))
                     keyvals))))
 
-(defun nix-funcall (fun args)
+(defun nix-funcall (fun &rest args)
   (format nil "(~a ~{~a~^ ~})"
           (nixify-symbol fun)
           (mapcar 'nix-eval args)))
@@ -183,47 +183,48 @@
     (cond ((and (slashy? system)
                 (find master deps :test #'string=))
            `(,system
-             . (:merge
-                . ((:symbol . ,master)
-                   (:attrs
-                    . (("pname" . (:string . ,(make-pname system)))
-                       ("systems"
-                        . (:list
-                           . ((:string . ,master)
-                              (:string . ,system))))
-                       ("lispLibs"
-                        . (:list
-                           . ,(mapcar
-                               (lambda (dep) `(:symbol . ,dep))
-                               (remove-if
-                                (lambda (x)
-                                  (or (string= x master)
-                                      (string= x "asdf")))
-                                (union
-                                 (getf (find-project master) :deps)
-                                 deps
-                                 :test #'string=)))))))))))
+             (:merge
+              (:symbol ,master)
+              (:attrs
+               ("pname" (:string ,(make-pname system)))
+               ("systems"
+                (:list
+                 (:string ,master)
+                 (:string ,system)))
+               ("lispLibs"
+                (:list
+                 ,@(mapcar
+                    (lambda (dep) `(:symbol ,dep))
+                    (remove-if
+                     (lambda (x)
+                       (or (string= x master)
+                           (string= x "asdf")))
+                     (union
+                      (getf (find-project master) :deps)
+                      deps
+                      :test #'string=)))))))))
           (t
            `(,system
-             . (:attrs
-                . (("pname" . (:string . ,(make-pname system)))
-                   ("version" . (:string . ,version))
+             (:attrs
+              ("pname" (:string ,(make-pname system)))
+              ("version" (:string ,version))
 
-                   ;; Not necessarily the asd from QL data, but the
-                   ;; one that this system ends up providing after
-                   ;; possibly creating it in `createAsd`.
-                   ("asds" . (:list . ((:string . ,master))))
+              ;; Not necessarily the asd from QL data, but the
+              ;; one that this system ends up providing after
+              ;; possibly creating it in `createAsd`.
+              ("asds" (:list (:string ,master)))
 
-                   ("src"
-                    . (:funcall
-                       . ("createAsd"
-                          ((:attrs
-                            . (("url" . (:string . ,url))
-                               ("sha256" . (:string . ,sha256))
-                               ("system" . (:string . ,master))
-                               ("asd" . (:string . ,asd))))))))
-                   ("systems" . (:list . ((:string . ,system))))
-                   ("lispLibs" . (:list . ,(mapcar (lambda (dep) `(:symbol . ,dep)) deps))))))))))
+              ("src"
+               (:funcall
+                "createAsd"
+                (:attrs
+                 ("url" (:string ,url))
+                 ("sha256" (:string ,sha256))
+                 ("system" (:string ,master))
+                 ("asd" (:string ,asd)))))
+
+              ("systems" (:list (:string ,system)))
+              ("lispLibs" (:list ,@(mapcar (lambda (dep) `(:symbol ,dep)) deps)))))))))
 
 (defun write-nix-packages (outfile)
   (with-open-file (stream outfile :direction :output :if-exists :supersede)
