@@ -51,24 +51,27 @@
                    '("_" "_")
                    string))
 
+(defun insert-last (thing list)
+  `(,@(ensure-list list) ,thing))
+
+(defmacro ->> (&rest body)
+  (reduce #'insert-last body))
+
 (defvar *nix-attrs-depth* 0)
 
 (defun nix-attrs (keyvals)
   (let ((*nix-attrs-depth* (1+ *nix-attrs-depth*)))
-    (format nil
-            (str:replace-all
-             "*depth-1*"
-             (str:repeat (1- *nix-attrs-depth*) "  ")
-             (str:replace-all
-              "*depth*"
-              (str:repeat *nix-attrs-depth* "  ")
-              "{~%*depth*~{~{~A = ~A;~}~^~%*depth*~}~%*depth-1*}"))
-            (mapcar (lambda (keyval)
-                      (let ((key (car keyval))
-                            (val (cadr keyval)))
-                        (list (nix-symbol key)
-                              (nix-eval val))))
-                    keyvals))))
+    (format
+     nil
+     (->> "{~%*depth*~{~{~A = ~A;~}~^~%*depth*~}~%*depth-1*}"
+          (str:replace-all "*depth*" (str:repeat *nix-attrs-depth* "  "))
+          (str:replace-all "*depth-1*" (str:repeat (1- *nix-attrs-depth*) "  ")))
+     (mapcar (lambda (keyval)
+               (let ((key (car keyval))
+                     (val (cadr keyval)))
+                 (list (nix-symbol key)
+                       (nix-eval val))))
+             keyvals))))
 
 (defun nix-funcall (fun &rest args)
   (format nil "(~a ~{~a~^ ~})"
