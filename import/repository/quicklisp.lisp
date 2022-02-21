@@ -13,6 +13,9 @@
   (:import-from
    :org.nixos.lisp/api
    :import-lisp-packages)
+  (:import-from
+   :org.nixos.lisp/util
+   :replace-regexes)
   (:export :quicklisp-repository))
 
 (in-package org.nixos.lisp/repository/quicklisp)
@@ -21,15 +24,6 @@
   ((dist-url :initarg :dist-url
              :reader dist-url
              :initform (error "dist url required"))))
-
-(defun replace-regexes (from to str)
-  (assert (= (length from) (length to)))
-  (if (null from)
-      str
-      (replace-regexes
-       (rest from)
-       (rest to)
-       (ppcre:regex-replace-all (first from) str (first to)))))
 
 (defmethod import-lisp-packages ((repository quicklisp-repository)
                                  (database sqlite-database))

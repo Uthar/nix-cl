@@ -1,7 +1,8 @@
 (defsystem org.nixos.lisp
   :class :package-inferred-system
   :description "Utilities for importing ASDF systems into Nix"
-  :depends-on (:alexandria
+  :depends-on (
+               :alexandria
                :str
                :cl-ppcre
                :sqlite
