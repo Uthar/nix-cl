@@ -6,16 +6,24 @@
 
 (in-package org.nixos.lisp/main)
 
-(defvar *database* (make-instance 'sqlite-database
-                                  :init-file "init.sql"
-                                  :url "packages.sqlite"))
+(defvar *sqlite*
+  (make-instance
+   'sqlite-database
+   :init-file "init.sql"
+   :url "packages.sqlite"))
 
-(defvar *repository* (make-instance 'quicklisp-repository
-                                    :dist-url
-                                    "https://beta.quicklisp.org/dist/quicklisp/2021-12-30/"))
+(defvar *quicklisp*
+  (make-instance
+   'quicklisp-repository
+   :dist-url
+   "https://beta.quicklisp.org/dist/quicklisp/2021-12-30/"))
 
 (defun run-importers ()
-  (import-lisp-packages *repository* *database*))
+  (import-lisp-packages *quicklisp* *sqlite*))
 
 (defun gen-nix-file ()
-  (database->nix-expression *database* "out.nix"))
+  (database->nix-expression *sqlite* "out.nix"))
+
+(defun main ()
+  (run-importers)
+  (gen-nix-file))
