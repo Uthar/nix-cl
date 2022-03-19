@@ -168,6 +168,15 @@ let
     ];
   };
 
+  tuple = build-asdf-system {
+    pname = "tuple";
+    version = "b74bd067d";
+    src = builtins.fetchTarball {
+      url = "https://fossil.galkowski.xyz/tuple/tarball/b74bd067d4533ac0/tuple.tar.gz";
+      sha256 = "0dk356vkv6kwwcmc3j08x7143549m94rd66rpkzq8zkb31cg2va8";
+    };
+  };
+
   cl-fuse = build-with-compile-into-pwd {
     inherit (ql.cl-fuse) pname version src lispLibs;
     nativeBuildInputs = [ pkgs.fuse ];
