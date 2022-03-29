@@ -177,6 +177,56 @@ let
     };
   };
 
+  cl-tar-file = build-asdf-system {
+    pname = "cl-tar-file";
+    version = "v0.2.1";
+    src = builtins.fetchTarball {
+      url = "https://gitlab.common-lisp.net/cl-tar/cl-tar-file/-/archive/main/cl-tar-file-main.tar.gz";
+      sha256 = "0i8j05fkgdqy4c4pqj0c68sh4s3klpx9kc5wp73qwzrl3xqd2svy";
+    };
+    lispLibs = with ql; [
+      alexandria
+      babel
+      trivial-gray-streams
+      _40ants-doc
+      salza2
+      chipz
+      flexi-streams
+      parachute
+    ];
+    systems = [ "tar-file" "tar-file/test" ];
+  };
+
+  cl-tar = build-asdf-system {
+    pname = "cl-tar";
+    version = "v0.2.1";
+    src = builtins.fetchTarball {
+      url = "https://gitlab.common-lisp.net/cl-tar/cl-tar/-/archive/main/cl-tar-main.tar.gz";
+      sha256 = "0wp23cs3i6a89dibifiz6559la5nk58d1n17xvbxq4nrl8cqsllf";
+    };
+    lispLibs = with ql; [
+      alexandria
+      babel
+      local-time
+      split-sequence
+      _40ants-doc
+      parachute
+      osicat
+    ] ++ [ cl-tar-file ];
+    systems = [
+      "tar"
+      "tar/common-extract"
+      "tar/simple-extract"
+      "tar/extract"
+      "tar/create"
+      "tar/docs"
+      "tar/test"
+      "tar/create-test"
+      "tar/extract-test"
+      "tar/simple-extract-test"
+    ];
+  };
+
   cl-fuse = build-with-compile-into-pwd {
     inherit (ql.cl-fuse) pname version src lispLibs;
     nativeBuildInputs = [ pkgs.fuse ];
