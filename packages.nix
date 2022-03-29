@@ -181,7 +181,9 @@ let
     pname = "cl-tar-file";
     version = "v0.2.1";
     src = builtins.fetchTarball {
-      url = "https://gitlab.common-lisp.net/cl-tar/cl-tar-file/-/archive/main/cl-tar-file-main.tar.gz";
+      url = let
+        rev = "0c10bc82f14702c97a26dc25ce075b5d3a2347d1";
+      in "https://gitlab.common-lisp.net/cl-tar/cl-tar-file/-/archive/${rev}/cl-tar-file-${rev}.tar.gz";
       sha256 = "0i8j05fkgdqy4c4pqj0c68sh4s3klpx9kc5wp73qwzrl3xqd2svy";
     };
     lispLibs = with ql; [
@@ -201,7 +203,9 @@ let
     pname = "cl-tar";
     version = "v0.2.1";
     src = builtins.fetchTarball {
-      url = "https://gitlab.common-lisp.net/cl-tar/cl-tar/-/archive/main/cl-tar-main.tar.gz";
+      url = let
+        rev = "7c6e07a10c93d9e311f087b5f6328cddd481669a";
+      in "https://gitlab.common-lisp.net/cl-tar/cl-tar/-/archive/${rev}/cl-tar-${rev}.tar.gz";
       sha256 = "0wp23cs3i6a89dibifiz6559la5nk58d1n17xvbxq4nrl8cqsllf";
     };
     lispLibs = with ql; [
