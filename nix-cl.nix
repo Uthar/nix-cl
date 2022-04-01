@@ -427,6 +427,31 @@ let
       '';
     });
 
+  # creates a lispWithPackages.zip, for use outside of Nix, and, on Windows
+  makeZipball = lwp:
+    let
+      # This is sbcl, abcl, etc. (version is 'with-packages')
+      lisp = lwp.pname;
+      cmds = map
+        (pkg: let
+          src = getAttr "src" pkg;
+          # FINE, since pnames must be unique anyway
+          pname = getAttr "pname" pkg;
+        in ''cp -rv ${src} $out/packages/${pname}'')
+        (flattenedDeps lwp.lispLibs);
+      script =
+"set ASDF_OUTPUT_TRANSLATIONS=%cd%\\packages;%cd%\\fasl\r
+set CL_SOURCE_REGISTRY=%cd%\\packages//\r
+./${lisp}";
+    in
+      pkgs.runCommand "${lwp.name}.zip" {} ''
+        mkdir -pv $out/packages
+        ${concatStringsSep "\n" cmds}
+        echo -n '${script}' > $out/${lisp}.bat
+      '';
+
+
+
   lispWithPackages = lisp:
     let
       packages = lispPackagesFor lisp;
@@ -448,7 +473,7 @@ let
     in qlPackages // packages;
 
   commonLispPackages = rec {
-    inherit build-asdf-system lispPackagesFor lispWithPackages;
+    inherit build-asdf-system lispPackagesFor lispWithPackages makeZipball;
 
     # There's got to be a better way than this...
     # The problem was that with --load everywhere, some
