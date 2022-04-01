@@ -11,6 +11,8 @@ let
     flattenedDeps
   ;
 
+  wine = (pkgs.winePackagesFor "wine64").minimal;
+
   # Map of nixpkgs packages to windows DLLs, for making nativeLibs work on Win32
   dllMap = {
     SDL = null;
@@ -61,13 +63,14 @@ let
     let
       # This is sbcl, abcl, etc. (version is 'with-packages')
       impl = lwp.pname;
+      lispLibs = (flattenedDeps lwp.lispLibs);
       lispCmds = map
         (pkg: let
           src = getAttr "src" pkg;
           # FINE, since pnames must be unique anyway
           pname = getAttr "pname" pkg;
         in ''cp -rv ${src} ${lwp.name}/packages/${pname}'')
-        (flattenedDeps lwp.lispLibs);
+        lispLibs;
       dllCmds = map
         (nativeLib: let
           dll = getAttr nativeLib.pname dllMap;
@@ -75,11 +78,23 @@ let
         lwp.nativeLibs;
       lisp = getAttr impl implMap;
 
-      script =
+      runBat =
 "@echo off
 set ASDF_OUTPUT_TRANSLATIONS=%cd%\\packages;%cd%\\fasl\r
 set CL_SOURCE_REGISTRY=%cd%\\packages//\r
 ./lisp/${lisp.exe}";
+
+      buildScript = pkgs.writeText "build-${impl}.lisp"
+"(require :asdf)
+(dolist (s '(${concatStringsSep " " (map (getAttr "pname") lispLibs)}))
+  (asdf:load-system s))
+(uiop:quit)"
+      ;
+
+      buildBat =
+"set ASDF_OUTPUT_TRANSLATIONS=%cd%\\packages;%cd%\\fasl\r
+set CL_SOURCE_REGISTRY=%cd%\\packages//\r
+./lisp/${lisp.exe} --script build-${impl}.lisp";
 
     in
       pkgs.runCommand "${lwp.name}.zip" {} ''
@@ -89,7 +104,15 @@ set CL_SOURCE_REGISTRY=%cd%\\packages//\r
         ${concatStringsSep "\n" dllCmds}
         mkdir -pv ${lwp.name}/lisp
         cp -rv ${lisp.package}/* ${lwp.name}/lisp
-        echo -n '${script}' > ${lwp.name}/${impl}.bat
+        echo -n '${runBat}' > ${lwp.name}/${impl}.bat
+        echo -n '${buildBat}' > ${lwp.name}/build-${impl}.bat
+        cp ${buildScript} ${lwp.name}/build-${impl}.lisp
+        cd ${lwp.name}
+        export WINEPREFIX=$(pwd)/.wine
+        chmod a+x build-${impl}.bat
+        ${wine}/bin/wine64 cmd /c build-${impl}.bat
+        rm -rf .wine
+        cd ..
         ${pkgs.zip}/bin/zip -rv $out ${lwp.name}
       '';
 
