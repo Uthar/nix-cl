@@ -13,6 +13,17 @@ let
 
   wine = (pkgs.winePackagesFor "wine64").minimal;
 
+  sqliteWindows = let
+    src = pkgs.fetchurl {
+      url = "https://sqlite.org/2022/sqlite-dll-win64-x64-3380200.zip";
+      hash = "sha256-Tgvkz/yADF9I/iBnnIV/9hXmrcJ14INBjMJEHJYqD+w=";
+    };
+  in pkgs.runCommand "sqlite-win32" {} ''
+    ${pkgs.unzip}/bin/unzip ${src}
+    mkdir -pv $out
+    cp * $out
+  '';
+
   # Map of nixpkgs packages to windows DLLs, for making nativeLibs work on Win32
   dllMap = {
     SDL = null;
@@ -29,7 +40,7 @@ let
     postgresql = null;
     rabbitmq-c = null;
     rdkafka = null;
-    sqlite = null;
+    sqlite = sqliteWindows;
   };
 
   sbclWindows = let
@@ -74,8 +85,8 @@ let
       dllCmds = map
         (nativeLib: let
           dll = getAttr nativeLib.pname dllMap;
-        in ''cp -v ${dll} ${lwp.name}/${dll}'')
-        lwp.nativeLibs;
+        in ''cp -rv ${dll}/* ${lwp.name}/'')
+        (lib.concatMap (builtins.getAttr "nativeLibs") lispLibs);
       lisp = getAttr impl implMap;
 
       runBat =
