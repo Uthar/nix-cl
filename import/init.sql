@@ -1,14 +1,16 @@
 CREATE TABLE IF NOT EXISTS sha256 (
-       id       integer PRIMARY KEY AUTOINCREMENT,
-       url      text    UNIQUE,
-       hash     text
+       id        integer PRIMARY KEY AUTOINCREMENT,
+       url       text    UNIQUE,
+       hash      text,
+       created   real    DEFAULT (julianday('now'))
 );
 
 CREATE TABLE IF NOT EXISTS system (
-       id      integer PRIMARY KEY AUTOINCREMENT,
-       name    text,
-       version text,
-       asd     text,
+       id        integer PRIMARY KEY AUTOINCREMENT,
+       name      text,
+       version   text,
+       asd       text,
+       created   real    DEFAULT (julianday('now')),
        UNIQUE(name, version)
 );
 
@@ -19,8 +21,8 @@ CREATE TABLE IF NOT EXISTS dep (
 );
 
 CREATE TABLE IF NOT EXISTS src (
-       sha256_id    integer REFERENCES sha256(id),
-       system_id    integer UNIQUE REFERENCES system(id)
+       sha256_id integer REFERENCES sha256(id),
+       system_id integer UNIQUE REFERENCES system(id)
 );
 
 DROP VIEW IF EXISTS system_view;
