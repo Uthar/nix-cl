@@ -1,24 +1,24 @@
-(defpackage org.nixos.lisp/database/sqlite
+(defpackage org.lispbuilds.nix/database/sqlite
   (:use :cl)
   (:import-from :str)
   (:import-from :sqlite)
   (:import-from :alexandria :read-file-into-string)
   (:import-from :arrow-macros :->>)
   (:import-from
-   :org.nixos.lisp/util
+   :org.lispbuilds.nix/util
    :replace-regexes)
   (:import-from
-   :org.nixos.lisp/nix
+   :org.lispbuilds.nix/nix
    :nix-eval
    :system-master
    :make-pname
    :*nix-attrs-depth*)
   (:import-from
-   :org.nixos.lisp/api
+   :org.lispbuilds.nix/api
    :database->nix-expression)
   (:export :sqlite-database :init-db))
 
-(in-package org.nixos.lisp/database/sqlite)
+(in-package org.lispbuilds.nix/database/sqlite)
 
 (defclass sqlite-database ()
   ((url :initarg :url

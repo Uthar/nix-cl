@@ -1,4 +1,4 @@
-(defsystem org.nixos.lisp
+(defsystem org.lispbuilds.nix
   :class :package-inferred-system
   :description "Utilities for importing ASDF systems into Nix"
   :depends-on (
@@ -8,9 +8,9 @@
                :sqlite
                :dexador
                :arrow-macros
-               :org.nixos.lisp/api
-               :org.nixos.lisp/repository/quicklisp
-               :org.nixos.lisp/database/sqlite
+               :org.lispbuilds.nix/api
+               :org.lispbuilds.nix/repository/quicklisp
+               :org.lispbuilds.nix/database/sqlite
                ))
 
 

@@ -1,10 +1,10 @@
-(defpackage org.nixos.lisp/main
+(defpackage org.lispbuilds.nix/main
   (:use :common-lisp
-        :org.nixos.lisp/database/sqlite
-        :org.nixos.lisp/repository/quicklisp
-        :org.nixos.lisp/api))
+        :org.lispbuilds.nix/database/sqlite
+        :org.lispbuilds.nix/repository/quicklisp
+        :org.lispbuilds.nix/api))
 
-(in-package org.nixos.lisp/main)
+(in-package org.lispbuilds.nix/main)
 
 (defvar *sqlite*
   (make-instance

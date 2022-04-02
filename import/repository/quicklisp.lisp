@@ -1,24 +1,24 @@
-(defpackage org.nixos.lisp/repository/quicklisp
+(defpackage org.lispbuilds.nix/repository/quicklisp
   (:use :cl)
   (:import-from :dex)
   (:import-from :alexandria :read-file-into-string :ensure-list)
   (:import-from :arrow-macros :->>)
   (:import-from :str)
   (:import-from
-   :org.nixos.lisp/database/sqlite
+   :org.lispbuilds.nix/database/sqlite
    :sqlite-database
    :init-db
    :database-url
    :init-file)
   (:import-from
-   :org.nixos.lisp/api
+   :org.lispbuilds.nix/api
    :import-lisp-packages)
   (:import-from
-   :org.nixos.lisp/util
+   :org.lispbuilds.nix/util
    :replace-regexes)
   (:export :quicklisp-repository))
 
-(in-package org.nixos.lisp/repository/quicklisp)
+(in-package org.lispbuilds.nix/repository/quicklisp)
 
 (defclass quicklisp-repository ()
   ((dist-url :initarg :dist-url

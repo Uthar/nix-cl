@@ -1,10 +1,10 @@
-(defpackage org.nixos.lisp/util
+(defpackage org.lispbuilds.nix/util
   (:use :cl)
   (:import-from :ppcre)
   (:export
    :replace-regexes))
 
-(in-package org.nixos.lisp/util)
+(in-package org.lispbuilds.nix/util)
 
 (defun replace-regexes (from to str)
   (assert (= (length from) (length to)))

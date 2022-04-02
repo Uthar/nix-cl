@@ -1,17 +1,17 @@
-(defpackage org.nixos.lisp/nix
+(defpackage org.lispbuilds.nix/nix
   (:documentation "Utilities for generating Nix code")
   (:use :cl)
   (:import-from :str)
   (:import-from :ppcre)
   (:import-from :arrow-macros :->>)
-  (:import-from :org.nixos.lisp/util :replace-regexes)
+  (:import-from :org.lispbuilds.nix/util :replace-regexes)
   (:export
    :nix-eval
    :system-master
    :make-pname
    :*nix-attrs-depth*))
 
-(in-package org.nixos.lisp/nix)
+(in-package org.lispbuilds.nix/nix)
 
 ;; Path names are alphanumeric and can include the symbols +-._?= and
 ;; must not begin with a period.

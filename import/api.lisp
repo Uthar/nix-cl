@@ -1,11 +1,11 @@
-(defpackage org.nixos.lisp/api
-  (:documentation "Public interface of org.nixos.lisp")
+(defpackage org.lispbuilds.nix/api
+  (:documentation "Public interface of org.lispbuilds.nix")
   (:use :cl)
   (:export
    :import-lisp-packages
    :database->nix-expression))
 
-(in-package org.nixos.lisp/api)
+(in-package org.lispbuilds.nix/api)
 
 (defgeneric import-lisp-packages (repository database)
   (:documentation
