@@ -111,6 +111,10 @@ let
       }
       else ff;
 
+
+  mkSystemsRegex = systems:
+    concatMapStringsSep "\\|" (replaceStrings ["." "+"] ["[.]" "[+]"]) systems;
+
   #
   # Wrapper around stdenv.mkDerivation for building ASDF systems.
   #
@@ -240,11 +244,7 @@ let
       #
       # Same with '/': `local-time.asd` for system `cl-postgres+local-time.asd`
       installPhase =
-        let
-          mkSystemsRegex = systems:
-            concatMapStringsSep "\\|" (replaceStrings ["." "+"] ["[.]" "[+]"]) systems;
-        in
-      ''
+    ''
         mkdir -pv $out
         cp -r * $out
 
@@ -448,7 +448,13 @@ let
     in qlPackages // packages;
 
   commonLispPackages = rec {
-    inherit build-asdf-system lispPackagesFor lispWithPackages flattenedDeps ;
+    inherit build-asdf-system lispPackagesFor lispWithPackages;
+
+    lib = {
+     inherit
+        mkSystemsRegex
+        flattenedDeps;
+    };
 
     # There's got to be a better way than this...
     # The problem was that with --load everywhere, some
