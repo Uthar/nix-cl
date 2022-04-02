@@ -74,7 +74,7 @@ in rec {")
                        :if-exists :supersede)
       (format f prelude)
       (dolist (p (sqlite:execute-to-list db "select * from system_view"))
-        (destructuring-bind (name asd url sha256 deps) p
+        (destructuring-bind (name version asd url sha256 deps) p
           (format f "~%  ")
           (let ((*nix-attrs-depth* 1))
             (format
@@ -84,7 +84,7 @@ in rec {")
              (nix-eval
               `(:attrs
                 ("pname" (:string ,(make-pname name)))
-                ("version" (:string "TODO"))
+                ("version" (:string ,version))
                 ("asds" (:list (:string ,(system-master name))))
                 ("src" (:funcall
                         "createAsd"

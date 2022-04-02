@@ -5,14 +5,16 @@ CREATE TABLE IF NOT EXISTS sha256 (
 );
 
 CREATE TABLE IF NOT EXISTS system (
-       id    integer PRIMARY KEY AUTOINCREMENT,
-       name  text    UNIQUE,
-       asd   text
+       id      integer PRIMARY KEY AUTOINCREMENT,
+       name    text,
+       version text,
+       asd     text,
+       UNIQUE(name, version)
 );
 
 CREATE TABLE IF NOT EXISTS dep (
-       system_id integer REFERENCES system(id),
-       dep_id    integer REFERENCES system(id),
+       system_id integer NOT NULL REFERENCES system(id),
+       dep_id    integer NOT NULL REFERENCES system(id),
        PRIMARY KEY (system_id, dep_id)
 );
 
@@ -25,6 +27,7 @@ DROP VIEW IF EXISTS system_view;
 CREATE VIEW IF NOT EXISTS system_view AS
   SELECT
     sys.name,
+    sys.version,
     sys.asd,
     sha.url,
     sha.hash,
