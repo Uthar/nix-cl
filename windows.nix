@@ -60,6 +60,11 @@ let
     cp -Tr "PFiles/Steel Bank Common Lisp" $out
   '';
 
+  sbclWine = pkgs.writeShellScriptBin "sbcl" ''
+    export WINEPREFIX=$(pwd)/.wine
+    ${wine}/bin/wine64 cmd /c ${sbclWindows}/sbcl.exe $@
+    rm -rf .wine
+  '';
 
   # Map of implementation names to windows executables
   implMap = {
@@ -129,5 +134,9 @@ set CL_SOURCE_REGISTRY=%cd%\\packages//\r
 
 
 in {
-  inherit sbclWindows makeWindowsZipball;
+  inherit
+    sbclWindows
+    sbclWine
+    makeWindowsZipball
+    ;
 }
