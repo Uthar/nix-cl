@@ -1,1 +1,1 @@
-from-quicklisp.nix linguist-vendored
+imported.nix linguist-vendored

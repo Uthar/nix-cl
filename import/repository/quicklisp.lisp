@@ -25,6 +25,17 @@
              :reader dist-url
              :initform (error "dist url required"))))
 
+(defun clear-line ()
+  (write-char #\Return *error-output*)
+  (write-char #\Escape *error-output*)
+  (write-char #\[ *error-output*)
+  (write-char #\K *error-output*))
+
+(defun status (&rest format-args)
+  (clear-line)
+  (apply #'format (list* *error-output* format-args))
+  (force-output *error-output*))
+
 (defmethod import-lisp-packages ((repository quicklisp-repository)
                                  (database sqlite-database))
   (let* ((db (sqlite:connect (database-url database)))
@@ -82,6 +93,7 @@
                      (asd asd)
                      (url url)
                      (hash (nix-prefetch-tarball url db)))
+                (status "importing system '~a-~a'" name version)
                 (run-sql
                  "insert or ignore into system(name,version,asd) values (?,?,?)"
                  name version asd)
@@ -101,7 +113,8 @@
                  "insert or ignore into dep values
                   ((select id from system where name=?),
                    (select id from system where name=?))"
-                 name system)))))))))
+                 name system))))))
+      (write-char #\Newline *error-output*))))
 
 (defun shell-command-to-string (cmd)
   ;; Clearing the library path is needed to prevent a bug, where the
