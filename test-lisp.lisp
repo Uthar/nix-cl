@@ -2,6 +2,9 @@
 
 (require :uiop)
 
+;; prevent glibc hell
+(setf (uiop:getenv "LD_LIBRARY_PATH") "")
+
 (defparameter packages (uiop:read-file-lines "./lispPackages.txt"))
 
 (defparameter lisp (or (cadr sb-ext:*posix-argv*) "sbcl"))
