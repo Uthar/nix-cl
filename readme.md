@@ -202,7 +202,7 @@ artifacts generated during compilation.
 
 [bordeaux-threads.nix] contains a simple example of packaging `alexandria` and `bordeaux-threads`.
 
-[bordeaux-threads.nix]: /examples/bordeaux-threads.nix
+[bordeaux-threads.nix]: ./examples/g/bordeaux-threads.nix
 
 ### Building a closure generator: `lispWithPackagesInternal`
 
@@ -227,7 +227,7 @@ The [sbcl-with-bt.nix] example creates a runnable Lisp where the
 `bordeaux-threads` defined in the previous section is precompiled and
 loadable via `asdf:load-system`:
 
-[sbcl-with-bt.nix]: /examples/sbcl-with-bt.nix
+[sbcl-with-bt.nix]: ./examples/g/sbcl-with-bt.nix
 
 ### Reusing pre-packaged Lisp libraries: `lispPackagesFor`
 
@@ -251,7 +251,7 @@ A set of packages built with `build-asdf-system`.
 
 The [abcl-package-set.nix] example generates a set of thousands of packages for ABCL.
 
-[abcl-package-set.nix]: /examples/abcl-package-set.nix
+[abcl-package-set.nix]: ./examples/g/abcl-package-set.nix
 
 ### Reusing pre-packaged Lisp libraries, part 2: `lispWithPackages`
 
@@ -273,7 +273,7 @@ A Lisp-with-packages generator function (see sections above).
 
 The [abcl-with-packages.nix] example generates a closure generator for ABCL.
 
-[abcl-with-packages.nix]: /examples/abcl-with-packages.nix
+[abcl-with-packages.nix]: ./examples/g/abcl-with-packages.nix
 
 ### Using the default Lisp implementations
 
