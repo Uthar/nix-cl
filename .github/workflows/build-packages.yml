@@ -1,0 +1,36 @@
+name: Build Lisp packages
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    strategy:
+     matrix:
+       lisp: [ abcl, ecl, ccl, sbcl ]
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - uses: Uthar/ssh-action@v1
+        with:
+          NAME: cache
+          SSH_HOST: cache.galkowski.xyz
+          SSH_USER: nix
+          SSH_KEY: ${{ secrets.NIX_CACHE_KEY }}
+
+      - uses: cachix/install-nix-action@v15
+        with:
+          extra_nix_config: |
+            extra-substituters = https://cache.galkowski.xyz
+            trusted-public-keys = cache.galkowski.xyz-1:8itwpvpPypcmgogbwtWf6+/EOFALY2BIrG0zF8LfMCM= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+      - name: build
+        run: nix-shell --run "sbcl --script test-lisp.lisp ${{ matrix.lisp }}"
+
+      - name: cache
+        run: nix copy -s --all --to ssh://cache

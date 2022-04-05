@@ -29,7 +29,7 @@
 
 (defparameter log-lock (sb-thread:make-mutex))
 
-(format *error-output* "Testing ~a~%" lisp)
+(format *error-output* "Testing ~a on ~a cores~%" lisp cpu-count)
 
 (defun clear-line ()
   (write-char #\Return *error-output*)
