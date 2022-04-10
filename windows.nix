@@ -163,7 +163,7 @@ let
 "@echo off
 set ASDF_OUTPUT_TRANSLATIONS=%cd%\\packages;%cd%\\fasl\r
 set CL_SOURCE_REGISTRY=%cd%\\packages//\r
-./lisp/${lisp.exe} %*";
+lisp/${lisp.exe} %*";
 
       buildScript = pkgs.writeText "build-${impl}.lisp"
 "(require :asdf)
