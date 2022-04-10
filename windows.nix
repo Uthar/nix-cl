@@ -75,6 +75,17 @@ let
     cp mingw64/bin/* $out
   '';
 
+  opensslWindows = let
+    src = pkgs.fetchurl {
+      url = "https://mirror.firedaemon.com/OpenSSL/openssl-1.1.1n.zip";
+      hash = "sha256-cVQH2MRvcyoYruJ790hDRxfK6Y+nWHhl1gindqQzW4g";
+    };
+  in pkgs.runCommand "openssl-win32" {} ''
+    ${pkgs.unzip}/bin/unzip ${src}
+    mkdir -pv $out
+    cp openssl-1.1/x64/bin/*.dll $out
+  '';
+
 
   # Map of nixpkgs packages to windows DLLs, for making nativeLibs work on Win32
   dllMap = {
@@ -88,7 +99,7 @@ let
     # libssh2 = null;
     # libuv = null;
     # mysql-client = null;
-    # openssl = null;
+    openssl = opensslWindows;
     # postgresql = null;
     # rabbitmq-c = null;
     # rdkafka = null;
@@ -152,11 +163,11 @@ let
 "@echo off
 set ASDF_OUTPUT_TRANSLATIONS=%cd%\\packages;%cd%\\fasl\r
 set CL_SOURCE_REGISTRY=%cd%\\packages//\r
-./lisp/${lisp.exe}";
+./lisp/${lisp.exe} %*";
 
       buildScript = pkgs.writeText "build-${impl}.lisp"
 "(require :asdf)
-(dolist (s '(${concatStringsSep " " (map (getAttr "pname") lispLibs)}))
+(dolist (s '(${concatStringsSep " " (lib.concatMap (getAttr "systems") lispLibs)}))
   (asdf:load-system s))
 (uiop:quit)"
       ;
