@@ -396,6 +396,13 @@ let
       lispLibs' = editTree libs (map replaceLib);
     in unique lispLibs';
 
+  # The recent version of makeWrapper causes breakage. For more info see
+  # https://github.com/Uthar/nix-cl/issues/2
+  oldMakeWrapper = (import (builtins.fetchTarball {
+    url = "https://github.com/nixos/nixpkgs/archive/37809af15e22cc4b1e3de3a9fad98b612881f6a5.tar.gz";
+    sha256 = "0ay907qpvmzr3vhhc6bhwrwz6cdwiadbyxjqlq9wi4f2ldr1id59";
+  }) {}).makeWrapper;
+
   # Creates a lisp wrapper with `packages` installed
   #
   # `packages` is a function that takes `clpkgs` - a set of lisp
@@ -410,7 +417,7 @@ let
       pname = baseNameOf (head (split " " lisp));
       version = "with-packages";
       lispLibs = fixDuplicateAsds (packages clpkgs) clpkgs;
-      buildInputs = with pkgs; [ makeWrapper ];
+      nativeBuildInputs = [ oldMakeWrapper ];
       systems = [];
     }).overrideAttrs(o: {
       installPhase = ''
