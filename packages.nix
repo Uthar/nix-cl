@@ -344,6 +344,14 @@ let
     '';
   };
 
+  ltk = ql.ltk.overrideLispAttrs (o: {
+    src = builtins.fetchTarball {
+      url = "https://github.com/uthar/ltk/archive/f19162e76d6c7c2f51bd289b811d9ba20dd6555e.tar.gz";
+      sha256 = "0mzikv4abq9yqlj6dsji1wh34mjizr5prv6mvzzj29z1485fh1bj";
+    };
+    version = "f19162e76";
+  });
+
   nyxt = nyxt-gtk;
 
   s-sql_slash_tests = build-with-fix-duplicate-asds {
