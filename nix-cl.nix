@@ -455,7 +455,11 @@ let
     in qlPackages // packages;
 
   commonLispPackages = rec {
-    inherit build-asdf-system lispWithPackagesInternal lispPackagesFor lispWithPackages;
+    inherit
+      build-asdf-system
+      lispWithPackagesInternal
+      lispPackagesFor
+      lispWithPackages;
 
     # There's got to be a better way than this...
     # The problem was that with --load everywhere, some

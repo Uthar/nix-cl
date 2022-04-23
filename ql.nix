@@ -144,8 +144,8 @@ let
   ];
 
   qlpkgs =
-    if builtins.pathExists ./from-quicklisp.nix
-    then filterAttrs (n: v: all (check: !(check n v)) broken) (import ./from-quicklisp.nix { inherit pkgs; })
+    if builtins.pathExists ./imported.nix
+    then filterAttrs (n: v: all (check: !(check n v)) broken) (import ./imported.nix { inherit pkgs; })
     else {};
 
   build = pkg:
