@@ -12,6 +12,7 @@ pkgs.mkShell {
       cl-ppcre
       sqlite
       arrow-macros
+      jzon
     ]))
   ];
 }

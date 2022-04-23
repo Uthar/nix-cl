@@ -16,7 +16,9 @@
   (:import-from
    :org.lispbuilds.nix/util
    :replace-regexes)
-  (:export :quicklisp-repository))
+  (:export :quicklisp-repository)
+  (:local-nicknames
+   (:json :com.inuoe.jzon)))
 
 (in-package org.lispbuilds.nix/repository/quicklisp)
 
@@ -64,7 +66,7 @@
               (str:words line)
             (run-sql
              "insert or ignore into quicklisp_system values(?,?,?,?)"
-             project asd name (str:join #\, deps)))))
+             project asd name (json:stringify (coerce deps 'vector))))))
 
       (sqlite:with-transaction db
         (dolist (line releases-lines)
@@ -72,7 +74,9 @@
               (str:words line)
             (run-sql
              "insert or ignore into quicklisp_release values(?,?,?,?,?,?,?)"
-             project url size md5 sha1 prefix (str:join #\, asds)))))
+             project url size md5 sha1 prefix (json:stringify (coerce
+                                                               asds
+                                                               'vector))))))
 
       (sqlite:with-transaction db
         (let ((systems
@@ -108,7 +112,7 @@
           (dolist (dependency dependencies)
             (destructuring-bind (name dependencies)
                 dependency
-              (dolist (system (str:split #\, dependencies))
+              (dolist (system (coerce (json:parse dependencies) 'list))
                 (run-sql
                  "insert or ignore into dep values
                   ((select id from system where name=?),

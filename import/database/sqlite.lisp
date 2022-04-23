@@ -16,7 +16,9 @@
   (:import-from
    :org.lispbuilds.nix/api
    :database->nix-expression)
-  (:export :sqlite-database :init-db))
+  (:export :sqlite-database :init-db)
+  (:local-nicknames
+   (:json :com.inuoe.jzon)))
 
 (in-package org.lispbuilds.nix/database/sqlite)
 
@@ -72,9 +74,62 @@ in rec {")
     (with-open-file (f outfile
                        :direction :output
                        :if-exists :supersede)
+
+      ;; Fix known problematic packages before dumping the nix file.
+      (sqlite:execute-non-query db
+       "create temp table fixed_systems as select * from system_view")
+
+      ;; Generic-cl has a deep dependency graph which makes Nix
+      ;; evaluation extremely slow and memory hungry. It takes a
+      ;; minute or two and takes 4G of memory.
+      ;;
+      ;; The deep graph consists of generic-cl's submodules. But
+      ;; nothing else depends on these, except for generic-cl
+      ;; itself. This can be discovered by the query:
+      ;;
+      ;;   select 
+      ;;     name, 
+      ;;     (select name from system where id = dep.dep_id) as depname 
+      ;;   from system
+      ;;   join dep on dep.system_id = system.id 
+      ;;   where depname like 'generic-cl.%'
+      ;;   group by name
+      ;;
+      ;; Because of this, it's safe to just flatten the graph of
+      ;; generic-cl submodules by removing them from `lispLibs`
+      ;; and instead placing them in `systems`.
+      ;;
+      ;; All other packages are assumed to just contain one system, so
+      ;; it's required to create a separate column for this new
+      ;; information.
+      (sqlite:execute-non-query db
+       "alter table fixed_systems add column systems")
+      (sqlite:execute-non-query db
+       "update fixed_systems set systems = json_array(name)")
+      (sqlite:execute-non-query db
+       "update fixed_systems 
+        set systems = (
+          select json_group_array(value)
+          from json_each(deps)
+          where json_each.value like 'generic-cl%'
+        )
+        where name='generic-cl'")
+      (sqlite:execute-non-query db
+       "update fixed_systems 
+        set deps = (
+          select json_group_array(value)
+          from json_each(deps)
+          where json_each.value not like 'generic-cl%'
+        )
+        where name = 'generic-cl'")
+      ;; Clean up nulls.
+      ;; There's probably a better way than this.
+      (sqlite:execute-non-query db
+       "update fixed_systems set deps = '[]' where deps = '[null]'")
+
       (format f prelude)
-      (dolist (p (sqlite:execute-to-list db "select * from system_view"))
-        (destructuring-bind (name version asd url sha256 deps) p
+      (dolist (p (sqlite:execute-to-list db "select * from fixed_systems"))
+        (destructuring-bind (name version asd url sha256 deps systems) p
           (format f "~%  ")
           (let ((*nix-attrs-depth* 1))
             (format
@@ -93,12 +148,14 @@ in rec {")
                          ("sha256" (:string ,sha256))
                          ("system" (:string ,(system-master name)))
                          ("asd" (:string ,asd)))))
-                ("systems" (:list (:string ,name)))
-
+                ("systems" (:list
+                            ,@(mapcar (lambda (sys)
+                                        `(:string ,sys))
+                                      (coerce (json:parse systems) 'list))))
                 ("lispLibs" (:list
                              ,@(mapcar (lambda (dep)
                                          `(:symbol ,dep))
                                        (remove "asdf"
-                                               (str:split #\, deps :omit-nulls t)
+                                               (coerce (json:parse deps) 'list)
                                                :test #'string=))))))))))
       (format f "~%}"))))

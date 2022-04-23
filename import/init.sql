@@ -33,7 +33,7 @@ CREATE VIEW IF NOT EXISTS system_view AS
     sys.asd,
     sha.url,
     sha.hash,
-    group_concat((
+    json_group_array((
       SELECT name
       FROM system
       WHERE id = dep.dep_id
