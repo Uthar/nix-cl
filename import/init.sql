@@ -37,7 +37,7 @@ CREATE VIEW IF NOT EXISTS system_view AS
       SELECT name
       FROM system
       WHERE id = dep.dep_id
-    ))
+    )) as deps
   FROM system sys
   JOIN src ON src.system_id = sys.id
   JOIN sha256 sha ON sha.id = src.sha256_id
