@@ -32908,8 +32908,8 @@ in rec {
       system = "generic-cl";
       asd = "generic-cl";
     });
-    systems = [ "generic-cl" ];
-    lispLibs = [ agutil generic-cl_dot_arithmetic generic-cl_dot_collector generic-cl_dot_comparison generic-cl_dot_container generic-cl_dot_iterator generic-cl_dot_lazy-seq generic-cl_dot_map generic-cl_dot_math generic-cl_dot_object generic-cl_dot_sequence generic-cl_dot_set ];
+    systems = [ "generic-cl.arithmetic" "generic-cl.collector" "generic-cl.comparison" "generic-cl.container" "generic-cl.iterator" "generic-cl.lazy-seq" "generic-cl.map" "generic-cl.math" "generic-cl.object" "generic-cl.sequence" "generic-cl.set" ];
+    lispLibs = [ agutil ];
   };
   generic-cl_dot_arithmetic = {
     pname = "generic-cl.arithmetic";
