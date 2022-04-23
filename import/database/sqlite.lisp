@@ -104,24 +104,39 @@ in rec {")
       ;; information.
       (sqlite:execute-non-query db
        "alter table fixed_systems add column systems")
+
       (sqlite:execute-non-query db
        "update fixed_systems set systems = json_array(name)")
+
       (sqlite:execute-non-query db
-       "update fixed_systems 
-        set systems = (
-          select json_group_array(value)
-          from json_each(deps)
-          where json_each.value like 'generic-cl%'
-        )
+       "with recursive 
+        alldeps(system, subsystem, depid) as (
+            select s.name, s.name, d.dep_id as depid
+            from system s
+            join dep d on s.id = d.system_id
+            where s.name='generic-cl'
+            union
+            select a.system, s.name, d.dep_id as depid
+            from system s, alldeps a
+            join dep d on s.id = d.system_id
+            where s.id = a.depid
+        ),
+        depids as (select distinct depid from alldeps),
+        depnames as (select json_group_array(name)
+                     from system where id in depids
+                     and name not like 'generic-cl.%'),
+        sysnames as (select json_group_array(name)
+                     from system where id in depids
+                     and name like 'generic-cl.%')
+        update fixed_systems 
+        set systems = json_insert((select * from sysnames),'$[#]',name),
+            deps    = (select * from depnames)
         where name='generic-cl'")
+
+      ;; Remove the now unneeded subsystems
       (sqlite:execute-non-query db
-       "update fixed_systems 
-        set deps = (
-          select json_group_array(value)
-          from json_each(deps)
-          where json_each.value not like 'generic-cl%'
-        )
-        where name = 'generic-cl'")
+       "delete from fixed_systems where name like 'generic-cl.%'")
+
       ;; Clean up nulls.
       ;; There's probably a better way than this.
       (sqlite:execute-non-query db

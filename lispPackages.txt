@@ -193,6 +193,7 @@ flow
 fn
 form-fiddle
 fset
+generic-cl
 gettext
 global-vars
 glsl-docs
