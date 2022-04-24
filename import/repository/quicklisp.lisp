@@ -83,21 +83,16 @@
         (let ((systems
                 (sql-query
                  "with pkg as (
-                    select * from quicklisp_system s, quicklisp_release r
+                    select
+                      name, asd, url, deps,
+                      ltrim(replace(prefix, r.project, ''), '-_') as version
+                    from quicklisp_system s, quicklisp_release r
                     where s.project = r.project
                   )
                   select
-                    name,
-                    ltrim(replace(prefix, project, ''), '-_') as version,
-                    asd,
-                    url,
+                    name, version, asd, url,
                     (select json_group_array(
-                      json_array(
-                        value,
-                        (select ltrim(replace(prefix, project, ''), '-_')
-                         from pkg
-                         where name = value)
-                      )
+                       json_array(value, (select version from pkg where name=value))
                      )
                      from json_each(deps)) as deps
                   from pkg"
