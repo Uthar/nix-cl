@@ -2,3 +2,4 @@ result
 .direnv
 *.sqlite
 *.fasl
+todo.txt
