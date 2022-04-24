@@ -223,7 +223,6 @@ iolib_dot_asdf
 iolib_dot_base
 iolib_dot_common-lisp
 iolib_dot_conf
-iolib_dot_grovel
 ironclad
 iterate
 jonathan
