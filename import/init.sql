@@ -1,15 +1,15 @@
 CREATE TABLE IF NOT EXISTS sha256 (
        id        integer PRIMARY KEY AUTOINCREMENT,
        url       text    UNIQUE,
-       hash      text,
+       hash      text    NOT NULL,
        created   real    DEFAULT (julianday('now'))
 );
 
 CREATE TABLE IF NOT EXISTS system (
        id        integer PRIMARY KEY AUTOINCREMENT,
-       name      text,
-       version   text,
-       asd       text,
+       name      text NOT NULL,
+       version   text NOT NULL,
+       asd       text NOT NULL,
        created   real    DEFAULT (julianday('now')),
        UNIQUE(name, version)
 );
