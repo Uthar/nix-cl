@@ -142,9 +142,28 @@ in rec {")
       (sqlite:execute-non-query db
        "update fixed_systems set deps = '[]' where deps = '[null]'")
 
+      ;; The schema assumes one asd per package. This should probably
+      ;; be fixed over there... but the questions is whether is even
+      ;; should support multiple asds, because that quickly creates
+      ;; conflicts between packages.
+      ;;
+      ;; For now the only reason to do this is for introspection,
+      ;; i.e., so that generic-cl has it's actual asds in the
+      ;; generic-cl.asds attribute.
+      (sqlite:execute-non-query db
+       "alter table fixed_systems add column asds")
+
+      (sqlite:execute-non-query db
+       "update fixed_systems set asds = json_array(name)")
+
+      ;; Just so happens that every subsystem of generic-cl exists in
+      ;; same-names asd file.
+      (sqlite:execute-non-query db
+       "update fixed_systems set asds = systems where name = 'generic-cl'")
+
       (format f prelude)
       (dolist (p (sqlite:execute-to-list db "select * from fixed_systems"))
-        (destructuring-bind (name version asd url sha256 deps systems) p
+        (destructuring-bind (name version asd url sha256 deps systems asds) p
           (format f "~%  ")
           (let ((*nix-attrs-depth* 1))
             (format
@@ -155,7 +174,10 @@ in rec {")
               `(:attrs
                 ("pname" (:string ,(make-pname name)))
                 ("version" (:string ,version))
-                ("asds" (:list (:string ,(system-master name))))
+                ("asds" (:list
+                         ,@(mapcar (lambda (asd)
+                                     `(:string ,(system-master asd)))
+                                   (coerce (json:parse asds) 'list))))
                 ("src" (:funcall
                         "createAsd"
                         (:attrs

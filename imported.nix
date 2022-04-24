@@ -32901,7 +32901,7 @@ in rec {
   generic-cl = {
     pname = "generic-cl";
     version = "20211020-git";
-    asds = [ "generic-cl" ];
+    asds = [ "generic-cl.arithmetic" "generic-cl.collector" "generic-cl.comparison" "generic-cl.container" "generic-cl.internal" "generic-cl.iterator" "generic-cl.lazy-seq" "generic-cl.map" "generic-cl.math" "generic-cl.object" "generic-cl.sequence" "generic-cl.set" "generic-cl" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/generic-cl/2021-10-20/generic-cl-20211020-git.tgz";
       sha256 = "0glvig5jsyc4735n9sz6adp48lpfcdajhbmgggmxq8pb9j2cab7q";
