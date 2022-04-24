@@ -4066,7 +4066,7 @@ in rec {
   };
   canonicalized-initargs = {
     pname = "canonicalized-initargs";
-    version = "canonicalized-initargs_2.0";
+    version = "2.0";
     asds = [ "canonicalized-initargs" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/canonicalized-initargs/2021-04-11/canonicalized-initargs_2.0.tgz";
@@ -4079,7 +4079,7 @@ in rec {
   };
   canonicalized-initargs_tests = {
     pname = "canonicalized-initargs_tests";
-    version = "canonicalized-initargs_2.0";
+    version = "2.0";
     asds = [ "canonicalized-initargs_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/canonicalized-initargs/2021-04-11/canonicalized-initargs_2.0.tgz";
@@ -4599,7 +4599,7 @@ in rec {
   };
   cesdi = {
     pname = "cesdi";
-    version = "cesdi_1.0.1";
+    version = "1.0.1";
     asds = [ "cesdi" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cesdi/2020-07-15/cesdi_1.0.1.tgz";
@@ -4612,7 +4612,7 @@ in rec {
   };
   cesdi_tests = {
     pname = "cesdi_tests";
-    version = "cesdi_1.0.1";
+    version = "1.0.1";
     asds = [ "cesdi_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cesdi/2020-07-15/cesdi_1.0.1.tgz";
@@ -4625,7 +4625,7 @@ in rec {
   };
   cffi = {
     pname = "cffi";
-    version = "cffi_0.24.1";
+    version = "0.24.1";
     asds = [ "cffi" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
@@ -4664,7 +4664,7 @@ in rec {
   };
   cffi-examples = {
     pname = "cffi-examples";
-    version = "cffi_0.24.1";
+    version = "0.24.1";
     asds = [ "cffi-examples" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
@@ -4677,7 +4677,7 @@ in rec {
   };
   cffi-grovel = {
     pname = "cffi-grovel";
-    version = "cffi_0.24.1";
+    version = "0.24.1";
     asds = [ "cffi-grovel" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
@@ -4690,7 +4690,7 @@ in rec {
   };
   cffi-libffi = {
     pname = "cffi-libffi";
-    version = "cffi_0.24.1";
+    version = "0.24.1";
     asds = [ "cffi-libffi" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
@@ -4703,7 +4703,7 @@ in rec {
   };
   cffi-tests = {
     pname = "cffi-tests";
-    version = "cffi_0.24.1";
+    version = "0.24.1";
     asds = [ "cffi-tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
@@ -4716,7 +4716,7 @@ in rec {
   };
   cffi-tests_slash_example = {
     pname = "cffi-tests_example";
-    version = "cffi_0.24.1";
+    version = "0.24.1";
     asds = [ "cffi-tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
@@ -4729,7 +4729,7 @@ in rec {
   };
   cffi-toolchain = {
     pname = "cffi-toolchain";
-    version = "cffi_0.24.1";
+    version = "0.24.1";
     asds = [ "cffi-toolchain" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
@@ -4742,7 +4742,7 @@ in rec {
   };
   cffi-uffi-compat = {
     pname = "cffi-uffi-compat";
-    version = "cffi_0.24.1";
+    version = "0.24.1";
     asds = [ "cffi-uffi-compat" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
@@ -4755,7 +4755,7 @@ in rec {
   };
   cffi_slash_c2ffi = {
     pname = "cffi_c2ffi";
-    version = "cffi_0.24.1";
+    version = "0.24.1";
     asds = [ "cffi" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
@@ -4768,7 +4768,7 @@ in rec {
   };
   cffi_slash_c2ffi-generator = {
     pname = "cffi_c2ffi-generator";
-    version = "cffi_0.24.1";
+    version = "0.24.1";
     asds = [ "cffi" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
@@ -16065,7 +16065,7 @@ in rec {
   };
   cl-log = {
     pname = "cl-log";
-    version = "cl-log.1.0.1";
+    version = ".1.0.1";
     asds = [ "cl-log" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-log/2013-01-28/cl-log.1.0.1.tgz";
@@ -16078,7 +16078,7 @@ in rec {
   };
   cl-log-test = {
     pname = "cl-log-test";
-    version = "cl-log.1.0.1";
+    version = ".1.0.1";
     asds = [ "cl-log-test" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-log/2013-01-28/cl-log.1.0.1.tgz";
@@ -17560,7 +17560,7 @@ in rec {
   };
   cl-ncurses = {
     pname = "cl-ncurses";
-    version = "cl-ncurses_0.1.4";
+    version = "0.1.4";
     asds = [ "cl-ncurses" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/cl-ncurses/2010-10-06/cl-ncurses_0.1.4.tgz";
@@ -22656,7 +22656,7 @@ in rec {
   };
   class-options = {
     pname = "class-options";
-    version = "class-options_1.0.1";
+    version = "1.0.1";
     asds = [ "class-options" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/class-options/2020-10-16/class-options_1.0.1.tgz";
@@ -22669,7 +22669,7 @@ in rec {
   };
   class-options_tests = {
     pname = "class-options_tests";
-    version = "class-options_1.0.1";
+    version = "1.0.1";
     asds = [ "class-options_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/class-options/2020-10-16/class-options_1.0.1.tgz";
@@ -24190,7 +24190,7 @@ in rec {
   };
   clouchdb = {
     pname = "clouchdb";
-    version = "clouchdb_0.0.16";
+    version = "0.0.16";
     asds = [ "clouchdb" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/clouchdb/2012-04-07/clouchdb_0.0.16.tgz";
@@ -24203,7 +24203,7 @@ in rec {
   };
   clouchdb-examples = {
     pname = "clouchdb-examples";
-    version = "clouchdb_0.0.16";
+    version = "0.0.16";
     asds = [ "clouchdb-examples" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/clouchdb/2012-04-07/clouchdb_0.0.16.tgz";
@@ -25737,7 +25737,7 @@ in rec {
   };
   compatible-metaclasses = {
     pname = "compatible-metaclasses";
-    version = "compatible-metaclasses_1.0";
+    version = "1.0";
     asds = [ "compatible-metaclasses" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/compatible-metaclasses/2020-09-25/compatible-metaclasses_1.0.tgz";
@@ -25750,7 +25750,7 @@ in rec {
   };
   compatible-metaclasses_tests = {
     pname = "compatible-metaclasses_tests";
-    version = "compatible-metaclasses_1.0";
+    version = "1.0";
     asds = [ "compatible-metaclasses_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/compatible-metaclasses/2020-09-25/compatible-metaclasses_1.0.tgz";
@@ -27674,7 +27674,7 @@ in rec {
   };
   definitions-systems = {
     pname = "definitions-systems";
-    version = "definitions-systems_2.0.1";
+    version = "2.0.1";
     asds = [ "definitions-systems" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/definitions-systems/2021-04-11/definitions-systems_2.0.1.tgz";
@@ -27687,7 +27687,7 @@ in rec {
   };
   definitions-systems_tests = {
     pname = "definitions-systems_tests";
-    version = "definitions-systems_2.0.1";
+    version = "2.0.1";
     asds = [ "definitions-systems_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/definitions-systems/2021-04-11/definitions-systems_2.0.1.tgz";
@@ -29689,7 +29689,7 @@ in rec {
   };
   enhanced-boolean = {
     pname = "enhanced-boolean";
-    version = "enhanced-boolean_1.0";
+    version = "1.0";
     asds = [ "enhanced-boolean" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/enhanced-boolean/2020-03-25/enhanced-boolean_1.0.tgz";
@@ -29702,7 +29702,7 @@ in rec {
   };
   enhanced-boolean_tests = {
     pname = "enhanced-boolean_tests";
-    version = "enhanced-boolean_1.0";
+    version = "1.0";
     asds = [ "enhanced-boolean_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/enhanced-boolean/2020-03-25/enhanced-boolean_1.0.tgz";
@@ -29715,7 +29715,7 @@ in rec {
   };
   enhanced-defclass = {
     pname = "enhanced-defclass";
-    version = "enhanced-defclass_2.1";
+    version = "2.1";
     asds = [ "enhanced-defclass" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/enhanced-defclass/2021-04-11/enhanced-defclass_2.1.tgz";
@@ -29728,7 +29728,7 @@ in rec {
   };
   enhanced-defclass_tests = {
     pname = "enhanced-defclass_tests";
-    version = "enhanced-defclass_2.1";
+    version = "2.1";
     asds = [ "enhanced-defclass_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/enhanced-defclass/2021-04-11/enhanced-defclass_2.1.tgz";
@@ -29754,7 +29754,7 @@ in rec {
   };
   enhanced-find-class = {
     pname = "enhanced-find-class";
-    version = "enhanced-find-class_1.0";
+    version = "1.0";
     asds = [ "enhanced-find-class" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/enhanced-find-class/2020-09-25/enhanced-find-class_1.0.tgz";
@@ -29767,7 +29767,7 @@ in rec {
   };
   enhanced-find-class_tests = {
     pname = "enhanced-find-class_tests";
-    version = "enhanced-find-class_1.0";
+    version = "1.0";
     asds = [ "enhanced-find-class_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/enhanced-find-class/2020-09-25/enhanced-find-class_1.0.tgz";
@@ -29793,7 +29793,7 @@ in rec {
   };
   enhanced-typep = {
     pname = "enhanced-typep";
-    version = "enhanced-typep_1.0";
+    version = "1.0";
     asds = [ "enhanced-typep" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/enhanced-typep/2020-10-16/enhanced-typep_1.0.tgz";
@@ -29806,7 +29806,7 @@ in rec {
   };
   enhanced-typep_tests = {
     pname = "enhanced-typep_tests";
-    version = "enhanced-typep_1.0";
+    version = "1.0";
     asds = [ "enhanced-typep_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/enhanced-typep/2020-10-16/enhanced-typep_1.0.tgz";
@@ -30144,7 +30144,7 @@ in rec {
   };
   evaled-when = {
     pname = "evaled-when";
-    version = "evaled-when_1.0";
+    version = "1.0";
     asds = [ "evaled-when" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/evaled-when/2020-09-25/evaled-when_1.0.tgz";
@@ -30157,7 +30157,7 @@ in rec {
   };
   evaled-when_tests = {
     pname = "evaled-when_tests";
-    version = "evaled-when_1.0";
+    version = "1.0";
     asds = [ "evaled-when_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/evaled-when/2020-09-25/evaled-when_1.0.tgz";
@@ -30508,7 +30508,7 @@ in rec {
   };
   fakenil = {
     pname = "fakenil";
-    version = "fakenil_1.0";
+    version = "1.0";
     asds = [ "fakenil" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/fakenil/2020-03-25/fakenil_1.0.tgz";
@@ -30521,7 +30521,7 @@ in rec {
   };
   fakenil_tests = {
     pname = "fakenil_tests";
-    version = "fakenil_1.0";
+    version = "1.0";
     asds = [ "fakenil_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/fakenil/2020-03-25/fakenil_1.0.tgz";
@@ -34031,7 +34031,7 @@ in rec {
   };
   gzip-stream = {
     pname = "gzip-stream";
-    version = "gzip-stream_0.2.8";
+    version = "0.2.8";
     asds = [ "gzip-stream" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/gzip-stream/2010-10-06/gzip-stream_0.2.8.tgz";
@@ -37125,7 +37125,7 @@ in rec {
   };
   inheriting-readers = {
     pname = "inheriting-readers";
-    version = "inheriting-readers_1.0.1";
+    version = "1.0.1";
     asds = [ "inheriting-readers" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/inheriting-readers/2021-01-24/inheriting-readers_1.0.1.tgz";
@@ -37138,7 +37138,7 @@ in rec {
   };
   inheriting-readers_tests = {
     pname = "inheriting-readers_tests";
-    version = "inheriting-readers_1.0.1";
+    version = "1.0.1";
     asds = [ "inheriting-readers_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/inheriting-readers/2021-01-24/inheriting-readers_1.0.1.tgz";
@@ -44600,7 +44600,7 @@ in rec {
   };
   method-versions = {
     pname = "method-versions";
-    version = "method-versions_0.1.2011.05.18";
+    version = "0.1.2011.05.18";
     asds = [ "method-versions" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/method-versions/2011-05-22/method-versions_0.1.2011.05.18.tgz";
@@ -46654,7 +46654,7 @@ in rec {
   };
   net-telent-date = {
     pname = "net-telent-date";
-    version = "net-telent-date_0.42";
+    version = "0.42";
     asds = [ "net-telent-date" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/net-telent-date/2010-10-06/net-telent-date_0.42.tgz";
@@ -47824,7 +47824,7 @@ in rec {
   };
   object-class = {
     pname = "object-class";
-    version = "object-class_1.0";
+    version = "1.0";
     asds = [ "object-class" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/object-class/2020-09-25/object-class_1.0.tgz";
@@ -47837,7 +47837,7 @@ in rec {
   };
   object-class_tests = {
     pname = "object-class_tests";
-    version = "object-class_1.0";
+    version = "1.0";
     asds = [ "object-class_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/object-class/2020-09-25/object-class_1.0.tgz";
@@ -56105,7 +56105,7 @@ in rec {
   };
   shared-preferences = {
     pname = "shared-preferences";
-    version = "shared-preferences_1.1.1";
+    version = "1.1.1";
     asds = [ "shared-preferences" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/shared-preferences/2021-02-28/shared-preferences_1.1.1.tgz";
@@ -56118,7 +56118,7 @@ in rec {
   };
   shared-preferences_tests = {
     pname = "shared-preferences_tests";
-    version = "shared-preferences_1.1.1";
+    version = "1.1.1";
     asds = [ "shared-preferences_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/shared-preferences/2021-02-28/shared-preferences_1.1.1.tgz";
@@ -56547,7 +56547,7 @@ in rec {
   };
   simple-guess = {
     pname = "simple-guess";
-    version = "simple-guess_1.0";
+    version = "1.0";
     asds = [ "simple-guess" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/simple-guess/2020-09-25/simple-guess_1.0.tgz";
@@ -56560,7 +56560,7 @@ in rec {
   };
   simple-guess_tests = {
     pname = "simple-guess_tests";
-    version = "simple-guess_1.0";
+    version = "1.0";
     asds = [ "simple-guess_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/simple-guess/2020-09-25/simple-guess_1.0.tgz";
@@ -61396,7 +61396,7 @@ in rec {
   };
   trivial-jumptables = {
     pname = "trivial-jumptables";
-    version = "trivial-jumptables_1.1";
+    version = "1.1";
     asds = [ "trivial-jumptables" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/trivial-jumptables/2019-11-30/trivial-jumptables_1.1.tgz";
@@ -61409,7 +61409,7 @@ in rec {
   };
   trivial-jumptables_tests = {
     pname = "trivial-jumptables_tests";
-    version = "trivial-jumptables_1.1";
+    version = "1.1";
     asds = [ "trivial-jumptables_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/trivial-jumptables/2019-11-30/trivial-jumptables_1.1.tgz";
@@ -62982,7 +62982,7 @@ in rec {
   };
   userial = {
     pname = "userial";
-    version = "userial_0.8.2011.06.02";
+    version = "0.8.2011.06.02";
     asds = [ "userial" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/userial/2011-06-19/userial_0.8.2011.06.02.tgz";
@@ -62995,7 +62995,7 @@ in rec {
   };
   userial-tests = {
     pname = "userial-tests";
-    version = "userial_0.8.2011.06.02";
+    version = "0.8.2011.06.02";
     asds = [ "userial-tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/userial/2011-06-19/userial_0.8.2011.06.02.tgz";
@@ -64373,7 +64373,7 @@ in rec {
   };
   with-output-to-stream = {
     pname = "with-output-to-stream";
-    version = "with-output-to-stream_1.0";
+    version = "1.0";
     asds = [ "with-output-to-stream" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/with-output-to-stream/2019-10-07/with-output-to-stream_1.0.tgz";
@@ -64386,7 +64386,7 @@ in rec {
   };
   with-output-to-stream_tests = {
     pname = "with-output-to-stream_tests";
-    version = "with-output-to-stream_1.0";
+    version = "1.0";
     asds = [ "with-output-to-stream_tests" ];
     src = (createAsd {
       url = "http://beta.quicklisp.org/archive/with-output-to-stream/2019-10-07/with-output-to-stream_1.0.tgz";
