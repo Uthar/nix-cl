@@ -567,12 +567,16 @@ let
 
   lispPackagesFor = lisp:
     let
+      # Assumed that manually written packages (in packages.nix) don't need
+      # circular fixing.
       packages = commonLispPackagesFor lisp;
       build-with-fix-duplicate-asds = args:
         head
           (fixDuplicateAsds
             [(build-asdf-system args)]
             (lispPackagesFor lisp));
+      # The Quicklisp imported packages do need that, though, because there;s
+      # all kinds of weird stuff there.
       qlPackages = quicklispPackagesFor {
         inherit lisp;
         fixup = fixupFor packages;
