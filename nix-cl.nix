@@ -347,6 +347,132 @@ let
         ["_plus_" "_dot_" "_slash_"]
         str);
 
+  # Just random notes to help reason about this function. The numbers do not
+  # mean anything.
+  #
+  # All of this would not be needed if each ASDF system existed in its own,
+  # unique .asd file.
+  #
+  # The biggest problem are slashy systems, because they can't be fixed like
+  # other, separate systems that just happen to exist in the same .asd
+  # file. There we can just create the missing asd file (or rename the original
+  # one). This way ASDF will look for its system definition in the renamed file,
+  # and look for the other system definition in the original file. So there is
+  # no conflict now.
+  #
+  # ASDF itself warns about such things. Example:
+  #
+  # WARNING: System definition file #P"/nix/store/.../cl-ppcre-unicode.asd"
+  # contains definition for system "cl-ppcre-unicode-test".
+  #
+  # Please only define "cl-ppcre-unicode" and secondary systems with a name
+  # starting with "cl-ppcre-unicode/" (e.g. "cl-ppcre-unicode/test") in that file.
+  #
+  # Well, they got the first part right...
+  #
+  # (Side note: Originally I also thought that ASDF caches somehow system
+  # definitions from files already parsed. So it would be possible that it reads
+  # 'my-system.asd' while loading 'my-system', remembers that 'my-system.asd'
+  # contained a definition for 'my-system-test', then it would try to compile
+  # the system there instead of another file on the source registry
+  # 'my-system-test.ads' (which was created as described in the previous
+  # paragraph). But, I didn't find that this is happening, and I assumed it
+  # doesn't. It seems like it goes and looks for an actual '<system-name>.asd'
+  # file each time '<system-name>' is requested to be loaded.)
+  #
+  # But, slashy systems *must* exist in the same .asd file as their parent
+  # system. So if we want to prevent ASDF trying to compile code into Nix store
+  # (which is the reason why such weird asd file renaming has to happen in the
+  # first place), we have to do something different.
+  #
+  # On the 'compiling into Nix store' thing. Imagine that you create a
+  # 'lispWithPackages' and put 'my-system' and 'my-system-test' into its source
+  # registry (CL_SOURCE_REGISTRY). Both exist in two separate 'my-system.asd'
+  # files. The Nix store directory tree of 'my-system' contains FASL's of it,
+  # and same for 'my-system-test'. You can load 'my-system' just fine, but when
+  # trying to load 'my-system-test', it will fail because it will first find the
+  # system definition in my-system's 'my-system.asd', will see that there are no
+  # FASL's, and therefore try to compile them into Nix store (because
+  # ASDF_OUTPUT_TRANSLATIONS is set like that, so that FASLs are actually loaded
+  # from the nix store and not recompiled by the user. That's kind of the point
+  # of packaging ASDF systems with Nix.)
+  #
+  # (Perhaps if it was possible to somehow override ASDF behavior, and make it
+  # load particular systems from particular files instead of relying on the
+  # 'system' -> 'system.asd' convention...)
+  #
+  # The reverse situation is probably also possible, where 'my-system-test' is
+  # before 'my-system' on the source registry path, and so you will be able to
+  # load 'my-system-test', but will get that same error for 'my-system' (it's an
+  # attempt to write to a read only path, in the Nix store).
+  #
+  # Makes you wonder if it's even worth it to use Nix for this, rather than just
+  # using Quicklisp... but maybe it is, because you can precompile reproducible
+  # FASL closures, can have your own binary cache, etc...
+  #
+  # More notes are on the algorithm to try to work around this problem.
+  #
+  # (BTW, the Quicklisp imported packages (imported.nix) already handle the
+  # simplest case of conflicts. Check out the 'createAsd' function there.)
+  #
+  # Fixing duplicate asd conflicts:
+  #
+  # 1. Detect if there would be multiple same-named asd files in the source
+  # registry.
+  #
+  # 2. Figure out which packages are the conflicting ones. These will be the
+  # ones that provide the same asd.
+  #
+  # 3. Assumes that a system named like the asd exists. Not sure what happens if
+  # multiple such systems exist. (Shouldn't happen? It's an attrset so keys are
+  # unique?)
+  #
+  # 4. If not circular, simply merge the lisp dependencies and the system names
+  # of all conflicting systems (systems that provide the same asd), and use that
+  # in the derivation instead. Do that for the 'asds' attr too (it says which
+  # asds the resulting derivation will provide), but watch out not to include
+  # slashy system names there. (Slashy systems instead exist in the asd file
+  # made from the part of the system name before the slash.).
+  #
+  # 'lisp libs' are needed to generate the source registry path on compile time
+  # to be used on run time
+  #
+  # 'systems' are needed to know which ones to actually compile
+  #
+  # 'asds' are needed to know which asd files to remove on install time (to
+  # prevent trying to compile a system that was found in the nix store because
+  # an asd file existed, but it's fasls didn't, because it wasn't compiled). Its
+  # also used to detect circular and duplicate deps.
+  #
+  # Fixing circular dependencies:
+  #
+  # Circular dependencies are kind of different than just duplicates, in that
+  # they actually overflow the Nix evaluator's stack as well.
+  #
+  # 1. This happens only between the packages that have already been detected as
+  # being duplicates in the source registry path.
+  #
+  # 2. Figure out which of those packages are circular between each other. To do
+  # that filter out (from the reduced dependency graph of duplicate asds)
+  # packages that *still* have a duplicate somewhere in the graph. (Does this
+  # even make sense? Can't it just call the duplicate fixing algorithm twice?)
+  # (Or, perhaps, skip the duplicate checking completely and only run the
+  # circular fix algorithm?)
+  #
+  # 3. Remove every package that provides the circular asd from the whole graph
+  # of lispLibs.
+  #
+  # 4. Instead, merge the 'systems' and 'asds' of the circular systems, so that
+  # they are compiled together as a single package.
+  #
+  # Then, after both duplicate and circular packages are "fixed", go through
+  # each thing in the original lispLibs, and replace that with the "fixed"
+  # version. The fixed version is found by looking for something that provides
+  # the same asd. But since a package can have multiple asds, no idea what
+  # happens when this occurs. Maybe it's fine, becase one asd is enough to
+  # warrant a "fix" becase it's enough to cause a conflict... But what if it
+  # first finds the wrong override, when there were multiple overrides?
+  #
   fixDuplicateAsds = libs: clpkgs:
     let
       libsFlat = flattenedDeps libs;
