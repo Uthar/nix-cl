@@ -24,8 +24,7 @@ result/bin/sbcl
 #### Re-import Quicklisp packages:
 
 ```
-nix-shell
-sbcl --script ql-import.lisp
+nix-shell --run 'sbcl --script ql-import.lisp'
 ```
 
 ## Documentation
