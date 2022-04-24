@@ -16,14 +16,26 @@ containing Nix expressions for all packages in Quicklisp. They will be
 automatically picked up by the `lispPackagesFor` and
 `lispWithPackages` API functions.
 
+It also creates a 'packages.sqlite' file. It's used during the
+generation of the 'imported.nix' file and can be safely removed. It
+contains the full information of Quicklisp packages, so you can use it
+to query the dependency graphs using SQL, if you're interested.
+
 ## Tarball hashes
 
-This is going to take a while because it needs to fetch the source
-code of each system to compute its SHA256 hash. Quicklisp provides a
-SHA1 hash, but Nix's `builtins.fetchTarball` requires a SHA256.
+The Nix dumper program will re-use hashes from "imported.nix" if it
+detects that it's being run for the first time. This saves a lot of
+bandwidth by not having to download each tarball again.
 
-During the first run, the hashes are cached in `packages.sqlite`, and
-are reused in subsequent invocations.
+But when upgrading the Quicklisp release URL, this can take a while
+because it needs to fetch the source code of each new system to
+compute its SHA256 hash. This is because Quicklisp only provides a
+SHA1 , and Nix's `builtins.fetchTarball` requires a SHA256.
+
+Later on, the hashes are cached in `packages.sqlite`, and are reused
+in subsequent invocations. Therefore you might want to keep the
+'packages.sqlite' file around if you'd like to keep hashes of
+historical Quicklisp tarballs, for example for archival purposes.
 
 ## Choosing a Quicklisp release
 
