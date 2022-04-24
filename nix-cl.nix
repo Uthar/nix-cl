@@ -25,6 +25,7 @@ let
     concatMap
     mutuallyExclusive
     findFirst
+    remove
     setAttr
     getAttr
     hasAttr
@@ -504,7 +505,10 @@ let
             asds = master.asds ++ circularAsds;
           })
           else master.overrideLispAttrs (o: {
-            inherit lispLibs;
+            # It's possible that 'master' is one of the 'providers'.
+            # Need to ensure that it won't depend on itself, which would create
+            # a circular dependency and crash the Nix interpreter.
+            lispLibs = remove master lispLibs;
             inherit systems;
             asds = filter (x: !hasInfix "/" x) systems;
           });
@@ -590,6 +594,21 @@ let
       lispWithPackagesInternal
       lispPackagesFor
       lispWithPackages;
+
+    # Uncomment for debugging/development
+    # inherit
+    #   flattenedDeps
+    #   fixDuplicateAsds
+    #   frequencies
+    #   concatMap
+    #   attrNames
+    #   getAttr
+    #   filterAttrs
+    #   filter
+    #   elem
+    #   unique
+    #   makeAttrName
+    #   length;
 
     # There's got to be a better way than this...
     # The problem was that with --load everywhere, some
