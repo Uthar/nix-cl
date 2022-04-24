@@ -9,7 +9,7 @@
 
 (defparameter lisp (or (cadr sb-ext:*posix-argv*) "sbcl"))
 
-(defparameter nix-build "nix-build -E 'with import <nix-cl> {}; ~aPackages.~a'")
+(defparameter nix-build "nix-build -E 'with import ./. {}; ~aPackages.~a'")
 
 (defparameter cpu-count
   (length
@@ -21,11 +21,6 @@
 (defparameter sem (sb-thread:make-semaphore :count cpu-count))
 
 (defparameter statuses (make-hash-table :synchronized t))
-
-(setf (uiop:getenv "NIX_PATH")
-      (uiop:strcat (uiop:getenv "NIX_PATH")
-                   ":nix-cl="
-                   (format nil "~a" (uiop:getcwd))))
 
 (defparameter log-lock (sb-thread:make-mutex))
 
