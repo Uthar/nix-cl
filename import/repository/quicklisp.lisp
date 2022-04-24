@@ -38,8 +38,44 @@
   (apply #'format (list* *error-output* format-args))
   (force-output *error-output*))
 
+;; TODO: This should not know about the imported.nix file.
+(defun init-tarball-hashes (database)
+  (status "no packages.sqlite - will pre-fill tarball hashes from ~A to save time~%"
+          (truename "imported.nix"))
+  (let* ((lines (uiop:read-file-lines "imported.nix"))
+         (lines (remove-if-not
+                  (lambda (line)
+                    (let ((trimmed (str:trim-left line)))
+                      (or (str:starts-with-p "url = " trimmed)
+                          (str:starts-with-p "sha256 = " trimmed))))
+                  lines))
+         (lines (mapcar
+                 (lambda (line)
+                   (multiple-value-bind (whole groups)
+                       (ppcre:scan-to-strings "\"\(.*\)\"" line)
+                     (declare (ignore whole))
+                     (svref groups 0)))
+                 lines)))
+    (sqlite:with-open-database (db (database-url database))
+      (init-db db (init-file database))
+      (sqlite:with-transaction db
+        (loop while lines do
+          (sqlite:execute-non-query db
+            "insert or ignore into sha256(url,hash) values (?,?)"
+            (prog1 (first lines) (setf lines (rest lines)))
+            (prog1 (first lines) (setf lines (rest lines))))))
+      (status "OK, imported ~A hashes into DB.~%"
+              (sqlite:execute-single db
+                 "select count(*) from sha256")))))
+
 (defmethod import-lisp-packages ((repository quicklisp-repository)
                                  (database sqlite-database))
+
+  ;; If packages.sqlite is missing, we should populate the sha256
+  ;; table to speed things up.
+  (unless (probe-file (database-url database))
+    (init-tarball-hashes database))
+
   (let* ((db (sqlite:connect (database-url database)))
          (systems-url (str:concat (dist-url repository) "systems.txt"))
          (releases-url (str:concat (dist-url repository) "releases.txt"))
@@ -106,8 +142,8 @@
           (dolist (system systems)
             (destructuring-bind (name version asd url deps) system
               (declare (ignore deps))
+              (status "importing system '~a-~a'" name version)
               (let ((hash (nix-prefetch-tarball url db)))
-                (status "importing system '~a-~a'" name version)
                 (sql-query
                  "insert or ignore into system(name,version,asd) values (?,?,?)"
                  name version asd)
@@ -128,7 +164,7 @@
               (dolist (dep (coerce (json:parse deps) 'list))
                 (destructuring-bind (dep-name dep-version) (coerce dep 'list)
                   (if (eql dep-version 'NULL)
-                    (warn "Bad data in systems.txt/releases.txt: ~a has no version" dep-name)
+                    (warn "Bad data in Quicklisp: ~a has no version" dep-name)
                   (sql-query
                     "insert or ignore into dep values
                      ((select id from system where name=? and version=?),
