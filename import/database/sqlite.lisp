@@ -122,7 +122,7 @@ in rec {")
             where s.id = a.depid
         ),
         depids as (select distinct depid from alldeps),
-        depnames as (select json_group_array(name)
+        depnames as (select group_concat(name)
                      from system where id in depids
                      and name not like 'generic-cl.%'),
         sysnames as (select json_group_array(name)
@@ -136,11 +136,6 @@ in rec {")
       ;; Remove the now unneeded subsystems
       (sqlite:execute-non-query db
        "delete from fixed_systems where name like 'generic-cl.%'")
-
-      ;; Clean up nulls.
-      ;; There's probably a better way than this.
-      (sqlite:execute-non-query db
-       "update fixed_systems set deps = '[]' where deps = '[null]'")
 
       ;; The schema assumes one asd per package. This should probably
       ;; be fixed over there... but the questions is whether is even
@@ -193,6 +188,6 @@ in rec {")
                              ,@(mapcar (lambda (dep)
                                          `(:symbol ,dep))
                                        (remove "asdf"
-                                               (coerce (json:parse deps) 'list)
+                                               (str:split-omit-nulls #\, deps)
                                                :test #'string=))))))))))
       (format f "~%}"))))
