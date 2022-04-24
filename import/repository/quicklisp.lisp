@@ -45,26 +45,25 @@
          (releases-url (str:concat (dist-url repository) "releases.txt"))
          (systems-lines (rest (butlast (str:split #\Newline (dex:get systems-url)))))
          (releases-lines (rest (butlast (str:split #\Newline (dex:get releases-url))))))
-    (flet ((run-sql (sql &rest params)
-             (apply #'sqlite:execute-non-query `(,db ,sql ,@params)))
-           (query-sql (sql &rest params)
-             (apply #'sqlite:execute-to-list `(,db ,sql ,@params))))
+
+    (flet ((sql-query (sql &rest params)
+             (apply #'sqlite:execute-to-list (list* db sql params))))
 
       ;; Ensure database schema
       (init-db db (init-file database))
 
       ;; Prepare temporary tables for efficient access
-      (run-sql "create temp table if not exists quicklisp_system
-                (project, asd, name unique, dependencies)")
+      (sql-query "create temp table if not exists quicklisp_system
+                  (project, asd, name unique, deps)")
 
-      (run-sql "create temp table if not exists quicklisp_release
-                (project unique, url, size, md5, sha1, prefix, asds)")
+      (sql-query "create temp table if not exists quicklisp_release
+                  (project unique, url, size, md5, sha1, prefix not null, asds)")
 
       (sqlite:with-transaction db
         (dolist (line systems-lines)
           (destructuring-bind (project asd name &rest deps)
               (str:words line)
-            (run-sql
+            (sql-query
              "insert or ignore into quicklisp_system values(?,?,?,?)"
              project asd name (json:stringify (coerce deps 'vector))))))
 
@@ -72,53 +71,77 @@
         (dolist (line releases-lines)
           (destructuring-bind (project url size md5 sha1 prefix &rest asds)
               (str:words line)
-            (run-sql
+            (sql-query
              "insert or ignore into quicklisp_release values(?,?,?,?,?,?,?)"
              project url size md5 sha1 prefix (json:stringify (coerce
                                                                asds
                                                                'vector))))))
 
       (sqlite:with-transaction db
+        ;; Should these be temp tables, that then get queried by
+        ;; system name? This looks like it uses a lot of memory.
         (let ((systems
-                (query-sql
-                 "select s.project, s.name, r.prefix, s.asd, r.url
-                  from quicklisp_system s, quicklisp_release r
-                  where s.project=r.project"
-                 ))
-              (dependencies
-                (query-sql
-                 "select name, dependencies from quicklisp_system"
+                (sql-query
+                 "with pkg as (
+                    select * from quicklisp_system s, quicklisp_release r
+                    where s.project = r.project
+                  )
+                  select
+                    name,
+                    ltrim(replace(prefix, project, ''), '-_') as version,
+                    asd,
+                    url,
+                    (select json_group_array(
+                      json_array(
+                        value,
+                        (select ltrim(replace(prefix, project, ''), '-_')
+                         from pkg
+                         where name = value)
+                      )
+                     )
+                     from json_each(deps)) as deps
+                  from pkg"
                  )))
+
+          ;; First pass: insert system and source tarball informaton.
+          ;; Can't insert dependency information, because this works
+          ;; on system ids in the database and they don't exist
+          ;; yet. Could it be better to just base dependencies on
+          ;; names? But then ACID is lost.
           (dolist (system systems)
-            (destructuring-bind (project name prefix asd url)
-                system
-              (let* ((name name)
-                     (version (str:replace-first (str:concat project "-") "" prefix))
-                     (asd asd)
-                     (url url)
-                     (hash (nix-prefetch-tarball url db)))
+            (destructuring-bind (name version asd url deps) system
+              (declare (ignore deps))
+              (let ((hash (nix-prefetch-tarball url db)))
                 (status "importing system '~a-~a'" name version)
-                (run-sql
+                (sql-query
                  "insert or ignore into system(name,version,asd) values (?,?,?)"
                  name version asd)
-                (run-sql
+                (sql-query
                  "insert or ignore into sha256(url,hash) values (?,?)"
                  url hash)
-                (run-sql
+                (sql-query
                  "insert or ignore into src values
                   ((select id from sha256 where url=?),
-                   (select id from system where name=?))"
-                 url name))))
-          (dolist (dependency dependencies)
-            (destructuring-bind (name dependencies)
-                dependency
-              (dolist (system (coerce (json:parse dependencies) 'list))
-                (run-sql
-                 "insert or ignore into dep values
-                  ((select id from system where name=?),
-                   (select id from system where name=?))"
-                 name system))))))
-      (write-char #\Newline *error-output*))))
+                   (select id from system where name=? and version=?))"
+                 url name version))))
+
+          ;; Second pass: connect the in-database systems with
+          ;; dependency information
+          (dolist (system systems)
+            (destructuring-bind (name version asd url deps) system
+              (declare (ignore asd url))
+              (dolist (dep (coerce (json:parse deps) 'list))
+                (destructuring-bind (dep-name dep-version) (coerce dep 'list)
+                  (if (eql dep-version 'NULL)
+                    (warn "Bad data in systems.txt/releases.txt: ~a has no version" dep-name)
+                  (sql-query
+                    "insert or ignore into dep values
+                     ((select id from system where name=? and version=?),
+                      (select id from system where name=? and version=?))"
+                    name version
+                    dep-name dep-version))))))))))
+
+  (write-char #\Newline *error-output*))
 
 (defun shell-command-to-string (cmd)
   ;; Clearing the library path is needed to prevent a bug, where the
