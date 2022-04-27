@@ -231,6 +231,34 @@ let
     ];
   };
 
+  lessp = build-asdf-system {
+    pname = "lessp";
+    version = "0.2-f8a9e4664";
+    src = pkgs.fetchzip {
+      url = "https://github.com/facts-db/cl-lessp/archive/632217602b85b679e8d420654a0aa39e798ca3b5.tar.gz";
+      sha256 = "0i3ia14dzqwjpygd0zn785ff5vqnnmkn75psfpyx0ni3jr71lkq9";
+    };
+  };
+
+  rollback = build-asdf-system {
+    pname = "rollback";
+    version = "0.1-5d3f21fda";
+    src = pkgs.fetchzip {
+      url = "https://github.com/facts-db/cl-rollback/archive/5d3f21fda8f04f35c5e9d20ee3b87db767915d15.tar.gz";
+      sha256 = "12dpxsbm2al633y87i8p784k2dn4bbskz6sl40v9f5ljjmjqjzxf";
+    };
+  };
+
+  facts = build-asdf-system {
+    pname = "facts";
+    version = "0.1-632217602";
+    src = pkgs.fetchzip {
+      url = "https://github.com/facts-db/cl-lessp/archive/632217602b85b679e8d420654a0aa39e798ca3b5.tar.gz";
+      sha256 = "09z1vwzjm7hlb529jl3hcjnfd11gh128lmdg51im7ar4jv4746iw";
+    };
+    lispLibs = [ lessp rollback ] ++ [ ql.local-time ];
+  };
+
   cl-fuse = build-with-compile-into-pwd {
     inherit (ql.cl-fuse) pname version src lispLibs;
     nativeBuildInputs = [ pkgs.fuse ];
