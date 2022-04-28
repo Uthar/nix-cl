@@ -326,10 +326,10 @@ let
 
   # The recent version of makeWrapper causes breakage. For more info see
   # https://github.com/Uthar/nix-cl/issues/2
-  oldMakeWrapper = (import (builtins.fetchTarball {
-    url = "https://github.com/nixos/nixpkgs/archive/37809af15e22cc4b1e3de3a9fad98b612881f6a5.tar.gz";
-    sha256 = "0ay907qpvmzr3vhhc6bhwrwz6cdwiadbyxjqlq9wi4f2ldr1id59";
-  }) {}).makeWrapper;
+  oldMakeWrapper = pkgs.runCommand "make-wrapper.sh" {} ''
+    substitute ${./old-make-wrapper.sh} $out \
+      --replace @shell@ ${pkgs.bash}/bin/bash
+  '';
 
   # Creates a lisp wrapper with `packages` installed
   #
@@ -345,10 +345,13 @@ let
       pname = baseNameOf (head (split " " lisp));
       version = "with-packages";
       lispLibs = packages clpkgs;
-      nativeBuildInputs = [ oldMakeWrapper ];
       systems = [];
     }).overrideAttrs(o: {
       installPhase = ''
+        # The recent version of makeWrapper causes breakage. For more info see
+        # https://github.com/Uthar/nix-cl/issues/2
+        source ${oldMakeWrapper}
+
         mkdir -pv $out/bin
         makeWrapper \
           ${head (split " " o.lisp)} \
