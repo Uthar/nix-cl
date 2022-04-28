@@ -382,19 +382,21 @@ let
 
   nyxt = nyxt-gtk;
 
-  s-sql_slash_tests = build-with-fix-duplicate-asds {
-    inherit (ql.s-sql_slash_tests) pname version src systems asds;
-    lispLibs = ql.s-sql_slash_tests.lispLibs ++ [
+  # Quicklisp missing dependency data:
+  # https://github.com/marijnh/Postmodern/blob/6a8eb691dbdd9ef780ada0c5a05ab5cf94e6f4f9/s-sql.asd#L23
+  s-sql_slash_tests = ql.s-sql_slash_tests.overrideLispAttrs (o: {
+    lispLibs = o.lispLibs ++ [
       ql.cl-postgres_slash_tests
     ];
-  };
+  });
 
-  simple-date_slash_postgres-glue = build-with-fix-duplicate-asds {
-    inherit (ql.simple-date_slash_postgres-glue) pname version src systems asds;
-    lispLibs = ql.simple-date_slash_postgres-glue.lispLibs ++ [
+  # Quicklisp missing dependency data:
+  # https//github.com/marijnh/Postmodern/blob/6a8eb691dbdd9ef780ada0c5a05ab5cf94e6f4f9/simple-date.asd#L25
+  simple-date_slash_postgres-glue = ql.simple-date_slash_postgres-glue.overrideLispAttrs (o: {
+    lispLibs = o.lispLibs ++ [
       ql.cl-postgres_slash_tests
     ];
-  };
+  });
 
   };
 
