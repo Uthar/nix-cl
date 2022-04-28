@@ -1,4 +1,4 @@
-{ pkgs, build-asdf-system, flattenedDeps, fixup ? pkgs.lib.id, ... }:
+{ pkgs, build-asdf-system, fixup ? pkgs.lib.id, ... }:
 
 with pkgs;
 with lib;
@@ -119,44 +119,21 @@ let
     };
   };
 
-  # NOTE:
-  # You might need https://github.com/NixOS/nix/commit/cd44c0af71ace2eb8056c2b26b9249a5aa102b41
-  # and a couple gigs of ram, as some derivations are HUGE
-  #
-  # So, if you get stack overflow with nix <=2.3, try again with `ulimit -s 65536`
-  #
-  # FIXME: mark those broken on nix.lisp level for speed
-  broken = [
-    # broken packaging in quicklisp: clml.data.r-datasets depends on
-    # a non-existing system clml.data.r-datasets-package
-    # FIXME: patch the clml.data.r-datasets-package system manually in
-    # systems.txt before running nix.lisp
-    # (n: v: hasPrefix "clml" n)
-
-    # Broken upstream: see https://gitlab.common-lisp.net/antik/antik/-/issues/4
-    # (n: v: hasPrefix "antik" n)
-    # (n: v: any (dep: hasPrefix "antik" dep.pname) (flattenedDeps v.lispLibs))
-
-    # FIXME: for cl-unicode (and other cases where the build process
-    # generates new source files), try to rebuild any failing library
-    # again with source translations into pwd, then rebuild normallny
-    # with the previous one as source
-  ];
-
   qlpkgs =
     if builtins.pathExists ./imported.nix
-    then filterAttrs (n: v: all (check: !(check n v)) broken) (import ./imported.nix { inherit pkgs; })
+    then import ./imported.nix { inherit (pkgs) runCommand; pkgs = builtQlpkgs; }
     else {};
+ 
+  builtQlpkgs = mapAttrs (n: v: build v) qlpkgs;
 
   build = pkg:
     let
-      withLibs = pkg // { lispLibs = map build pkg.lispLibs; };
-      builtPkg = build-asdf-system withLibs;
-      withExtras = withLibs //
+      builtPkg = build-asdf-system pkg;
+      withExtras = pkg //
                    (optionalAttrs
                      (hasAttr pkg.pname extras)
                      (extras.${pkg.pname} builtPkg));
       fixedUp = fixup withExtras;
     in build-asdf-system fixedUp;
 
-in mapAttrs (n: v: build v) qlpkgs
+in builtQlpkgs
