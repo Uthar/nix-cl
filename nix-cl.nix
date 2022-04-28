@@ -230,6 +230,9 @@ let
         # from storeDir. Otherwise it could try to recompile lisp deps.
         export ASDF_OUTPUT_TRANSLATIONS="${src}:$(pwd):${storeDir}:${storeDir}"
 
+        # track lisp dependencies for graph generation
+        echo $lispLibs >> __nix-drvs
+
         # Finally, compile the systems
         ${lisp} $buildScript
       '';
