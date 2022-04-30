@@ -10,7 +10,7 @@
 # - figure out a less awkward way to patch sources
 #   (have to build from src directly for SLIME to work, so can't just patch sources in place)
 
-{ pkgs, lib, stdenv, ... }:
+{ pkgs, lib, stdenv, abcl, ecl, ccl, clasp, sbcl, ... }:
 
 
 let
@@ -403,25 +403,25 @@ let
     # The problem was that with --load everywhere, some
     # implementations didn't exit with 0 on compilation failure
     # Maybe a handler-case in buildScript?
-    sbcl  = "${pkgs.sbcl}/bin/sbcl --script";
-    ecl   = "${pkgs.ecl}/bin/ecl --shell";
-    abcl  = ''${pkgs.abcl}/bin/abcl --batch --eval "(load \"$buildScript\")"'';
-    ccl   = ''${pkgs.ccl}/bin/ccl --batch --eval "(load \"$buildScript\")" --'';
-    clasp = ''${pkgs.clasp}/bin/clasp --non-interactive --quit --load'';
+    sbcl'  = "${sbcl}/bin/sbcl --script";
+    ecl'   = "${ecl}/bin/ecl --shell";
+    abcl'  = ''${abcl}/bin/abcl --batch --eval "(load \"$buildScript\")"'';
+    ccl'   = ''${ccl}/bin/ccl --batch --eval "(load \"$buildScript\")" --'';
+    clasp' = ''${clasp}/bin/clasp --non-interactive --quit --load'';
 
     # Manually defined packages shadow the ones imported from quicklisp
 
-    sbclPackages  = lispPackagesFor sbcl;
-    eclPackages   = lispPackagesFor ecl;
-    abclPackages  = lispPackagesFor abcl;
-    cclPackages   = lispPackagesFor ccl;
-    claspPackages = lispPackagesFor clasp;
+    sbclPackages  = lispPackagesFor sbcl';
+    eclPackages   = lispPackagesFor ecl';
+    abclPackages  = lispPackagesFor abcl';
+    cclPackages   = lispPackagesFor ccl';
+    claspPackages = lispPackagesFor clasp';
 
-    sbclWithPackages  = lispWithPackages sbcl;
-    eclWithPackages   = lispWithPackages ecl;
-    abclWithPackages  = lispWithPackages abcl;
-    cclWithPackages   = lispWithPackages ccl;
-    claspWithPackages = lispWithPackages clasp;
+    sbclWithPackages  = lispWithPackages sbcl';
+    eclWithPackages   = lispWithPackages ecl';
+    abclWithPackages  = lispWithPackages abcl';
+    cclWithPackages   = lispWithPackages ccl';
+    claspWithPackages = lispWithPackages clasp';
   };
 
 in commonLispPackages
