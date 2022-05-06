@@ -336,3 +336,11 @@ So it could be too costly to use Nix for some people, even considering
 the aforementioned benefits.
 
 (add link to Nix documentation)
+
+## Not suitable for fine-grained dependencies
+
+Nix is suited well for coarse-grained dependencies, such as packages
+or whole ASDF systems.
+
+But it can't handle things like dependencies between individual files
+in a system. There ASDF itself still is the most prominent tool.
