@@ -112,31 +112,6 @@ let
     ];
   };
 
-  quri = build-asdf-system {
-    src = pkgs.stdenv.mkDerivation {
-      pname = "patched";
-      version = "source";
-      src = ql.quri.src;
-
-      # fix build with ABCL
-      buildPhase = ''
-        sed -i "s,[#][.](asdf.*,#P\"$out/data/effective_tld_names.dat\")," src/etld.lisp
-      '';
-      installPhase = ''
-        mkdir -pv $out
-        cp -r * $out
-      '';
-    };
-    version = "20210411";
-    pname = "quri";
-    lispLibs = with ql; [
-      alexandria
-      babel
-      cl-utilities
-      split-sequence
-    ];
-  };
-
   jzon = build-asdf-system {
     src = builtins.fetchTarball {
       url = "https://github.com/Zulu-Inuoe/jzon/archive/6b201d4208ac3f9721c461105b282c94139bed29.tar.gz";
