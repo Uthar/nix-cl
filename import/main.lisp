@@ -22,7 +22,7 @@
   (make-instance
    'quicklisp-repository
    :dist-url
-   "https://beta.quicklisp.org/dist/quicklisp/2022-04-01/"))
+   "https://beta.quicklisp.org/dist/quicklisp/2021-12-30/"))
 
 (defun run-importers ()
   (import-lisp-packages *quicklisp* *sqlite*)
