@@ -116,10 +116,7 @@ let
     src = pkgs.stdenv.mkDerivation {
       pname = "patched";
       version = "source";
-      src =  builtins.fetchTarball {
-        url = "http://beta.quicklisp.org/archive/quri/2021-04-11/quri-20210411-git.tgz";
-        sha256 = "1pkvpiwwhx2fcknr7x47h7036ypkg8xzsskqbl5z315ipfmi8s2m";
-      };
+      src = ql.quri.src;
 
       # fix build with ABCL
       buildPhase = ''
