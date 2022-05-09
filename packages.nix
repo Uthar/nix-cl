@@ -289,35 +289,6 @@ let
     ];
   };
 
-  mgl = build-asdf-system {
-    pname = "mgl";
-    version = "2021-10-07";
-    src = builtins.fetchTarball {
-      url = "https://github.com/melisgl/mgl/archive/e697791a9bcad3b6e7b3845246a2aa55238cfef7.tar.gz";
-      sha256 = "09sf7nq7nmf9q7bh3a5ygl2i2n0nhrx5fk2kv5ili0ckv7g9x72s";
-    };
-    lispLibs = with ql; [
-      alexandria closer-mop array-operations lla cl-reexport mgl-pax
-      named-readtables pythonic-string-reader
-    ] ++ [ mgl-mat ];
-    systems = [ "mgl" "mgl/test" ];
-  };
-
-  mgl-mat = build-asdf-system {
-    pname = "mgl-mat";
-    version = "2021-10-11";
-    src = builtins.fetchTarball {
-      url = "https://github.com/melisgl/mgl-mat/archive/3710858bc876b1b86e50f1db2abe719e92d810e7.tar.gz";
-      sha256 = "1aa2382mi55rp8pd31dz4d94yhfzh30vkggcvmvdfrr4ngffj0dx";
-    };
-    lispLibs = with ql; [
-      alexandria bordeaux-threads cffi cffi-grovel cl-cuda
-      flexi-streams ieee-floats lla mgl-pax static-vectors
-      trivial-garbage cl-fad
-    ];
-    systems = [ "mgl-mat" "mgl-mat/test" ];
-  };
-
   mathkit = build-asdf-system {
     inherit (ql.mathkit) pname version src asds lisp;
     lispLibs = ql.mathkit.lispLibs ++ [ ql.sb-cga ];
