@@ -140,6 +140,14 @@ let
     ];
   };
 
+  cl-liballegro-nuklear = build-with-compile-into-pwd {
+    inherit (ql.cl-liballegro-nuklear) pname version src;
+    nativeBuildInputs = [ pkgs.allegro5 ];
+    nativeLibs = [ pkgs.allegro5 ];
+    lispLibs = ql.cl-liballegro-nuklear.lispLibs ++ [ ql.cl-liballegro ];
+    patches = [ ./patches/cl-liballegro-nuklear-missing-dll.patch ];
+  };
+
   tuple = build-asdf-system {
     pname = "tuple";
     version = "b74bd067d";
