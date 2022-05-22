@@ -72,6 +72,16 @@ let
       # weird...
       nativeLibs = [ allegro5 ];
     };
+    cl-ode = pkg: {
+      nativeLibs = let
+        ode' = ode.overrideAttrs (o: {
+          configureFlags = [
+            "--enable-shared"
+            "--enable-double-precision"
+          ];
+        });
+      in [ ode' ];
+    };
     classimp = pkg: {
       nativeLibs = [ assimp ];
     };
