@@ -257,10 +257,11 @@ As an exercise you could try to:
   specification of the image, unlike a Dockerfile which is more like a
   script.
   
-- Poke around in the container with `uiop:directory-files`. You will see
-  that it contains precisely what it needs: SBCL, glibc, OpenSSL, SQLite
-  and the ASDF system FASLs. There's not even `bash`/`sh`. Therefore it
-  can be a lot smaller than traditional images.
+- Poke around in the container with `uiop:directory-files`. You will
+  see that it contains precisely what it needs: SBCL, glibc, OpenSSL,
+  SQLite and the ASDF system FASLs. There's not even things like
+  coreutils (`ls`/`cp`). Therefore it can be a lot smaller than
+  traditional images.
 
 ## Decentralized package repositories
 
