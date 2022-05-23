@@ -139,10 +139,11 @@ You can verify that `cl-liballegro` is loadable from `sbcl`, but not
 from `ccl`. Vice versa for `hunchentoot`. This is because their ASDF
 paths are logically isolated from each other. 
 
-They will still share common libraries where it makes sense. If they're
-both using *identical* versions of `alexandria`, then it will be
-shared. If it's a different commit of it, they will use separate store
-paths. This saves some space by preventing unnecessary duplicates.
+They will still share common paths where it makes sense. If they're
+both using *identical* versions of a native library such as `openssl`,
+then it will be shared. If it's a different commit of it, they will
+use separate store paths. This also applies to Lisp source
+tarballs. This saves some space by preventing unnecessary duplicates.
 
 This can work because `/nix/store` is read only. Therefore `sbcl` and
 `ccl` can't mess with each others dependencies.
