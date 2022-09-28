@@ -26,10 +26,9 @@ let
         .overrideAttrs(o: {
           buildPhase = with builtins; ''
             mkdir __fasls
-            export LD_LIBRARY_PATH=${makeLibraryPath o.nativeLibs}:$LD_LIBRARY_PATH
-            export CLASSPATH=${makeSearchPath "share/java/*" o.javaLibs}:$CLASSPATH
-            export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$(pwd)//
             export ASDF_OUTPUT_TRANSLATIONS="$(pwd):$(pwd)/__fasls:${storeDir}:${storeDir}"
+            export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$(pwd)//
+            printenv
             ${o.lisp} ${o.buildScript}
           '';
           installPhase = ''

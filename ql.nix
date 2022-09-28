@@ -11,7 +11,7 @@ let
 
   extras = {
     "cl+ssl" = pkg: {
-      nativeLibs = [ openssl ];
+      nativeLibs = [ openssl.out ];
     };
     cl-cffi-gtk-glib = pkg: {
       nativeLibs = [ glib ];
@@ -38,7 +38,7 @@ let
       nativeLibs = [ postgresql.lib ];
     };
     clsql-sqlite3 = pkg: {
-      nativeLibs = [ sqlite ];
+      nativeLibs = [ sqlite.out ];
     };
     cl-webkit2 = pkg: {
       nativeLibs = [ webkitgtk ];
@@ -61,7 +61,7 @@ let
       nativeLibs = [ libssh2 ];
     };
     sqlite = pkg: {
-      nativeLibs = [ sqlite ];
+      # nativeLibs = [ sqlite.out ];
     };
     cl-libuv = pkg: {
       nativeBuildInputs = [ libuv ];
@@ -117,7 +117,7 @@ let
       nativeLibs = [ rdkafka ];
     };
     cl-async-ssl = pkg: {
-      nativeLibs = [ openssl ];
+      nativeLibs = [ openssl.out ];
     };
     osicat = pkg: {
       LD_LIBRARY_PATH = "${pkg}/posix/";
