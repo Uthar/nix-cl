@@ -29,6 +29,8 @@ _addToAsdfPath ()  {
         seen[$system]=1
         local path="$system"
 
+        # FIXME slow
+
         while read jar; do
             addFileToSearchPath "CLASSPATH" "$jar"
         done < <(find "$path" -type f,l -name '*.jar')
