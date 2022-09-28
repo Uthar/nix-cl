@@ -61,7 +61,7 @@ let
       nativeLibs = [ libssh2 ];
     };
     sqlite = pkg: {
-      # nativeLibs = [ sqlite.out ];
+      nativeLibs = [ sqlite.out ];
     };
     cl-libuv = pkg: {
       nativeBuildInputs = [ libuv ];
@@ -118,9 +118,6 @@ let
     };
     cl-async-ssl = pkg: {
       nativeLibs = [ openssl.out ];
-    };
-    osicat = pkg: {
-      LD_LIBRARY_PATH = "${pkg}/posix/";
     };
     iolib = pkg: {
       nativeBuildInputs = [ libfixposix ];
