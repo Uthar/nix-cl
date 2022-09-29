@@ -160,23 +160,7 @@ let
       # cl-syslog, for some reason, signals that CL-SYSLOG::VALID-SD-ID-P
       # is undefined with compile-system, but works perfectly with
       # load-system. Strange.
-      buildScript = pkgs.writeText "builder.lisp" ''
-        (in-package :cl-user)
-        (require 'asdf)
-        (import 'uiop:getenv)
-        (import 'uiop:split-string)
-
-        (defun load-systems ()
-          (handler-case
-              (dolist (s (split-string (getenv "systems") :separator " "))
-                (asdf:load-system s))
-            (error (c)
-              (format t "BUILD FAILED: ~A~%" c)
-              (uiop:quit 1)))
-          (uiop:quit 0))
-
-        (load-systems)
-      '';
+      buildScript = "${./builder.lisp}";
 
       preConfigure = ''
         buildAsdfPath
