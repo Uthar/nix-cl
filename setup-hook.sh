@@ -2,9 +2,11 @@
 
 buildAsdfPath () {
     declare -A seen=()
-    for system in @lispLibs@; do
-        _addToAsdfPath $system
+    echo "start: $(date +%s)"
+    for dep in @dependencies@; do
+        _addToAsdfPath $dep
     done
+    echo "end: $(date +%s)"
 }
 
 addFileToSearchPathWithCustomDelimiter() {
@@ -22,36 +24,28 @@ addFileToSearchPath() {
 }
 
 _addToAsdfPath ()  {
-    local system="$1"
-    if [ -v seen[$system] ]; then
+    local dep="$1"
+    if [ -v seen[$dep] ]; then
+        # echo "cached: $dep"
         return
     else
-        seen[$system]=1
-        local path="$system"
+        # echo "going: $dep"
+        seen[$dep]=1
+        local path="$dep"
 
         # FIXME slow
 
-        while read jar; do
-            addFileToSearchPath "CLASSPATH" "$jar"
-        done < <(find "$path" -type f,l -name '*.jar')
+        while read file; do
+            case "${file##*.}" in
+                jar) addFileToSearchPath "CLASSPATH" "$file" ;;
+                class) addToSearchPath "CLASSPATH" "${file%/*}" ;;
+                so|dylib) addToSearchPath "LD_LIBRARY_PATH" "${file%/*}" ;;
+                asd) addToSearchPath "CL_SOURCE_REGISTRY" "$path//" ;;
+            esac
+        done < <(find "$path" -type f,l -name '*.asd' -o -name '*.jar' \
+                      -o -name '*.class' -o -name '*.so' -o -name '*.dylib')
 
-        while read class; do
-            addToSearchPath "CLASSPATH" "${class%/*}"
-        done < <(find "$path" -type f,l -name '*.class')
-
-        while read so; do
-            addToSearchPath "LD_LIBRARY_PATH" "${so%/*}"
-        done < <(find "$path" -type f,l -name '*.so')
-
-        while read dylib; do
-            addToSearchPath "LD_LIBRARY_PATH" "${dylib%/*}"
-        done < <(find "$path" -type f,l -name '*.dylib')
-
-        while read asd; do
-            addToSearchPath "CL_SOURCE_REGISTRY" "$path//"
-        done < <(find "$path" -type f,l -name '*.asd' | head -1)
-
-        local prop="$system/nix-support/propagated-build-inputs"
+        local prop="$dep/nix-support/propagated-build-inputs"
 
         if [ -e "$prop" ]; then
             local new_system
@@ -62,4 +56,4 @@ _addToAsdfPath ()  {
     fi
 }
 
-addEnvHooks "$hostOffset" buildAsdfPath
+# addEnvHooks "$targetOffset" buildAsdfPath

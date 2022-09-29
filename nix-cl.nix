@@ -178,12 +178,14 @@ let
         (load-systems)
       '';
 
+      preConfigure = ''
+        buildAsdfPath
+      '';
+
       buildPhase = optionalString (src != null) ''
         export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$src//
         export ASDF_OUTPUT_TRANSLATIONS="$src:$(pwd):${storeDir}:${storeDir}"
-        printenv
         $lisp $buildScript
-        ls -lah
       '';
 
       # Copy compiled files to store
