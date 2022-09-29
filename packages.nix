@@ -28,7 +28,6 @@ let
             mkdir __fasls
             export ASDF_OUTPUT_TRANSLATIONS="$(pwd):$(pwd)/__fasls:${storeDir}:${storeDir}"
             export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$(pwd)//
-            printenv
             ${o.lisp} ${o.buildScript}
           '';
           installPhase = ''
