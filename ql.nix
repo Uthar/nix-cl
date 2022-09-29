@@ -14,7 +14,7 @@ let
       nativeLibs = [ openssl.out ];
     };
     cl-cffi-gtk-glib = pkg: {
-      nativeLibs = [ glib ];
+      nativeLibs = [ glib.out ];
     };
     cl-cffi-gtk-cairo = pkg: {
       nativeLibs = [ cairo ];
@@ -26,10 +26,10 @@ let
       nativeLibs = [ gdk-pixbuf ];
     };
     cl-cffi-gtk-pango = pkg: {
-      nativeLibs = [ pango ];
+      nativeLibs = [ pango.out ];
     };
     cl-gobject-introspection = pkg: {
-      nativeLibs = [ glib gobject-introspection ];
+      nativeLibs = [ glib.out gobject-introspection ];
     };
     cl-mysql = pkg: {
       nativeLibs = [ mysql-client ];

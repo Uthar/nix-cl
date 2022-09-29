@@ -53,6 +53,11 @@ let
 
   asdfHook = import ./setup-hook.nix pkgs.runCommand;
 
+  getAttrDefault = name: attrs: default:
+    if hasAttr name attrs
+    then getAttr name attrs
+    else default;
+
   # Stolen from python-packages.nix
   # Actually no idea how this works
   makeOverridableLispPackage = f: origArgs:
@@ -198,7 +203,10 @@ let
       dontStrip = true;
       # dontFixup = true;
 
-    } // args));
+    } // (args // {
+      buildInputs = (getAttrDefault "buildInputs" args [])
+                    ++ [ (asdfHook (lispLibs ++ nativeLibs ++ javaLibs)) ];
+    })));
 
   # Need to do that because we always want to compile straight from
   # `src` for go-to-definition to work in SLIME.
