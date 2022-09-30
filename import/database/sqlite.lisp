@@ -131,5 +131,7 @@ in {")
                                            (:symbol "pkgs")))
                                        (remove "asdf"
                                                (str:split-omit-nulls #\, deps)
-                                               :test #'string=))))))))))
+                                               :test #'string=))))
+                ,@(when (find #\/ name)
+                    '(("meta" (:attrs ("broken" (:symbol "true"))))))))))))
       (format f "~%}"))))
