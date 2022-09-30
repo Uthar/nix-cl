@@ -42,6 +42,7 @@ let
     optionalString
     makeLibraryPath
     makeSearchPath
+    recurseIntoAttrs
   ;
 
   inherit (builtins)
@@ -413,7 +414,7 @@ let
 
     # Manually defined packages shadow the ones imported from quicklisp
 
-    sbclPackages  = lispPackagesFor sbcl';
+    sbclPackages  = recurseIntoAttrs (lispPackagesFor sbcl');
     eclPackages   = lispPackagesFor ecl';
     abclPackages  = lispPackagesFor abcl';
     cclPackages   = lispPackagesFor ccl';
