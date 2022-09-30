@@ -56,7 +56,7 @@ let
   asdf = build-with-compile-into-pwd {
     pname = "asdf";
     version = "3.3.5.3";
-    src = builtins.fetchTarball {
+    src = pkgs.fetchzip {
       url = "https://gitlab.common-lisp.net/asdf/asdf/-/archive/3.3.5.3/asdf-3.3.5.3.tar.gz";
       sha256 = "0aw200awhg58smmbdmz80bayzmbm1a6547gv0wmc8yv89gjqldbv";
     };
@@ -76,7 +76,7 @@ let
       sha256 = "0qbis8acv04fi902qzak1mbagqaxcsv2zyp7b8y4shs5nj0cgz7a";
     };
   in build-asdf-system {
-    src =  builtins.fetchTarball {
+    src =  pkgs.fetchzip {
       url = "http://beta.quicklisp.org/archive/cffi/2021-04-11/cffi_0.24.1.tgz";
       sha256 = "17ryim4xilb1rzxydfr7595dnhqkk02lmrbkqrkvi9091shi4cj3";
     };
@@ -92,7 +92,7 @@ let
 
   cffi-libffi = build-asdf-system {
     inherit (ql.cffi-libffi) pname version asds lispLibs nativeLibs nativeBuildInputs;
-    src = builtins.fetchTarball {
+    src = pkgs.fetchzip {
       url = "https://github.com/cffi/cffi/archive/3f842b92ef808900bf20dae92c2d74232c2f6d3a.tar.gz";
       sha256 = "1jilvmbbfrmb23j07lwmkbffc6r35wnvas5s4zjc84i856ccclm2";
     };
@@ -101,7 +101,7 @@ let
   cl-unicode = build-with-compile-into-pwd {
     pname = "cl-unicode";
     version = "0.1.6";
-    src =  builtins.fetchTarball {
+    src =  pkgs.fetchzip {
       url = "https://github.com/edicl/cl-unicode/archive/refs/tags/v0.1.6.tar.gz";
       sha256 = "0ykx2s9lqfl74p1px0ik3l2izd1fc9jd1b4ra68s5x34rvjy0hza";
     };
@@ -113,7 +113,7 @@ let
   };
 
   jzon = build-asdf-system {
-    src = builtins.fetchTarball {
+    src = pkgs.fetchzip {
       url = "https://github.com/Zulu-Inuoe/jzon/archive/6b201d4208ac3f9721c461105b282c94139bed29.tar.gz";
       sha256 = "01d4a78pjb1amx5amdb966qwwk9vblysm1li94n3g26mxy5zc2k3";
     };
@@ -128,7 +128,7 @@ let
   cl-notify = build-asdf-system {
     pname = "cl-notify";
     version = "20080904-138ca7038";
-    src = builtins.fetchTarball {
+    src = pkgs.fetchzip {
       url = "https://repo.or.cz/cl-notify.git/snapshot/138ca703861f4a1fbccbed557f92cf4d213668a1.tar.gz";
       sha256 = "0k6ns6fzvjcbpsqgx85r4g5m25fvrdw9481i9vyabwym9q8bbqwx";
     };
@@ -151,7 +151,7 @@ let
   tuple = build-asdf-system {
     pname = "tuple";
     version = "b74bd067d";
-    src = builtins.fetchTarball {
+    src = pkgs.fetchzip {
       url = "https://fossil.galkowski.xyz/tuple/tarball/b74bd067d4533ac0/tuple.tar.gz";
       sha256 = "0dk356vkv6kwwcmc3j08x7143549m94rd66rpkzq8zkb31cg2va8";
     };
@@ -160,7 +160,7 @@ let
   cl-tar-file = build-asdf-system {
     pname = "cl-tar-file";
     version = "v0.2.1";
-    src = builtins.fetchTarball {
+    src = pkgs.fetchzip {
       url = let
         rev = "0c10bc82f14702c97a26dc25ce075b5d3a2347d1";
       in "https://gitlab.common-lisp.net/cl-tar/cl-tar-file/-/archive/${rev}/cl-tar-file-${rev}.tar.gz";
@@ -182,7 +182,7 @@ let
   cl-tar = build-asdf-system {
     pname = "cl-tar";
     version = "v0.2.1";
-    src = builtins.fetchTarball {
+    src = pkgs.fetchzip {
       url = let
         rev = "7c6e07a10c93d9e311f087b5f6328cddd481669a";
       in "https://gitlab.common-lisp.net/cl-tar/cl-tar/-/archive/${rev}/cl-tar-${rev}.tar.gz";
@@ -262,7 +262,7 @@ let
   clx-truetype = build-asdf-system {
     pname = "clx-truetype";
     version = "20160825-git";
-    src = builtins.fetchTarball {
+    src = pkgs.fetchzip {
       url = "http://beta.quicklisp.org/archive/clx-truetype/2016-08-25/clx-truetype-20160825-git.tgz";
       sha256 = "079hyp92cjkdfn6bhkxsrwnibiqbz4y4af6nl31lzw6nm91j5j37";
     };
@@ -285,7 +285,7 @@ let
       cl-cffi-gtk cl-webkit2 mk-string-metrics
     ]);
 
-    src = builtins.fetchTarball {
+    src = pkgs.fetchzip {
       url = "https://github.com/atlas-engineer/nyxt/archive/2.2.4.tar.gz";
       sha256 = "12l7ir3q29v06jx0zng5cvlbmap7p709ka3ik6x29lw334qshm9b";
     };
@@ -326,7 +326,7 @@ let
   nyxt = nyxt-gtk;
 
   ltk = ql.ltk.overrideLispAttrs (o: {
-    src = builtins.fetchTarball {
+    src = pkgs.fetchzip {
       url = "https://github.com/uthar/ltk/archive/f19162e76d6c7c2f51bd289b811d9ba20dd6555e.tar.gz";
       sha256 = "0mzikv4abq9yqlj6dsji1wh34mjizr5prv6mvzzj29z1485fh1bj";
     };
