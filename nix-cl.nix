@@ -54,11 +54,13 @@ let
   # Returns a flattened dependency tree without duplicates
   flattenedDeps = lispLibs:
     let
+      toSet = list: builtins.listToAttrs (map (d: { name = d.pname; value = d; }) list);
+      toList = attrValues;
       walk = acc: node:
         if length node.lispLibs == 0
         then acc
-        else foldl walk (acc ++ node.lispLibs) node.lispLibs;
-    in unique (walk [] { inherit lispLibs; });
+        else builtins.foldl' walk (acc // toSet node.lispLibs) node.lispLibs;
+    in toList (walk {} { inherit lispLibs; });
 
   # Stolen from python-packages.nix
   # Actually no idea how this works
