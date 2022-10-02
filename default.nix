@@ -35,6 +35,34 @@ let
 
   sbcl = pkgs.sbcl;
 
+  smokegen = pkgs.stdenv.mkDerivation rec {
+    pname = "smokegen";
+    version = "v4.14.3";
+    src = pkgs.fetchzip {
+      url = "https://invent.kde.org/unmaintained/${pname}/-/archive/${version}/${pname}-${version}.tar.gz";
+      hash = "sha256-finsoruPeJZLawIjNUJ25Pq54eaCByfALVraNQJPk7c=";
+    };
+    buildInputs = [ pkgs.cmake pkgs.qt4 ];
+    buildPhase = ''
+      cmake .
+    '';
+  };
+
+  smokeqt = pkgs.stdenv.mkDerivation rec {
+    pname = "smokeqt";
+    version = "v4.14.3";
+    src = pkgs.fetchzip {
+      url = "https://invent.kde.org/unmaintained/${pname}/-/archive/${version}/${pname}-${version}.tar.gz";
+      hash = "sha256-8FiEGF8gduVw5I/bi2wExGUWmjIjYEhWpjpXKJGBNMg=";
+    };
+    cmakeFlags = [
+      "-DCMAKE_CXX_STANDARD=98"
+    ];
+    buildInputs = [ pkgs.cmake pkgs.qt4 smokegen ];
+  };
+
+
 in pkgs.callPackage ./nix-cl.nix {
+  pkgs = pkgs // { inherit smokegen smokeqt; };
   inherit abcl ecl ccl clasp sbcl;
 }
