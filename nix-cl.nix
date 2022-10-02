@@ -42,6 +42,7 @@ let
     optionalString
     makeLibraryPath
     makeSearchPath
+    recurseIntoAttrs
   ;
 
   inherit (builtins)
@@ -52,11 +53,6 @@ let
     storeDir;
 
   asdfHook = import ./setup-hook.nix pkgs.runCommand;
-
-  getAttrDefault = name: attrs: default:
-    if hasAttr name attrs
-    then getAttr name attrs
-    else default;
 
   # Stolen from python-packages.nix
   # Actually no idea how this works
@@ -140,9 +136,7 @@ let
     stdenv.mkDerivation (rec {
       inherit pname version nativeLibs javaLibs lispLibs lisp systems asds;
 
-      buildInputs = [ (asdfHook (lispLibs ++ nativeLibs ++ javaLibs)) ];
-
-      propagatedBuildInputs = lispLibs ++ nativeLibs ++ javaLibs;
+      buildInputs = [ asdfHook ];
 
       src = if builtins.length patches > 0
             then apply-patches args
@@ -204,8 +198,9 @@ let
       # dontFixup = true;
 
     } // (args // {
-      buildInputs = (getAttrDefault "buildInputs" args [])
-                    ++ [ (asdfHook (lispLibs ++ nativeLibs ++ javaLibs)) ];
+      propagatedBuildInputs = (args.propagatedBuildInputs or [])
+                              ++ lispLibs ++ nativeLibs ++ javaLibs;
+      buildInputs = (args.buildInputs or []) ++ [ asdfHook ];
     })));
 
   # Need to do that because we always want to compile straight from
@@ -274,14 +269,13 @@ let
   # then it has to be propagated everywhere for it to make sense and
   # have consistency in the package tree.
   fixupFor = manualPackages: qlPkg:
-    assert (lib.isAttrs qlPkg && !lib.isDerivation qlPkg);
+    assert lib.isAttrs qlPkg && !lib.isDerivation qlPkg;
     let
       # Make it possible to reuse generated attrs without recursing into oblivion
-      packages = (lib.filterAttrs (n: v: n != qlPkg.pname) manualPackages);
-      substituteLib = pkg:
-        if lib.hasAttr pkg.pname packages
-        then packages.${pkg.pname}
-        else pkg;
+      packages = lib.filterAttrs
+        (n: v: n != makeAttrName qlPkg.pname)
+        manualPackages;
+      substituteLib = pkg: packages.${makeAttrName pkg.pname} or pkg;
       pkg = substituteLib qlPkg;
     in pkg // { lispLibs = map substituteLib pkg.lispLibs; };
 
@@ -378,7 +372,7 @@ let
 
     # Manually defined packages shadow the ones imported from quicklisp
 
-    sbclPackages  = lispPackagesFor sbcl';
+    sbclPackages  = recurseIntoAttrs (lispPackagesFor sbcl');
     eclPackages   = lispPackagesFor ecl';
     abclPackages  = lispPackagesFor abcl';
     cclPackages   = lispPackagesFor ccl';

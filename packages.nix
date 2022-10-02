@@ -11,6 +11,7 @@ let
     optionals
     hasSuffix
     splitString
+    remove
   ;
 
   # Used by builds that would otherwise attempt to write into storeDir.
@@ -331,21 +332,40 @@ let
     version = "f19162e76";
   });
 
-  # Quicklisp missing dependency data:
-  # https://github.com/marijnh/Postmodern/blob/6a8eb691dbdd9ef780ada0c5a05ab5cf94e6f4f9/s-sql.asd#L23
-  s-sql_slash_tests = ql.s-sql_slash_tests.overrideLispAttrs (o: {
-    lispLibs = o.lispLibs ++ [
-      ql.cl-postgres_slash_tests
-    ];
-  });
+  qt = let
+    rev = "dffff3ee3dbd0686c85c323f579b8bbf4881e60e";
+  in build-with-compile-into-pwd rec {
+    pname = "commonqt";
+    version = builtins.substring 0 7 rev;
 
-  # Quicklisp missing dependency data:
-  # https//github.com/marijnh/Postmodern/blob/6a8eb691dbdd9ef780ada0c5a05ab5cf94e6f4f9/simple-date.asd#L25
-  simple-date_slash_postgres-glue = ql.simple-date_slash_postgres-glue.overrideLispAttrs (o: {
-    lispLibs = o.lispLibs ++ [
-      ql.cl-postgres_slash_tests
+    src = pkgs.fetchFromGitHub {
+      inherit rev;
+      owner = pname;
+      repo = pname;
+      hash = "sha256-GAgwT0D9mIkYPTHfCH/KxxIv7b6QGwcxwZE7ehH5xug=";
+    };
+
+    buildInputs = [ pkgs.qt4 ];
+    nativeBuildInputs = [ pkgs.smokegen pkgs.smokeqt ];
+    nativeLibs = [ pkgs.qt4 pkgs.smokegen pkgs.smokeqt ];
+    
+    systems = [ "qt" ];
+
+    lispLibs = with ql; [
+      cffi named-readtables cl-ppcre alexandria
+      closer-mop iterate trivial-garbage bordeaux-threads
     ];
-  });
+  };
+
+  qtools = build-with-compile-into-pwd {
+    inherit (ql.qtools) pname version src nativeLibs;
+    lispLibs = [ qt ] ++ remove ql.qt_plus_libs ql.qtools.lispLibs;
+    patches = [ ./patches/qtools-use-nix-libs.patch ];
+    postConfigure = ''
+      cat qtools.asd
+      cat $src/qtools.asd
+    '';
+  };
 
   };
 
