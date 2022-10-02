@@ -3,9 +3,14 @@
 buildAsdfPath () {
     declare -A seen=()
     echo "start: $(date +%s)"
-    for dep in @dependencies@; do
+    echo "lispLibs: $lispLibs"
+    echo "nativeLibs: $nativeLibs"
+    echo "javaLibs: $javaLibs"
+    echo "prop: $propagatedBuildInputs"
+    for dep in $propagatedBuildInputs; do
         _addToAsdfPath $dep
     done
+    echo "registry: $CL_SOURCE_REGISTRY"
     echo "end: $(date +%s)"
 }
 
@@ -39,7 +44,8 @@ _addToAsdfPath ()  {
             case "${file##*.}" in
                 jar) addFileToSearchPath "CLASSPATH" "$file" ;;
                 class) addToSearchPath "CLASSPATH" "${file%/*}" ;;
-                so|dylib) addToSearchPath "LD_LIBRARY_PATH" "${file%/*}" ;;
+                so) addToSearchPath "LD_LIBRARY_PATH" "${file%/*}" ;;
+                dylib) addToSearchPath "DYLD_LIBRARY_PATH" "${file%/*}" ;;
                 asd) addToSearchPath "CL_SOURCE_REGISTRY" "$path//" ;;
             esac
         done < <(find "$path" -type f,l -name '*.asd' -o -name '*.jar' \
