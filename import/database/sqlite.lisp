@@ -72,6 +72,32 @@ let
   '';
 in {")
 
+
+(defvar dependents-query "
+  with recursive
+  depends_on(dependency, dependent) as (
+    select dep_id, system_id
+    from dep
+    where dep_id = (select id from system where name = ?)
+    union
+    select dep_id, system_id
+    from dep, depends_on
+    where dep_id = dependent
+  )
+  select distinct (select name from system where id = dependent)
+  from depends_on
+")
+
+
+(defun system-dependents (database system)
+  "Return a list of systems that transitively depend on a system"
+  (sqlite:with-open-database (db (database-url database))
+    (sqlite:execute-to-list db dependents-query system)))
+
+
+;; (defun qt-libs-systems ()
+  
+
 (defmethod database->nix-expression ((database sqlite-database) outfile)
   (sqlite:with-open-database (db (database-url database))
     (with-open-file (f outfile
