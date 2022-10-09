@@ -70,27 +70,6 @@ let
       }
       else ff;
 
-  builds = {
-    abcl = ''
-      (handler-case
-          (nix:load-systems)
-          (uiop:quit 0)
-        (error (c)
-          (format t "Build failed: ~A~%" c)
-          (uiop:quit 1)))
-    '';
-    ecl = ''
-    '';
-    sbcl = ''
-    '';
-    ccl = ''
-    '';
-    clasp = ''
-    '';
-  };
-
-  buildFor = lisp: getAttr (baseNameOf (head (split " " lisp))) builds;
-
 
   #
   # Wrapper around stdenv.mkDerivation for building ASDF systems.
@@ -300,7 +279,6 @@ let
   # packages - as argument and returns the list of packages to be
   # installed
   lispWithPackagesInternal = clpkgs: packages:
-    # FIXME just use flattenedDeps instead
     (build-asdf-system rec {
       lisp = (head (lib.attrValues clpkgs)).lisp;
       # See dontUnpack in build-asdf-system
