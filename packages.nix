@@ -357,14 +357,61 @@ let
     ];
   };
 
+  qt-libs = build-with-compile-into-pwd {
+    inherit (ql.qt-libs) pname version src;
+    patches = [ ./patches/qt-libs-dont-download.patch ];
+    prePatch = ''
+      substituteInPlace systems/*.asd --replace ":qt+libs" ":qt"
+    '';
+    lispLibs = ql.qt-libs.lispLibs ++ [ qt ];
+    systems = [
+      "qt-libs"
+      "commonqt"
+      # "phonon"
+      # "qimageblitz"
+      # "qsci"
+      "qt3support"
+      "qtcore"
+      "qtdbus"
+      "qtdeclarative"
+      "qtgui"
+      "qthelp"
+      "qtnetwork"
+      "qtopengl"
+      "qtscript"
+      "qtsql"
+      "qtsvg"
+      "qttest"
+      "qtuitools"
+      # "qtwebkit"
+      "qtxml"
+      "qtxmlpatterns"
+      # "qwt"
+      "smokebase"
+    ];
+  };
+  commonqt = qt-libs;
+  qt3support = qt-libs;
+  qtcore = qt-libs;
+  qtdbus = qt-libs;
+  qtdeclarative = qt-libs;
+  qtgui = qt-libs;
+  qthelp = qt-libs;
+  qtnetwork = qt-libs;
+  qtopengl = qt-libs;
+  qtscript = qt-libs;
+  qtsql = qt-libs;
+  qtsvg = qt-libs;
+  qttest = qt-libs;
+  qtuitools = qt-libs;
+  qtxml = qt-libs;
+  qtxmlpatterns = qt-libs;
+  smokebase = qt-libs;
+
   qtools = build-with-compile-into-pwd {
     inherit (ql.qtools) pname version src nativeLibs;
-    lispLibs = [ qt ] ++ remove ql.qt_plus_libs ql.qtools.lispLibs;
+    lispLibs = [ qt ] ++ remove ql.qt_plus_libs ql.qtools.lispLibs ++ [ qt-libs ];
     patches = [ ./patches/qtools-use-nix-libs.patch ];
-    postConfigure = ''
-      cat qtools.asd
-      cat $src/qtools.asd
-    '';
   };
 
   };
