@@ -1,3 +1,4 @@
+{ clasp }:
 { pkgs ? import <nixpkgs> { }, ... }:
 
 let
@@ -28,13 +29,10 @@ let
 
   ccl = pkgs.ccl;
 
-  clasp = let
-    flakeUrl = "https://fossil.galkowski.xyz/nix-clasp/tarball/5b6a1e05461eb994/nix-clasp.tar.gz";
-    nix-clasp = builtins.getFlake flakeUrl;
-  in nix-clasp.defaultPackage.${builtins.currentSystem};
-
   sbcl = pkgs.sbcl;
 
-in pkgs.callPackage ./nix-cl.nix {
+in pkgs.callPackage (import ./nix-cl.nix {
   inherit abcl ecl ccl clasp sbcl;
+}) {
+  inherit pkgs;
 }

@@ -10,7 +10,8 @@
 # - figure out a less awkward way to patch sources
 #   (have to build from src directly for SLIME to work, so can't just patch sources in place)
 
-{ pkgs, lib, stdenv, abcl, ecl, ccl, clasp, sbcl, ... }:
+{ abcl, ecl, ccl, clasp, sbcl, ... }:
+{ pkgs, lib, stdenv, ... }:
 
 
 let
@@ -408,9 +409,9 @@ let
     # Maybe a handler-case in buildScript?
     sbcl'  = "${sbcl}/bin/sbcl --script";
     ecl'   = "${ecl}/bin/ecl --shell";
-    abcl'  = ''${abcl}/bin/abcl --batch --eval "(load \"$buildScript\")"'';
-    ccl'   = ''${ccl}/bin/ccl --batch --eval "(load \"$buildScript\")" --'';
-    clasp' = ''${clasp}/bin/clasp --non-interactive --quit --load'';
+    abcl'  = "${abcl}/bin/abcl --batch --load";
+    ccl'   = "${ccl}/bin/ccl --batch --load";
+    clasp' = "${clasp}/bin/clasp --script";
 
     # Manually defined packages shadow the ones imported from quicklisp
 
