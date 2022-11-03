@@ -31,8 +31,12 @@ let
 
   sbcl = pkgs.sbcl;
 
+  clisp = pkgs.clisp;
+
+  asdf = "${/nix/store/mvwp3s6qcjjjk7vwxcf9x0ff1px25wlj-uiop-3.3.5.3/build/asdf.lisp}";
+
 in pkgs.callPackage (import ./nix-cl.nix {
-  inherit abcl ecl ccl clasp sbcl;
+  inherit abcl ecl ccl clasp clisp sbcl asdf;
 }) {
   inherit pkgs;
 }
