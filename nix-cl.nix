@@ -10,7 +10,7 @@
 # - figure out a less awkward way to patch sources
 #   (have to build from src directly for SLIME to work, so can't just patch sources in place)
 
-{ abcl, ecl, ccl, clasp, sbcl, ... }:
+{ abcl, ecl, ccl, clasp, clisp, sbcl, asdf, ... }:
 { pkgs, lib, stdenv, ... }:
 
 
@@ -52,6 +52,9 @@ let
     elem
     split
     storeDir;
+
+  inherit (pkgs)
+    substituteAll;
 
   # Returns a flattened dependency tree without duplicates
   flattenedDeps = lispLibs:
@@ -178,7 +181,7 @@ let
       # cl-syslog, for some reason, signals that CL-SYSLOG::VALID-SD-ID-P
       # is undefined with compile-system, but works perfectly with
       # load-system. Strange.
-      buildScript = "${./builder.lisp}";
+      buildScript = substituteAll { src = ./builder.lisp; inherit asdf; };
 
       buildPhase = optionalString (src != null) ''
         # In addition to lisp dependencies, make asdf see the .asd's
@@ -407,6 +410,7 @@ let
     ecl'   = "${ecl}/bin/ecl --shell";
     abcl'  = "${abcl}/bin/abcl --batch --load";
     ccl'   = "${ccl}/bin/ccl --batch --load";
+    clisp' = "${clisp}/bin/clisp -E UTF-8 -i";
     clasp' = "${clasp}/bin/clasp --script";
 
     # Manually defined packages shadow the ones imported from quicklisp
@@ -415,12 +419,14 @@ let
     eclPackages   = lispPackagesFor ecl';
     abclPackages  = lispPackagesFor abcl';
     cclPackages   = lispPackagesFor ccl';
+    clispPackages = lispPackagesFor clisp';
     claspPackages = lispPackagesFor clasp';
 
     sbclWithPackages  = lispWithPackages sbcl';
     eclWithPackages   = lispWithPackages ecl';
     abclWithPackages  = lispWithPackages abcl';
     cclWithPackages   = lispWithPackages ccl';
+    clispWithPackages = lispWithPackages clisp';    
     claspWithPackages = lispWithPackages clasp';
   };
 
