@@ -33,6 +33,7 @@ let
 
   clisp = pkgs.clisp;
 
+  # TODO(kasper): precompile asdf.lisp per implementation?
   defaultAsdf = pkgs.stdenv.mkDerivation rec {
     pname = "asdf";
     version = "3.3.5.3";
