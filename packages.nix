@@ -45,7 +45,7 @@ let
     });
 
   # A little hacky
-  isJVM = hasSuffix "abcl" (head (splitString " " lisp));
+  isJVM = lisp.pname == "abcl";
 
   # Makes it so packages imported from Quicklisp can be re-used as
   # lispLibs ofpackages in this file.

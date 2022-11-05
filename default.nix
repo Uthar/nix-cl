@@ -33,7 +33,7 @@ let
 
   clisp = pkgs.clisp;
 
-  asdf = pkgs.stdenv.mkDerivation rec {
+  defaultAsdf = pkgs.stdenv.mkDerivation rec {
     pname = "asdf";
     version = "3.3.5.3";
     src = pkgs.fetchzip {
@@ -46,7 +46,7 @@ let
   };
 
 in pkgs.callPackage (import ./nix-cl.nix {
-  inherit abcl ecl ccl clasp clisp sbcl asdf;
+  inherit abcl ecl ccl clasp clisp sbcl defaultAsdf;
 }) {
   inherit pkgs;
 }
