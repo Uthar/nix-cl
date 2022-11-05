@@ -3,6 +3,7 @@
   (:import-from :str)
   (:import-from :sqlite)
   (:import-from :alexandria :read-file-into-string)
+  (:import-from :alexandria-2 :line-up-first)
   (:import-from :arrow-macros :->>)
   (:import-from
    :org.lispbuilds.nix/util
@@ -94,6 +95,9 @@ in {")
       (sqlite:execute-non-query db
        "update fixed_systems set asds = json_array(name)")
 
+      (sqlite:execute-non-query db
+       "delete from fixed_systems where name in ('asdf', 'uiop')")
+
       (format f prelude)
 
       (dolist (p (sqlite:execute-to-list db "select * from fixed_systems"))
@@ -129,9 +133,10 @@ in {")
                                            "getAttr"
                                            (:string ,(nixify-symbol dep))
                                            (:symbol "pkgs")))
-                                       (remove "asdf"
-                                               (str:split-omit-nulls #\, deps)
-                                               :test #'string=))))
+                                       (line-up-first
+                                        (str:split-omit-nulls #\, deps)
+                                        (set-difference '("asdf" "uiop") :test #'string=)
+                                        (sort #'string<)))))
                 ,@(when (find #\/ name)
                     '(("meta" (:attrs ("broken" (:symbol "true"))))))))))))
       (format f "~%}"))))

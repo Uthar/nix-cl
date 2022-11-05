@@ -47,6 +47,12 @@ immediately. For example, SBCL's --script flag does just that.
 
 #### Optional arguments
 
+##### `asdf ? defaultAsdf`
+The ASDF amalgamation source file to load before building and use to load
+systems afterwards, also loaded before start of each lisp wrapper. 
+(That is build/asdf.lisp as built from ASDF source tree)
+Default ASDF version can be seen in default.nix in nix-cl source code.
+
 ##### `patches ? []`
 
 Patches to apply to the source code before compiling it. This is a
@@ -142,6 +148,12 @@ use packages.
 The Lisp command to use in calls to `build-asdf-system` while building
 the library-provided Lisp package declarations.
 
+#### Optional Arguments
+
+##### `asdf ? defaultAsdf`
+
+The ASDF to pass to `build-asdf-system`. See its documentation for more details.
+
 #### Return value
 
 A set of packages built with `build-asdf-system`.
@@ -164,6 +176,12 @@ This is simply a helper function to avoid having to call
 The Lisp command to pass to `lispPackagesFor` in order for it to
 generate a package set. That set is then passed to
 `lispWithPackagesInternal`.
+
+#### Optional Arguments
+
+##### `asdf ? defaultAsdf`
+
+The ASDF to pass to `build-asdf-system`. See its documentation for more details.
 
 #### Return value
 
