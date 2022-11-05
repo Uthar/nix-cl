@@ -9,7 +9,7 @@ jobs:
   build:
     strategy:
      matrix:
-       lisp: [ abcl, ecl, ccl, clasp, sbcl ]
+       lisp: [ abcl, ecl, ccl, clasp, clisp, sbcl ]
 
     runs-on: ubuntu-latest
 
