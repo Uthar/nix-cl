@@ -10,7 +10,7 @@
 # - figure out a less awkward way to patch sources
 #   (have to build from src directly for SLIME to work, so can't just patch sources in place)
 
-{ abcl, ecl, ccl, clasp, clisp, sbcl, asdf, ... }:
+{ abcl, ecl, ccl, clasp, clisp, sbcl, defaultAsdf, ... }:
 { pkgs, lib, stdenv, ... }:
 
 
@@ -104,6 +104,9 @@ let
 
       # Lisp command to run buildScript
       lisp,
+
+      # ASDF amalgamation file to use
+      asdf ? defaultAsdf,
 
       # Some libraries have multiple systems under one project, for
       # example, cffi has cffi-grovel, cffi-toolchain etc.  By
@@ -278,9 +281,9 @@ let
   #
   # This is done by generating a 'fixed' set of Quicklisp packages by
   # calling quicklispPackagesFor with the right `fixup`.
-  commonLispPackagesFor = lisp:
+  commonLispPackagesFor = { lisp, asdf ? defaultAsdf }:
     let
-      build-asdf-system' = body: build-asdf-system (body // { inherit lisp; });
+      build-asdf-system' = body: build-asdf-system (body // { inherit lisp asdf; });
     in import ./packages.nix {
       inherit pkgs;
       inherit lisp;
@@ -349,7 +352,9 @@ let
   lispWithPackagesInternal = clpkgs: packages:
     # FIXME just use flattenedDeps instead
     (build-asdf-system rec {
+      # TODO(kasper): assert each package has the same lisp and asdf?
       lisp = (head (lib.attrValues clpkgs)).lisp;
+      asdf = (head (lib.attrValues clpkgs)).asdf or defaultAsdf;
       # See dontUnpack in build-asdf-system
       src = null;
       pname = lisp.pname;
@@ -366,7 +371,7 @@ let
         makeWrapper \
           ${o.lisp}/bin/${o.lisp.pname} \
           $out/bin/${o.lisp.pname} \
-          --add-flags "${flagsFor o.lisp} ${asdf}" \
+          --add-flags "${flagsFor o.lisp} ${o.asdf}" \
           --prefix CL_SOURCE_REGISTRY : "${o.CL_SOURCE_REGISTRY}" \
           --prefix ASDF_OUTPUT_TRANSLATIONS : ${concatStringsSep "::" (flattenedDeps o.lispLibs)}: \
           --prefix LD_LIBRARY_PATH : "${o.LD_LIBRARY_PATH}" \
@@ -376,14 +381,14 @@ let
       '';
     });
 
-  lispWithPackages = lisp:
+  lispWithPackages = { lisp, asdf ? defaultAsdf }:
     let
-      packages = lispPackagesFor lisp;
+      packages = lispPackagesFor { inherit lisp asdf; };
     in lispWithPackagesInternal packages;
 
-  lispPackagesFor = lisp:
+  lispPackagesFor = { lisp, asdf ? defaultAsdf }:
     let
-      packages = commonLispPackagesFor lisp;
+      packages = commonLispPackagesFor { inherit lisp asdf; };
       qlPackages = quicklispPackagesFor {
         inherit lisp;
         fixup = fixupFor packages;
@@ -392,7 +397,6 @@ let
 
   commonLispPackages = rec {
     inherit
-      asdf
       build-asdf-system
       lispWithPackagesInternal
       lispPackagesFor
@@ -400,19 +404,19 @@ let
 
     # Manually defined packages shadow the ones imported from quicklisp
 
-    sbclPackages  = recurseIntoAttrs (lispPackagesFor sbcl);
-    eclPackages   = lispPackagesFor ecl;
-    abclPackages  = lispPackagesFor abcl;
-    cclPackages   = lispPackagesFor ccl;
-    clispPackages = lispPackagesFor clisp;
-    claspPackages = lispPackagesFor clasp;
+    sbclPackages  = recurseIntoAttrs (lispPackagesFor { lisp = sbcl; });
+    eclPackages   = lispPackagesFor { lisp = ecl; };
+    abclPackages  = lispPackagesFor { lisp = abcl; };
+    cclPackages   = lispPackagesFor { lisp = ccl; };
+    clispPackages = lispPackagesFor { lisp = clisp; };
+    claspPackages = lispPackagesFor { lisp = clasp; };
 
-    sbclWithPackages  = lispWithPackages sbcl;
-    eclWithPackages   = lispWithPackages ecl;
-    abclWithPackages  = lispWithPackages abcl;
-    cclWithPackages   = lispWithPackages ccl;
-    clispWithPackages = lispWithPackages clisp;    
-    claspWithPackages = lispWithPackages clasp;
+    sbclWithPackages  = lispWithPackages { lisp = sbcl; };
+    eclWithPackages   = lispWithPackages { lisp = ecl; };
+    abclWithPackages  = lispWithPackages { lisp = abcl; };
+    cclWithPackages   = lispWithPackages { lisp = ccl; };
+    clispWithPackages = lispWithPackages { lisp = clisp; };    
+    claspWithPackages = lispWithPackages { lisp = clasp; };
   };
 
   makeLisp = lisp:

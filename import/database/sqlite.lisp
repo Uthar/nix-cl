@@ -94,6 +94,9 @@ in {")
       (sqlite:execute-non-query db
        "update fixed_systems set asds = json_array(name)")
 
+      (sqlite:execute-non-query db
+       "delete from fixed_systems where name in ('asdf', 'uiop')")
+
       (format f prelude)
 
       (dolist (p (sqlite:execute-to-list db "select * from fixed_systems"))
@@ -129,9 +132,10 @@ in {")
                                            "getAttr"
                                            (:string ,(nixify-symbol dep))
                                            (:symbol "pkgs")))
-                                       (remove "asdf"
-                                               (str:split-omit-nulls #\, deps)
-                                               :test #'string=))))
+                                       (set-difference
+                                        (str:split-omit-nulls #\, deps)
+                                        '("asdf" "uiop")
+                                        :test #'string=))))
                 ,@(when (find #\/ name)
                     '(("meta" (:attrs ("broken" (:symbol "true"))))))))))))
       (format f "~%}"))))
