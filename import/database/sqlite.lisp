@@ -3,6 +3,7 @@
   (:import-from :str)
   (:import-from :sqlite)
   (:import-from :alexandria :read-file-into-string)
+  (:import-from :alexandria-2 :line-up-first)
   (:import-from :arrow-macros :->>)
   (:import-from
    :org.lispbuilds.nix/util
@@ -132,12 +133,10 @@ in {")
                                            "getAttr"
                                            (:string ,(nixify-symbol dep))
                                            (:symbol "pkgs")))
-                                       (sort
-                                        (set-difference
-                                         (str:split-omit-nulls #\, deps)
-                                         '("asdf" "uiop")
-                                         :test #'string=)
-                                        #'string<))))
+                                       (line-up-first
+                                        (str:split-omit-nulls #\, deps)
+                                        (set-difference '("asdf" "uiop") :test #'string=)
+                                        (sort #'string<)))))
                 ,@(when (find #\/ name)
                     '(("meta" (:attrs ("broken" (:symbol "true"))))))))))))
       (format f "~%}"))))
