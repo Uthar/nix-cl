@@ -1,5 +1,5 @@
 (in-package :cl-user)
-(require 'asdf)
+(load "@asdf@")
 
 (defun load-systems ()
   (handler-case
