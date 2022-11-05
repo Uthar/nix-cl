@@ -132,10 +132,12 @@ in {")
                                            "getAttr"
                                            (:string ,(nixify-symbol dep))
                                            (:symbol "pkgs")))
-                                       (set-difference
-                                        (str:split-omit-nulls #\, deps)
-                                        '("asdf" "uiop")
-                                        :test #'string=))))
+                                       (sort
+                                        (set-difference
+                                         (str:split-omit-nulls #\, deps)
+                                         '("asdf" "uiop")
+                                         :test #'string=)
+                                        #'string<))))
                 ,@(when (find #\/ name)
                     '(("meta" (:attrs ("broken" (:symbol "true"))))))))))))
       (format f "~%}"))))
