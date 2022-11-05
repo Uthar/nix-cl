@@ -364,7 +364,7 @@ let
         makeWrapper \
           ${o.lisp}/bin/${o.lisp.pname} \
           $out/bin/${o.lisp.pname} \
-          --add-flags "${flagsFor lisp} ${asdf}" \
+          --add-flags "${flagsFor o.lisp} ${asdf}" \
           --prefix CL_SOURCE_REGISTRY : "${o.CL_SOURCE_REGISTRY}" \
           --prefix ASDF_OUTPUT_TRANSLATIONS : ${concatStringsSep "::" (flattenedDeps o.lispLibs)}: \
           --prefix LD_LIBRARY_PATH : "${o.LD_LIBRARY_PATH}" \
