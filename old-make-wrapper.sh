@@ -1,3 +1,8 @@
+die () {
+    echo "$@"
+    exit 1
+}
+
 # Assert that FILE exists and is executable
 #
 # assertExecutable FILE

@@ -211,7 +211,7 @@ let
         echo $lispLibs >> __nix-drvs
 
         # Finally, compile the systems
-        ${lisp} $buildScript
+        ${lisp}/bin/${lisp.pname} ${flagsFor lisp} $buildScript
       '';
 
       # Copy compiled files to store
@@ -334,6 +334,11 @@ let
       --replace @shell@ ${pkgs.bash}/bin/bash
   '';
 
+  flagsFor = lisp:
+    if lisp.pname == "clisp"
+    then "-E UTF-8 -i"
+    else "--load";
+
   # Creates a lisp wrapper with `packages` installed
   #
   # `packages` is a function that takes `clpkgs` - a set of lisp
@@ -345,7 +350,7 @@ let
       lisp = (head (lib.attrValues clpkgs)).lisp;
       # See dontUnpack in build-asdf-system
       src = null;
-      pname = baseNameOf (head (split " " lisp));
+      pname = lisp.pname;
       version = "with-packages";
       lispLibs = packages clpkgs;
       systems = [];
@@ -357,8 +362,9 @@ let
 
         mkdir -pv $out/bin
         makeWrapper \
-          ${head (split " " o.lisp)} \
-          $out/bin/${baseNameOf (head (split " " o.lisp))} \
+          ${o.lisp}/bin/${o.lisp.pname} \
+          $out/bin/${o.lisp.pname} \
+          --add-flags "${flagsFor lisp} ${asdf}" \
           --prefix CL_SOURCE_REGISTRY : "${o.CL_SOURCE_REGISTRY}" \
           --prefix ASDF_OUTPUT_TRANSLATIONS : ${concatStringsSep "::" (flattenedDeps o.lispLibs)}: \
           --prefix LD_LIBRARY_PATH : "${o.LD_LIBRARY_PATH}" \
@@ -389,45 +395,24 @@ let
       lispPackagesFor
       lispWithPackages;
 
-    # Uncomment for debugging/development
-    # inherit
-    #   flattenedDeps
-    #   concatMap
-    #   attrNames
-    #   getAttr
-    #   filterAttrs
-    #   filter
-    #   elem
-    #   unique
-    #   makeAttrName
-    #   length;
-
-    # There's got to be a better way than this...
-    # The problem was that with --load everywhere, some
-    # implementations didn't exit with 0 on compilation failure
-    # Maybe a handler-case in buildScript?
-    sbcl'  = "${sbcl}/bin/sbcl --script";
-    ecl'   = "${ecl}/bin/ecl --shell";
-    abcl'  = "${abcl}/bin/abcl --batch --load";
-    ccl'   = "${ccl}/bin/ccl --batch --load";
-    clisp' = "${clisp}/bin/clisp -E UTF-8 -i";
-    clasp' = "${clasp}/bin/clasp --script";
-
     # Manually defined packages shadow the ones imported from quicklisp
 
-    sbclPackages  = recurseIntoAttrs (lispPackagesFor sbcl');
-    eclPackages   = lispPackagesFor ecl';
-    abclPackages  = lispPackagesFor abcl';
-    cclPackages   = lispPackagesFor ccl';
-    clispPackages = lispPackagesFor clisp';
-    claspPackages = lispPackagesFor clasp';
+    sbclPackages  = recurseIntoAttrs (lispPackagesFor sbcl);
+    eclPackages   = lispPackagesFor ecl;
+    abclPackages  = lispPackagesFor abcl;
+    cclPackages   = lispPackagesFor ccl;
+    clispPackages = lispPackagesFor clisp;
+    claspPackages = lispPackagesFor clasp;
 
-    sbclWithPackages  = lispWithPackages sbcl';
-    eclWithPackages   = lispWithPackages ecl';
-    abclWithPackages  = lispWithPackages abcl';
-    cclWithPackages   = lispWithPackages ccl';
-    clispWithPackages = lispWithPackages clisp';    
-    claspWithPackages = lispWithPackages clasp';
+    sbclWithPackages  = lispWithPackages sbcl;
+    eclWithPackages   = lispWithPackages ecl;
+    abclWithPackages  = lispWithPackages abcl;
+    cclWithPackages   = lispWithPackages ccl;
+    clispWithPackages = lispWithPackages clisp;    
+    claspWithPackages = lispWithPackages clasp;
   };
+
+  makeLisp = lisp:
+    lisp // { withPackages = lispWithPackages lisp; };
 
 in commonLispPackages
