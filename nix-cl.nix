@@ -286,6 +286,8 @@ let
       inherit lisp;
       inherit quicklispPackagesFor;
       inherit fixupFor;
+      inherit flagsFor;
+      inherit asdf;
       build-asdf-system = build-asdf-system';
     };
 
@@ -390,6 +392,7 @@ let
 
   commonLispPackages = rec {
     inherit
+      asdf
       build-asdf-system
       lispWithPackagesInternal
       lispPackagesFor
@@ -416,3 +419,6 @@ let
     lisp // { withPackages = lispWithPackages lisp; };
 
 in commonLispPackages
+
+
+

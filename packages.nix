@@ -1,4 +1,4 @@
-{ build-asdf-system, lisp, quicklispPackagesFor, fixupFor, pkgs, ... }:
+{ build-asdf-system, asdf, lisp, quicklispPackagesFor, fixupFor, flagsFor, pkgs, ... }:
 
 let
 
@@ -30,7 +30,7 @@ let
             export CLASSPATH=${makeSearchPath "share/java/*" o.javaLibs}:$CLASSPATH
             export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$(pwd)//
             export ASDF_OUTPUT_TRANSLATIONS="$(pwd):$(pwd)/__fasls:${storeDir}:${storeDir}"
-            ${o.lisp} ${o.buildScript}
+            ${o.lisp}/bin/${o.lisp.pname} ${flagsFor o.lisp} ${o.buildScript}
           '';
           installPhase = ''
             mkdir -pv $out
@@ -52,21 +52,6 @@ let
   ql = quicklispPackagesFor { inherit lisp; fixup = fixupFor packages; };
 
   packages = rec {
-
-  asdf = build-with-compile-into-pwd {
-    pname = "asdf";
-    version = "3.3.5.3";
-    src = pkgs.fetchzip {
-      url = "https://gitlab.common-lisp.net/asdf/asdf/-/archive/3.3.5.3/asdf-3.3.5.3.tar.gz";
-      sha256 = "0aw200awhg58smmbdmz80bayzmbm1a6547gv0wmc8yv89gjqldbv";
-    };
-    systems = [ "asdf" "uiop" ];
-  };
-
-  uiop = build-with-compile-into-pwd {
-    inherit (asdf) version src systems;
-    pname = "uiop";
-  };
 
   cffi = let
     jna = pkgs.fetchMavenArtifact {
@@ -301,7 +286,7 @@ let
     ];
 
     buildScript = pkgs.writeText "build-nyxt.lisp" ''
-      (require :asdf)
+      (load "${asdf}")
       (asdf:load-system :nyxt/gtk-application)
       (sb-ext:save-lisp-and-die "nyxt" :executable t
                                        #+sb-core-compression :compression
@@ -310,6 +295,7 @@ let
     '';
 
     # Run with WEBKIT_FORCE_SANDBOX=0 if getting a runtime error in webkitgtk-2.34.4
+    # TODO(kasper): use wrapGAppsHook
     installPhase = ql.nyxt.installPhase + ''
       rm -v $out/nyxt
       mkdir -p $out/bin

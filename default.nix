@@ -33,7 +33,17 @@ let
 
   clisp = pkgs.clisp;
 
-  asdf = "${/nix/store/mvwp3s6qcjjjk7vwxcf9x0ff1px25wlj-uiop-3.3.5.3/build/asdf.lisp}";
+  asdf = pkgs.stdenv.mkDerivation rec {
+    pname = "asdf";
+    version = "3.3.5.3";
+    src = pkgs.fetchzip {
+      url = "https://gitlab.common-lisp.net/asdf/asdf/-/archive/${version}/asdf-${version}.tar.gz";
+      hash = "sha256-ezWK5Utoe8QqB/sdUowKddXv1QLo17Zq1ag8yBUAgis=";
+    };
+    installPhase = ''
+      cp build/asdf.lisp $out
+    '';
+  };
 
 in pkgs.callPackage (import ./nix-cl.nix {
   inherit abcl ecl ccl clasp clisp sbcl asdf;
