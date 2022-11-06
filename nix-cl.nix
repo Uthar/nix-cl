@@ -314,14 +314,14 @@ let
   #
   # This is done by generating a 'fixed' set of Quicklisp packages by
   # calling quicklispPackagesFor with the right `fixup`.
-  commonLispPackagesFor = { pkg, program, lispFlags ? "", loadFlags, evalFlags, faslExt, asdf ? defaultAsdf }:
+  commonLispPackagesFor = { pkg, program, flags ? "", loadFlags, evalFlags, faslExt, asdf ? defaultAsdf }:
     let
       build-asdf-system' = body: build-asdf-system (body // {
-        inherit pkg program lispFlags loadFlags evalFlags faslExt asdf;
+        inherit pkg program flags loadFlags evalFlags faslExt asdf;
       });
     in import ./packages.nix {
       inherit pkgs;
-              inherit pkg program lispFlags loadFlags evalFlags faslExt;
+      inherit pkg program flags loadFlags evalFlags faslExt;
       inherit quicklispPackagesFor;
       inherit fixupFor;
       inherit asdf;
@@ -329,10 +329,10 @@ let
     };
 
   # Build the set of packages imported from quicklisp using `lisp`
-  quicklispPackagesFor = { pkg, program, lispFlags ? "", loadFlags, evalFlags, faslExt, fixup ? lib.id, build ? build-asdf-system }:
+  quicklispPackagesFor = { pkg, program, flags ? "", loadFlags, evalFlags, faslExt, fixup ? lib.id, build ? build-asdf-system }:
     let
       build-asdf-system' = body: build (body // {
-        inherit pkg program lispFlags loadFlags evalFlags faslExt;
+        inherit pkg program flags loadFlags evalFlags faslExt;
       });
     in import ./ql.nix {
       inherit pkgs;
@@ -422,14 +422,14 @@ let
       };
     in lispWithPackagesInternal packages;
 
-  lispPackagesFor = { pkg, lispFlags ? "", program, evalFlags, loadFlags, faslExt, asdf ? defaultAsdf }:
+  lispPackagesFor = { pkg, flags ? "", program, evalFlags, loadFlags, faslExt, asdf ? defaultAsdf }:
     let
       packages = commonLispPackagesFor {
-        inherit pkg program lispFlags loadFlags evalFlags faslExt;
+        inherit pkg program flags loadFlags evalFlags faslExt;
         inherit asdf;
       };
       qlPackages = quicklispPackagesFor {
-        inherit pkg program lispFlags loadFlags evalFlags faslExt;
+        inherit pkg program flags loadFlags evalFlags faslExt;
         fixup = fixupFor packages;
       };
     in qlPackages // packages;
