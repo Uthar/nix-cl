@@ -396,10 +396,11 @@ let
       lispLibs = packages clpkgs;
       systems = [];
     }).overrideAttrs(o: {
+      nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
       installPhase = ''
         # The recent version of makeWrapper causes breakage. For more info see
         # https://github.com/Uthar/nix-cl/issues/2
-        source ${oldMakeWrapper}
+        # source ${oldMakeWrapper}
 
         mkdir -pv $out/bin
         makeWrapper \
@@ -415,10 +416,10 @@ let
       '';
     });
 
-  lispWithPackages = { pkg, lispFlags ? "", program, evalFlags, loadFlags, faslExt, asdf ? defaultAsdf }:
+  lispWithPackages = { pkg, flags ? "", program, evalFlags, loadFlags, faslExt, asdf ? defaultAsdf }:
     let
       packages = lispPackagesFor {
-        inherit pkg program lispFlags loadFlags evalFlags faslExt asdf;
+        inherit pkg program flags loadFlags evalFlags faslExt asdf;
       };
     in lispWithPackagesInternal packages;
 
