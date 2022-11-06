@@ -1,4 +1,4 @@
-{ build-asdf-system, asdf, lisp, quicklispPackagesFor, fixupFor, flagsFor, pkgs, ... }:
+{ build-asdf-system, asdf, pkg, quicklispPackagesFor, fixupFor, pkgs, ... }:
 
 let
 
@@ -30,7 +30,7 @@ let
             export CLASSPATH=${makeSearchPath "share/java/*" o.javaLibs}:$CLASSPATH
             export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$(pwd)//
             export ASDF_OUTPUT_TRANSLATIONS="$(pwd):$(pwd)/__fasls:${storeDir}:${storeDir}"
-            ${o.lisp}/bin/${o.lisp.pname} ${flagsFor o.lisp} ${o.buildScript}
+            ${o.lispPkg}/bin/${o.lispProgram} ${o.lispFlags or ""} ${o.lispLoadFlags} ${o.buildScript}
           '';
           installPhase = ''
             mkdir -pv $out
@@ -45,11 +45,11 @@ let
     });
 
   # A little hacky
-  isJVM = lisp.pname == "abcl";
+  isJVM = pkg.pname == "abcl";
 
   # Makes it so packages imported from Quicklisp can be re-used as
   # lispLibs ofpackages in this file.
-  ql = quicklispPackagesFor { inherit lisp; fixup = fixupFor packages; };
+  ql = quicklispPackagesFor { inherit pkg; fixup = fixupFor packages; };
 
   packages = rec {
 
