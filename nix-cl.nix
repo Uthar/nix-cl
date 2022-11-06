@@ -83,6 +83,24 @@ let
       }
       else ff;
 
+  buildAsdf = { asdf, pkg, program, lispFlags, evalFlags, faslExt }:
+    stdenv.mkDerivation {
+      inherit (asdf) pname version;
+      dontUnpack = true;
+      buildPhase = ''
+        cp -v ${asdf} asdf.lisp
+        ${pkg}/bin/${program} \
+          ${lispFlags} \
+          ${evalFlags} '(compile-file "asdf.lisp")' \
+          ${evalFlags} '(quit)'
+      '';
+      installPhase = ''
+        mkdir -p $out
+        cp -v asdf.${faslExt} $out
+      '';
+    };
+
+
   #
   # Wrapper around stdenv.mkDerivation for building ASDF systems.
   #
@@ -194,21 +212,7 @@ let
       # load-system. Strange.
 
       # TODO(kasper) portable quit
-      asdfFasl = stdenv.mkDerivation {
-        inherit (asdf) pname version;
-        dontUnpack = true;
-        buildPhase = ''
-          cp -v ${asdf} asdf.lisp
-          ${pkg}/bin/${program} \
-            ${lispFlags} \
-            ${evalFlags} '(compile-file "asdf.lisp")' \
-            ${evalFlags} '(quit)'
-        '';
-        installPhase = ''
-          mkdir -p $out
-          cp -v asdf.${faslExt} $out
-        '';
-      };
+      asdfFasl = buildAsdf { inherit asdf pkg program lispFlags evalFlags faslExt; };
       
       buildScript = substituteAll {
         src = ./builder.lisp;
@@ -379,6 +383,11 @@ let
     (build-asdf-system rec {
       # TODO(kasper): assert each package has the same lisp and asdf?
       pkg = (head (lib.attrValues clpkgs)).pkg;
+      program = (head (lib.attrValues clpkgs)).program;
+      lispFlags = (head (lib.attrValues clpkgs)).lispFlags or "";
+      evalFlags = (head (lib.attrValues clpkgs)).evalFlags;
+      loadFlags = (head (lib.attrValues clpkgs)).loadFlags;
+      faslExt = (head (lib.attrValues clpkgs)).faslExt;
       asdf = (head (lib.attrValues clpkgs)).asdf or defaultAsdf;
       # See dontUnpack in build-asdf-system
       src = null;
@@ -396,7 +405,7 @@ let
         makeWrapper \
           ${o.pkg}/bin/${o.program} \
           $out/bin/${o.program} \
-          --add-flags "${o.lispFlags} ${o.loadFlags} ${o.asdf}/asdf.${o.faslExt}" \
+          --add-flags "${o.lispFlags} ${o.loadFlags} ${o.asdfFasl}/asdf.${o.faslExt}" \
           --prefix CL_SOURCE_REGISTRY : "${o.CL_SOURCE_REGISTRY}" \
           --prefix ASDF_OUTPUT_TRANSLATIONS : ${concatStringsSep "::" (flattenedDeps o.lispLibs)}: \
           --prefix LD_LIBRARY_PATH : "${o.LD_LIBRARY_PATH}" \
@@ -406,9 +415,11 @@ let
       '';
     });
 
-  lispWithPackages = { lisp, asdf ? defaultAsdf }:
+  lispWithPackages = { pkg, lispFlags ? "", program, evalFlags, loadFlags, faslExt, asdf ? defaultAsdf }:
     let
-      packages = lispPackagesFor { inherit lisp asdf; };
+      packages = lispPackagesFor {
+        inherit pkg program lispFlags loadFlags evalFlags faslExt asdf;
+      };
     in lispWithPackagesInternal packages;
 
   lispPackagesFor = { pkg, lispFlags ? "", program, evalFlags, loadFlags, faslExt, asdf ? defaultAsdf }:
@@ -488,13 +499,62 @@ let
       ;
     };
 
+    sbclWithPackages = lispWithPackages {
+      inherit (sbcl)
+        pkg
+        loadFlags
+        evalFlags
+        faslExt
+        program
+      ;
+    };
+    eclWithPackages = lispWithPackages {
+      inherit (ecl)
+        pkg
+        loadFlags
+        evalFlags
+        faslExt
+        program
+      ;
+    };
+    abclWithPackages = lispWithPackages {
+      inherit (abcl)
+        pkg
+        loadFlags
+        evalFlags
+        faslExt
+        program
+      ;
+    };
+    cclWithPackages  = lispWithPackages {
+      inherit (ccl)
+        pkg
+        loadFlags
+        evalFlags
+        faslExt
+        program
+      ;
+    };
+    clispWithPackages = lispWithPackages {
+      inherit (clisp)
+        pkg
+        lispFlags
+        loadFlags
+        evalFlags
+        faslExt
+        program
+      ;
+    };
+    claspWithPackages = lispWithPackages {
+      inherit (clasp)
+        pkg
+        loadFlags
+        evalFlags
+        faslExt
+        program
+      ;
+    };
 
-    sbclWithPackages  = lispWithPackages { lisp = sbcl; };
-    eclWithPackages   = lispWithPackages { lisp = ecl; };
-    abclWithPackages  = lispWithPackages { lisp = abcl; };
-    cclWithPackages   = lispWithPackages { lisp = ccl; };
-    clispWithPackages = lispWithPackages { lisp = clisp; };    
-    claspWithPackages = lispWithPackages { lisp = clasp; };
   };
 
   makeLisp = lisp:
