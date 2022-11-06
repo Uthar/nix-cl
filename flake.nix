@@ -11,7 +11,7 @@
       clasp = dev.outputs.packages.x86_64-linux.clasp;
     in
     {
-      lib = pkgs.callPackage (import ./. { inherit clasp; }) {};
+      lib = pkgs.callPackage (import ./. { claspPkg = clasp; }) {};
       devShells.x86_64-linux.default = pkgs.callPackage ./shell.nix {};
     };
 

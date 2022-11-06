@@ -103,7 +103,12 @@ let
       lispLibs ? [],
 
       # Lisp command to run buildScript
-      lisp,
+      pkg,
+      lispFlags ? "",
+      program,
+      loadFlags,
+      evalFlags,
+      faslExt,
 
       # ASDF amalgamation file to use
       asdf ? defaultAsdf,
@@ -136,7 +141,10 @@ let
       libsFlat = flattenedDeps lispLibs;
 
     in stdenv.mkDerivation (rec {
-      inherit pname version nativeLibs javaLibs lispLibs lisp systems asds;
+      inherit
+        pname version nativeLibs javaLibs lispLibs systems asds
+        pkg program lispFlags loadFlags faslExt evalFlags
+      ;
 
       src = if builtins.length patches > 0
             then apply-patches args
@@ -184,7 +192,28 @@ let
       # cl-syslog, for some reason, signals that CL-SYSLOG::VALID-SD-ID-P
       # is undefined with compile-system, but works perfectly with
       # load-system. Strange.
-      buildScript = substituteAll { src = ./builder.lisp; inherit asdf; };
+
+      # TODO(kasper) portable quit
+      asdfFasl = stdenv.mkDerivation {
+        inherit (asdf) pname version;
+        dontUnpack = true;
+        buildPhase = ''
+          cp -v ${asdf} asdf.lisp
+          ${pkg}/bin/${program} \
+            ${lispFlags} \
+            ${evalFlags} '(compile-file "asdf.lisp")' \
+            ${evalFlags} '(quit)'
+        '';
+        installPhase = ''
+          mkdir -p $out
+          cp -v asdf.${faslExt} $out
+        '';
+      };
+      
+      buildScript = substituteAll {
+        src = ./builder.lisp;
+        asdf = "${asdfFasl}/asdf.${faslExt}";
+      };
 
       buildPhase = optionalString (src != null) ''
         # In addition to lisp dependencies, make asdf see the .asd's
@@ -214,7 +243,7 @@ let
         echo $lispLibs >> __nix-drvs
 
         # Finally, compile the systems
-        ${lisp}/bin/${lisp.pname} ${flagsFor lisp} $buildScript
+        ${pkg}/bin/${program} ${lispFlags} ${loadFlags} $buildScript
       '';
 
       # Copy compiled files to store
@@ -281,24 +310,25 @@ let
   #
   # This is done by generating a 'fixed' set of Quicklisp packages by
   # calling quicklispPackagesFor with the right `fixup`.
-  commonLispPackagesFor = { lisp, asdf ? defaultAsdf }:
+  commonLispPackagesFor = { pkg, program, lispFlags ? "", loadFlags, evalFlags, faslExt, asdf ? defaultAsdf }:
     let
-      build-asdf-system' = body: build-asdf-system (body // { inherit lisp asdf; });
+      build-asdf-system' = body: build-asdf-system (body // {
+        inherit pkg program lispFlags loadFlags evalFlags faslExt asdf;
+      });
     in import ./packages.nix {
       inherit pkgs;
-      inherit lisp;
+              inherit pkg program lispFlags loadFlags evalFlags faslExt;
       inherit quicklispPackagesFor;
       inherit fixupFor;
-      inherit flagsFor;
       inherit asdf;
       build-asdf-system = build-asdf-system';
     };
 
   # Build the set of packages imported from quicklisp using `lisp`
-  quicklispPackagesFor = { lisp, fixup ? lib.id, build ? build-asdf-system }:
+  quicklispPackagesFor = { pkg, program, lispFlags ? "", loadFlags, evalFlags, faslExt, fixup ? lib.id, build ? build-asdf-system }:
     let
       build-asdf-system' = body: build (body // {
-        inherit lisp;
+        inherit pkg program lispFlags loadFlags evalFlags faslExt;
       });
     in import ./ql.nix {
       inherit pkgs;
@@ -339,11 +369,6 @@ let
       --replace @shell@ ${pkgs.bash}/bin/bash
   '';
 
-  flagsFor = lisp:
-    if lisp.pname == "clisp"
-    then "-E UTF-8 -i"
-    else "--load";
-
   # Creates a lisp wrapper with `packages` installed
   #
   # `packages` is a function that takes `clpkgs` - a set of lisp
@@ -353,11 +378,11 @@ let
     # FIXME just use flattenedDeps instead
     (build-asdf-system rec {
       # TODO(kasper): assert each package has the same lisp and asdf?
-      lisp = (head (lib.attrValues clpkgs)).lisp;
+      pkg = (head (lib.attrValues clpkgs)).pkg;
       asdf = (head (lib.attrValues clpkgs)).asdf or defaultAsdf;
       # See dontUnpack in build-asdf-system
       src = null;
-      pname = lisp.pname;
+      pname = pkg.pname;
       version = "with-packages";
       lispLibs = packages clpkgs;
       systems = [];
@@ -369,9 +394,9 @@ let
 
         mkdir -pv $out/bin
         makeWrapper \
-          ${o.lisp}/bin/${o.lisp.pname} \
-          $out/bin/${o.lisp.pname} \
-          --add-flags "${flagsFor o.lisp} ${o.asdf}" \
+          ${o.pkg}/bin/${o.program} \
+          $out/bin/${o.program} \
+          --add-flags "${o.lispFlags} ${o.loadFlags} ${o.asdf}/asdf.${o.faslExt}" \
           --prefix CL_SOURCE_REGISTRY : "${o.CL_SOURCE_REGISTRY}" \
           --prefix ASDF_OUTPUT_TRANSLATIONS : ${concatStringsSep "::" (flattenedDeps o.lispLibs)}: \
           --prefix LD_LIBRARY_PATH : "${o.LD_LIBRARY_PATH}" \
@@ -386,11 +411,14 @@ let
       packages = lispPackagesFor { inherit lisp asdf; };
     in lispWithPackagesInternal packages;
 
-  lispPackagesFor = { lisp, asdf ? defaultAsdf }:
+  lispPackagesFor = { pkg, lispFlags ? "", program, evalFlags, loadFlags, faslExt, asdf ? defaultAsdf }:
     let
-      packages = commonLispPackagesFor { inherit lisp asdf; };
+      packages = commonLispPackagesFor {
+        inherit pkg program lispFlags loadFlags evalFlags faslExt;
+        inherit asdf;
+      };
       qlPackages = quicklispPackagesFor {
-        inherit lisp;
+        inherit pkg program lispFlags loadFlags evalFlags faslExt;
         fixup = fixupFor packages;
       };
     in qlPackages // packages;
@@ -404,12 +432,62 @@ let
 
     # Manually defined packages shadow the ones imported from quicklisp
 
-    sbclPackages  = recurseIntoAttrs (lispPackagesFor { lisp = sbcl; });
-    eclPackages   = lispPackagesFor { lisp = ecl; };
-    abclPackages  = lispPackagesFor { lisp = abcl; };
-    cclPackages   = lispPackagesFor { lisp = ccl; };
-    clispPackages = lispPackagesFor { lisp = clisp; };
-    claspPackages = lispPackagesFor { lisp = clasp; };
+    sbclPackages  = recurseIntoAttrs (lispPackagesFor {
+      inherit (sbcl)
+        pkg
+        loadFlags
+        evalFlags
+        faslExt
+        program
+      ;
+    });
+    eclPackages   = lispPackagesFor {
+      inherit (ecl)
+        pkg
+        loadFlags
+        evalFlags
+        faslExt
+        program
+      ;
+    };
+    abclPackages  = lispPackagesFor {
+      inherit (abcl)
+        pkg
+        loadFlags
+        evalFlags
+        faslExt
+        program
+      ;
+    };
+    cclPackages   = lispPackagesFor {
+      inherit (ccl)
+        pkg
+        loadFlags
+        evalFlags
+        faslExt
+        program
+        ;
+    };
+    clispPackages = lispPackagesFor {
+      inherit (clisp)
+        pkg
+        lispFlags
+        loadFlags
+        evalFlags
+        faslExt
+        program
+      ;
+    };
+    claspPackages = lispPackagesFor {
+      inherit (clasp)
+        pkg
+        loadFlags
+        evalFlags
+        faslExt
+        program
+      ;
+    };
+
 
     sbclWithPackages  = lispWithPackages { lisp = sbcl; };
     eclWithPackages   = lispWithPackages { lisp = ecl; };
