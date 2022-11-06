@@ -83,14 +83,14 @@ let
       }
       else ff;
 
-  buildAsdf = { asdf, pkg, program, lispFlags, evalFlags, faslExt }:
+  buildAsdf = { asdf, pkg, program, flags, evalFlags, faslExt }:
     stdenv.mkDerivation {
       inherit (asdf) pname version;
       dontUnpack = true;
       buildPhase = ''
         cp -v ${asdf} asdf.lisp
         ${pkg}/bin/${program} \
-          ${lispFlags} \
+          ${flags} \
           ${evalFlags} '(compile-file "asdf.lisp")' \
           ${evalFlags} '(quit)'
       '';
@@ -122,7 +122,7 @@ let
 
       # Lisp command to run buildScript
       pkg,
-      lispFlags ? "",
+      flags ? "",
       program,
       loadFlags,
       evalFlags,
@@ -161,7 +161,7 @@ let
     in stdenv.mkDerivation (rec {
       inherit
         pname version nativeLibs javaLibs lispLibs systems asds
-        pkg program lispFlags loadFlags faslExt evalFlags
+        pkg program flags loadFlags faslExt evalFlags
       ;
 
       src = if builtins.length patches > 0
@@ -212,7 +212,7 @@ let
       # load-system. Strange.
 
       # TODO(kasper) portable quit
-      asdfFasl = buildAsdf { inherit asdf pkg program lispFlags evalFlags faslExt; };
+      asdfFasl = buildAsdf { inherit asdf pkg program flags evalFlags faslExt; };
       
       buildScript = substituteAll {
         src = ./builder.lisp;
@@ -247,7 +247,7 @@ let
         echo $lispLibs >> __nix-drvs
 
         # Finally, compile the systems
-        ${pkg}/bin/${program} ${lispFlags} ${loadFlags} $buildScript
+        ${pkg}/bin/${program} ${flags} ${loadFlags} $buildScript
       '';
 
       # Copy compiled files to store
@@ -405,7 +405,7 @@ let
         makeWrapper \
           ${o.pkg}/bin/${o.program} \
           $out/bin/${o.program} \
-          --add-flags "${o.lispFlags} ${o.loadFlags} ${o.asdfFasl}/asdf.${o.faslExt}" \
+          --add-flags "${o.flags} ${o.loadFlags} ${o.asdfFasl}/asdf.${o.faslExt}" \
           --prefix CL_SOURCE_REGISTRY : "${o.CL_SOURCE_REGISTRY}" \
           --prefix ASDF_OUTPUT_TRANSLATIONS : ${concatStringsSep "::" (flattenedDeps o.lispLibs)}: \
           --prefix LD_LIBRARY_PATH : "${o.LD_LIBRARY_PATH}" \
@@ -482,7 +482,7 @@ let
     clispPackages = lispPackagesFor {
       inherit (clisp)
         pkg
-        lispFlags
+        flags
         loadFlags
         evalFlags
         faslExt
@@ -538,7 +538,7 @@ let
     clispWithPackages = lispWithPackages {
       inherit (clisp)
         pkg
-        lispFlags
+        flags
         loadFlags
         evalFlags
         faslExt
