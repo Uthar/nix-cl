@@ -31,7 +31,7 @@ jobs:
             extra-substituters = https://cache.galkowski.xyz
             trusted-public-keys = cache.galkowski.xyz-1:8itwpvpPypcmgogbwtWf6+/EOFALY2BIrG0zF8LfMCM= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
       - name: build
-        run: nix-shell --run "sbcl --script test-lisp.lisp ${{ matrix.lisp }}"
+        run: sbcl --script test-lisp.lisp ${{ matrix.lisp }}
 
       - name: cache
         run: nix copy -s --all --to ssh://cache
