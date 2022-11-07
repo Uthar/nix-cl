@@ -41,11 +41,20 @@ Version of the package/library
 ##### `src`
 Source of the package/library (`fetchTarball`, `fetchGit`, `fetchMercurial` etc.)
 
-##### `lisp`
-This command must load the provided file (`$buildScript`) then exit
-immediately. For example, SBCL's --script flag does just that.
+##### `pkg`
+##### `program`
+##### `loadFlags`
+The command "${pkg}/bin/${program} ${flags} ${loadFlags}" must load the provided
+file (`$buildScript`) then exit immediately. For example, SBCL's --script flag
+does just that.
+
+#### `evalFlags`
+Currently used to pre-compile asdf.lisp with `compile-file`
 
 #### Optional arguments
+
+##### `flags ? ""`
+additional flags to pass to lisp program before loadFlags during builds
 
 ##### `asdf ? defaultAsdf`
 The ASDF amalgamation source file to load before building and use to load

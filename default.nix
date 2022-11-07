@@ -1,4 +1,4 @@
-{ clasp }:
+{ claspPkg }:
 { pkgs ? import <nixpkgs> { }, ... }:
 
 let
@@ -6,7 +6,7 @@ let
   # The default Common Lisps.
   # To customize, use lispPackagesFor/lispWithPackages
 
-  abcl = (pkgs.abcl.override {
+  abclPkg = (pkgs.abcl.override {
     jdk = pkgs.jdk17;
     jre = pkgs.jdk17;
   }).overrideAttrs (o: {
@@ -25,13 +25,54 @@ let
       o.installPhase;
   });
 
-  ecl = pkgs.ecl;
+  abcl = {
+    pkg = abclPkg;
+    loadFlags = "--load";
+    evalFlags = "--eval";
+    faslExt = "abcl";
+    program = "abcl";
+  };
 
-  ccl = pkgs.ccl;
+  ecl = {
+    pkg = pkgs.ecl;
+    loadFlags = "--load";
+    evalFlags = "--eval";
+    faslExt = "fas";
+    program = "ecl";
+  };
 
-  sbcl = pkgs.sbcl;
+  ccl = {
+    pkg = pkgs.ccl;
+    loadFlags = "--load";
+    evalFlags = "--eval";
+    faslExt = "lx64fsl";
+    program = "ccl";
+  };
 
-  clisp = pkgs.clisp;
+  sbcl = {
+    pkg = pkgs.sbcl;
+    loadFlags = "--load";
+    evalFlags = "--eval";
+    faslExt = "fasl";
+    program = "sbcl";
+  };
+
+  clisp = {
+    pkg = pkgs.clisp;
+    flags = "-E UTF-8";
+    loadFlags = "-i";
+    evalFlags = "-x";
+    faslExt = "fas";
+    program = "clisp";
+  };
+
+  clasp = {
+    pkg = claspPkg;
+    loadFlags = "--load";
+    evalFlags = "--eval";
+    faslExt = "fasp";
+    program = "clasp";
+  };
 
   # TODO(kasper): precompile asdf.lisp per implementation?
   defaultAsdf = pkgs.stdenv.mkDerivation rec {
