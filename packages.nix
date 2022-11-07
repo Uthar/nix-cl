@@ -1,4 +1,4 @@
-{ build-asdf-system, asdf, lisp, quicklispPackagesFor, fixupFor, flagsFor, pkgs, ... }:
+{ build-asdf-system, asdf, pkg, flags, loadFlags, evalFlags, faslExt, program, quicklispPackagesFor, fixupFor, pkgs, ... }:
 
 let
 
@@ -30,7 +30,7 @@ let
             export CLASSPATH=${makeSearchPath "share/java/*" o.javaLibs}:$CLASSPATH
             export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$(pwd)//
             export ASDF_OUTPUT_TRANSLATIONS="$(pwd):$(pwd)/__fasls:${storeDir}:${storeDir}"
-            ${o.lisp}/bin/${o.lisp.pname} ${flagsFor o.lisp} ${o.buildScript}
+            ${o.pkg}/bin/${o.program} ${o.flags or ""} ${o.loadFlags} ${o.buildScript}
           '';
           installPhase = ''
             mkdir -pv $out
@@ -45,11 +45,14 @@ let
     });
 
   # A little hacky
-  isJVM = lisp.pname == "abcl";
+  isJVM = pkg.pname == "abcl";
 
   # Makes it so packages imported from Quicklisp can be re-used as
   # lispLibs ofpackages in this file.
-  ql = quicklispPackagesFor { inherit lisp; fixup = fixupFor packages; };
+  ql = quicklispPackagesFor {
+    inherit pkg program flags evalFlags loadFlags faslExt;
+    fixup = fixupFor packages;
+  };
 
   packages = rec {
 
@@ -258,12 +261,12 @@ let
   };
 
   mathkit = build-asdf-system {
-    inherit (ql.mathkit) pname version src asds lisp;
+    inherit (ql.mathkit) pname version src asds ;
     lispLibs = ql.mathkit.lispLibs ++ [ ql.sb-cga ];
   };
 
   nyxt-gtk = build-asdf-system {
-    inherit (ql.nyxt) pname lisp;
+    inherit (ql.nyxt) pname;
     version = "2.2.4";
 
     lispLibs = ql.nyxt.lispLibs ++ (with ql; [

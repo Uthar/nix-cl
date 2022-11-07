@@ -1,5 +1,5 @@
 { pkgs ? import <nixpkgs> { } }:
-let nix-cl = (import ./. { inherit (pkgs) clasp; }) { inherit pkgs; };
+let nix-cl = (import ./. { claspPkg = pkgs.clasp; }) { inherit pkgs; };
 in pkgs.mkShell {
   nativeBuildInputs = [
     (nix-cl.sbclWithPackages
