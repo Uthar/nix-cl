@@ -297,7 +297,8 @@ let
                                        :toplevel #'nyxt:entry-point)
     '';
 
-    # Run with WEBKIT_FORCE_SANDBOX=0 if getting a runtime error in webkitgtk-2.34.4
+    # Run with WEBKIT_FORCE_SANDBOX=0 if getting a runtime error
+    # See https://github.com/atlas-engineer/nyxt/issues/1781
     # TODO(kasper): use wrapGAppsHook
     installPhase = ql.nyxt.installPhase + ''
       rm -v $out/nyxt
