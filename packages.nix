@@ -322,22 +322,31 @@ let
     };
     version = "f19162e76";
   });
-
-  # Quicklisp missing dependency data:
-  # https://github.com/marijnh/Postmodern/blob/6a8eb691dbdd9ef780ada0c5a05ab5cf94e6f4f9/s-sql.asd#L23
-  s-sql_slash_tests = ql.s-sql_slash_tests.overrideLispAttrs (o: {
-    lispLibs = o.lispLibs ++ [
-      ql.cl-postgres_slash_tests
+  
+  kons-9 = build-asdf-system {
+    pname = "kons-9";
+    version = "alpha";
+    src = pkgs.fetchFromGitHub {
+      owner = "kaveh808";
+      repo = "kons-9";
+      rev = "9f9c1ad6504875bf09ea90afdfc0f7ddc68d3df9";
+      hash = "sha256-Ei+ihO8vtKK7MmtYPFLhZdLa/7FNBLZo5A8+bGpNnpQ=";
+    };
+    lispLibs = with ql; [
+      closer-mop
+      trivial-main-thread
+      trivial-backtrace
+      cffi
+      cl-opengl
+      cl-glu
+      cl-glfw3
+      cl-paths-ttf
+      zpb-ttf   
+      cl-vectors  
+      origin
+      clobber
     ];
-  });
-
-  # Quicklisp missing dependency data:
-  # https//github.com/marijnh/Postmodern/blob/6a8eb691dbdd9ef780ada0c5a05ab5cf94e6f4f9/simple-date.asd#L25
-  simple-date_slash_postgres-glue = ql.simple-date_slash_postgres-glue.overrideLispAttrs (o: {
-    lispLibs = o.lispLibs ++ [
-      ql.cl-postgres_slash_tests
-    ];
-  });
+  };
 
   };
 
