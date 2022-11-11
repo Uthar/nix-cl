@@ -443,6 +443,8 @@ let
 
   commonLispPackages =  {
 
+    inherit makeLisp;
+
     sbcl = makeLisp sbclArgs;
     abcl = makeLisp abclArgs;
     ccl  = makeLisp cclArgs;
