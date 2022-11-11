@@ -25,53 +25,36 @@ let
       o.installPhase;
   });
 
-  abcl = {
+  abclArgs = {
     pkg = abclPkg;
-    loadFlags = "--load";
-    evalFlags = "--eval";
     faslExt = "abcl";
-    program = "abcl";
   };
 
-  ecl = {
+  eclArgs = {
     pkg = pkgs.ecl;
-    loadFlags = "--load";
-    evalFlags = "--eval";
     faslExt = "fas";
-    program = "ecl";
   };
 
-  ccl = {
+  cclArgs = {
     pkg = pkgs.ccl;
-    loadFlags = "--load";
-    evalFlags = "--eval";
     faslExt = "lx64fsl";
-    program = "ccl";
   };
 
-  sbcl = {
+  sbclArgs = {
     pkg = pkgs.sbcl;
-    loadFlags = "--load";
-    evalFlags = "--eval";
-    faslExt = "fasl";
-    program = "sbcl";
   };
 
-  clisp = {
+  clispArgs = {
     pkg = pkgs.clisp;
     flags = "-E UTF-8";
     loadFlags = "-i";
     evalFlags = "-x";
     faslExt = "fas";
-    program = "clisp";
   };
 
-  clasp = {
+  claspArgs = {
     pkg = claspPkg;
-    loadFlags = "--load";
-    evalFlags = "--eval";
     faslExt = "fasp";
-    program = "clasp";
   };
 
   # TODO(kasper): precompile asdf.lisp per implementation?
@@ -88,7 +71,7 @@ let
   };
 
 in pkgs.callPackage (import ./nix-cl.nix {
-  inherit abcl ecl ccl clasp clisp sbcl defaultAsdf;
+  inherit abclArgs eclArgs cclArgs claspArgs clispArgs sbclArgs defaultAsdf;
 }) {
   inherit pkgs;
 }
