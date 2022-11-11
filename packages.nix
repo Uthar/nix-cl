@@ -328,6 +328,68 @@ let
     patches = [ ./patches/magicl-dont-build-fortran-twice.patch ];
   };
 
+  cl-gtk4 = build-asdf-system {
+    pname = "cl-gtk4";
+    version = "1.0.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "bohonghuang";
+      repo = "cl-gtk4";
+      rev = "6e11b0d92ccf7cacee5c7f03d50148d68fe8e04d";
+      hash = "sha256-d/DYV1aQAir4mszsw1wEotxxBW9jGiFjELB04/PRBQ4=";
+    };
+    lispLibs = with ql; [
+      cl-gobject-introspection-wrapper
+      cl-glib_dot_gio
+    ];
+    nativeBuildInputs = [
+      pkgs.gobject-introspection
+      pkgs.gtk4
+    ];
+    nativeLibs = [
+      pkgs.gtk4
+    ];
+  };
+
+  cl-gtk4_dot_adw = build-asdf-system {
+    pname = "cl-gtk4.adw";
+    version = "1.0.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "bohonghuang";
+      repo = "cl-gtk4";
+      rev = "6e11b0d92ccf7cacee5c7f03d50148d68fe8e04d";
+      hash = "sha256-d/DYV1aQAir4mszsw1wEotxxBW9jGiFjELB04/PRBQ4=";
+    };
+    lispLibs = with ql; [
+      cl-gobject-introspection-wrapper
+    ] ++ [ cl-gtk4 ];
+    nativeBuildInputs = [
+      pkgs.libadwaita
+    ];
+    nativeLibs = [
+      pkgs.libadwaita
+    ];
+  };
+  
+  cl-gtk4_dot_webkit2 = build-asdf-system {
+    pname = "cl-gtk4.webkit2";
+    version = "1.0.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "bohonghuang";
+      repo = "cl-gtk4";
+      rev = "6e11b0d92ccf7cacee5c7f03d50148d68fe8e04d";
+      hash = "sha256-d/DYV1aQAir4mszsw1wEotxxBW9jGiFjELB04/PRBQ4=";
+    };
+    lispLibs = with ql; [
+      cl-gobject-introspection-wrapper
+    ] ++ [ cl-gtk4 ];
+    nativeBuildInputs = [
+      pkgs.webkitgtk_5_0
+    ];
+    nativeLibs = [
+      pkgs.webkitgtk_5_0
+    ];
+  };
+  
   };
 
 in packages
