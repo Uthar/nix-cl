@@ -10,9 +10,17 @@
 # - figure out a less awkward way to patch sources
 #   (have to build from src directly for SLIME to work, so can't just patch sources in place)
 
-{ abcl, ecl, ccl, clasp, clisp, sbcl, defaultAsdf, ... }:
-{ pkgs, lib, stdenv, ... }:
-
+{ pkgs
+, lib
+, stdenv
+, abclArgs
+, eclArgs
+, cclArgs
+, claspArgs
+, clispArgs
+, sbclArgs
+, defaultAsdf
+, ... }:
 
 let
 
@@ -120,14 +128,16 @@ let
       # these should be packages built with `build-asdf-system`
       lispLibs ? [],
 
-      # Lisp command to run buildScript
+      # Lisp implementation parameters
       pkg,
+      program ? pkg.pname,
       flags ? "",
-      program,
-      loadFlags,
-      evalFlags,
       faslExt,
 
+      # FIXME(kasper): get rid of these two, use stdin
+      loadFlags ? "--load",
+      evalFlags ? "--eval",
+      
       # ASDF amalgamation file to use
       asdf ? defaultAsdf,
 
@@ -416,14 +426,16 @@ let
       '';
     });
 
-  lispWithPackages = { pkg, flags ? "", program, evalFlags, loadFlags, faslExt, asdf ? defaultAsdf }:
+  lispWithPackages = { pkg, flags ? "", program ? pkg.pname, evalFlags ? "--eval",
+                       loadFlags ? "--load", faslExt ? "fasl", asdf ? defaultAsdf }:
     let
       packages = lispPackagesFor {
         inherit pkg program flags loadFlags evalFlags faslExt asdf;
       };
     in lispWithPackagesInternal packages;
 
-  lispPackagesFor = { pkg, flags ? "", program, evalFlags, loadFlags, faslExt, asdf ? defaultAsdf }:
+  lispPackagesFor = { pkg, flags ? "", program ? pkg.pname, evalFlags ? "--eval",
+                      loadFlags ? "--load", faslExt ? "fasl", asdf ? defaultAsdf }:
     let
       packages = commonLispPackagesFor {
         inherit pkg program flags loadFlags evalFlags faslExt;
@@ -444,117 +456,19 @@ let
 
     # Manually defined packages shadow the ones imported from quicklisp
 
-    sbclPackages  = recurseIntoAttrs (lispPackagesFor {
-      inherit (sbcl)
-        pkg
-        loadFlags
-        evalFlags
-        faslExt
-        program
-      ;
-    });
-    eclPackages   = lispPackagesFor {
-      inherit (ecl)
-        pkg
-        loadFlags
-        evalFlags
-        faslExt
-        program
-      ;
-    };
-    abclPackages  = lispPackagesFor {
-      inherit (abcl)
-        pkg
-        loadFlags
-        evalFlags
-        faslExt
-        program
-      ;
-    };
-    cclPackages   = lispPackagesFor {
-      inherit (ccl)
-        pkg
-        loadFlags
-        evalFlags
-        faslExt
-        program
-        ;
-    };
-    clispPackages = lispPackagesFor {
-      inherit (clisp)
-        pkg
-        flags
-        loadFlags
-        evalFlags
-        faslExt
-        program
-      ;
-    };
-    claspPackages = lispPackagesFor {
-      inherit (clasp)
-        pkg
-        loadFlags
-        evalFlags
-        faslExt
-        program
-      ;
-    };
+    sbclPackages  = recurseIntoAttrs (lispPackagesFor sbclArgs);
+    eclPackages   = lispPackagesFor eclArgs;
+    abclPackages  = lispPackagesFor abclArgs;
+    cclPackages   = lispPackagesFor cclArgs;
+    clispPackages = lispPackagesFor clispArgs;
+    claspPackages = lispPackagesFor claspArgs;
 
-    sbclWithPackages = lispWithPackages {
-      inherit (sbcl)
-        pkg
-        loadFlags
-        evalFlags
-        faslExt
-        program
-      ;
-    };
-    eclWithPackages = lispWithPackages {
-      inherit (ecl)
-        pkg
-        loadFlags
-        evalFlags
-        faslExt
-        program
-      ;
-    };
-    abclWithPackages = lispWithPackages {
-      inherit (abcl)
-        pkg
-        loadFlags
-        evalFlags
-        faslExt
-        program
-      ;
-    };
-    cclWithPackages  = lispWithPackages {
-      inherit (ccl)
-        pkg
-        loadFlags
-        evalFlags
-        faslExt
-        program
-      ;
-    };
-    clispWithPackages = lispWithPackages {
-      inherit (clisp)
-        pkg
-        flags
-        loadFlags
-        evalFlags
-        faslExt
-        program
-      ;
-    };
-    claspWithPackages = lispWithPackages {
-      inherit (clasp)
-        pkg
-        loadFlags
-        evalFlags
-        faslExt
-        program
-      ;
-    };
+    sbclWithPackages = lispWithPackages sbclArgs;
+    eclWithPackages = lispWithPackages eclArgs;
+    abclWithPackages = lispWithPackages abclArgs;
+    cclWithPackages  = lispWithPackages cclArgs;
+    clispWithPackages = lispWithPackages clispArgs;
+    claspWithPackages = lispWithPackages claspArgs;
 
   };
 
