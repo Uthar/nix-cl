@@ -10,7 +10,6 @@ arnesi
 array-operations
 array-utils
 arrows
-asdf
 asdf-package-system
 asdf-system-connections
 babel
@@ -31,6 +30,7 @@ chipz
 chunga
 circular-streams
 cl-aa
+cl-ana
 cl-annot
 cl-anonfun
 cl-ansi-text
@@ -40,6 +40,7 @@ cl-async-repl
 cl-async-ssl
 cl-async-util
 cl-base64
+cl-cairo2
 cl-cffi-gtk
 cl-cffi-gtk-cairo
 cl-cffi-gtk-gdk
@@ -82,6 +83,8 @@ cl-json
 cl-l10n
 cl-l10n-cldr
 cl-libuv
+cl-libxml2
+cl-libyaml
 cl-locale
 cl-markup
 cl-mustache
@@ -102,6 +105,7 @@ cl-prevalence
 cl-protobufs
 cl-qprint
 cl-qrencode
+cl-readline
 cl-reexport
 cl-shellwords
 cl-slice
@@ -199,6 +203,7 @@ global-vars
 glsl-docs
 glsl-spec
 glsl-symbols
+gsll
 heap
 html-encode
 http-body
@@ -294,6 +299,9 @@ prove-asdf
 ptester
 puri
 pythonic-string-reader
+qt
+qt-libs
+qtools
 quasiquote-2_dot_0
 query-fs
 quri
@@ -355,7 +363,6 @@ trivial-with-current-source-form
 type-i
 uax-15
 uffi
-uiop
 unit-test
 unix-options
 unix-opts
