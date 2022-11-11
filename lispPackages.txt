@@ -99,7 +99,6 @@ cl-pattern
 cl-pdf
 cl-postgres
 cl-postgres_plus_local-time
-cl-postgres_slash_tests
 cl-ppcre
 cl-ppcre-template
 cl-ppcre-test
@@ -162,7 +161,6 @@ css-selectors-simple-tree
 css-selectors-stp
 cxml
 cxml-stp
-cxml_slash_test
 data-table
 dbd-mysql
 dbd-postgres
@@ -312,14 +310,12 @@ rfc2388
 rove
 rt
 s-sql
-s-sql_slash_tests
 s-sysdeps
 s-xml
 salza2
 serapeum
 simple-date
 simple-date-time
-simple-date_slash_postgres-glue
 simple-inferiors
 simple-tasks
 slynk
@@ -386,7 +382,6 @@ xkeyboard
 xml_dot_location
 xmls
 xpath
-xpath_slash_test
 xsubseq
 yacc
 yason
