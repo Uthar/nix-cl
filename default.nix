@@ -1,77 +1,38 @@
-{ claspPkg }:
-{ pkgs ? import <nixpkgs> { }, ... }:
+{ pkgs, lib, stdenv, abcl, ccl, clisp, clasp, ecl, sbcl, ... }:
 
 let
-
-  # The default Common Lisps.
-  # To customize, use lispPackagesFor/lispWithPackages
-
-  abclPkg = (pkgs.abcl.override {
-    jdk = pkgs.jdk17;
-    jre = pkgs.jdk17;
-  }).overrideAttrs (o: {
-    # Pull in fix for https://github.com/armedbear/abcl/issues/473
-    version = "1.8.1-dev";
-    src = pkgs.fetchFromGitHub {
-      repo = "abcl";
-      owner = "uthar";
-      rev = "aba4f90ca75935886512dba79dd3565bf58cac76";
-      hash = "sha256-k1apwbsGlKjbrRfhbSSqlM4xxxzvW0PB3DvuiTqEy+U=";
-    };
-    # Fix for https://github.com/armedbear/abcl/issues/484
-    installPhase = pkgs.lib.replaceStrings
-      ["${pkgs.jdk17}/bin/java"]
-      ["${pkgs.jdk17}/bin/java --add-opens=java.base/java.util.jar=ALL-UNNAMED"]
-      o.installPhase;
-  });
-
-  abcl = {
-    pkg = abclPkg;
-    loadFlags = "--load";
-    evalFlags = "--eval";
+ 
+  abclArgs = {
+    pkg = abcl;
     faslExt = "abcl";
-    program = "abcl";
   };
 
-  ecl = {
-    pkg = pkgs.ecl;
-    loadFlags = "--load";
-    evalFlags = "--eval";
+  eclArgs = {
+    pkg = ecl;
     faslExt = "fas";
-    program = "ecl";
   };
 
-  ccl = {
-    pkg = pkgs.ccl;
-    loadFlags = "--load";
-    evalFlags = "--eval";
+  cclArgs = {
+    pkg = ccl;
     faslExt = "lx64fsl";
-    program = "ccl";
   };
 
-  sbcl = {
-    pkg = pkgs.sbcl;
-    loadFlags = "--load";
-    evalFlags = "--eval";
+  sbclArgs = {
+    pkg = sbcl;
     faslExt = "fasl";
-    program = "sbcl";
   };
 
-  clisp = {
-    pkg = pkgs.clisp;
+  clispArgs = {
+    pkg = clisp;
     flags = "-E UTF-8";
     loadFlags = "-i";
     evalFlags = "-x";
     faslExt = "fas";
-    program = "clisp";
   };
 
-  clasp = {
-    pkg = claspPkg;
-    loadFlags = "--load";
-    evalFlags = "--eval";
+  claspArgs = {
+    pkg = clasp;
     faslExt = "fasp";
-    program = "clasp";
   };
 
   # TODO(kasper): precompile asdf.lisp per implementation?
@@ -87,8 +48,7 @@ let
     '';
   };
 
-in pkgs.callPackage (import ./nix-cl.nix {
-  inherit abcl ecl ccl clasp clisp sbcl defaultAsdf;
-}) {
-  inherit pkgs;
+in pkgs.callPackage ./nix-cl.nix {
+  inherit abclArgs eclArgs cclArgs claspArgs clispArgs sbclArgs defaultAsdf;
 }
+ 
