@@ -73,8 +73,8 @@ cl-fuzz
 cl-geometry
 cl-gobject-introspection
 cl-gtk4
-cl-gtk4.adw
-cl-gtk4.webkit2
+cl-gtk4_dot_adw
+cl-gtk4_dot_webkit2
 cl-heap
 cl-hooks
 cl-html-diff
