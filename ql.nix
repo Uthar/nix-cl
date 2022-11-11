@@ -122,9 +122,6 @@ let
     cl-async-ssl = pkg: {
       nativeLibs = [ openssl ];
     };
-    osicat = pkg: {
-      LD_LIBRARY_PATH = "${pkg}/posix/";
-    };
     iolib = pkg: {
       nativeBuildInputs = [ libfixposix ];
       nativeLibs = [ libfixposix ];
