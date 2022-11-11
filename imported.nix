@@ -27,7 +27,12 @@ in lib.makeScope pkgs.newScope (self: {
     pname = "1am";
     version = "20141106-git";
     asds = [ "1am" ];
-    src = "";
+    src = (createAsd {
+      url = "http://beta.quicklisp.org/archive/1am/2014-11-06/1am-20141106-git.tgz";
+      sha256 = "05ss4nz1jb9kb796295482b62w5cj29msfj8zis33sp2rw2vmv2g";
+      system = "1am";
+      asd = "1am";
+    });
     systems = [ "1am" ];
     lispLibs = [  ];
   };

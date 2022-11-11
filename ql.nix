@@ -5,7 +5,7 @@ let
   # FIXME: automatically add nativeLibs based on conditions signalled
 
   overrides = (super: self: {
-    "cl+ssl" = self."cl+ssl".overrideLispAttrs (o: {
+    cl_plus_ssl = self.cl_plus_ssl.overrideLispAttrs (o: {
       nativeLibs = [ pkgs.openssl ];
     });
     cl-cffi-gtk-glib = self.cl-cffi-gtk-glib.overrideLispAttrs (o: {
@@ -122,7 +122,7 @@ let
       nativeLibs = [ pkgs.libfixposix ];
       systems = [ "iolib" "iolib/os" "iolib/pathnames" ];
     });
-    "cl-ana.hdf-cffi" = self."cl-ana.hdf-cffi".overrideLispAttrs (o: {
+    cl-ana_dot_hdf-cffi = self.cl-ana_dot_hdf-cffi.overrideLispAttrs (o: {
       nativeBuildInputs = [ pkgs.hdf5 ];
       nativeLibs = [ pkgs.hdf5 ];
       NIX_LDFLAGS = [ "-lhdf5" ];

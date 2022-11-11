@@ -68,7 +68,7 @@ let
     };
     version = "0.24.1";
     pname = "cffi";
-    lispLibs = with super; [
+    lispLibs = with self; [
       alexandria
       babel
       trivial-features
@@ -77,7 +77,7 @@ let
   };
 
   cffi-libffi = build-asdf-system {
-    inherit (super.cffi-libffi) pname version asds lispLibs nativeLibs nativeBuildInputs;
+    inherit (self.cffi-libffi) pname version asds lispLibs nativeLibs nativeBuildInputs;
     src = pkgs.fetchzip {
       url = "https://github.com/cffi/cffi/archive/3f842b92ef808900bf20dae92c2d74232c2f6d3a.tar.gz";
       sha256 = "1jilvmbbfrmb23j07lwmkbffc6r35wnvas5s4zjc84i856ccclm2";
@@ -92,7 +92,7 @@ let
       sha256 = "0ykx2s9lqfl74p1px0ik3l2izd1fc9jd1b4ra68s5x34rvjy0hza";
     };
     systems = [ "cl-unicode" ];
-    lispLibs = with super; [
+    lispLibs = with self; [
       cl-ppcre
       flexi-streams
     ];
@@ -106,7 +106,7 @@ let
     version = "0.0.0-20210905-6b201d4208";
     pname = "jzon";
     lispLibs = [
-      super.closer-mop
+      self.closer-mop
     ];
     systems = [ "com.inuoe.jzon" ];
   };
@@ -127,10 +127,10 @@ let
   };
 
   cl-liballegro-nuklear = build-with-compile-into-pwd {
-    inherit (super.cl-liballegro-nuklear) pname version src;
+    inherit (self.cl-liballegro-nuklear) pname version src;
     nativeBuildInputs = [ pkgs.allegro5 ];
     nativeLibs = [ pkgs.allegro5 ];
-    lispLibs = super.cl-liballegro-nuklear.lispLibs ++ [ super.cl-liballegro ];
+    lispLibs = self.cl-liballegro-nuklear.lispLibs ++ [ self.cl-liballegro ];
     patches = [ ./patches/cl-liballegro-nuklear-missing-dll.patch ];
   };
 
@@ -152,7 +152,7 @@ let
       in "https://gitlab.common-lisp.net/cl-tar/cl-tar-file/-/archive/${rev}/cl-tar-file-${rev}.tar.gz";
       sha256 = "0i8j05fkgdqy4c4pqj0c68sh4s3klpx9kc5wp73qwzrl3xqd2svy";
     };
-    lispLibs = with super; [
+    lispLibs = with self; [
       alexandria
       babel
       trivial-gray-streams
@@ -174,7 +174,7 @@ let
       in "https://gitlab.common-lisp.net/cl-tar/cl-tar/-/archive/${rev}/cl-tar-${rev}.tar.gz";
       sha256 = "0wp23cs3i6a89dibifiz6559la5nk58d1n17xvbxq4nrl8cqsllf";
     };
-    lispLibs = with super; [
+    lispLibs = with self; [
       alexandria
       babel
       local-time
@@ -222,23 +222,23 @@ let
       url = "https://github.com/facts-db/cl-lessp/archive/632217602b85b679e8d420654a0aa39e798ca3b5.tar.gz";
       sha256 = "09z1vwzjm7hlb529jl3hcjnfd11gh128lmdg51im7ar4jv4746iw";
     };
-    lispLibs = [ self.lessp self.rollback ] ++ [ super.local-time ];
+    lispLibs = [ self.lessp self.rollback ] ++ [ self.local-time ];
   };
 
   cl-fuse = build-with-compile-into-pwd {
-    inherit (super.cl-fuse) pname version src lispLibs;
+    inherit (self.cl-fuse) pname version src lispLibs;
     nativeBuildInputs = [ pkgs.fuse ];
     nativeLibs = [ pkgs.fuse ];
   };
 
   cl-containers = build-asdf-system {
-    inherit (super.cl-containers) pname version src;
-    lispLibs = super.cl-containers.lispLibs ++ [ super.moptilities ];
+    inherit (self.cl-containers) pname version src;
+    lispLibs = self.cl-containers.lispLibs ++ [ self.moptilities ];
     systems = [ "cl-containers" "cl-containers/with-moptilities" ];
   };
 
   swank = build-with-compile-into-pwd {
-    inherit (super.swank) pname version src lispLibs;
+    inherit (self.swank) pname version src lispLibs;
     patches = [ ./patches/swank-pure-paths.patch ];
     postConfigure = ''
       substituteAllInPlace swank-loader.lisp
@@ -252,22 +252,22 @@ let
       url = "http://beta.quicklisp.org/archive/clx-truetype/2016-08-25/clx-truetype-20160825-git.tgz";
       sha256 = "079hyp92cjkdfn6bhkxsrwnibiqbz4y4af6nl31lzw6nm91j5j37";
     };
-    lispLibs = with super; [
+    lispLibs = with self; [
       alexandria bordeaux-threads cl-aa cl-fad cl-paths cl-paths-ttf
       cl-store cl-vectors clx trivial-features zpb-ttf
     ];
   };
 
   mathkit = build-asdf-system {
-    inherit (super.mathkit) pname version src asds ;
-    lispLibs = super.mathkit.lispLibs ++ [ super.sb-cga ];
+    inherit (self.mathkit) pname version src asds ;
+    lispLibs = self.mathkit.lispLibs ++ [ self.sb-cga ];
   };
 
   nyxt-gtk = build-asdf-system {
-    inherit (super.nyxt) pname;
+    inherit (self.nyxt) pname;
     version = "2.2.4";
 
-    lispLibs = super.nyxt.lispLibs ++ (with super; [
+    lispLibs = self.nyxt.lispLibs ++ (with self; [
       cl-cffi-gtk cl-webkit2 mk-string-metrics
     ]);
 
@@ -298,7 +298,7 @@ let
     # Run with WEBKIT_FORCE_SANDBOX=0 if getting a runtime error
     # See https://github.com/atlas-engineer/nyxt/issues/1781
     # TODO(kasper): use wrapGAppsHook
-    installPhase = super.nyxt.installPhase + ''
+    installPhase = self.nyxt.installPhase + ''
       rm -v $out/nyxt
       mkdir -p $out/bin
       cp -v nyxt $out/bin
@@ -311,9 +311,9 @@ let
     '';
   };
 
-  nyxt = self.nyxt-gtk;
+  nyxt = super.nyxt-gtk;
 
-  ltk = super.ltk.overrideLispAttrs (o: {
+  ltk = self.ltk.overrideLispAttrs (o: {
     src = pkgs.fetchzip {
       url = "https://github.com/uthar/ltk/archive/f19162e76d6c7c2f51bd289b811d9ba20dd6555e.tar.gz";
       sha256 = "0mzikv4abq9yqlj6dsji1wh34mjizr5prv6mvzzj29z1485fh1bj";
@@ -322,7 +322,7 @@ let
   });
 
   magicl = build-with-compile-into-pwd {
-    inherit (super.magicl) pname version src lispLibs;
+    inherit (self.magicl) pname version src lispLibs;
     nativeBuildInputs = [ pkgs.gfortran ];
     nativeLibs = [ pkgs.openblas ];
     patches = [ ./patches/magicl-dont-build-fortran-twice.patch ];
@@ -337,7 +337,7 @@ let
       rev = "6e11b0d92ccf7cacee5c7f03d50148d68fe8e04d";
       hash = "sha256-d/DYV1aQAir4mszsw1wEotxxBW9jGiFjELB04/PRBQ4=";
     };
-    lispLibs = with super; [
+    lispLibs = with self; [
       cl-gobject-introspection-wrapper
       cl-glib_dot_gio
     ];
@@ -359,9 +359,9 @@ let
       rev = "6e11b0d92ccf7cacee5c7f03d50148d68fe8e04d";
       hash = "sha256-d/DYV1aQAir4mszsw1wEotxxBW9jGiFjELB04/PRBQ4=";
     };
-    lispLibs = with super; [
+    lispLibs = with self; [
       cl-gobject-introspection-wrapper
-    ] ++ [ self.cl-gtk4 ];
+    ] ++ [ super.cl-gtk4 ];
     nativeBuildInputs = [
       pkgs.libadwaita
     ];
@@ -379,9 +379,9 @@ let
       rev = "6e11b0d92ccf7cacee5c7f03d50148d68fe8e04d";
       hash = "sha256-d/DYV1aQAir4mszsw1wEotxxBW9jGiFjELB04/PRBQ4=";
     };
-    lispLibs = with super; [
+    lispLibs = with self; [
       cl-gobject-introspection-wrapper
-    ] ++ [ self.cl-gtk4 ];
+    ] ++ [ super.cl-gtk4 ];
     nativeBuildInputs = [
       pkgs.webkitgtk_5_0
     ];
