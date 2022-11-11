@@ -339,6 +339,14 @@ let
     ];
   });
 
+
+  magicl = build-with-compile-into-pwd {
+    inherit (ql.magicl) pname version src lispLibs;
+    nativeBuildInputs = [ pkgs.gfortran ];
+    nativeLibs = [ pkgs.openblas ];
+    patches = [ ./patches/magicl-dont-build-fortran-twice.patch ];
+  };
+
   };
 
 in packages
