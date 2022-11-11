@@ -14,6 +14,7 @@
     in
     {
       packages = { inherit (lisps) sbcl clasp abcl ecl clisp ccl; };
+      lib = { inherit (lisps) makeLisp; };
       devShells.default = pkgs.callPackage ./shell.nix {};
     });
 
