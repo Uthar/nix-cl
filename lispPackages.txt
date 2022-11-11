@@ -72,6 +72,9 @@ cl-fuse-meta-fs
 cl-fuzz
 cl-geometry
 cl-gobject-introspection
+cl-gtk4
+cl-gtk4.adw
+cl-gtk4.webkit2
 cl-heap
 cl-hooks
 cl-html-diff
