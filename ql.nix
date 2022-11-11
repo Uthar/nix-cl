@@ -1,4 +1,4 @@
-{ pkgs, build-asdf-system, fixup ? pkgs.lib.id, ... }:
+{ pkgs, lib, build-asdf-system, ... }:
 
 with pkgs;
 with lib;
@@ -149,19 +149,17 @@ let
 
   qlpkgs =
     if builtins.pathExists ./imported.nix
-    then import ./imported.nix { inherit (pkgs) runCommand fetchzip; pkgs = builtQlpkgs; }
+    then pkgs.callPackage ./imported.nix { inherit build-asdf-system; }
     else {};
  
   builtQlpkgs = mapAttrs (n: v: build v) qlpkgs;
 
   build = pkg:
     let
-      builtPkg = build-asdf-system pkg;
       withExtras = pkg //
                    (optionalAttrs
                      (hasAttr pkg.pname extras)
-                     (extras.${pkg.pname} builtPkg));
-      fixedUp = fixup withExtras;
-    in build-asdf-system fixedUp;
+                     (extras.${pkg.pname} pkg));
+     in build-asdf-system withExtras;
 
-in builtQlpkgs
+in qlpkgs
