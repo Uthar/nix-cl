@@ -281,13 +281,13 @@ let
     };
 
   # Build the set of packages imported from quicklisp using `lisp`
-  quicklispPackagesFor = { pkg, program, flags ? "", loadFlags, evalFlags, faslExt, fixup ? lib.id, build ? build-asdf-system }:
+  quicklispPackagesFor = { pkg, program, flags ? "", loadFlags, evalFlags,
+                           faslExt, fixup ? lib.id, build ? build-asdf-system }:
     let
       build-asdf-system' = body: build (body // {
         inherit pkg program flags loadFlags evalFlags faslExt;
       });
-    in import ./ql.nix {
-      inherit pkgs;
+    in pkgs.callPackage ./ql.nix {
       inherit fixup;
       build-asdf-system = build-asdf-system';
     };
