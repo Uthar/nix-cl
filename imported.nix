@@ -17,11 +17,14 @@ let
  createAsd = { url, sha256, asd, system }:
    let
      src = fetchzip { inherit url sha256; };
-   in runCommand "source" {} ''
-      mkdir -pv $out
-      cp -r ${src}/* $out
-      find $out -name "${asd}.asd" | while read f; do mv -fv $f $(dirname $f)/${system}.asd || true; done
-  '';
+   in
+     if asd == system
+     then src
+     else runCommand "source" {} ''
+       mkdir -pv $out
+       cp -r ${src}/* $out
+       find $out -name "${asd}.asd" | while read f; do mv -fv $f $(dirname $f)/${system}.asd || true; done
+     '';
 in lib.makeScope pkgs.newScope (self: {
   _1am = (build-asdf-system {
     pname = "1am";
