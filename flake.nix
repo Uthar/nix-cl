@@ -4,18 +4,18 @@
 
   inputs.dev.url = "github:uthar/dev";
 
-  outputs = { self, dev }:
+  outputs = { self, dev, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
     let
       nixpkgs = dev.inputs.nixpkgs;
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      clasp = dev.outputs.packages.x86_64-linux.clasp;
-      abcl = dev.outputs.packages.x86_64-linux.abcl;
-      sbcl = dev.outputs.packages.x86_64-linux.sbcl;
-      callWithLisps = x: pkgs.callPackage x { inherit abcl clasp sbcl; };
+      pkgs = nixpkgs.legacyPackages.${system};
+      devpkgs = dev.outputs.packages.${system};
+      callWithLisps = x: pkgs.callPackage x { inherit (devpkgs) abcl clasp sbcl; };
+      lisps = callWithLisps ./.;
     in
     {
-      lib = callWithLisps  ./.;
-      devShells.x86_64-linux.default = callWithLisps ./shell.nix;
-    };
+      packages = { inherit (lisps) abcl ccl clasp clisp ecl sbcl; };
+      devShells.default = callWithLisps ./shell.nix;
+    });
 
 }
