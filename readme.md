@@ -10,21 +10,22 @@ This library is **EXPERIMENTAL** and everything can change
 #### Build an ASDF system:
 
 ```
-nix-build -E 'with import ./. {}; sbclPackages.bordeaux-threads'
+nix build .#lib.sbclPackages.bordeaux-threads
 ls result/src
 ```
 
 #### Build an `sbclWithPackages`:
 
 ```
-nix-build -E 'with import ./. {}; sbclWithPackages (p: [ p.hunchentoot p.sqlite ])'
+nix build --impure --expr "with builtins.getFlake \"$(pwd)\"; lib.sbclWithPackages (ps: [ ps.alexandria ])"
 result/bin/sbcl
 ```
 
 #### Re-import Quicklisp packages:
 
 ```
-nix-shell --run 'sbcl --script ql-import.lisp'
+nix develop
+sbcl --script ql-import.lisp
 ```
 
 ## Documentation
