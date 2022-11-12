@@ -203,6 +203,7 @@
 (defun system-metadata (system asd src)
   (handler-case
       (progn
+        ;; TODO(kasper): find asds in deeper directories
         (asdf:load-asd (make-pathname :directory src :name asd :type "asd"))
         (let* ((system (asdf:find-system system))
                (description (asdf:system-description system))
