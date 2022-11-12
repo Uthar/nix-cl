@@ -10,14 +10,14 @@ This library is **EXPERIMENTAL** and everything can change
 #### Build an ASDF system:
 
 ```
-nix build .#lib.sbclPackages.bordeaux-threads
+nix build .#sbcl.pkgs.bordeaux-threads
 ls result/src
 ```
 
 #### Build an `sbclWithPackages`:
 
 ```
-nix build --impure --expr "with builtins.getFlake \"$(pwd)\"; lib.sbclWithPackages (ps: [ ps.alexandria ])"
+nix build --impure --expr "with builtins.getFlake \"$(pwd)\"; sbcl.withPackages (ps: [ ps.alexandria ])"
 result/bin/sbcl
 ```
 
@@ -40,6 +40,13 @@ See `doc` directory.
 - CLISP
 - ECL
 - SBCL
+
+## Supported systems
+
+- aarch64-darwin
+- aarch64-linux
+- x86_64-darwin
+- x86_64-linux
 
 ## Other Nix+CL projects
 
