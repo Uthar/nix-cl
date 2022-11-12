@@ -113,10 +113,7 @@
                                                                asds
                                                                'vector))))))
 
-      (sqlite:with-transaction db
-        ;; Should these be temp tables, that then get queried by
-        ;; system name? This looks like it uses a lot of memory.
-        (let ((systems
+      (let ((systems
                 (sql-query
                  "with pkg as (
                     select
@@ -143,18 +140,21 @@
             (destructuring-bind (name version asd url deps) system
               (declare (ignore deps))
               (status "importing system '~a-~a'" name version)
-              (let ((hash (nix-prefetch-tarball url db)))
+              (multiple-value-bind (hash path)
+                  (nix-prefetch-tarball url db)
                 (sql-query
                  "insert or ignore into system(name,version,asd) values (?,?,?)"
                  name version asd)
                 (sql-query
-                 "insert or ignore into sha256(url,hash) values (?,?)"
-                 url hash)
+                 "insert or ignore into sha256(url,hash,path) values (?,?,?)"
+                 url hash path)
                 (sql-query
                  "insert or ignore into src values
                   ((select id from sha256 where url=?),
                    (select id from system where name=? and version=?))"
-                 url name version))))
+                 url name version)
+                (let ((meta (system-metadata name asd path)))
+                  (apply #'sql-query "insert into meta values (?,?,?,?,?)" name meta)))))
 
           ;; Second pass: connect the in-database systems with
           ;; dependency information
@@ -170,7 +170,7 @@
                      ((select id from system where name=? and version=?),
                       (select id from system where name=? and version=?))"
                     name version
-                    dep-name dep-version))))))))))
+                    dep-name dep-version)))))))))
 
   (write-char #\Newline *error-output*))
 
@@ -194,6 +194,24 @@
       (nix-prefetch-tarball url db))))
 
 (defun compute-sha256 (url db)
-  (or (sqlite:execute-single db "select hash from sha256 where url=?" url)
-      (let ((sha256 (shell-command-to-string (str:concat "nix-prefetch-url --unpack " url))))
-        sha256)))
+  (destructuring-bind (sha256 path)
+      (or (first (sqlite:execute-to-list db "select hash, path from sha256 where url=?" url))
+          (str:split #\Newline
+            (shell-command-to-string (str:concat "nix-prefetch-url --unpack --print-path " url))))
+    (values sha256 path)))
+
+(defun system-metadata (system asd src)
+  (handler-case
+      (progn
+        (asdf:load-asd (make-pathname :directory src :name asd :type "asd"))
+        (let* ((system (asdf:find-system system))
+               (description (asdf:system-description system))
+               (long-description (asdf:system-long-description system))
+               (homepage (asdf:system-homepage system))
+               (license (or (asdf:system-licence system)
+                            (asdf:system-license system))))
+          (map 'list #'write-to-string
+               (list description long-description homepage license))))
+    (error (e)
+      (declare (ignore e))
+      (list nil nil nil nil))))

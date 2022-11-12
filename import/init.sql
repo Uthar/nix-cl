@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS sha256 (
        id        integer PRIMARY KEY AUTOINCREMENT,
        url       text    UNIQUE,
+       path      text    NOT NULL,
        hash      text    NOT NULL,
        created   real    DEFAULT (julianday('now'))
 );
@@ -23,6 +24,14 @@ CREATE TABLE IF NOT EXISTS dep (
 CREATE TABLE IF NOT EXISTS src (
        sha256_id integer REFERENCES sha256(id),
        system_id integer UNIQUE REFERENCES system(id)
+);
+
+CREATE TABLE IF NOT EXISTS meta (
+       system          text REFERENCES system(name),
+       description     text DEFAULT "",
+       longDescription text DEFAULT "",
+       homepage        text DEFAULT "",              
+       license         text DEFAULT ""
 );
 
 DROP VIEW IF EXISTS system_view;
