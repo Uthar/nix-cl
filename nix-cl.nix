@@ -383,9 +383,7 @@ let
       build-asdf-system
       lispWithPackagesInternal
       lispPackagesFor
-      lispWithPackages
-      quicklispPackagesFor
-      commonLispPackagesFor;
+      lispWithPackages;
 
     # Manually defined packages shadow the ones imported from quicklisp
 
