@@ -101,7 +101,6 @@ cl-postgres
 cl-postgres_plus_local-time
 cl-ppcre
 cl-ppcre-template
-cl-ppcre-test
 cl-ppcre-unicode
 cl-prevalence
 cl-protobufs
