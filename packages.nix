@@ -1,5 +1,4 @@
-{ build-asdf-system, asdf, pkg, flags, loadFlags, evalFlags, faslExt, program,
-  quicklispPackagesFor, fixupFor, pkgs, ... }:
+{ build-asdf-system, spec, quicklispPackagesFor, pkgs, ... }:
 
 let
 
@@ -44,13 +43,11 @@ let
     });
 
   # A little hacky
-  isJVM = pkg.pname == "abcl";
+  isJVM = spec.pkg.pname == "abcl";
 
   # Makes it so packages imported from Quicklisp can be re-used as
   # lispLibs ofpackages in this file.
-  ql = quicklispPackagesFor {
-    inherit pkg program flags evalFlags loadFlags faslExt;
-  };
+  ql = quicklispPackagesFor spec;
 
   packages = ql.overrideScope' (self: super: {
 
@@ -287,7 +284,7 @@ let
     ];
 
     buildScript = pkgs.writeText "build-nyxt.lisp" ''
-      (load "${asdf}")
+      (load "${spec.asdf}")
       (asdf:load-system :nyxt/gtk-application)
       (sb-ext:save-lisp-and-die "nyxt" :executable t
                                        #+sb-core-compression :compression

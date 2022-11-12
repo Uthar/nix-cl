@@ -13,13 +13,12 @@
 { pkgs
 , lib
 , stdenv
-, abclArgs
-, eclArgs
-, cclArgs
-, claspArgs
-, clispArgs
-, sbclArgs
-, defaultAsdf
+, abclSpec
+, eclSpec
+, cclSpec
+, claspSpec
+, clispSpec
+, sbclSpec
 , ... }:
 
 let
@@ -64,8 +63,6 @@ let
   inherit (pkgs)
     substituteAll;
 
-  asdfHook = import ./setup-hook.nix;
-
   # Stolen from python-packages.nix
   # Actually no idea how this works
   makeOverridableLispPackage = f: origArgs:
@@ -82,6 +79,7 @@ let
       }
       else ff;
 
+  # TODO(kasper) replace evalFlags with file on stdin
   buildAsdf = { asdf, pkg, program, flags, evalFlags, faslExt }:
     stdenv.mkDerivation {
       inherit (asdf) pname version;
@@ -117,20 +115,30 @@ let
 
       # Lisp dependencies
       # these should be packages built with `build-asdf-system`
+      # TODO(kasper): use propagatedBuildInputs
       lispLibs ? [],
 
-      # Lisp implementation parameters
+      # Derivation containing the CL implementation package
       pkg,
+
+      # Name of the Lisp exectable
       program ? pkg.pname,
+
+      # General flags to the Lisp executable
       flags ? "",
+
+      # Flags used to load lisp source files and fasls
+      loadFlags ? "--load",
+
+      # Flags used to evaluate s-expressions
+      evalFlags ? "--eval",
+
+      # Extension for implementation-dependent FASL files
       faslExt,
 
-      # FIXME(kasper): get rid of these two, use stdin
-      loadFlags ? "--load",
-      evalFlags ? "--eval",
-      
       # ASDF amalgamation file to use
-      asdf ? defaultAsdf,
+      # Created in build/asdf.lisp by `make` in ASDF source tree
+      asdf,
 
       # Some libraries have multiple systems under one project, for
       # example, cffi has cffi-grovel, cffi-toolchain etc.  By
@@ -145,19 +153,19 @@ let
       systems ? [ pname ],
 
       # The .asd files that this package provides
+      # TODO(kasper): remove
       asds ? systems,
 
       # Other args to mkDerivation
       ...
     } @ args:
-    
+
     stdenv.mkDerivation (rec {
       inherit
         pname version nativeLibs javaLibs lispLibs systems asds
         pkg program flags loadFlags faslExt evalFlags
       ;
 
-      buildInputs = [ asdfHook];
       propagatedBuildInputs = lispLibs ++ nativeLibs ++ javaLibs;
 
       src = if builtins.length patches > 0
@@ -184,7 +192,7 @@ let
 
       # TODO(kasper) portable quit
       asdfFasl = buildAsdf { inherit asdf pkg program flags evalFlags faslExt; };
-      
+
       buildScript = substituteAll {
         src = ./builder.lisp;
         asdf = "${asdfFasl}/asdf.${faslExt}";
@@ -223,7 +231,7 @@ let
       '';
 
       dontPatchShebangs = true;
-      
+
       # Not sure if it's needed, but caused problems with SBCL
       # save-lisp-and-die binaries in the past
       dontStrip = true;
@@ -253,96 +261,46 @@ let
   # - The library that is in quicklisp is broken
   # - Special build procedure such as cl-unicode, asdf
   #
-  # These Probably could be done even in ql.nix
-  # - Want to pin a specific commit
-  # - Want to apply custom patches
-  #
   # They can use the auto-imported quicklisp packages as dependencies,
   # but some of those don't work out of the box.
   #
   # E.g if a QL package depends on cl-unicode it won't build out of
-  # the box. The dependency has to be rewritten using the manually
-  # fixed cl-unicode.
-  #
-  # This is done by generating a 'fixed' set of Quicklisp packages by
-  # calling quicklispPackagesFor with the right `fixup`.
-  commonLispPackagesFor = { pkg, program, flags ? "", loadFlags, evalFlags, faslExt, asdf ? defaultAsdf }:
+  # the box.
+  commonLispPackagesFor = spec:
     let
-      build-asdf-system' = body: build-asdf-system (body // {
-        inherit pkg program flags loadFlags evalFlags faslExt asdf;
-      });
-    in import ./packages.nix {
-      inherit pkgs;
-      inherit pkg program flags loadFlags evalFlags faslExt;
-      inherit quicklispPackagesFor;
-      inherit fixupFor;
-      inherit asdf;
+      build-asdf-system' = body: build-asdf-system (body // spec);
+    in pkgs.callPackage ./packages.nix {
+      inherit spec quicklispPackagesFor;
       build-asdf-system = build-asdf-system';
     };
 
   # Build the set of packages imported from quicklisp using `lisp`
-  quicklispPackagesFor = { pkg, program, flags ? "", loadFlags, evalFlags,
-                           faslExt, fixup ? lib.id, build ? build-asdf-system }:
+  quicklispPackagesFor = spec:
     let
-      build-asdf-system' = body: build (body // {
-        inherit pkg program flags loadFlags evalFlags faslExt;
-      });
+      build-asdf-system' = body: build-asdf-system (body // spec);
     in pkgs.callPackage ./ql.nix {
-      inherit fixup;
       build-asdf-system = build-asdf-system';
     };
-
-  # Rewrite deps of pkg to use manually defined packages
-  #
-  # The purpose of manual packages is to customize one package, but
-  # then it has to be propagated everywhere for it to make sense and
-  # have consistency in the package tree.
-  fixupFor = manualPackages: qlPkg:
-    assert (lib.isAttrs qlPkg && !lib.isDerivation qlPkg);
-    let
-      # Make it possible to reuse generated attrs without recursing into oblivion
-      packages = (lib.filterAttrs (n: v: n != qlPkg.pname) manualPackages);
-      substituteLib = pkg:
-        if lib.hasAttr pkg.pname packages
-        then packages.${pkg.pname}
-        else pkg;
-      pkg = substituteLib qlPkg;
-    in pkg // { lispLibs = map substituteLib pkg.lispLibs; };
-
-  makeAttrName = str:
-    removeSuffix
-      "_"
-      (replaceStrings
-        ["+" "." "/"]
-        ["_plus_" "_dot_" "_slash_"]
-        str);
 
   # Creates a lisp wrapper with `packages` installed
   #
   # `packages` is a function that takes `clpkgs` - a set of lisp
   # packages - as argument and returns the list of packages to be
   # installed
+  # TODO(kasper): assert each package has the same lisp and asdf?
   lispWithPackagesInternal = clpkgs: packages:
-    # FIXME just use flattenedDeps instead
-    (build-asdf-system rec {
-      # TODO(kasper): assert each package has the same lisp and asdf?
-      pkg = (head (lib.attrValues clpkgs)).pkg;
-      program = (head (lib.attrValues clpkgs)).program;
-      lispFlags = (head (lib.attrValues clpkgs)).lispFlags or "";
-      evalFlags = (head (lib.attrValues clpkgs)).evalFlags;
-      loadFlags = (head (lib.attrValues clpkgs)).loadFlags;
-      faslExt = (head (lib.attrValues clpkgs)).faslExt;
-      asdf = (head (lib.attrValues clpkgs)).asdf or defaultAsdf;
+    let first = head (lib.attrValues clpkgs); in
+    (build-asdf-system {
+      inherit (first) pkg program flags evalFlags loadFlags faslExt asdf;
       # See dontUnpack in build-asdf-system
       src = null;
-      pname = pkg.pname;
+      pname = first.pkg.pname;
       version = "with-packages";
       lispLibs = packages clpkgs;
       systems = [];
     }).overrideAttrs(o: {
       nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
       installPhase = ''
-        echo "GI_TYPELIB_PATH: $GI_TYPELIB_PATH"
         mkdir -pv $out/bin
         makeWrapper \
           ${o.pkg}/bin/${o.program} \
@@ -353,60 +311,26 @@ let
           --prefix LD_LIBRARY_PATH : "$LD_LIBRARY_PATH" \
           --prefix DYLD_LIBRARY_PATH : "$DYLD_LIBRARY_PATH" \
           --prefix CLASSPATH : "$CLASSPATH" \
-          --prefix GI_TYPELIB_PATH : "$GI_TYPELIB_PATH" \
+          --prefix GI_TYPELIB_PATH : "$GI_TYPELIB_PATH"
       '';
     });
 
-  lispWithPackages = { pkg, flags ? "", program ? pkg.pname, evalFlags ? "--eval",
-                       loadFlags ? "--load", faslExt ? "fasl", asdf ? defaultAsdf }:
+  makeLisp = lib.makeOverridable ({ packageOverlays ? (self: super: {}), spec }:
     let
-      packages = lispPackagesFor {
-        inherit pkg program flags loadFlags evalFlags faslExt asdf;
-      };
-    in lispWithPackagesInternal packages;
-
-  lispPackagesFor = { pkg, flags ? "", program ? pkg.pname, evalFlags ? "--eval",
-                      loadFlags ? "--load", faslExt ? "fasl", asdf ? defaultAsdf }:
-    let
-      packages = commonLispPackagesFor {
-        inherit pkg program flags loadFlags evalFlags faslExt;
-        inherit asdf;
-      };
-      qlPackages = quicklispPackagesFor {
-        inherit pkg program flags loadFlags evalFlags faslExt;
-        fixup = fixupFor packages;
-      };
-    in qlPackages // packages;
-
-  commonLispPackages = rec {
-    inherit
-      build-asdf-system
-      lispWithPackagesInternal
-      lispPackagesFor
-      lispWithPackages;
-
-    # Manually defined packages shadow the ones imported from quicklisp
-
-    sbclPackages  = recurseIntoAttrs (lispPackagesFor sbclArgs);
-    eclPackages   = lispPackagesFor eclArgs;
-    abclPackages  = lispPackagesFor abclArgs;
-    cclPackages   = lispPackagesFor cclArgs;
-    clispPackages = lispPackagesFor clispArgs;
-    claspPackages = lispPackagesFor claspArgs;
-
-    sbclWithPackages = lispWithPackages sbclArgs;
-    eclWithPackages = lispWithPackages eclArgs;
-    abclWithPackages = lispWithPackages abclArgs;
-    cclWithPackages  = lispWithPackages cclArgs;
-    clispWithPackages = lispWithPackages clispArgs;
-    claspWithPackages = lispWithPackages claspArgs;
-
+      pkgs = (commonLispPackagesFor spec).overrideScope' packageOverlays;
+    in spec.pkg // {
+      inherit pkgs;
+      withPackages = lispWithPackagesInternal pkgs;
+      buildASDFSystem = args: build-asdf-system (args // spec);
+    });
+  
+  lisps = {
+    sbcl = makeLisp { spec = sbclSpec; };
+    ecl = makeLisp { spec = eclSpec; };
+    abcl = makeLisp { spec = abclSpec; };
+    clisp = makeLisp { spec = clispSpec; };
+    clasp = makeLisp { spec = claspSpec; };
+    ccl = makeLisp { spec = cclSpec; };
   };
 
-  makeLisp = lisp:
-    lisp // { withPackages = lispWithPackages lisp; };
-
-in commonLispPackages
-
-
-
+in lisps
