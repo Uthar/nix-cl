@@ -9,7 +9,7 @@
 
 (defparameter lisp (or (cadr sb-ext:*posix-argv*) "sbcl"))
 
-(defparameter nix-build "nix-build -E 'with builtins.getFlake \"~a\"; lib.~aPackages.~a'")
+(defparameter nix-build "nix-build -E 'with builtins.getFlake \"~a\"; lib.~a.pkgs.~a'")
 
 (defparameter cpu-count
   (length
