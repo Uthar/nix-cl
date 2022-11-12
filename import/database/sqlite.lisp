@@ -98,6 +98,9 @@ in lib.makeScope pkgs.newScope (self: {")
       (sqlite:execute-non-query db
        "delete from fixed_systems where name in ('asdf', 'uiop')")
 
+      (sqlite:execute-non-query db
+       "delete from fixed_systems where instr(name, '/')")
+
       (format f prelude)
 
       (dolist (p (sqlite:execute-to-list db "select * from fixed_systems"))
@@ -138,7 +141,5 @@ in lib.makeScope pkgs.newScope (self: {")
                                         (line-up-first
                                          (str:split-omit-nulls #\, deps)
                                          (set-difference '("asdf" "uiop") :test #'string=)
-                                         (sort #'string<)))))
-                 ,@(when (find #\/ name)
-                     '(("meta" (:attrs ("broken" (:symbol "true")))))))))))))
+                                         (sort #'string<))))))))))))
       (format f "~%})"))))
