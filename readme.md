@@ -32,6 +32,15 @@ sbcl --script ql-import.lisp
 
 See `doc` directory.
 
+## Supported Common Lisp implementations
+
+- ABCL
+- CCL
+- Clasp
+- CLISP
+- ECL
+- SBCL
+
 ## Other Nix+CL projects
 
 - [ql2nix](https://github.com/SquircleSpace/ql2nix)
