@@ -44,8 +44,9 @@ Source of the package/library (`fetchTarball`, `fetchGit`, `fetchMercurial` etc.
 ##### `pkg`
 ##### `program`
 ##### `loadFlags`
-The command "${pkg}/bin/${program} ${flags} ${loadFlags}" must load the provided
-file (`$buildScript`) then exit immediately. For example, SBCL's --script flag
+
+The command "PKG/bin/PROGRAM FLAS LOAD-FLAGS" must load the provided
+file (`$buildScript`) then exit immediately. For example, SBCL's --load flag
 does just that.
 
 #### `evalFlags`
