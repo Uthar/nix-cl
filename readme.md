@@ -28,6 +28,12 @@ nix develop
 sbcl --script ql-import.lisp
 ```
 
+#### Run tests:
+
+``` shell
+sbcl --script test-lisp.lisp
+```
+
 ## Documentation
 
 See `doc` directory.
