@@ -14,7 +14,7 @@ nix build .#sbcl.pkgs.bordeaux-threads
 ls result/src
 ```
 
-#### Build an `sbclWithPackages`:
+#### Build a lisp with packages:
 
 ```
 nix build --impure --expr "with builtins.getFlake \"$(pwd)\"; sbcl.withPackages (ps: [ ps.alexandria ])"
