@@ -122,3 +122,84 @@ A function of one argument that takes an attribute set and returns a list;
 ### Return value
 
 A lisp derivation that knows how to load some packages with `asdf:load-system`.
+
+## Overriding one package: `overrideLispAttrs`
+
+### Example
+
+```nix
+sbcl.pkgs.alexandria.overrideLispAttrs (oa: {
+  src = pkgs.fetchzip {
+    url = "https://example.org";
+    hash = "";
+  };
+})
+```
+
+### Required Arguments
+
+#### `overridefn`:
+
+A function of one argument that takes an attribute set and returns an attribute
+set.
+    
+### Return value
+
+A lisp derivation that was build using the provided, different arguments.
+
+## Overlaying packages: `packageOverlays`
+
+### Example
+
+```nix
+sbcl.override { 
+  packageOverlays = self: super: { 
+    alexandria = pkgs.hello; 
+  }; 
+} 
+```
+
+### Required Arguments
+
+#### `overlayfn`:
+
+A function of two arguments, the new package set and the old one. It should
+return the new package set that should we woven into the old one.
+    
+### Return value
+
+New lisp with all occurrences of overlayed packages replaced with the new value;
+
+## Overriding lisp spec: `spec`
+
+### Example
+
+```nix
+sbcl.override { 
+  spec = {
+    pkg = sbcl; 
+    flags = "--dynamic-space-size 4096"; 
+    faslExt = "fasl"; 
+    asdf = pkgs.hello; 
+  };
+} 
+```
+
+### Required Arguments
+
+#### `spec`:
+
+Spec can contain the following attributes:
+
+- pkg (required)
+- faslExt (required)
+- asdf (required)
+- program
+- flags
+- loadFlags
+- evalFlags
+    
+### Return value
+
+New lisp infrastructure that works with the provided lisp implementation and
+uses the provided ASDF version.
