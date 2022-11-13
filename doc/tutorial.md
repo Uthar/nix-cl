@@ -18,27 +18,28 @@ libraries.
 
 Let's build `cl-liballegro` for SBCL.
 
+Note: This example works only on NixOS because of OpenGL issues
+
 Make sure you are in the root of the `nix-cl` repository, then run:
 ```shell
-nix-build -E 'with import ./. {}; sbclPackages.cl-liballegro'
+nix build .#sbcl.pkgs.cl-liballegro
 ```
 
 You'll see some compilation logs, then in `ls result/` you will see the
 compiled FASLs of `cl-liballegro`.
 
-Let's start an `sbclWithPackages`: an SBCL with `cl-liballegro` available to `asdf:load-system`.
+Let's start an SBCL with packages: with `cl-liballegro` available to `asdf:load-system`.
 ```shell
-nix-build -E 'with import ./. {}; sbclWithPackages (p: [ p.cl-liballegro ])'
+source lwp.bash
+lwp sbcl cl-liballegro
 rlwrap result/bin/sbcl
 ```
 
-See that `sbclPackages.cl-liballegro` is not built a second time when
-building the `sbclWithPackages`. Instead, it's cached from the first
-invocation.
+See that `sbcl.pkgs.cl-liballegro` is not built a second time when building the
+wrapperp. Instead, it's cached from the first invocation.
 
 Now inside of SBCL, we can open a window using Allegro:
 ```lisp
-(require :asdf)
 (asdf:load-system :cl-liballegro)
 (al:init)
 (al:create-display 800 600)
@@ -75,98 +76,12 @@ magically make building of a single system parallel (`cl:compile-file`).
 
 Just to see that it works, you can launch a build of something big, like `dexador`:
 ```
-nix-build -E 'with import ./. {}; sbclPackages.dexador'
+nix build .#sbcl.pkgs.dexador --max-jobs 12
 ```
 
 In another terminal, open `htop` and find the `sbcl` process. You can
 see that it spreads the work of building `dexador`'s ASDF dependencies
 to as many CPUs as you have in your machine.
-
-## Per-project environments
-
-Nix has the feature of isolated development environments called a
-`nix-shell`. 
-
-This means you can have two projects such as these coexist on one
-machine, without conflict:
-
-- A project using `sbcl 1.7.0` built with `glibc 2.21`, and
-`alexandria 0.9` and `cl-liballegro` using `allegro 5.1`
-
-- A project using `sbcl 2.2.3` built with `glibc 2.35`, and
-`alexandria 1.2` and `cl-liballegro` using `allegro 5.2`.
- 
-When you're done, you can clean up with
-`nix-collect-garbage`. Everything will be removed from your disk,
-leaving you back where you started.
-
-### Example
-
-To use `nix-shell` you write down what you want to be inside your
-environment in a `shell.nix` file:
-
-```nix
-let
-
-  pkgs = import (builtins.fetchTarball {
-    url = "https://github.com/nixos/nixpkgs/archive/21.11.tar.gz";
-    sha256 = "162dywda2dvfj1248afxc45kcrg83appjd0nmdb541hl7rnncf02";
-  }) {};
-
-  nix-cl = import ./. { inherit pkgs; };
-
-  sbcl = nix-cl.sbclWithPackages (ps: [
-    ps.cl-liballegro
-  ]);
-
-  ccl = nix-cl.cclWithPackages (ps: [
-    ps.hunchentoot
-  ]);
-
-in pkgs.mkShell {
-
-  buildInputs = [
-    sbcl
-    ccl
-  ];
-
-}
-```
-
-Then execute `nix-shell` in the directory containing the `shell.nix` file.
-
-You can verify that `cl-liballegro` is loadable from `sbcl`, but not
-from `ccl`. Vice versa for `hunchentoot`. This is because their ASDF
-paths are logically isolated from each other. 
-
-They will still share common paths where it makes sense. If they're
-both using *identical* versions of a native library such as `openssl`,
-then it will be shared. If it's a different commit of it, they will
-use separate store paths. This also applies to Lisp source
-tarballs. This saves some space by preventing unnecessary duplicates.
-
-This can work because `/nix/store` is read only. Therefore `sbcl` and
-`ccl` can't mess with each others dependencies.
-
-## Shippable FASLs
-
-Because you have full control of the Lisp implementation, you can ship
-FASLs. With traditional methods that's not possible, because you don't
-know the exact version of Lisp the user is running, and they are not
-necessarily binary compatible.
-
-This means you don't need to have `gcc` installed to load
-`cffi-libffi` anymore. The CI server can build `cfii-libffi` once, and
-everyone can enjoy the FASLs directly, without having to spend time
-compiling.
-  
-Likewise you don't need to wait for `ironclad` to compile anymore
-(especially on ECL, ABCL where it can take long).
-
-You've already seen this, when we loaded `cl-liballegro` in the first
-example. Then, the `/nix/store/` path was created locally. Later on,
-when we create a binary cache, you will see how it will be downloaded
-from a server instead, in a process called "substitution".
   
 ## Docker images
 
@@ -177,7 +92,7 @@ Another freebie. Simply run:
 
 `nix bundle --bundler github:NixOS/bundlers#toDockerImage` 
 
-on the derivation created by `sbclWithPackages`.
+on the derivation created by `sbcl.withPackages`.
 
 ### Example
 
@@ -188,8 +103,8 @@ library that's not in Quicklisp - `jzon`.
 
 We need a Lisp with the libraries. Let's put it in a Docker container:
 ```
-nix bundle --bundler github:NixOS/bundlers#toDockerImage --impure --expr \
-  'with import ./. {}; sbclWithPackages (p: [ p.hunchentoot p.sqlite p.jzon ])'
+source lwp.bash
+lwp+docker sbcl hunchentoot sqlite jzon
 ```
 
 This creates the `sbcl-with-packages.tar.gz` file in the current directory.
@@ -208,7 +123,6 @@ docker run -p 4242:4242 -ti sbcl-with-packages sbcl
 
 Start the hunchentoot server inside the container:
 ```
-(require :asdf)
 (asdf:load-system :hunchentoot)
 (hunchentoot:start (make-instance 'hunchentoot:easy-acceptor :port 4242))
 ```
@@ -252,10 +166,9 @@ As an exercise you could try to:
 - Build the same image twice - it will not be rebuilt, but cached from
   the previous run.
 
-- Change the order of libraries in `[ p.hunchentoot p.sqlite p.jzon ]`.
-  This also does not cause a rebuild, because it's a fully declarative
-  specification of the image, unlike a Dockerfile which is more like a
-  script.
+- Change the order of libraries in `hunchentoot sqlite jzon`.
+  Loading this again into Docker is almost instant, because most of the layers
+  are already cached from the previous run.
   
 - Poke around in the container with `uiop:directory-files`. You will
   see that it contains precisely what it needs: SBCL, glibc, OpenSSL,
@@ -291,7 +204,7 @@ party code is in your product.
 As an example let's generate a graph of `dexador`'s dependencies:
 
 ```shell
-nix-store -q --graph $(nix-build -E 'with import ./. {}; sbclPackages.dexador') | dot -x -T pdf > dexador.pdf
+nix-store -q --graph $(nix build --print-out-paths .#sbcl.pkgs.dexador) | dot -x -T pdf > dexador.pdf
 ```
 
 # Drawbacks of using Nix for Lisp

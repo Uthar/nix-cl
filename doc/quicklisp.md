@@ -9,14 +9,13 @@ This page documents how to import packages from Quicklisp.
 2. Run:
 
 ```
-$ nix-shell
+$ nix develop
 $ sbcl --script ql-import.lisp
 ```
 
 This command runs a program that dumps a `imported.nix` file
 containing Nix expressions for all packages in Quicklisp. They will be
-automatically picked up by the `lispPackagesFor` and
-`lispWithPackages` API functions.
+automatically picked up by the library.
 
 It also creates a 'packages.sqlite' file. It's used during the
 generation of the 'imported.nix' file and can be safely removed. It

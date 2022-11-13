@@ -10,26 +10,49 @@ This library is **EXPERIMENTAL** and everything can change
 #### Build an ASDF system:
 
 ```
-nix-build -E 'with import ./. {}; sbclPackages.bordeaux-threads'
+nix build .#sbcl.pkgs.bordeaux-threads
 ls result/src
 ```
 
-#### Build an `sbclWithPackages`:
+#### Build a lisp with packages:
 
 ```
-nix-build -E 'with import ./. {}; sbclWithPackages (p: [ p.hunchentoot p.sqlite ])'
+nix build --impure --expr "with builtins.getFlake \"$(pwd)\"; sbcl.withPackages (ps: [ ps.alexandria ])"
 result/bin/sbcl
 ```
 
 #### Re-import Quicklisp packages:
 
 ```
-nix-shell --run 'sbcl --script ql-import.lisp'
+nix develop
+sbcl --script ql-import.lisp
+```
+
+#### Run tests:
+
+``` shell
+sbcl --script test-lisp.lisp
 ```
 
 ## Documentation
 
 See `doc` directory.
+
+## Supported Common Lisp implementations
+
+- ABCL
+- CCL
+- Clasp
+- CLISP
+- ECL
+- SBCL
+
+## Supported systems
+
+- aarch64-darwin
+- aarch64-linux
+- x86_64-darwin
+- x86_64-linux
 
 ## Other Nix+CL projects
 
