@@ -9,7 +9,7 @@ This page documents how to import packages from Quicklisp.
 2. Run:
 
 ```
-$ nix-shell
+$ nix develop
 $ sbcl --script ql-import.lisp
 ```
 
