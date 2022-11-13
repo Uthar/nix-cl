@@ -9,7 +9,7 @@
 
 (defparameter lisp (or (cadr sb-ext:*posix-argv*) "sbcl"))
 
-(defparameter nix-build "nix-build -E 'with builtins.getFlake \"~a\"; lib.~a.pkgs.~a'")
+(defparameter nix-build "nix build .#~a.pkgs.~a")
 
 (defparameter cpu-count
   (length
@@ -47,8 +47,6 @@
    (reverse bindings)
    :initial-value `(progn ,@body)))
 
-(defparameter +flake+ (uiop:getcwd))
-
 (dolist (pkg packages)
   (sb-thread:wait-on-semaphore sem)
   (sb-thread:make-thread
@@ -57,7 +55,7 @@
          (unwind-protect
               (multiple-value-bind (out err code)
                   (uiop:run-program
-                   (format nil nix-build +flake+ lisp pkg)
+                   (format nil nix-build lisp pkg)
                    :error-output '(:string :stripped t)
                    :ignore-error-status t)
                 (declare (ignorable err))
