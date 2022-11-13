@@ -2,8 +2,10 @@
   (:use :cl)
   (:import-from :dex)
   (:import-from :alexandria :read-file-into-string :ensure-list)
+  (:import-from :alexandria-2 :line-up-first :line-up-last)
   (:import-from :arrow-macros :->>)
   (:import-from :str)
+  (:import-from :pool)
   (:import-from
    :org.lispbuilds.nix/database/sqlite
    :sqlite-database
@@ -42,31 +44,34 @@
 (defun init-tarball-hashes (database)
   (status "no packages.sqlite - will pre-fill tarball hashes from ~A to save time~%"
           (truename "imported.nix"))
-  (let* ((lines (uiop:read-file-lines "imported.nix"))
-         (lines (remove-if-not
-                  (lambda (line)
-                    (let ((trimmed (str:trim-left line)))
-                      (or (str:starts-with-p "url = " trimmed)
-                          (str:starts-with-p "sha256 = " trimmed))))
-                  lines))
-         (lines (mapcar
+  (let ((lines (line-up-last
+                (uiop:read-file-lines "imported.nix")
+                (remove-if-not
+                 (lambda (line)
+                   (let ((trimmed (str:trim-left line)))
+                     (or (str:starts-with-p "url = " trimmed)
+                         (str:starts-with-p "sha256 = " trimmed)))))
+                (mapcar
                  (lambda (line)
                    (multiple-value-bind (whole groups)
                        (ppcre:scan-to-strings "\"\(.*\)\"" line)
                      (declare (ignore whole))
-                     (svref groups 0)))
-                 lines)))
+                     (svref groups 0))))))
+        (pool (make-instance 'pool:thread-pool :size 10)))
+    (assert (evenp (length lines)))
     (sqlite:with-open-database (db (database-url database))
       (init-db db (init-file database))
-      (sqlite:with-transaction db
-        (loop while lines do
+      (do ((lines lines (rest (rest lines)))
+           (url (first lines) (first lines))
+           (hash (second lines) (second lines)))
+          ((null lines))
+        (let ((path (fetchzip url hash)))
           (sqlite:execute-non-query db
-            "insert or ignore into sha256(url,hash) values (?,?)"
-            (prog1 (first lines) (setf lines (rest lines)))
-            (prog1 (first lines) (setf lines (rest lines))))))
+            "insert or ignore into sha256(url,hash,path) values (?,?,?)"
+            url hash path)))
       (status "OK, imported ~A hashes into DB.~%"
-              (sqlite:execute-single db
-                 "select count(*) from sha256")))))
+        (sqlite:execute-single db
+        "select count(*) from sha256")))))
 
 (defmethod import-lisp-packages ((repository quicklisp-repository)
                                  (database sqlite-database))
@@ -216,3 +221,28 @@
     (error (e)
       (declare (ignore e))
       (list nil nil nil nil))))
+
+(defparameter +quotes+ (make-string 1 :initial-element #\"))
+
+(defun fetchzip (url hash)
+  (status "fetching ~A" url)
+  (shell-command-to-string
+   (format nil
+     "
+     nix build --print-out-paths --impure --expr '  \
+        let                                         \
+          nixpkgs = builtins.getFlake ~a;           \
+          pkgs = builtins.getAttr                   \
+            builtins.currentSystem                  \
+            nixpkgs.legacyPackages;                 \
+        in pkgs.fetchzip {                          \
+          url = ~a;                                 \
+          sha256 = ~a;                              \
+        }                                           \
+     '
+     "
+     (concatenate 'string +quotes+ "nixpkgs" +quotes+)
+     (concatenate 'string +quotes+ url +quotes+)
+     (concatenate 'string +quotes+ hash +quotes+))))
+
+(fetchzip "http://beta.quicklisp.org/archive/zpng/2015-04-07/zpng-1.2.2.tgz" "0b3ag3jhl3z7kdls3ahdsdxsfhhw5qrizk769984f4wkxhb69rcm")
