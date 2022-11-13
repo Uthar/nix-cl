@@ -9,6 +9,6 @@ nix build \
    inputs.nixpkgs.legacyPackages.\${builtins.currentSystem}.linkFarmFromDrvs \
    \"sbclPackages\" \
    (builtins.attrValues \
-     (inputs.nixpkgs.lib.filterAttrs \
+     (inputs.nixpkgs.klib.filterAttrs \
        (n: v: builtins.isAttrs v && v.meta.broken == false) \
-       lib.sbclPackages))"
+       lib.sbcl.pkgs))"
