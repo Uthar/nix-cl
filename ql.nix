@@ -138,6 +138,9 @@ let
     cl-readline = super.cl-readline.overrideLispAttrs (o: {
       nativeLibs = [ pkgs.readline ];
     });
+    md5 = super.md5.overrideLispAttrs (o: {
+      lispLibs = [ super.flexi-streams ];
+    });
   });
 
   qlpkgs =

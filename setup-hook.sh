@@ -2,12 +2,9 @@
 
 buildAsdfPath () {
     declare -A seen=()
-    echo "start: $(date +%s)"
-    echo "inptuts: $buildInputs"
     for dep in $propagatedBuildInputs; do
         _addToAsdfPath $dep
     done
-    echo "end: $(date +%s)"
 }
 
 addFileToSearchPathWithCustomDelimiter() {
@@ -27,10 +24,8 @@ addFileToSearchPath() {
 _addToAsdfPath ()  {
     local dep="$1"
     if [ -v seen[$dep] ]; then
-        echo "cached: $dep"
         return
     else
-        echo "going: $dep"
         seen[$dep]=1
         local path="$dep"
 

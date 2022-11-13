@@ -1,87 +1,85 @@
-## The API
+# The API
 
 This page documents the Nix API of nix-cl.
 
+NOTE: This documentation is still work-in-progress.
+
 ## Overview
 
-The core API functions are `build-asdf-system` and
-`lispWithPackagesInternal`.
+The core API is:
 
-They are considered more low-level that the rest of the API, which
-builds on top of them to provide a more convenient interface with sane
-defaults.
+- `buildASDFSystem`
+- `withPackages`
+- `overrideLispAttrs`
 
-The higher-level API provides a lot of pre-configured packages,
-including all of Quicklisp, and consists of the functions:
+The library flake exposes its supported lisp implementations as packages which
+have the above functions as attributes:
 
-- `lispPackagesFor`
-- `lispWithPackages`
+- `abcl`
+- `ccl`
+- `clasp`
+- `clisp`
+- `ecl`
+- `sbcl`
 
-Finally, there are functions that provide pre-defined Lisps, for
-people who don't need to customize that:
+You can also create new lisps by `overriding` the spec of any of the provided lisps.
+ 
 
-- `abclPackages`, `eclPackages`, `cclPackages`, `claspPackages`, `sbclPackages`
-- `abclWithPackages`, `eclWithPackages`, `cclWithPackages`, `claspWithPackages`, `sbclWithPackages`
+## Packaging systems - `buildASDFSystem`
 
-The following is an attempt to document all of this.
+Packages are declared using `buildASDFSystem`. This function takes
+the following arguments and returns a Lisp package derivation.
 
-## Packaging systems - `build-asdf-system`
+### Example
 
-Packages are declared using `build-asdf-system`. This function takes
-the following arguments and returns a `derivation`.
+```nix
+sbcl.buildASDFSystem {
+  pname = "alexandria";
+  version = "v1.4";
+  src = pkgs.fetchFromGitLab {
+    domain = "gitlab.common-lisp.net";
+    owner = "alexandria";
+    repo = "alexandria";
+    rev = "v1.4";
+    hash = "sha256-1Hzxt65dZvgOFIljjjlSGgKYkj+YBLwJCACi5DZsKmQ=";
+  };
+}
+```
 
-#### Required arguments
 
-##### `pname`
+### Required arguments
+
+#### `pname`
 Name of the package/library
 
-##### `version`
+#### `version`
 Version of the package/library
 
-##### `src`
+#### `src`
 Source of the package/library (`fetchTarball`, `fetchGit`, `fetchMercurial` etc.)
 
-##### `pkg`
-##### `program`
-##### `loadFlags`
-The command "${pkg}/bin/${program} ${flags} ${loadFlags}" must load the provided
-file (`$buildScript`) then exit immediately. For example, SBCL's --script flag
-does just that.
+## Optional arguments
 
-#### `evalFlags`
-Currently used to pre-compile asdf.lisp with `compile-file`
-
-#### Optional arguments
-
-##### `flags ? ""`
-additional flags to pass to lisp program before loadFlags during builds
-
-##### `asdf ? defaultAsdf`
-The ASDF amalgamation source file to load before building and use to load
-systems afterwards, also loaded before start of each lisp wrapper. 
-(That is build/asdf.lisp as built from ASDF source tree)
-Default ASDF version can be seen in default.nix in nix-cl source code.
-
-##### `patches ? []`
+#### `patches ? []`
 
 Patches to apply to the source code before compiling it. This is a
 list of files.
 
-##### `nativeLibs ? []`
+#### `nativeLibs ? []`
 
 Native libraries, will be appended to the library
 path. (`pkgs.openssl` etc.)
 
-##### `javaLibs ? []`
+#### `javaLibs ? []`
 
 Java libraries for ABCL, will be appended to the class path.
 
-##### `lispLibs ? []`
+#### `lispLibs ? []`
 
 Lisp dependencies These must themselves be packages built with
-`build-asdf-system`
+`buildASDFSystem`
 
-##### `systems ? [ pname ]`
+#### `systems ? [ pname ]`
 
 Some libraries have multiple systems under one project, for example,
 [cffi] has `cffi-grovel`, `cffi-toolchain` etc.  By default, only the
@@ -98,127 +96,110 @@ as when using [reverse domain naming]. (see `jzon` ->
 [cffi]: https://cffi.common-lisp.dev/
 [reverse domain naming]: https://en.wikipedia.org/wiki/Reverse_domain_name_notation
 
-##### `asds ? systems`
+#### `asds ? systems`
 
 The .asd files that this package provides. By default, same as
 `systems`.
 
-#### Return value
+### Return value
 
 A `derivation` that, when built, contains the sources and pre-compiled
 FASL files (Lisp implementation dependent) alongside any other
 artifacts generated during compilation.
 
-#### Example
+## Building a Lisp with packages: `withPackages`
 
-[bordeaux-threads.nix] contains a simple example of packaging
-`alexandria` and `bordeaux-threads`.
+### Example
 
-[bordeaux-threads.nix]: /examples/bordeaux-threads.nix
+`sbcl.withPackages (ps: [ ps.alexandria ])`
 
-## Building a Lisp with packages: `lispWithPackagesInternal`
+### Required Arguments
 
-Generators of Lisps configured to be able to `asdf:load-system`
-pre-compiled libraries on run-time are built with
-`lispWithPackagesInternal`.
+#### `pkgfn`:
 
-#### Required Arguments
+A function of one argument that takes an attribute set and returns a list;
+    
+### Return value
 
-##### `clpkgs`
+A lisp derivation that knows how to load some packages with `asdf:load-system`.
 
-An attribute set of `derivation`s returned by `build-asdf-system`
+## Overriding one package: `overrideLispAttrs`
 
-#### Return value
+### Example
 
-`lispWithPackagesInternal` returns a function that takes one argument:
-a function `(lambda (clpkgs) packages)`, that, given a set of
-packages, returns a list of package `derivation`s to be included in
-the closure.
-
-#### Example
-
-The [sbcl-with-bt.nix] example creates a runnable Lisp where the
-`bordeaux-threads` defined in the previous section is precompiled and
-loadable via `asdf:load-system`:
-
-[sbcl-with-bt.nix]: /examples/sbcl-with-bt.nix
-
-## Reusing pre-packaged Lisp libraries: `lispPackagesFor`
-
-`lispPackagesFor` is a higher level version of
-`lispPackagesForInternal`: it only takes one argument - a Lisp command
-to use for compiling packages. It then provides a bunch of ready to
-use packages.
-
-#### Required Arguments
-
-##### `lisp`
-
-The Lisp command to use in calls to `build-asdf-system` while building
-the library-provided Lisp package declarations.
-
-#### Optional Arguments
-
-##### `asdf ? defaultAsdf`
-
-The ASDF to pass to `build-asdf-system`. See its documentation for more details.
-
-#### Return value
-
-A set of packages built with `build-asdf-system`.
-
-#### Example
-
-The [abcl-package-set.nix] example generates a set of thousands of packages for ABCL.
-
-[abcl-package-set.nix]: /examples/abcl-package-set.nix
-
-## Reusing pre-packaged Lisp libraries, part 2: `lispWithPackages`
-
-This is simply a helper function to avoid having to call
-`lispPackagesFor` if all you want is a Lisp-with-packages wrapper.
-
-#### Required Arguments
-
-##### `lisp`
-
-The Lisp command to pass to `lispPackagesFor` in order for it to
-generate a package set. That set is then passed to
-`lispWithPackagesInternal`.
-
-#### Optional Arguments
-
-##### `asdf ? defaultAsdf`
-
-The ASDF to pass to `build-asdf-system`. See its documentation for more details.
-
-#### Return value
-
-A Lisp-with-packages function (see sections above).
-
-#### Example
-
-The [abcl-with-packages.nix] example creates an `abclWithPackages` function.
-
-[abcl-with-packages.nix]: /examples/abcl-with-packages.nix
-
-## Using the default Lisp implementations
-
-This is the easiest way to get going with `nix-cl` in general. Choose
-the CL implementation of interest and a set of libraries, and get a
-lisp-with-packages wrapper with those libraries pre-compiled.
-
-#### `abclPackages`, `eclPackages`, `cclPackages`, `claspPackages`, `sbclPackages`
-
-Ready to use package sets.
-
-#### `abclWithPackages`, `eclWithPackages`, `cclWithPackages`, `claspWithPackages`, `sbclWithPackages`
-
-Ready to use wrapper generators.
-
-#### Example
-
-For example, to open a shell with SBCL + hunchentoot + sqlite in PATH:
+```nix
+sbcl.pkgs.alexandria.overrideLispAttrs (oa: {
+  src = pkgs.fetchzip {
+    url = "https://example.org";
+    hash = "";
+  };
+})
 ```
-nix-shell -p 'with import ./. {}; sbclWithPackages (ps: [ ps.hunchentoot ps.sqlite ])'
+
+### Required Arguments
+
+#### `overridefn`:
+
+A function of one argument that takes an attribute set and returns an attribute
+set.
+    
+### Return value
+
+A lisp derivation that was build using the provided, different arguments.
+
+## Overlaying packages: `packageOverlays`
+
+### Example
+
+```nix
+sbcl.override { 
+  packageOverlays = self: super: { 
+    alexandria = pkgs.hello; 
+  }; 
+} 
 ```
+
+### Required Arguments
+
+#### `overlayfn`:
+
+A function of two arguments, the new package set and the old one. It should
+return the new package set that should we woven into the old one.
+    
+### Return value
+
+New lisp with all occurrences of overlayed packages replaced with the new value;
+
+## Overriding lisp spec: `spec`
+
+### Example
+
+```nix
+sbcl.override { 
+  spec = {
+    pkg = sbcl; 
+    flags = "--dynamic-space-size 4096"; 
+    faslExt = "fasl"; 
+    asdf = pkgs.hello; 
+  };
+} 
+```
+
+### Required Arguments
+
+#### `spec`:
+
+Spec can contain the following attributes:
+
+- pkg (required)
+- faslExt (required)
+- asdf (required)
+- program
+- flags
+- loadFlags
+- evalFlags
+    
+### Return value
+
+New lisp infrastructure that works with the provided lisp implementation and
+uses the provided ASDF version.

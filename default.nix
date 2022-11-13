@@ -1,42 +1,18 @@
 { pkgs, lib, stdenv, abcl, ccl, clisp, clasp, ecl, sbcl, ... }:
 
 let
- 
-  abclArgs = {
-    pkg = abcl;
-    faslExt = "abcl";
-  };
 
-  eclArgs = {
-    pkg = ecl;
-    faslExt = "fas";
-  };
+  mkSpec = spec@{
+    pkg
+    , faslExt
+    , program ? pkg.pname
+    , flags ? ""
+    , loadFlags ? "--load"
+    , evalFlags ? "--eval"
+    , asdf ? asdf_3_3_5_11
+  }: { inherit pkg faslExt program flags loadFlags evalFlags asdf; };
 
-  cclArgs = {
-    pkg = ccl;
-    faslExt = "lx64fsl";
-  };
-
-  sbclArgs = {
-    pkg = sbcl;
-    faslExt = "fasl";
-  };
-
-  clispArgs = {
-    pkg = clisp;
-    flags = "-E UTF-8";
-    loadFlags = "-i";
-    evalFlags = "-x";
-    faslExt = "fas";
-  };
-
-  claspArgs = {
-    pkg = clasp;
-    faslExt = "fasp";
-  };
-
-  # TODO(kasper): precompile asdf.lisp per implementation?
-  defaultAsdf = pkgs.stdenv.mkDerivation rec {
+  asdf_3_3_5_11 = pkgs.stdenv.mkDerivation rec {
     pname = "asdf";
     version = "3.3.5.11";
     src = pkgs.fetchzip {
@@ -48,7 +24,40 @@ let
     '';
   };
 
+  abclSpec = mkSpec {
+    pkg = abcl;
+    faslExt = "abcl";
+  };
+
+  eclSpec = mkSpec {
+    pkg = ecl;
+    faslExt = "fas";
+  };
+
+  cclSpec = mkSpec {
+    pkg = ccl;
+    faslExt = "lx64fsl";
+  };
+
+  sbclSpec = mkSpec {
+    pkg = sbcl;
+    faslExt = "fasl";
+  };
+
+  clispSpec = mkSpec {
+    pkg = clisp;
+    flags = "-E UTF-8";
+    loadFlags = "-i";
+    evalFlags = "-x";
+    faslExt = "fas";
+  };
+
+  claspSpec = mkSpec {
+    pkg = clasp;
+    faslExt = "fasp";
+  };
+
 in pkgs.callPackage ./nix-cl.nix {
-  inherit abclArgs eclArgs cclArgs claspArgs clispArgs sbclArgs defaultAsdf;
+  inherit abclSpec eclSpec cclSpec claspSpec clispSpec sbclSpec;
 }
  
