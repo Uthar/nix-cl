@@ -204,7 +204,7 @@ party code is in your product.
 As an example let's generate a graph of `dexador`'s dependencies:
 
 ```shell
-enix-store -q --graph $(nix build --print-out-paths .#sbcl.pkgs.dexador) | dot -x -T pdf > dexador.pdf
+nix-store -q --graph $(nix build --print-out-paths .#sbcl.pkgs.dexador) | dot -x -T pdf > dexador.pdf
 ```
 
 # Drawbacks of using Nix for Lisp
