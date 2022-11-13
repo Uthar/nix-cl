@@ -2,6 +2,8 @@
 
 This page documents the Nix API of nix-cl.
 
+NOTE: This documentation is still work-in-progress.
+
 ## Overview
 
 The core API is:
