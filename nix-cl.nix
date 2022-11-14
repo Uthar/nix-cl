@@ -304,6 +304,7 @@ let
       pkgs = (commonLispPackagesFor spec).overrideScope' packageOverlays;
     in spec.pkg // {
       inherit pkgs;
+      inherit (spec) asdf;
       withPackages = lispWithPackagesInternal pkgs;
       buildASDFSystem = args: build-asdf-system (args // spec);
     });
