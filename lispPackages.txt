@@ -41,6 +41,8 @@ cl-async-ssl
 cl-async-util
 cl-base64
 cl-cairo2
+cl-cairo2
+cl-cairo2-xlib
 cl-cffi-gtk
 cl-cffi-gtk-cairo
 cl-cffi-gtk-gdk
@@ -67,11 +69,15 @@ cl-emb
 cl-environments
 cl-fad
 cl-form-types
+cl-freetype2
 cl-fuse
 cl-fuse-meta-fs
 cl-fuzz
 cl-geometry
 cl-gobject-introspection
+cl-gtk2-gdk
+cl-gtk2-glib
+cl-gtk2-pango
 cl-gtk4
 cl-gtk4_dot_adw
 cl-gtk4_dot_webkit2
@@ -93,6 +99,7 @@ cl-markup
 cl-mustache
 cl-mysql
 cl-num-utils
+cl-pango
 cl-paths
 cl-paths-ttf
 cl-pattern
@@ -108,6 +115,7 @@ cl-qprint
 cl-qrencode
 cl-readline
 cl-reexport
+cl-rsvg2
 cl-shellwords
 cl-slice
 cl-smt-lib
@@ -299,6 +307,10 @@ prove-asdf
 ptester
 puri
 pythonic-string-reader
+pzmq
+pzmq-compat
+pzmq-examples
+pzmq-test
 qt
 qt-libs
 qtools

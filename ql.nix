@@ -17,6 +17,29 @@ let
     cl-cairo2 = super.cl-cairo2.overrideLispAttrs (o: {
       nativeLibs = [ pkgs.cairo ];
     });
+    cl-cairo2-xlib = super.cl-cairo2-xlib.overrideLispAttrs (o: {
+      nativeLibs = [ pkgs.gtk2-x11 ];
+    });
+    cl-freetype2 = super.cl-freetype2.overrideLispAttrs (o: {
+      nativeLibs = [ pkgs.freetype ];
+      nativeBuildInputs = [ pkgs.freetype ];
+      patches = [ ./patches/cl-freetype2-fix-grovel-includes.patch ];
+    });
+    cl-pango = super.cl-pango.overrideLispAttrs (o: {
+      nativeLibs = [ pkgs.pango ];
+    });
+    cl-gtk2-gdk = super.cl-gtk2-gdk.overrideLispAttrs (o: {
+      nativeLibs = [ pkgs.gtk2-x11 ];
+    });
+    cl-gtk2-glib = super.cl-gtk2-glib.overrideLispAttrs (o: {
+      nativeLibs = [ pkgs.glib ];
+    });
+    cl-gtk2-pango = super.cl-gtk2-pango.overrideLispAttrs (o: {
+      nativeLibs = [ pkgs.pango ];
+    });
+    cl-rsvg2 = super.cl-rsvg2.overrideLispAttrs (o: {
+      nativeLibs = [ pkgs.librsvg ];
+    });
     cl-cffi-gtk-gdk = super.cl-cffi-gtk-gdk.overrideLispAttrs (o: {
       nativeLibs = [ pkgs.gtk3 ];
     });
@@ -140,6 +163,22 @@ let
     });
     md5 = super.md5.overrideLispAttrs (o: {
       lispLibs = [ super.flexi-streams ];
+    });
+    pzmq = super.pzmq.overrideLispAttrs (o: {
+      nativeBuildInputs = [ pkgs.zeromq ];
+      nativeLibs = [ pkgs.zeromq ];
+    });
+    pzmq-compat = super.pzmq-compat.overrideLispAttrs (o: {
+      nativeBuildInputs = [ pkgs.zeromq ];
+      nativeLibs = [ pkgs.zeromq ];
+    });
+    pzmq-examples = super.pzmq-examples.overrideLispAttrs (o: {
+      nativeBuildInputs = [ pkgs.zeromq ];
+      nativeLibs = [ pkgs.zeromq ];
+    });
+    pzmq-test = super.pzmq-test.overrideLispAttrs (o: {
+      nativeBuildInputs = [ pkgs.zeromq ];
+      nativeLibs = [ pkgs.zeromq ];
     });
   });
 

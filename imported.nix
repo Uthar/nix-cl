@@ -18160,6 +18160,9 @@ in lib.makeScope pkgs.newScope (self: {
     });
     systems = [ "cl-random" ];
     lispLibs = [ (getAttr "alexandria" self) (getAttr "anaphora" self) (getAttr "array-operations" self) (getAttr "cl-num-utils" self) (getAttr "cl-rmath" self) (getAttr "cl-slice" self) (getAttr "gsll" self) (getAttr "let-plus" self) (getAttr "lla" self) ];
+    meta = {
+      broken = true;
+    };
   });
   cl-random-forest = (build-asdf-system {
     pname = "cl-random-forest";
@@ -18199,6 +18202,9 @@ in lib.makeScope pkgs.newScope (self: {
     });
     systems = [ "cl-random-tests" ];
     lispLibs = [ (getAttr "cl-random" self) (getAttr "clunit" self) ];
+    meta = {
+      broken = true;
+    };
   });
   cl-rdfxml = (build-asdf-system {
     pname = "cl-rdfxml";
@@ -22203,6 +22209,9 @@ in lib.makeScope pkgs.newScope (self: {
     });
     systems = [ "clml.blas.hompack" ];
     lispLibs = [ (getAttr "f2cl-lib" self) ];
+    meta = {
+      broken = true;
+    };
   });
   clml_dot_blas_dot_real = (build-asdf-system {
     pname = "clml.blas.real";
@@ -32746,6 +32755,9 @@ in lib.makeScope pkgs.newScope (self: {
     });
     systems = [ "hu.dwim.graphviz" ];
     lispLibs = [ (getAttr "cffi" self) (getAttr "hu_dot_dwim_dot_asdf" self) (getAttr "metabang-bind" self) ];
+    meta = {
+      broken = true;
+    };
   });
   hu_dot_dwim_dot_graphviz_dot_documentation = (build-asdf-system {
     pname = "hu.dwim.graphviz.documentation";
@@ -32785,6 +32797,9 @@ in lib.makeScope pkgs.newScope (self: {
     });
     systems = [ "hu.dwim.logger" ];
     lispLibs = [ (getAttr "bordeaux-threads" self) (getAttr "hu_dot_dwim_dot_asdf" self) (getAttr "hu_dot_dwim_dot_def" self) (getAttr "hu_dot_dwim_dot_def_plus_hu_dot_dwim_dot_common" self) (getAttr "hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def" self) (getAttr "hu_dot_dwim_dot_util" self) (getAttr "local-time" self) ];
+    meta = {
+      broken = true;
+    };
   });
   hu_dot_dwim_dot_logger_plus_iolib = (build-asdf-system {
     pname = "hu.dwim.logger+iolib";
@@ -33136,6 +33151,9 @@ in lib.makeScope pkgs.newScope (self: {
     });
     systems = [ "hu.dwim.quasi-quote" ];
     lispLibs = [ (getAttr "babel" self) (getAttr "babel-streams" self) (getAttr "hu_dot_dwim_dot_asdf" self) (getAttr "hu_dot_dwim_dot_common" self) (getAttr "hu_dot_dwim_dot_defclass-star_plus_hu_dot_dwim_dot_def" self) (getAttr "hu_dot_dwim_dot_syntax-sugar" self) (getAttr "hu_dot_dwim_dot_util" self) (getAttr "hu_dot_dwim_dot_walker" self) ];
+    meta = {
+      broken = true;
+    };
   });
   hu_dot_dwim_dot_quasi-quote_dot_css = (build-asdf-system {
     pname = "hu.dwim.quasi-quote.css";
@@ -33409,6 +33427,9 @@ in lib.makeScope pkgs.newScope (self: {
     });
     systems = [ "hu.dwim.serializer" ];
     lispLibs = [ (getAttr "babel" self) (getAttr "hu_dot_dwim_dot_asdf" self) (getAttr "hu_dot_dwim_dot_common" self) (getAttr "hu_dot_dwim_dot_def" self) (getAttr "hu_dot_dwim_dot_syntax-sugar" self) (getAttr "hu_dot_dwim_dot_util" self) ];
+    meta = {
+      broken = true;
+    };
   });
   hu_dot_dwim_dot_serializer_dot_documentation = (build-asdf-system {
     pname = "hu.dwim.serializer.documentation";
@@ -33734,6 +33755,9 @@ in lib.makeScope pkgs.newScope (self: {
     });
     systems = [ "hu.dwim.zlib" ];
     lispLibs = [ (getAttr "alexandria" self) (getAttr "cffi" self) (getAttr "cffi-libffi" self) (getAttr "hu_dot_dwim_dot_asdf" self) ];
+    meta = {
+      broken = true;
+    };
   });
   huffman = (build-asdf-system {
     pname = "huffman";
@@ -38362,6 +38386,9 @@ in lib.makeScope pkgs.newScope (self: {
     });
     systems = [ "magicl" ];
     lispLibs = [ (getAttr "abstract-classes" self) (getAttr "alexandria" self) (getAttr "cffi" self) (getAttr "cffi-libffi" self) (getAttr "interface" self) (getAttr "policy-cond" self) ];
+    meta = {
+      broken = true;
+    };
   });
   magicl-examples = (build-asdf-system {
     pname = "magicl-examples";
@@ -39129,6 +39156,9 @@ in lib.makeScope pkgs.newScope (self: {
     });
     systems = [ "math" ];
     lispLibs = [ (getAttr "cl-utilities" self) (getAttr "font-discovery" self) (getAttr "gsll" self) (getAttr "vgplot" self) ];
+    meta = {
+      broken = true;
+    };
   });
   mathkit = (build-asdf-system {
     pname = "mathkit";
@@ -39285,6 +39315,9 @@ in lib.makeScope pkgs.newScope (self: {
     });
     systems = [ "mcclim-bezier" ];
     lispLibs = [ (getAttr "clim" self) (getAttr "clim-pdf" self) (getAttr "clim-postscript" self) (getAttr "flexichain" self) (getAttr "mcclim-clx" self) (getAttr "mcclim-null" self) (getAttr "mcclim-render" self) ];
+    meta = {
+      broken = true;
+    };
   });
   mcclim-bitmaps = (build-asdf-system {
     pname = "mcclim-bitmaps";
@@ -55847,6 +55880,9 @@ in lib.makeScope pkgs.newScope (self: {
     });
     systems = [ "ubiquitous" ];
     lispLibs = [  ];
+    meta = {
+      broken = true;
+    };
   });
   ubiquitous-concurrent = (build-asdf-system {
     pname = "ubiquitous-concurrent";
