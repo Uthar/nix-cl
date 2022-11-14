@@ -17,7 +17,8 @@ ls result/src
 #### Build a lisp with packages:
 
 ```
-nix build --impure --expr "with builtins.getFlake \"$(pwd)\"; sbcl.withPackages (ps: [ ps.alexandria ])"
+source lwp.bash
+lwp sbcl alexandria bordeaux-threads
 result/bin/sbcl
 ```
 
