@@ -246,7 +246,7 @@
    (make-pathname :name "tarballs"
                   :type "sqlite"
                   :defaults (cache-directory))
-   :busy-timeout 30))
+   :busy-timeout 5))
 
 (defvar *db2*
   (sqlite:connect "/home/kpg/scratch/nix-cl/packages.sqlite"))
@@ -269,9 +269,26 @@
 
 (defvar *db-lock* (bt:make-lock))
 
+(defvar *retries* 0)
+(defun http-get (url)
+  (handler-case
+      (dex:get url 
+               :want-stream t
+               :force-binary t
+               :keep-alive t
+               :use-connection-pool t)
+    (dexador:http-request-failed (e)
+      (when (< *retries* 5)
+        (let ((*retries* (1+ *retries*)))
+          (bt:with-lock-held (*log-lock*)
+            (format t "Retry x~A after ~A~%" *retries* e))
+          (sleep (* 0.2 *retries*))
+          (http-get url))))))
+
 (defun fetch-tarball (url)
   (let ((exists
           (bt:with-lock-held (*db-lock*)
+            ;; TODO use journal_mode=wal
             (sqlite:execute-single *db* "select * from tarballs where url=?" url))))
     ;; (when exists
     ;;   (bt:with-lock-held (*log-lock*)
@@ -279,22 +296,12 @@
     (unless exists
       (bt:with-lock-held (*log-lock*)
         (format t "<~A>: FETCH ~A~%" (bt:thread-name (bt:current-thread)) url))
-      (let* ((tarball (dex:get url
-                               :want-stream t
-                               :force-binary t
-                               :keep-alive t
-                               :use-connection-pool t))
+      (let* ((tarball (http-get url))
              (uri (quri:make-uri :defaults url))
-             (path (alexandria-2:line-up-last
-                    (quri:uri-path uri)
-                    (split-sequence:split-sequence #\/)
-                    (alexandria:lastcar)))
-             (name (alexandria-2:line-up-last
-                    (split-sequence:split-sequence #\. path)
-                    butlast
-                    (apply #'concatenate 'string)))
-             (type (alexandria:lastcar
-                    (split-sequence:split-sequence #\. path)))
+             (path (let ((path (quri:uri-path uri)))
+                     (subseq path (position #\/ path :from-end t))))
+             (name (subseq path 0 (position #\. path :from-end t)))
+             (type (subseq path (position #\. path :from-end t)))
              (pathname (make-pathname
                         :name name
                         :type type
@@ -304,8 +311,9 @@
                          :if-does-not-exist :create
                          :if-exists :supersede
                          :element-type '(unsigned-byte 8)))
-             (digest (ironclad:make-digest :sha384))
+             (digest (ironclad:make-digest :sha256))
              (buf (make-array 4096 :element-type '(unsigned-byte 8))))
+        (declare (dynamic-extent buf))
         (unwind-protect
              (loop for read = (read-sequence buf tarball)
                    while (plusp read)
@@ -321,16 +329,46 @@
                                 path
                                 (concatenate
                                  'string
-                                 "sha384-"
+                                 "sha256-"
                                  (cl-base64:usb8-array-to-base64-string
                                   (ironclad:produce-digest digest)))))))
           (close file)
           ;; (format t "Closed file stream~%")
           )))))
 
-    
+(defun test ()
+  (setf dexador.connection-cache:*max-active-connections* 25)
+  (dexador.connection-cache::make-new-connection-pool)
+  (defparameter pool (make-instance 'thread-pool :size 25))
 
-                                    
+  (setf *db*
+        (sqlite:connect
+         (make-pathname :name "tarballs"
+                        :type "sqlite"
+                        :defaults (cache-directory))
+         :busy-timeout 5))
+
+  (sqlite:execute-non-query *db* "pragma journal_mode=wal")
+
+  (sqlite:execute-non-query
+   *db*
+   "create table if not exists tarballs
+    (url unique not null,
+    path unique not null,
+    hash not null,
+    createtime default (julianday('now')))")
+
+
+  (dolist (tarball all-tarballs)
+    (let ((job (make-instance 'job
+                              :fn (lambda (x)
+                                    (fetch-tarball (first x)))
+                              :args (list tarball))))
+      (submit pool job)))
+    
+  (dexador:clear-connection-pool)
+  (shutdown pool)
+  (sqlite:disconnect *db*))
 
                          
 
