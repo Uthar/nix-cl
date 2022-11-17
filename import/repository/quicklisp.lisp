@@ -21,7 +21,8 @@
   (:local-nicknames
    (:json :com.inuoe.jzon)))
 
-(in-package org.lispbuilds.nix/repository/quicklisp)
+;; (in-package org.lispbuilds.nix/repository/quicklisp)
+(in-package cl-user)
 
 (defclass quicklisp-repository ()
   ((dist-url :initarg :dist-url
@@ -244,15 +245,16 @@
   (sqlite:connect
    (make-pathname :name "tarballs"
                   :type "sqlite"
-                  :defaults (cache-directory))))
+                  :defaults (cache-directory))
+   :busy-timeout 30))
 
 (defvar *db2*
   (sqlite:connect "/home/kpg/scratch/nix-cl/packages.sqlite"))
 
 (defparameter all-tarballs
-(sqlite:execute-to-list
- *db2*
- "select distinct url from sha256"))
+  (sqlite:execute-to-list
+   *db2*
+   "select distinct url from sha256"))
 
 
 (sqlite:execute-non-query
@@ -263,54 +265,68 @@
  *db*
  "drop table tarballs")
 
+(defvar *log-lock* (bt:make-lock))
+
+(defvar *db-lock* (bt:make-lock))
 
 (defun fetch-tarball (url)
-  (let* ((tarball (dex:get url
-                          :want-stream t
-                          :force-binary t
-                          :keep-alive t
-                          :use-connection-pool t))
-         (uri (quri:make-uri :defaults url))
-         (path (alexandria-2:line-up-last
-                (quri:uri-path uri)
-                (split-sequence:split-sequence #\/)
-                (alexandria:lastcar)))
-         (name (alexandria-2:line-up-last
-                (split-sequence:split-sequence #\. path)
-                butlast
-                (apply #'concatenate 'string)))
-         (type (alexandria:lastcar
-                (split-sequence:split-sequence #\. path)))
-         (pathname (make-pathname
-                    :name name
-                    :type type
-                    :defaults (tarball-cache-directory)))
-         (file (open pathname
-                     :direction :output
-                     :if-does-not-exist :create
-                     :if-exists :supersede
-                     :element-type '(unsigned-byte 8)))
-         (digest (ironclad:make-digest :sha384))
-         (buf (make-array 4096 :element-type '(unsigned-byte 8))))
-    (unwind-protect
-         (loop for read = (read-sequence buf tarball)
-               while (plusp read)
-               do (progn
-                    ;; (format t "read ~A bytes~%" read)
-                    (write-sequence buf file :end read)
-                    (ironclad:update-digest digest buf :end read))
-               finally (sqlite:execute-non-query
-                        *db*
-                        "insert into tarballs (url,path,hash) values (?,?,?)"                           url
-                        path
-                        (concatenate
-                              'string
-                              "sha384-"
-                              (cl-base64:usb8-array-to-base64-string
-                               (ironclad:produce-digest digest)))))
-      (close file)
-      ;; (format t "Closed file stream~%")
-      )))
+  (let ((exists
+          (bt:with-lock-held (*db-lock*)
+            (sqlite:execute-single *db* "select * from tarballs where url=?" url))))
+    ;; (when exists
+    ;;   (bt:with-lock-held (*log-lock*)
+    ;;     (format t "<~A>: CACHE ~A~%" (bt:thread-name (bt:current-thread)) url)))
+    (unless exists
+      (bt:with-lock-held (*log-lock*)
+        (format t "<~A>: FETCH ~A~%" (bt:thread-name (bt:current-thread)) url))
+      (let* ((tarball (dex:get url
+                               :want-stream t
+                               :force-binary t
+                               :keep-alive t
+                               :use-connection-pool t))
+             (uri (quri:make-uri :defaults url))
+             (path (alexandria-2:line-up-last
+                    (quri:uri-path uri)
+                    (split-sequence:split-sequence #\/)
+                    (alexandria:lastcar)))
+             (name (alexandria-2:line-up-last
+                    (split-sequence:split-sequence #\. path)
+                    butlast
+                    (apply #'concatenate 'string)))
+             (type (alexandria:lastcar
+                    (split-sequence:split-sequence #\. path)))
+             (pathname (make-pathname
+                        :name name
+                        :type type
+                        :defaults (tarball-cache-directory)))
+             (file (open pathname
+                         :direction :output
+                         :if-does-not-exist :create
+                         :if-exists :supersede
+                         :element-type '(unsigned-byte 8)))
+             (digest (ironclad:make-digest :sha384))
+             (buf (make-array 4096 :element-type '(unsigned-byte 8))))
+        (unwind-protect
+             (loop for read = (read-sequence buf tarball)
+                   while (plusp read)
+                   do (progn
+                        (write-sequence buf file :end read)
+                        (ironclad:update-digest digest buf :end read))
+                   finally (prog1 path
+                             (bt:with-lock-held (*db-lock*)
+                               (sqlite:execute-non-query
+                                *db*
+                                "insert into tarballs (url,path,hash) values (?,?,?)"
+                                url
+                                path
+                                (concatenate
+                                 'string
+                                 "sha384-"
+                                 (cl-base64:usb8-array-to-base64-string
+                                  (ironclad:produce-digest digest)))))))
+          (close file)
+          ;; (format t "Closed file stream~%")
+          )))))
 
     
 
