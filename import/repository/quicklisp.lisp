@@ -5,7 +5,6 @@
   (:import-from :alexandria-2 :line-up-first :line-up-last)
   (:import-from :arrow-macros :->>)
   (:import-from :str)
-  (:import-from :pool)
   (:import-from
    :org.lispbuilds.nix/database/sqlite
    :sqlite-database
@@ -57,7 +56,7 @@
                        (ppcre:scan-to-strings "\"\(.*\)\"" line)
                      (declare (ignore whole))
                      (svref groups 0))))))
-        (pool (make-instance 'pool:thread-pool :size 10)))
+        )
     (assert (evenp (length lines)))
     (sqlite:with-open-database (db (database-url database))
       (init-db db (init-file database))
@@ -224,6 +223,101 @@
 
 (defparameter +quotes+ (make-string 1 :initial-element #\"))
 
+
+(defun cache-directory ()
+  (let ((pathname (merge-pathnames
+                   (make-pathname :directory
+                                  '(:relative "nix-cl"))
+                   (uiop:xdg-cache-home))))
+    (ensure-directories-exist pathname)
+    pathname))
+
+(defun tarball-cache-directory ()
+  (let ((pathname (merge-pathnames
+                   (make-pathname :directory
+                                  '(:relative "tarballs"))
+                   (cache-directory))))
+    (ensure-directories-exist pathname)
+    pathname))
+
+(defvar *db*
+  (sqlite:connect
+   (make-pathname :name "tarballs"
+                  :type "sqlite"
+                  :defaults (cache-directory))))
+
+(defvar *db2*
+  (sqlite:connect "/home/kpg/scratch/nix-cl/packages.sqlite"))
+
+(defparameter all-tarballs
+(sqlite:execute-to-list
+ *db2*
+ "select distinct url from sha256"))
+
+
+(sqlite:execute-non-query
+ *db*
+ "create table if not exists tarballs (url unique not null, path unique not null, hash not null, createtime default (julianday('now')))")
+
+(sqlite:execute-non-query
+ *db*
+ "drop table tarballs")
+
+
+(defun fetch-tarball (url)
+  (let* ((tarball (dex:get url
+                          :want-stream t
+                          :force-binary t
+                          :keep-alive t
+                          :use-connection-pool t))
+         (uri (quri:make-uri :defaults url))
+         (path (alexandria-2:line-up-last
+                (quri:uri-path uri)
+                (split-sequence:split-sequence #\/)
+                (alexandria:lastcar)))
+         (name (alexandria-2:line-up-last
+                (split-sequence:split-sequence #\. path)
+                butlast
+                (apply #'concatenate 'string)))
+         (type (alexandria:lastcar
+                (split-sequence:split-sequence #\. path)))
+         (pathname (make-pathname
+                    :name name
+                    :type type
+                    :defaults (tarball-cache-directory)))
+         (file (open pathname
+                     :direction :output
+                     :if-does-not-exist :create
+                     :if-exists :supersede
+                     :element-type '(unsigned-byte 8)))
+         (digest (ironclad:make-digest :sha384))
+         (buf (make-array 4096 :element-type '(unsigned-byte 8))))
+    (unwind-protect
+         (loop for read = (read-sequence buf tarball)
+               while (plusp read)
+               do (progn
+                    ;; (format t "read ~A bytes~%" read)
+                    (write-sequence buf file :end read)
+                    (ironclad:update-digest digest buf :end read))
+               finally (sqlite:execute-non-query
+                        *db*
+                        "insert into tarballs (url,path,hash) values (?,?,?)"                           url
+                        path
+                        (concatenate
+                              'string
+                              "sha384-"
+                              (cl-base64:usb8-array-to-base64-string
+                               (ironclad:produce-digest digest)))))
+      (close file)
+      ;; (format t "Closed file stream~%")
+      )))
+
+    
+
+                                    
+
+                         
+
 (defun fetchzip (url hash)
   (status "fetching ~A" url)
   (shell-command-to-string
@@ -245,4 +339,4 @@
      (concatenate 'string +quotes+ url +quotes+)
      (concatenate 'string +quotes+ hash +quotes+))))
 
-(fetchzip "http://beta.quicklisp.org/archive/zpng/2015-04-07/zpng-1.2.2.tgz" "0b3ag3jhl3z7kdls3ahdsdxsfhhw5qrizk769984f4wkxhb69rcm")
+;; (fetchzip "http://beta.quicklisp.org/archive/zpng/2015-04-07/zpng-1.2.2.tgz" "0b3ag3jhl3z7kdls3ahdsdxsfhhw5qrizk769984f4wkxhb69rcm")
