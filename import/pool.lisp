@@ -85,16 +85,19 @@
     (setf (svref (slot-value pool 'threads) n) (make-worker pool))))
 
 (defmethod shutdown ((pool thread-pool))
-  (sb-ext:atomic-update (slot-value pool 'shutdownp) (constantly t))
-  (loop for thread across (slot-value pool 'threads)
-        do (sb-concurrency:send-message
-            (slot-value pool 'queue)
-            (make-instance 'job
-            :fn (lambda ()
-                  (format t "Killing thread ~A~%" sb-thread:*current-thread*)
-                  (sb-thread:return-from-thread (values))))))
-  (loop for thread across (slot-value pool 'threads)
-        do (sb-thread:join-thread thread)))
+  (unless (slot-value pool 'shutdownp)
+    (sb-ext:atomic-update (slot-value pool 'shutdownp) (constantly t))
+    (loop for thread across (slot-value pool 'threads)
+          do (sb-concurrency:send-message
+              (slot-value pool 'queue)
+              (make-instance
+               'job
+               :fn (lambda ()
+                     (format t "Killing thread ~A~%"
+                             sb-thread:*current-thread*)
+                     (sb-thread:return-from-thread (values))))))
+    (loop for thread across (slot-value pool 'threads)
+          do (sb-thread:join-thread thread))))
 
 (defmethod submit ((pool thread-pool) (job job))
   (when (slot-value pool 'shutdownp)
