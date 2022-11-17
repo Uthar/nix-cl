@@ -119,7 +119,7 @@
                                                                'vector))))))
 
       (let ((systems
-                (sql-query
+              (sql-query
                  "with pkg as (
                     select
                       name, asd, url, deps,
@@ -134,7 +134,10 @@
                      )
                      from json_each(deps)) as deps
                   from pkg"
-                 )))
+                 ))
+            (tarball-urls (map 'list #'fourth systems)))
+
+        (fetch-tarballs tarball-urls)
 
           ;; First pass: insert system and source tarball informaton.
           ;; Can't insert dependency information, because this works
@@ -241,29 +244,7 @@
     (ensure-directories-exist pathname)
     pathname))
 
-(defvar *db*
-  (sqlite:connect
-   (make-pathname :name "tarballs"
-                  :type "sqlite"
-                  :defaults (cache-directory))
-   :busy-timeout 5))
-
-(defvar *db2*
-  (sqlite:connect "/home/kpg/scratch/nix-cl/packages.sqlite"))
-
-(defparameter all-tarballs
-  (sqlite:execute-to-list
-   *db2*
-   "select distinct url from sha256"))
-
-
-(sqlite:execute-non-query
- *db*
- "create table if not exists tarballs (url unique not null, path unique not null, hash not null, createtime default (julianday('now')))")
-
-(sqlite:execute-non-query
- *db*
- "drop table tarballs")
+(defvar *db* nil)
 
 (defvar *log-lock* (bt:make-lock))
 
@@ -301,7 +282,7 @@
              (path (let ((path (quri:uri-path uri)))
                      (subseq path (position #\/ path :from-end t))))
              (name (subseq path 0 (position #\. path :from-end t)))
-             (type (subseq path (position #\. path :from-end t)))
+             (type (subseq path (1+ (position #\. path :from-end t))))
              (pathname (make-pathname
                         :name name
                         :type type
@@ -336,10 +317,12 @@
           ;; (format t "Closed file stream~%")
           )))))
 
-(defun test ()
+(defvar *pool* nil)
+
+(defun fetch-tarballs (urls)
   (setf dexador.connection-cache:*max-active-connections* 25)
   (dexador.connection-cache::make-new-connection-pool)
-  (defparameter pool (make-instance 'thread-pool :size 25))
+  (setf *pool* (make-instance 'thread-pool :size 25))
 
   (setf *db*
         (sqlite:connect
@@ -358,13 +341,12 @@
     hash not null,
     createtime default (julianday('now')))")
 
-
-  (dolist (tarball all-tarballs)
+  (dolist (url urls)
     (let ((job (make-instance 'job
                               :fn (lambda (x)
-                                    (fetch-tarball (first x)))
-                              :args (list tarball))))
-      (submit pool job)))
+                                    (fetch-tarball x))
+                              :args (list url))))
+      (submit *pool* job)))
     
   (dexador:clear-connection-pool)
   (shutdown pool)
