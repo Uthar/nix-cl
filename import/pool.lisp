@@ -8,8 +8,7 @@
    :submit
    :invoke-all))
 
-;; (in-package org.lispbuilds.nix/pool)
-(in-package cl-user)
+(in-package org.lispbuilds.nix/pool)
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (require 'sb-concurrency))

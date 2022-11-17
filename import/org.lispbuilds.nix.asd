@@ -26,3 +26,7 @@
 (register-system-packages
  "alexandria"
  '(:alexandria :alexandria-2))
+
+(register-system-packages
+ "tar/simple-extract"
+ '(:tar-simple-extract))

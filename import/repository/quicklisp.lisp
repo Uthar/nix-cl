@@ -5,6 +5,14 @@
   (:import-from :alexandria-2 :line-up-first :line-up-last)
   (:import-from :arrow-macros :->>)
   (:import-from :str)
+  (:import-from :tar)
+  (:import-from :tar-simple-extract)
+  (:import-from :ironclad)
+  (:import-from
+   :org.lispbuilds.nix/pool
+   :thread-pool
+   :submit
+   :shutdown)
   (:import-from
    :org.lispbuilds.nix/database/sqlite
    :sqlite-database
@@ -21,8 +29,7 @@
   (:local-nicknames
    (:json :com.inuoe.jzon)))
 
-;; (in-package org.lispbuilds.nix/repository/quicklisp)
-(in-package cl-user)
+(in-package org.lispbuilds.nix/repository/quicklisp)
 
 (defclass quicklisp-repository ()
   ((dist-url :initarg :dist-url
@@ -118,7 +125,7 @@
                                                                asds
                                                                'vector))))))
 
-      (let ((systems
+      (let* ((systems
               (sql-query
                  "with pkg as (
                     select
@@ -149,7 +156,7 @@
               (declare (ignore deps))
               (status "importing system '~a-~a'" name version)
               (multiple-value-bind (hash path)
-                  (nix-prefetch-tarball url db)
+                  (fetch-tarball url)
                 (sql-query
                  "insert or ignore into system(name,version,asd) values (?,?,?)"
                  name version asd)
@@ -161,7 +168,7 @@
                   ((select id from sha256 where url=?),
                    (select id from system where name=? and version=?))"
                  url name version)
-                (let ((meta (system-metadata name asd path)))
+                (let ((meta (system-metadata url asd name)))
                   (apply #'sql-query "insert into meta values (?,?,?,?,?)" name meta)))))
 
           ;; Second pass: connect the in-database systems with
@@ -208,19 +215,27 @@
             (shell-command-to-string (str:concat "nix-prefetch-url --unpack --print-path " url))))
     (values sha256 path)))
 
-(defun system-metadata (system asd src)
+(defun system-metadata (url asd system)
   (handler-case
-      (progn
+      (let ((tmpdir (uiop:temporary-directory)))
+        (multiple-value-bind (hash path)
+            (fetch-tarball url)
+          (declare (ignore hash))
+          (tar:with-open-archive (a path)
+            (tar-simple-extract:simple-extract-archive
+             a
+             :directory tmpdir))
         ;; TODO(kasper): find asds in deeper directories
-        (asdf:load-asd (make-pathname :directory src :name asd :type "asd"))
+        (asdf:load-asd (make-pathname :directory tmpdir :name asd :type "asd"))
         (let* ((system (asdf:find-system system))
                (description (asdf:system-description system))
                (long-description (asdf:system-long-description system))
                (homepage (asdf:system-homepage system))
                (license (or (asdf:system-licence system)
                             (asdf:system-license system))))
+          (uiop:delete-directory-tree tmpdir)
           (map 'list #'write-to-string
-               (list description long-description homepage license))))
+               (list description long-description homepage license)))))
     (error (e)
       (declare (ignore e))
       (list nil nil nil nil))))
@@ -301,18 +316,17 @@
                    do (progn
                         (write-sequence buf file :end read)
                         (ironclad:update-digest digest buf :end read))
-                   finally (prog1 path
-                             (bt:with-lock-held (*db-lock*)
-                               (sqlite:execute-non-query
-                                *db*
-                                "insert into tarballs (url,path,hash) values (?,?,?)"
-                                url
-                                path
-                                (concatenate
-                                 'string
-                                 "sha256-"
-                                 (cl-base64:usb8-array-to-base64-string
-                                  (ironclad:produce-digest digest)))))))
+                   finally (let ((hash (concatenate
+                                        'string
+                                        (cl-base64:usb8-array-to-base64-string
+                                         (ironclad:produce-digest digest)))))
+                             (prog1
+                                 (values hash pathname)
+                               (bt:with-lock-held (*db-lock*)
+                                 (sqlite:execute-non-query
+                                  *db*
+                                  "insert into tarballs (url,path,hash) values (?,?,?)"
+                                  url path hash)))))
           (close file)
           ;; (format t "Closed file stream~%")
           )))))
@@ -349,7 +363,7 @@
       (submit *pool* job)))
     
   (dexador:clear-connection-pool)
-  (shutdown pool)
+  (shutdown *pool*)
   (sqlite:disconnect *db*))
 
                          
