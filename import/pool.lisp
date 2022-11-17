@@ -8,7 +8,8 @@
    :submit
    :invoke-all))
 
-(in-package org.lispbuilds.nix/pool)
+;; (in-package org.lispbuilds.nix/pool)
+(in-package cl-user)
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (require 'sb-concurrency))
@@ -45,18 +46,28 @@
   (apply (slot-value job 'fn) (slot-value job 'args)))
 
 (defun make-worker (pool)
-  (sb-thread:make-thread
-   (lambda ()
-     (loop (handler-case
-               (run-job (sb-concurrency:receive-message
-                         (slot-value pool 'queue)))
-             (error (e)
-               (warn "In pool worker: ~A" e)))))
-   :name (format nil "Pool worker ~A"
-                 (sb-ext:atomic-incf (car (slot-value pool 'worker-count))))))
+  (let ((queue (slot-value pool 'queue)))
+    (sb-thread:make-thread
+     (lambda ()
+       (loop
+         (handler-case
+             (progn
+               ;; (format t "Started working ~A~%" (bt:thread-name (bt:current-thread)))
+               (run-job (sb-concurrency:receive-message queue))
+               )
+           (error (e)
+             (warn "In pool worker: ~A~%" e)))))
+     :name 
+     (let ((name (format
+                  nil
+                  "Pool worker ~A"
+                  (sb-ext:atomic-incf
+                      (car (slot-value pool 'worker-count))))))
+       (format t "Creating thread ~A listening from ~A~%" name queue)
+       name))))
 
 (declaim (type fixnum pool-count))
-(defglobal pool-count 0)
+(sb-ext:defglobal pool-count 0)
 
 (defclass thread-pool ()
   ((threads :initform (vector))
@@ -78,9 +89,10 @@
   (loop for thread across (slot-value pool 'threads)
         do (sb-concurrency:send-message
             (slot-value pool 'queue)
-            (lambda ()
-              (format t "Killing thread ~A~%" sb-thread:*current-thread*)
-              (sb-thread:return-from-thread (values)))))
+            (make-instance 'job
+            :fn (lambda ()
+                  (format t "Killing thread ~A~%" sb-thread:*current-thread*)
+                  (sb-thread:return-from-thread (values))))))
   (loop for thread across (slot-value pool 'threads)
         do (sb-thread:join-thread thread)))
 
