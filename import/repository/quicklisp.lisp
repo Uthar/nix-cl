@@ -12,7 +12,8 @@
    :org.lispbuilds.nix/pool
    :thread-pool
    :submit
-   :shutdown)
+   :shutdown
+   :job)
   (:import-from
    :org.lispbuilds.nix/database/sqlite
    :sqlite-database
@@ -30,6 +31,8 @@
    (:json :com.inuoe.jzon)))
 
 (in-package org.lispbuilds.nix/repository/quicklisp)
+
+(declaim (optimize debug))
 
 (defclass quicklisp-repository ()
   ((dist-url :initarg :dist-url
@@ -72,10 +75,9 @@
            (url (first lines) (first lines))
            (hash (second lines) (second lines)))
           ((null lines))
-        (let ((path (fetchzip url hash)))
-          (sqlite:execute-non-query db
-            "insert or ignore into sha256(url,hash,path) values (?,?,?)"
-            url hash path)))
+        (sqlite:execute-non-query db
+            "insert or ignore into sha256(url,hash) values (?,?)"
+            url hash))
       (status "OK, imported ~A hashes into DB.~%"
         (sqlite:execute-single db
         "select count(*) from sha256")))))
@@ -151,31 +153,32 @@
           ;; on system ids in the database and they don't exist
           ;; yet. Could it be better to just base dependencies on
           ;; names? But then ACID is lost.
-          (dolist (system systems)
-            (destructuring-bind (name version asd url deps) system
-              (declare (ignore deps))
-              (status "importing system '~a-~a'" name version)
-              (multiple-value-bind (hash path)
-                  (fetch-tarball url)
-                (sql-query
-                 "insert or ignore into system(name,version,asd) values (?,?,?)"
-                 name version asd)
-                (sql-query
-                 "insert or ignore into sha256(url,hash,path) values (?,?,?)"
-                 url hash path)
-                (sql-query
-                 "insert or ignore into src values
-                  ((select id from sha256 where url=?),
-                   (select id from system where name=? and version=?))"
-                 url name version)
-                (let ((meta (system-metadata url asd name)))
-                  (apply #'sql-query "insert into meta values (?,?,?,?,?)" name meta)))))
+        (dolist (system systems)
+          (destructuring-bind (name version asd url deps) system
+            (declare (ignore deps))
+            (status "importing system '~a-~a'" name version)
+            (multiple-value-bind (hash path)
+                (fetch-tarball url)
+              (sql-query
+               "insert or ignore into system(name,version,asd) values (?,?,?)"
+               name version asd)
+              (sql-query
+               "insert or ignore into sha256(url,hash) values (?,?)"
+               url hash)
+              (sql-query
+               "insert or ignore into src values
+                ((select id from sha256 where url=?),
+                 (select id from system where name=? and version=?))"
+               url name version)
+              (let ((meta (system-metadata url asd name)))
+                (apply #'sql-query "insert into meta values (?,?,?,?,?)" name meta)))))
 
           ;; Second pass: connect the in-database systems with
           ;; dependency information
           (dolist (system systems)
             (destructuring-bind (name version asd url deps) system
               (declare (ignore asd url))
+              (status "setting dependencies of '~a-~a'" name version)
               (dolist (dep (coerce (json:parse deps) 'list))
                 (destructuring-bind (dep-name dep-version) (coerce dep 'list)
                   (if (eql dep-version 'NULL)
@@ -221,23 +224,27 @@
         (multiple-value-bind (hash path)
             (fetch-tarball url)
           (declare (ignore hash))
+          (ignore-errors (sb-ext:delete-directory tmpdir :recursive t))
+          (ensure-directories-exist tmpdir)
           (tar:with-open-archive (a path)
             (tar-simple-extract:simple-extract-archive
              a
-             :directory tmpdir))
+             :directory tmpdir
+             :strip-components 1
+             :if-exists :supersede))
         ;; TODO(kasper): find asds in deeper directories
-        (asdf:load-asd (make-pathname :directory tmpdir :name asd :type "asd"))
+        (asdf:load-asd (make-pathname :defaults tmpdir :name asd :type "asd"))
         (let* ((system (asdf:find-system system))
                (description (asdf:system-description system))
                (long-description (asdf:system-long-description system))
                (homepage (asdf:system-homepage system))
                (license (or (asdf:system-licence system)
                             (asdf:system-license system))))
-          (uiop:delete-directory-tree tmpdir)
+          (sb-ext:delete-directory tmpdir :recursive t)
           (map 'list #'write-to-string
                (list description long-description homepage license)))))
     (error (e)
-      (declare (ignore e))
+      (format *error-output* "~%Error while getting metadata: ~A~%" (substitute #\Space #\Newline (format nil "~A" e)))
       (list nil nil nil nil))))
 
 (defparameter +quotes+ (make-string 1 :initial-element #\"))
@@ -286,16 +293,23 @@
           (bt:with-lock-held (*db-lock*)
             ;; TODO use journal_mode=wal
             (sqlite:execute-single *db* "select * from tarballs where url=?" url))))
-    ;; (when exists
-    ;;   (bt:with-lock-held (*log-lock*)
-    ;;     (format t "<~A>: CACHE ~A~%" (bt:thread-name (bt:current-thread)) url)))
-    (unless exists
+    (when exists
       (bt:with-lock-held (*log-lock*)
-        (format t "<~A>: FETCH ~A~%" (bt:thread-name (bt:current-thread)) url))
+        (status "<~A>: CACHE ~A" (bt:thread-name (bt:current-thread)) url)))
+    (if exists
+        (destructuring-bind (hash name)
+            (first (sqlite:execute-to-list *db* "select hash, path from tarballs where url=?" url))
+          (values hash (make-pathname
+                        :name (pathname-name name)
+                        :type (pathname-type name)
+                        :defaults (tarball-cache-directory))))
+        (progn
+      (bt:with-lock-held (*log-lock*)
+        (status "<~A>: FETCH ~A" (bt:thread-name (bt:current-thread)) url))
       (let* ((tarball (http-get url))
              (uri (quri:make-uri :defaults url))
              (path (let ((path (quri:uri-path uri)))
-                     (subseq path (position #\/ path :from-end t))))
+                     (subseq path (1+ (position #\/ path :from-end t)))))
              (name (subseq path 0 (position #\. path :from-end t)))
              (type (subseq path (1+ (position #\. path :from-end t))))
              (pathname (make-pathname
@@ -310,13 +324,14 @@
              (digest (ironclad:make-digest :sha256))
              (buf (make-array 4096 :element-type '(unsigned-byte 8))))
         (declare (dynamic-extent buf))
+        ;; (format t "~A ~A ~A ~A~%" name type pathname path)
         (unwind-protect
              (loop for read = (read-sequence buf tarball)
                    while (plusp read)
                    do (progn
                         (write-sequence buf file :end read)
                         (ironclad:update-digest digest buf :end read))
-                   finally (let ((hash (concatenate
+                   finally (return (let ((hash (concatenate
                                         'string
                                         (cl-base64:usb8-array-to-base64-string
                                          (ironclad:produce-digest digest)))))
@@ -326,10 +341,10 @@
                                  (sqlite:execute-non-query
                                   *db*
                                   "insert into tarballs (url,path,hash) values (?,?,?)"
-                                  url path hash)))))
+                                  url path hash))))))
           (close file)
           ;; (format t "Closed file stream~%")
-          )))))
+          ))))))
 
 (defvar *pool* nil)
 
@@ -355,7 +370,7 @@
     hash not null,
     createtime default (julianday('now')))")
 
-  (dolist (url urls)
+  (dolist (url (remove-duplicates urls :test #'string=))
     (let ((job (make-instance 'job
                               :fn (lambda (x)
                                     (fetch-tarball x))
@@ -364,7 +379,8 @@
     
   (dexador:clear-connection-pool)
   (shutdown *pool*)
-  (sqlite:disconnect *db*))
+  ;; (sqlite:disconnect *db*)
+  )
 
                          
 

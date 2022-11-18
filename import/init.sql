@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS sha256 (
        id        integer PRIMARY KEY AUTOINCREMENT,
        url       text    UNIQUE,
-       path      text    NOT NULL,
        hash      text    NOT NULL,
        created   real    DEFAULT (julianday('now'))
 );
