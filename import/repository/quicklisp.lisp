@@ -76,11 +76,11 @@
            (hash (second lines) (second lines)))
           ((null lines))
         (sqlite:execute-non-query db
-            "insert or ignore into sha256(url,hash) values (?,?)"
-            url hash))
+                                  "insert or ignore into sha256(url,hash) values (?,?)"
+                                  url hash))
       (status "OK, imported ~A hashes into DB.~%"
-        (sqlite:execute-single db
-        "select count(*) from sha256")))))
+              (sqlite:execute-single db
+                                     "select count(*) from sha256")))))
 
 (defmethod import-lisp-packages ((repository quicklisp-repository)
                                  (database sqlite-database))
@@ -128,8 +128,8 @@
                                                                'vector))))))
 
       (let* ((systems
-              (sql-query
-                 "with pkg as (
+               (sql-query
+                "with pkg as (
                     select
                       name, asd, url, deps,
                       ltrim(replace(prefix, r.project, ''), '-_') as version
@@ -143,16 +143,16 @@
                      )
                      from json_each(deps)) as deps
                   from pkg"
-                 ))
-            (tarball-urls (map 'list #'fourth systems)))
+                ))
+             (tarball-urls (map 'list #'fourth systems)))
 
         (fetch-tarballs tarball-urls)
 
-          ;; First pass: insert system and source tarball informaton.
-          ;; Can't insert dependency information, because this works
-          ;; on system ids in the database and they don't exist
-          ;; yet. Could it be better to just base dependencies on
-          ;; names? But then ACID is lost.
+        ;; First pass: insert system and source tarball informaton.
+        ;; Can't insert dependency information, because this works
+        ;; on system ids in the database and they don't exist
+        ;; yet. Could it be better to just base dependencies on
+        ;; names? But then ACID is lost.
         (dolist (system systems)
           (destructuring-bind (name version asd url deps) system
             (declare (ignore deps))
@@ -173,22 +173,22 @@
               (let ((meta (system-metadata url asd name)))
                 (apply #'sql-query "insert into meta values (?,?,?,?,?)" name meta)))))
 
-          ;; Second pass: connect the in-database systems with
-          ;; dependency information
-          (dolist (system systems)
-            (destructuring-bind (name version asd url deps) system
-              (declare (ignore asd url))
-              (status "setting dependencies of '~a-~a'" name version)
-              (dolist (dep (coerce (json:parse deps) 'list))
-                (destructuring-bind (dep-name dep-version) (coerce dep 'list)
-                  (if (eql dep-version 'NULL)
+        ;; Second pass: connect the in-database systems with
+        ;; dependency information
+        (dolist (system systems)
+          (destructuring-bind (name version asd url deps) system
+            (declare (ignore asd url))
+            (status "setting dependencies of '~a-~a'" name version)
+            (dolist (dep (coerce (json:parse deps) 'list))
+              (destructuring-bind (dep-name dep-version) (coerce dep 'list)
+                (if (eql dep-version 'NULL)
                     (warn "Bad data in Quicklisp: ~a has no version" dep-name)
-                  (sql-query
-                    "insert or ignore into dep values
+                    (sql-query
+                     "insert or ignore into dep values
                      ((select id from system where name=? and version=?),
                       (select id from system where name=? and version=?))"
-                    name version
-                    dep-name dep-version)))))))))
+                     name version
+                     dep-name dep-version)))))))))
 
   (write-char #\Newline *error-output*))
 
@@ -215,8 +215,46 @@
   (destructuring-bind (sha256 path)
       (or (first (sqlite:execute-to-list db "select hash, path from sha256 where url=?" url))
           (str:split #\Newline
-            (shell-command-to-string (str:concat "nix-prefetch-url --unpack --print-path " url))))
+                     (shell-command-to-string (str:concat "nix-prefetch-url --unpack --print-path " url))))
     (values sha256 path)))
+
+(defun find-file (dir name type)
+  (let ((file nil))
+    (uiop:collect-sub*directories
+     dir 
+     (lambda (_) (null file))
+     (lambda (_) (null file))
+     (lambda (path)
+       (let ((files (directory (make-pathname
+                                :defaults path
+                                :name :wild
+                                :type :wild))))
+         (setf file
+               (find-if
+                (lambda (path)
+                  (and (string= (pathname-name path) name)
+                       (string= (pathname-type path) type)))
+                files)))))
+    file))
+
+(defun find-files (dir name type)
+  (let ((all-files (list nil)))
+    (uiop:collect-sub*directories
+     dir 
+     (constantly t)
+     (constantly t)
+     (lambda (path)
+       (let ((files (directory (make-pathname
+                                :defaults path
+                                :name :wild
+                                :type :wild))))
+         (nconc all-files
+                (remove-if-not
+                 (lambda (path)
+                   (and (string= (pathname-name path) name)
+                        (string= (pathname-type path) type)))
+                 files)))))
+    (rest all-files)))
 
 (defun system-metadata (url asd system)
   (handler-case
@@ -232,8 +270,7 @@
              :directory tmpdir
              :strip-components 1
              :if-exists :supersede))
-        ;; TODO(kasper): find asds in deeper directories
-        (asdf:load-asd (make-pathname :defaults tmpdir :name asd :type "asd"))
+        (asdf:load-asd (find-file tmpdir asd "asd"))
         (let* ((system (asdf:find-system system))
                (description (asdf:system-description system))
                (long-description (asdf:system-long-description system))
@@ -245,7 +282,10 @@
                (list description long-description homepage license)))))
     (error (e)
       (format *error-output* "~%Error while getting metadata: ~A~%" (substitute #\Space #\Newline (format nil "~A" e)))
-      (list nil nil nil nil))))
+      (list nil nil nil nil))
+    (warning (w)
+      (declare (ignore w))
+      (values))))
 
 (defparameter +quotes+ (make-string 1 :initial-element #\"))
 
