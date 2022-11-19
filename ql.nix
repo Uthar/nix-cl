@@ -180,6 +180,9 @@ let
       nativeBuildInputs = [ pkgs.zeromq ];
       nativeLibs = [ pkgs.zeromq ];
     });
+    cl-git = super.cl-git.overrideLispAttrs (o: {
+      nativeLibs = [ pkgs.libgit2 ];
+    });
   });
 
   qlpkgs =
