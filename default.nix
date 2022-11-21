@@ -9,15 +9,15 @@ let
     , flags ? ""
     , loadFlags ? "--load"
     , evalFlags ? "--eval"
-    , asdf ? asdf_3_3_5_11
+    , asdf ? asdf_3_3_6
   }: { inherit pkg faslExt program flags loadFlags evalFlags asdf; };
 
-  asdf_3_3_5_11 = pkgs.stdenv.mkDerivation rec {
+  asdf_3_3_6 = pkgs.stdenv.mkDerivation rec {
     pname = "asdf";
-    version = "3.3.5.11";
+    version = "3.3.6";
     src = pkgs.fetchzip {
       url = "https://gitlab.common-lisp.net/asdf/asdf/-/archive/${version}/asdf-${version}.tar.gz";
-      hash = "sha256-SGzuSP2A168JafG4GYiTOCVLA1anhOB9uZThO8Speik";
+      hash = "sha256-GCmGUMLniPakjyL/D/aEI93Y6bBxjdR+zxXdSgc9NWo=";
     };
     installPhase = ''
       cp build/asdf.lisp $out
