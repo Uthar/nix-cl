@@ -39,6 +39,7 @@ cl-async-base
 cl-async-repl
 cl-async-ssl
 cl-async-util
+cl-avro
 cl-base64
 cl-cairo2
 cl-cairo2
