@@ -386,6 +386,32 @@ let
       pkgs.webkitgtk_5_0
     ];
   };
+
+  cl-avro = build-asdf-system {
+    pname = "cl-avro";
+    version = "trunk";
+    src = pkgs.fetchFromGitHub {
+      owner = "SahilKang";
+      repo = "cl-avro";
+      rev = "7d624253e98afb987a01729bd72c99bae02f0d7d";
+      hash = "sha256-AlTn+Q1gKnAFEfcnz9+VeHz681pPIirg2za3VXYiNWk=";
+    };
+    lispLibs = with super; [
+      alexandria
+      babel
+      chipz
+      closer-mop
+      ieee-floats
+      flexi-streams
+      local-time
+      local-time-duration
+      md5
+      salza2
+      st-json
+      time-interval
+      trivial-extensible-sequences
+    ];
+  };
   
   });
 
