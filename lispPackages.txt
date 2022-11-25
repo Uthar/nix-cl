@@ -117,6 +117,9 @@ cl-qrencode
 cl-readline
 cl-reexport
 cl-rsvg2
+cl-sat
+cl-sat_dot_glucose
+cl-sat_dot_minisat
 cl-shellwords
 cl-slice
 cl-smt-lib
@@ -367,6 +370,7 @@ trivial-macroexpand-all
 trivial-main-thread
 trivial-mimes
 trivial-package-local-nicknames
+trivial-package-manager
 trivial-shell
 trivial-types
 trivial-utf-8

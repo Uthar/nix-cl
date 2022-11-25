@@ -183,6 +183,16 @@ let
     cl-git = super.cl-git.overrideLispAttrs (o: {
       nativeLibs = [ pkgs.libgit2 ];
     });
+    trivial-package-manager = super.trivial-package-manager.overrideLispAttrs (o: {
+      propagatedBuildInputs = [ pkgs.which ];
+    });
+    cl-sat_dot_glucose = super.cl-sat_dot_glucose.overrideLispAttrs (o: {
+      propagatedBuildInputs = [ pkgs.glucose ];
+      patches = [ ./patches/cl-sat-binary-from-path.patch ];
+    });
+    cl-sat_dot_minisat = super.cl-sat_dot_minisat.overrideLispAttrs (o: {
+      propagatedBuildInputs = [ pkgs.minisat ];
+    });
   });
 
   qlpkgs =
