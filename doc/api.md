@@ -123,6 +123,16 @@ A function of one argument that takes an attribute set and returns a list;
 
 A lisp derivation that knows how to load some packages with `asdf:load-system`.
 
+### Loading ASDF itself
+
+Path to ASDF itself is put in the `ASDF` environment variable. Thus, to load the
+ASDF version provided by the library:
+
+```
+;; SBCL Example
+(load (sb-ext:posix-getenv "ASDF"))
+```
+
 ## Overriding one package: `overrideLispAttrs`
 
 ### Example
