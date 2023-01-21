@@ -290,7 +290,8 @@ let
         makeWrapper \
           ${o.pkg}/bin/${o.program} \
           $out/bin/${o.program} \
-          --add-flags "${o.flags} ${o.loadFlags} ${o.asdfFasl}/asdf.${o.faslExt}" \
+          --add-flags "${o.flags}" \
+          --set ASDF "${o.asdfFasl}/asdf.${o.faslExt}" \
           --prefix CL_SOURCE_REGISTRY : "$CL_SOURCE_REGISTRY" \
           --prefix ASDF_OUTPUT_TRANSLATIONS : "$(echo $CL_SOURCE_REGISTRY | sed s,//:,::,g):" \
           --prefix LD_LIBRARY_PATH : "$LD_LIBRARY_PATH" \
