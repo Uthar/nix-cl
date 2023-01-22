@@ -80,17 +80,13 @@ let
       }
       else ff;
 
-  # TODO(kasper) replace evalFlags with file on stdin
   buildAsdf = { asdf, pkg, program, flags, evalFlags, faslExt }:
     stdenv.mkDerivation {
       inherit (asdf) pname version;
       dontUnpack = true;
       buildPhase = ''
         cp -v ${asdf} asdf.lisp
-        ${pkg}/bin/${program} \
-          ${flags} \
-          ${evalFlags} '(compile-file "asdf.lisp")' \
-          ${evalFlags} '(quit)'
+        ${pkg}/bin/${program} ${flags} < <(echo '(compile-file "asdf.lisp")')
       '';
       installPhase = ''
         mkdir -p $out
@@ -201,7 +197,7 @@ let
       buildPhase = optionalString (src != null) ''
         export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$src//                  
         export ASDF_OUTPUT_TRANSLATIONS="$src:$(pwd):${storeDir}:${storeDir}" 
-        ${pkg}/bin/${program} ${flags} ${loadFlags} $buildScript
+        ${pkg}/bin/${program} ${flags} < $buildScript
       '';
 
       # Copy compiled files to store
