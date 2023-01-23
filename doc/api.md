@@ -206,8 +206,6 @@ Spec can contain the following attributes:
 - asdf (required)
 - program
 - flags
-- loadFlags
-- evalFlags
     
 ### Return value
 

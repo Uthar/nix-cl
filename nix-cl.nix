@@ -80,7 +80,7 @@ let
       }
       else ff;
 
-  buildAsdf = { asdf, pkg, program, flags, evalFlags, faslExt }:
+  buildAsdf = { asdf, pkg, program, flags, faslExt }:
     stdenv.mkDerivation {
       inherit (asdf) pname version;
       dontUnpack = true;
@@ -124,12 +124,6 @@ let
       # General flags to the Lisp executable
       flags ? "",
 
-      # Flags used to load lisp source files and fasls
-      loadFlags ? "--load",
-
-      # Flags used to evaluate s-expressions
-      evalFlags ? "--eval",
-
       # Extension for implementation-dependent FASL files
       faslExt,
 
@@ -160,7 +154,7 @@ let
     stdenv.mkDerivation (rec {
       inherit
         pname version nativeLibs javaLibs lispLibs systems asds
-        pkg program flags loadFlags faslExt evalFlags
+        pkg program flags faslExt
       ;
 
       # When src is null, we are building a lispWithPackages and only
@@ -182,7 +176,7 @@ let
       # load-system. Strange.
 
       # TODO(kasper) portable quit
-      asdfFasl = buildAsdf { inherit asdf pkg program flags evalFlags faslExt; };
+      asdfFasl = buildAsdf { inherit asdf pkg program flags faslExt; };
 
       buildScript = substituteAll {
         src = ./builder.lisp;
@@ -272,7 +266,7 @@ let
   lispWithPackagesInternal = clpkgs: packages:
     let first = head (lib.attrValues clpkgs); in
     (build-asdf-system {
-      inherit (first) pkg program flags evalFlags loadFlags faslExt asdf;
+      inherit (first) pkg program flags faslExt asdf;
       # See dontUnpack in build-asdf-system
       src = null;
       pname = first.pkg.pname;
