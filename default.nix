@@ -7,10 +7,8 @@ let
     , faslExt
     , program ? pkg.pname
     , flags ? ""
-    , loadFlags ? "--load"
-    , evalFlags ? "--eval"
     , asdf ? asdf_3_3_6
-  }: { inherit pkg faslExt program flags loadFlags evalFlags asdf; };
+  }: { inherit pkg faslExt program flags asdf; };
 
   asdf_3_3_6 = pkgs.stdenv.mkDerivation rec {
     pname = "asdf";
@@ -47,8 +45,6 @@ let
   clispSpec = mkSpec {
     pkg = clisp;
     flags = "-E UTF-8";
-    loadFlags = "-i";
-    evalFlags = "-x";
     faslExt = "fas";
   };
 
