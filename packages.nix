@@ -255,6 +255,22 @@ let
     ];
   };
 
+  mcclim-clx-fb = build-with-compile-into-pwd {
+    inherit (super.mcclim-clx-fb) pname version src lispLibs nativeBuildInputs nativeLibs;
+  };
+
+  mcclim-clx = build-with-compile-into-pwd {
+    inherit (super.mcclim-clx) pname version src lispLibs nativeBuildInputs nativeLibs;
+  };
+
+  mcclim-bezier = build-with-compile-into-pwd {
+    inherit (super.mcclim-bezier) pname version src lispLibs nativeBuildInputs nativeLibs;
+  };
+
+  mcclim-render = build-with-compile-into-pwd {
+    inherit (super.mcclim-render) pname version src lispLibs nativeBuildInputs nativeLibs;
+  };
+
   mathkit = build-asdf-system {
     inherit (super.mathkit) pname version src asds ;
     lispLibs = super.mathkit.lispLibs ++ [ super.sb-cga ];
