@@ -266,7 +266,7 @@ let
     version = "2.2.4";
 
     lispLibs = super.nyxt.lispLibs ++ (with super; [
-      cl-cffi-gtk cl-webkit2 mk-string-metrics
+      cl-cffi-gtk cl-webkit2 mk-string-metrics cl-css
     ]);
 
     src = pkgs.fetchzip {
