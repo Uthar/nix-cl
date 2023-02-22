@@ -147,6 +147,10 @@ let
       # TODO(kasper): remove
       asds ? systems,
 
+      # Files wich have a .asd suffix but should be included in the build output
+      # anyway.
+      extraAsds ? [],
+
       # Other args to mkDerivation
       ...
     } @ args:
@@ -211,7 +215,7 @@ let
 
         # Remove all .asd files except for those in `systems`.
         find $out -name "*.asd" \
-        | grep -v "/\(${mkSystemsRegex systems}\)\.asd$" \
+        | grep -v "/\(${mkSystemsRegex (systems ++ extraAsds)}\)\.asd$" \
         | xargs rm -fv || true
       '';
 
