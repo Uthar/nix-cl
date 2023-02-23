@@ -496,7 +496,10 @@ let
       trivial-extensible-sequences
     ];
   };
-  
+
+  cl-project = super.cl-project.overrideLispAttrs (o: {
+    extraAsds = [ "skeleton/skeleton" ];
+  });
   });
 
 in packages
