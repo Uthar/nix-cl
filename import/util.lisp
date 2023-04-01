@@ -2,7 +2,8 @@
   (:use :cl)
   (:import-from :ppcre)
   (:export
-   :replace-regexes))
+   :replace-regexes
+   :comment))
 
 (in-package org.lispbuilds.nix/util)
 
@@ -14,3 +15,7 @@
        (rest from)
        (rest to)
        (ppcre:regex-replace-all (first from) str (first to)))))
+
+(defmacro comment (&body body)
+  (declare (ignore body))
+  nil)
