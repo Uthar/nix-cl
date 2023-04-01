@@ -2,6 +2,7 @@
   (:use :common-lisp
         :org.lispbuilds.nix/database/sqlite
         :org.lispbuilds.nix/repository/quicklisp
+        :org.lispbuilds.nix/repository/quicklisp-projects
         :org.lispbuilds.nix/api))
 
 (in-package org.lispbuilds.nix/main)
