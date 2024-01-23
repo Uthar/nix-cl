@@ -80,17 +80,16 @@ let
       }
       else ff;
 
-  buildAsdf = { asdf, pkg, program, flags, faslExt }:
+  buildAsdf = { asdf, pkg, program, flags }:
     stdenv.mkDerivation {
-      inherit (asdf) pname version;
+      inherit (asdf) pname;
+      version = "${asdf.version}-${pkg.pname}";
       dontUnpack = true;
+      dontInstall = true;
       buildPhase = ''
-        cp -v ${asdf} asdf.lisp
-        ${pkg}/bin/${program} ${flags} < <(echo '(compile-file "asdf.lisp")')
-      '';
-      installPhase = ''
-        mkdir -p $out
-        cp -v asdf.${faslExt} $out
+        ${pkg}/bin/${program} \
+          ${flags} < \
+          <(echo "(compile-file \"${asdf}\" :output-file \"$out\")")
       '';
     };
 
@@ -124,9 +123,6 @@ let
       # General flags to the Lisp executable
       flags ? "",
 
-      # Extension for implementation-dependent FASL files
-      faslExt,
-
       # ASDF amalgamation file to use
       # Created in build/asdf.lisp by `make` in ASDF source tree
       asdf,
@@ -158,7 +154,7 @@ let
     stdenv.mkDerivation (rec {
       inherit
         pname version nativeLibs javaLibs lispLibs systems asds
-        pkg program flags faslExt
+        pkg program flags
       ;
 
       # When src is null, we are building a lispWithPackages and only
@@ -180,11 +176,11 @@ let
       # load-system. Strange.
 
       # TODO(kasper) portable quit
-      asdfFasl = buildAsdf { inherit asdf pkg program flags faslExt; };
+      asdfFasl = buildAsdf { inherit asdf pkg program flags; };
 
       buildScript = substituteAll {
         src = ./builder.lisp;
-        asdf = "${asdfFasl}/asdf.${faslExt}";
+        asdf = "${asdfFasl}";
       };
 
       preConfigure = ''
@@ -285,7 +281,7 @@ let
           ${o.pkg}/bin/${o.program} \
           $out/bin/${o.program} \
           --add-flags "${o.flags}" \
-          --set ASDF "${o.asdfFasl}/asdf.${o.faslExt}" \
+          --set ASDF "${o.asdfFasl}" \
           --prefix CL_SOURCE_REGISTRY : "$CL_SOURCE_REGISTRY" \
           --prefix ASDF_OUTPUT_TRANSLATIONS : "$(echo $CL_SOURCE_REGISTRY | sed s,//:,::,g):" \
           --prefix LD_LIBRARY_PATH : "$LD_LIBRARY_PATH" \
