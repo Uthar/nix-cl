@@ -4,11 +4,10 @@ let
 
   mkSpec = spec@{
     pkg
-    , faslExt
     , program ? pkg.pname
     , flags ? ""
     , asdf ? asdf_3_3_6
-  }: { inherit pkg faslExt program flags asdf; };
+  }: { inherit pkg program flags asdf; };
 
   asdf_3_3_6 = pkgs.stdenv.mkDerivation rec {
     pname = "asdf";
@@ -24,33 +23,27 @@ let
 
   abclSpec = mkSpec {
     pkg = abcl;
-    faslExt = "abcl";
   };
 
   eclSpec = mkSpec {
     pkg = ecl;
-    faslExt = "fas";
   };
 
   cclSpec = mkSpec {
     pkg = ccl;
-    faslExt = "lx64fsl";
   };
 
   sbclSpec = mkSpec {
     pkg = sbcl;
-    faslExt = "fasl";
   };
 
   clispSpec = mkSpec {
     pkg = clisp;
     flags = "-E UTF-8";
-    faslExt = "fas";
   };
 
   claspSpec = mkSpec {
     pkg = clasp;
-    faslExt = "fasp";
   };
 
 in pkgs.callPackage ./nix-cl.nix {
