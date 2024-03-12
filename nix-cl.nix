@@ -266,7 +266,7 @@ let
   lispWithPackagesInternal = clpkgs: packages:
     let first = head (lib.attrValues clpkgs); in
     (build-asdf-system {
-      inherit (first) pkg program flags faslExt asdf;
+      inherit (first) pkg program flags asdf;
       # See dontUnpack in build-asdf-system
       src = null;
       pname = first.pkg.pname;
