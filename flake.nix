@@ -2,15 +2,13 @@
 
   description = "Utilities for packaging ASDF Common Lisp systems";
 
-  inputs.dev.url = "github:uthar/dev";
+  inputs.nixpkgs.url = "nixpkgs/master";
 
-  outputs = { self, dev, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
     let
-      nixpkgs = dev.inputs.nixpkgs;
       pkgs = nixpkgs.legacyPackages.${system};
-      devpkgs = dev.outputs.packages.${system};
-      callWithLisps = x: pkgs.callPackage x { inherit (devpkgs) abcl clasp sbcl; };
+      callWithLisps = x: pkgs.callPackage x { inherit (pkgs) abcl sbcl; clasp = pkgs.clasp-common-lisp; };
       lisps = callWithLisps ./.;
     in
     {
