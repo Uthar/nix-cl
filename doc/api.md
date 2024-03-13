@@ -189,7 +189,6 @@ sbcl.override {
   spec = {
     pkg = sbcl; 
     flags = "--dynamic-space-size 4096"; 
-    faslExt = "fasl"; 
     asdf = pkgs.hello; 
   };
 } 
@@ -202,7 +201,6 @@ sbcl.override {
 Spec can contain the following attributes:
 
 - pkg (required)
-- faslExt (required)
 - asdf (required)
 - program
 - flags
