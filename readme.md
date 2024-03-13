@@ -20,6 +20,8 @@ ls result/src
 source lwp.bash
 lwp sbcl alexandria bordeaux-threads
 result/bin/sbcl
+(load (sb-ext:posix-getenv "ASDF"))
+(asdf:load-system 'bordeaux-threads)
 ```
 
 #### Re-import Quicklisp packages:
