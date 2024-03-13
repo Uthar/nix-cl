@@ -40,6 +40,7 @@ wrapperp. Instead, it's cached from the first invocation.
 
 Now inside of SBCL, we can open a window using Allegro:
 ```lisp
+(load (sb-ext:posix-getenv "ASDF"))
 (asdf:load-system :cl-liballegro)
 (al:init)
 (al:create-display 800 600)
@@ -123,6 +124,7 @@ docker run -p 4242:4242 -ti sbcl-with-packages sbcl
 
 Start the hunchentoot server inside the container:
 ```
+(load (sb-ext:posix-getenv "ASDF"))
 (asdf:load-system :hunchentoot)
 (hunchentoot:start (make-instance 'hunchentoot:easy-acceptor :port 4242))
 ```
