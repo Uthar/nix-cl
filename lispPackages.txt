@@ -146,6 +146,7 @@ clack
 clack-socket
 classowary
 clfswm
+clog
 closer-mop
 closure-common
 closure-html
