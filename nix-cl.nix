@@ -188,6 +188,9 @@ let
         buildAsdfPath
       '';
 
+      # Build from $src so that go-to-definition works in SLIME/Sly.
+      # Can it be achieved while compiling from $PWD?
+      # See SBCL's :SOURCE-NAMESTRING argument to WITH-COMPILATION-UNIT.
       buildPhase = optionalString (src != null) ''
         export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$src//                  
         export ASDF_OUTPUT_TRANSLATIONS="$src:$(pwd):${storeDir}:${storeDir}" 
