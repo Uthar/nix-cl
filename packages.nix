@@ -529,6 +529,11 @@ let
   cl-project = super.cl-project.overrideLispAttrs (o: {
     extraAsds = [ "skeleton/skeleton" ];
   });
+
+  clog = super.clog.overrideLispAttrs (o: {
+     lispLibs = o.lispLibs ++ [ self.clack-handler-hunchentoot ];
+  });
+  
   });
 
 in packages
