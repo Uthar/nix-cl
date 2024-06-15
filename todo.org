@@ -1,0 +1,136 @@
+* TODO deprecate the asds parameter
+
+The asds parameter is unused and can be removed.
+
+About cl-project-template: it should rename skeleton.asd to skeleton.asd.tpl and
+copy it when necessary with asd extension when calling gen-project.
+
+* DONE portable quit
+
+Builder.lisp should portably quit with exit code to indicate build failure.
+
+* TODO use standard propagatedBuildInputs instead of lispLibs
+
+lispLibs are already passed to propagatedBuildInputs so that setup-hook finds
+them to build asd registry. Hovewer, I need to take another look and verify
+everything.
+
+* TODO try force-not t to detect missing depenencies (wrap missing-component?)
+
+Currently it's hard to debug when a slashy subsystem is missing during
+build. Perhaps we can get the set of systems defined in an asd (i.e. all slashy
+subsystems of a master) and explicitly disable them in source registry.
+
+* TODO save fasl in :IMPLEMENTATION (asdf source-registry/output translations)
+
+The idea is to be able to install fasl compiled lisp libraries to nix
+profile. Then patch asdf to load source registry and output translation
+configuration from NIX_PROFILES, similar to how emacs does it for elisp
+packages.
+
+* TODO use :source-registry-cache
+
+We know beforehand what asds we have. We can specify them to speed up asdf
+search for them. Maybe it will make it unnecessary to remove undeclared asds
+from $out, too.
+
+This file containing a sexp has to be created in root system dir.
+
+* TODO do it it buildPhase for early detection of missing dependency declarations
+
+Also touches on undeclared asds/systems. Reg cache will work for run-time. but
+for build-time, we can either remove these asds anyway or configure source
+registry accordingly.
+
+* TODO use __impure = true; for quicklisp import
+
+When we will load-asd to scrape metadata (description, license, undeclared
+quicklisp dependencies), it can run arbitrary code. It should run in a
+sandbox. It will make it easier to run correctly as well, not having to track
+its progress in sqlite. On the other hand, it would not be retryable from the
+middle if something fails.
+
+* TODO test-system:
+
+For those willing to go to the effort, we suggest defining conditions to signal when a
+test-op fails, and storing in those conditions information that describes which tests
+fail.
+
+* TODO simply patch cl-unicode and grovel ops to output to a designated build dir?
+
+Current hack with build-into-pwd is dirty, requires duplicating sources in nix
+store. Maybe fixing the build of those special case libraries is the right
+solution.
+
+* TODO program-op output path
+
+Regarding buildLispApplication, we can set its output path like this:
+
+#+begin_src common-lisp
+  ;; Set the output pathname when building the system.
+  (defmethod asdf:output-files ((o asdf:image-op) (system (eql (asdf:find-system foo))))
+    (declare (ignorable system))
+    (values (list (uiop:getenv-pathname "OUT")) t))
+#+end_src
+
+* TODO Replace references to /build/src to /nix/store/...-source
+
+Current hack with compiling from $src->$pwd causes hairy patching. Consider the
+possibility of mass replacing references to $(pwd) (usually /build/source) to
+either the original source directory or an additional source output (for cases
+when some source is generated - should it be handled or is it too much? Lisp has
+macros anyway...)
+
+* TODO $fasl, $source output?
+
+If we'll make the source output, Possibly split fasl and source outputs. How to
+ensure separate/clean builds/rebuilds?
+
+* TODO use buildCommand?
+
+Take a look at stdenv.mkDerivation buildCommand instead of the normal GNU
+phases. Will it work with postPatch and postInstall modifications?
+
+* TODO don't use buildScript, write it inline? (removes need for substituteAll)
+
+We don't have to put this in store. It can be inlined into
+buildPhase/buildCommand. It will be easier to override. ASDF/LISP variables
+should be pre-configured for it.
+
+* TODO assert each package has the same lisp and asdf?
+
+in lispWithPackages, in cases someone passes something weird. But see buildEnv.
+
+* TODO buildEnv instead (instead of setting env variables manually in wrapper)
+
+lispWithPackages-style has the assumption that user doesn't pass something weird
+(e.g. a package for a different lisp implementation). If we instead put fasls
+into ~$out/share/common-lisp/(asdf:implementation-identifier)/$(system)~, we
+could build the wrapper using buildEnv and it would only pick up what it
+needs. It would allow to install libraries for multiple implementations into nix
+profile. Probably would also work better for dockerTools.buildImage, because a
+root /share folder would get created which seems more user-friendly than parsing
+flags in wrapper and looking manually in store in order to debug.
+
+* TODO conf.d instead
+
+asdf source-registry/output translations in per-system conf files instead of one
+huge env variable in wrapper - it's connected to the aforementioned buildEnv
+approach.
+
+* TODO use cffi:*foreign-library-directories* ?
+
+It would break people using implementation dependent APIs though. How does
+python/other lang frameworks do it?
+
+* TODO wrap asdf:operate on shared-object component?
+
+Related to systems that build shared objects into system-directory, which should
+instead go to $out so that not all sources are copied, only the fasl and other
+output-files. (When the go-to-definition issue is handled by mass replace of
+/build/source to $src)
+
+* TODO passthru instead
+
+wrapLisp looks unconventional in all-packages.nix. Emacs adds a pkgs attribute
+to passthru. Let's take another look at such a possibility for common lisps.
