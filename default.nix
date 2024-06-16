@@ -16,6 +16,9 @@ let
       url = "https://gitlab.common-lisp.net/asdf/asdf/-/archive/${version}/asdf-${version}.tar.gz";
       hash = "sha256-GCmGUMLniPakjyL/D/aEI93Y6bBxjdR+zxXdSgc9NWo=";
     };
+    patches = [
+      ./asdf-nix.patch 
+    ];
     installPhase = ''
       cp build/asdf.lisp $out
     '';
