@@ -1,0 +1,10 @@
+--- a/cl-readline.asd
++++ b/cl-readline.asd
+@@ -28,4 +28,5 @@
+                  (:file "ctypes")
+                  (:file "cl-readline"))
+   :depends-on   (:alexandria
++                 :babel/foo
+                  :cffi))
+
+Diff finished.  Sun Jun 16 11:23:58 2024

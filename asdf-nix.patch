@@ -1,0 +1,54 @@
+diff --git a/output-translations.lisp b/output-translations.lisp
+index d2512ba0..af750f38 100644
+--- a/output-translations.lisp
++++ b/output-translations.lisp
+@@ -146,6 +146,7 @@ and the order is by decreasing length of namestring of the source pathname.")
+     '(environment-output-translations
+       user-output-translations-pathname
+       user-output-translations-directory-pathname
++      nix-profile-output-translations
+       system-output-translations-pathname
+       system-output-translations-directory-pathname))
+ 
+@@ -184,6 +185,14 @@ and the order is by decreasing length of namestring of the source pathname.")
+                          :direction direction))
+   (defun environment-output-translations ()
+     (getenv "ASDF_OUTPUT_TRANSLATIONS"))
++  (defun nix-profile-output-translations ()
++    `(:output-translations
++      ,@(loop :for profile :in (reverse (split-string (or (getenv "NIX_PROFILES") "")))
++              :for share := (subpathname (ensure-directory-pathname profile) "share/")
++              :for conf := (subpathname share *output-translations-directory*)
++              :when (probe-file* conf)
++                :collect `(:include ,conf))
++      :inherit-configuration))
+ 
+ 
+   ;;; Processing the configuration.
+diff --git a/source-registry.lisp b/source-registry.lisp
+index a086cc88..cc317591 100644
+--- a/source-registry.lisp
++++ b/source-registry.lisp
+@@ -187,6 +187,7 @@ after having found a .asd file? True by default.")
+       user-source-registry
+       user-source-registry-directory
+       default-user-source-registry
++      nix-profile-source-registry
+       system-source-registry
+       system-source-registry-directory
+       default-system-source-registry)
+@@ -227,6 +228,14 @@ after having found a .asd file? True by default.")
+                          :direction direction))
+   (defun environment-source-registry ()
+     (getenv "CL_SOURCE_REGISTRY"))
++  (defun nix-profile-source-registry ()
++    `(:source-registry
++      ,@(loop :for profile :in (reverse (split-string (or (getenv "NIX_PROFILES") "")))
++              :for share := (subpathname (ensure-directory-pathname profile) "share/")
++              :for conf := (subpathname share *source-registry-directory*)
++              :when (probe-file* conf)
++                :collect `(:include ,conf))
++      :inherit-configuration))
+ 
+ 
+   ;;; Process the source-registry configuration
