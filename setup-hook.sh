@@ -6,14 +6,14 @@
 # How about nix-shell/dev shell? Is it fine to create files there, somewhere like /tmp?
 
 addAsdfSourceRegistry () {
-  if test -z "${CL_SOURCE_REGISTRY:-}"; then
-    export CL_SOURCE_REGISTRY="(:source-registry :ignore-inherited-configuration)"
-  fi
-  if test -d "$1/share/common-lisp/source-registry.conf.d/"; then
-    if [[ ! "$CL_SOURCE_REGISTRY" =~ "$1/share/common-lisp/source-registry.conf.d/" ]]; then
-      export CL_SOURCE_REGISTRY="(:source-registry :ignore-inherited-configuration (:include \"$1/share/common-lisp/source-registry.conf.d/\")${CL_SOURCE_REGISTRY:49}"
-    fi
-  fi
+  export CL_SOURCE_REGISTRY=$(sbcl --script <<EOF
+  (let ((reg (read-from-string
+               (or (sb-ext:posix-getenv "CL_SOURCE_REGISTRY")
+                   "(:source-registry :ignore-inherited-configuration)")))
+  (pushnew '(:include "$1/share/common-lisp/source-registry.conf.d/")
+           (cddr reg)
+           :test #'string= :key #'second)
+EOF)
 }
 
 addAsdfOutputTranslation () {

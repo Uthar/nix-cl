@@ -6,9 +6,11 @@
                :str
                :cl-ppcre
                :sqlite
+               :tar
                :dexador
                :arrow-macros
                :com.inuoe.jzon
+               :sb-concurrency
                :org.lispbuilds.nix/api
                :org.lispbuilds.nix/repository/quicklisp
                :org.lispbuilds.nix/database/sqlite
