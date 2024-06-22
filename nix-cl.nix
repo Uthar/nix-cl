@@ -183,18 +183,18 @@ let
         asdf = "${asdfFasl}";
       };
 
-      preConfigure = ''
-        source ${./setup-hook.sh}
-        buildAsdfPath
+      postPatch = ''
+        find . -type f -name '*.asd' -and -not -name $pname.asd -delete
       '';
+
+      LISP = "${pkg}/bin/${program} ${flags}";
 
       # Build from $src so that go-to-definition works in SLIME/Sly.
       # Can it be achieved while compiling from $PWD?
       # See SBCL's :SOURCE-NAMESTRING argument to WITH-COMPILATION-UNIT.
       buildPhase = optionalString (src != null) ''
-        export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$src//                  
-        export ASDF_OUTPUT_TRANSLATIONS="$src:$(pwd):${storeDir}:${storeDir}" 
-        ${pkg}/bin/${program} ${flags} < $buildScript
+        $LISP < $buildScript
+        test -f .lisp-build-done
       '';
 
       # Copy compiled files to store
@@ -203,19 +203,54 @@ let
       # stuff like 'iolib.asdf.asd' for system 'iolib.asd'
       #
       # Same with '/': `local-time.asd` for system `cl-postgres+local-time.asd`
+
+      # TODO share source between implementations in nix profile
+      # around method for prepare-op on source-file?
       installPhase =
         let
           mkSystemsRegex = systems:
             concatMapStringsSep "\\|" (replaceStrings ["." "+"] ["[.]" "[+]"]) systems;
         in
       ''
-        mkdir -pv $out
-        cp -r * $out
+        cat <<EOF | ${pkg}/bin/${program} ${flags}
+          (load "$asdfFasl")
+          (with-open-file (f "/tmp/implementation-identifier" :direction :output)
+            (format f "~a" (asdf:implementation-identifier)))
+        EOF
+        mkdir -pv $out/share/common-lisp/systems/
+        mkdir -pv $out/share/common-lisp/fasl/$(cat /tmp/implementation-identifier)/
+        mkdir -pv $out/share/common-lisp/asdf-output-translations.conf.d/
+        mkdir -pv $out/share/common-lisp/source-registry.conf.d/
 
-        # Remove all .asd files except for those in `systems`.
-        find $out -name "*.asd" \
-        | grep -v "/\(${mkSystemsRegex (systems ++ extraAsds)}\)\.asd$" \
-        | xargs rm -fv || true
+        cat > $out/share/common-lisp/asdf-output-translations.conf.d/10-${pname}.conf <<EOF
+        (("$out/share/common-lisp/systems/${pname}/")
+         ("$out/share/common-lisp/fasl/" :implementation "${pname}/"))
+        EOF
+
+        cat > $out/share/common-lisp/source-registry.conf.d/10-${pname}.conf <<EOF
+        (:tree "$out/share/common-lisp/systems/${pname}/")
+        EOF
+
+        mkdir -p __tmpfasl__
+        mv __tmpfasl__ $out/share/common-lisp/fasl/$(cat /tmp/implementation-identifier)/${pname}
+
+        # TODO this is a hack at best. Fix osicat and others using cffi-grovel
+        # by setting a different output translation for shared objects
+        if [ -n "$(find $out -name '*.so' -print -quit)" ]; then
+          mkdir -p $out/lib
+        fi
+        find $out -name '*.so' -exec ln -s "{}" $out/lib \;
+
+        cp -r $(pwd) $out/share/common-lisp/systems/${pname}
+
+        declare -a asds
+        for s in $systems; do
+          asds+="\"$(find -type f -name $s.asd)\""
+        done
+        # TODO assert equal number of systems to asds
+        cat <<EOF > $out/share/common-lisp/systems/${pname}/.cl-source-registry.cache
+        (:source-registry-cache $asds)
+        EOF
       '';
 
       dontPatchShebangs = true;
@@ -224,13 +259,16 @@ let
       # save-lisp-and-die binaries in the past
       dontStrip = true;
 
-    } // (args // {
+      setupHook = ./setup-hook.sh;
+
+    } // (args // rec {
       src = if builtins.length (args.patches or []) > 0
             then pkgs.applyPatches { inherit (args) src patches; }
             else args.src;
       patches = [];
       propagatedBuildInputs = args.propagatedBuildInputs or []
           ++ lispLibs ++ javaLibs ++ nativeLibs;          
+      propagatedUserEnvPkgs = propagatedBuildInputs;
     })));
 
   # Build the set of lisp packages using `lisp`

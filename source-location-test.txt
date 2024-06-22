@@ -1,0 +1,29 @@
+/nix/store/wkq6jbjb7vxqcfkz2smj92ayplhq90n7-abcl-abcl-with-packages
+(load (ext:getenv "ASDF"))
+(asdf:load-system 'clop)
+(get 'clop:parse 'sys::source)
+
+/nix/store/zb6ba7j678ysqwqbncp6a9blxiq35bmh-ccl-ccl-with-packages
+(load (ccl:getenv "ASDF"))
+(asdf:load-system 'clop)
+(ext:source-location 'clop:parse :function)
+
+/nix/store/v7r5wfz81vx0plb5qfpqbd50i7n41w9h-clisp-clisp-with-packages
+(load (ext:getenv "ASDF"))
+(asdf:load-system 'com.inuoe.jzon)
+(documentation 'com.inuoe.jzon:parse 'sys::file)
+
+/nix/store/w0bms0yfwr84sr8dwa3yj260giky1amn-clasp-clasp-with-packages
+(load (ext:getenv "ASDF"))
+(asdf:load-system 'clop)
+(ext:source-location 'clop:parse :function)
+
+/nix/store/9h1zhwk2i9ii7yf8wjnzpym1k0nwbgi5-ecl-ecl-with-packages
+(load (ext:getenv "ASDF"))
+(asdf:load-system 'clop)
+(ext:get-annotation 'clop:parse 'si::location :all)
+
+/nix/store/lby5g1hqjw993xpbh79q3kibkf0qdmwa-sbcl-sbcl-with-packages
+(load (sb-ext:posix-getenv "ASDF"))
+(asdf:load-system 'clop)
+(sb-introspect:find-definition-sources-by-name 'clop:parse :function)
