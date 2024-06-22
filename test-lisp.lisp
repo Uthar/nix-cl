@@ -1,6 +1,7 @@
 #!/usr/bin/env -S sbcl --script
 
 (require :uiop)
+(require :sb-concurrency)
 
 ;; prevent glibc hell
 (setf (uiop:getenv "LD_LIBRARY_PATH") "")
@@ -19,6 +20,19 @@
     (uiop:read-file-lines "/proc/cpuinfo"))))
 
 (defparameter sem (sb-thread:make-semaphore :count cpu-count))
+
+(defstruct (count-down-latch (:conc-name %latch-))
+  (gate (sb-concurrency:make-gate) :type sb-concurrency:gate)
+  (count (error "count required") :type (unsigned-byte 64)))
+
+(defun count-down (latch &optional (amount 1))
+  (when (<= (sb-ext:atomic-decf (%latch-count latch) amount) amount)
+    (sb-concurrency:open-gate (%latch-gate latch))))
+
+(defun await (latch &optional timeout)
+  (sb-concurrency:wait-on-gate (%latch-gate latch) :timeout timeout))
+
+(defparameter latch (make-count-down-latch :count (length packages)))
 
 (defparameter statuses (make-hash-table :synchronized t))
 
@@ -75,12 +89,13 @@
                   (force-output *error-output*))
                 (unless (zerop code)
                   (sb-ext:atomic-incf errors)))
+           (count-down latch)
            (sb-thread:signal-semaphore sem))
        (error (e)
          (format t "~a~%" e)
          (sb-ext:quit :recklessly-p t :unix-status 1))))))
 
-(sb-thread:wait-on-semaphore sem :n cpu-count)
+(await latch)
 
 (format t "~%Done (~a/~a)."
         (- (length packages) errors)
