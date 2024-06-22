@@ -1,6 +1,7 @@
 _1am
 _3bmd
 _3bmd-ext-code-blocks
+_3d-math
 access
 acclimation
 agutil
@@ -147,6 +148,7 @@ clack-socket
 classowary
 clfswm
 clog
+clop
 closer-mop
 closure-common
 closure-html
@@ -247,6 +249,7 @@ jonathan
 jpl-queues
 jpl-util
 jsown
+jzon
 kmrcl
 lack
 lack-component

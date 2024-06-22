@@ -35,6 +35,7 @@ let
 
   sbclSpec = mkSpec {
     pkg = sbcl;
+    flags = "--dynamic-space-size 4GiB";
   };
 
   clispSpec = mkSpec {
