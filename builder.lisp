@@ -13,15 +13,20 @@
 ;; "user cache" via an additional runtime output translation configuration.
 
 (defvar *pwd* (namestring (uiop:getcwd)))
+(defvar *src* (namestring (uiop:getenv "src")))
+(defvar *out* (namestring (uiop:getenv "out")))
+(defvar *pname* (format nil "~a/" (uiop:getenv "pname")))
 
+(setf asdf:*resolve-symlinks* nil)
 
 (asdf:initialize-source-registry 
- `(:source-registry :inherit-configuration (:tree ,*pwd*)))
+ `(:source-registry :inherit-configuration (:tree ,*src*)))
+
 (asdf:initialize-output-translations 
  `(:output-translations
    :disable-cache
    ("/nix/store/" "/nix/store/")
-   (,*pwd* (,*pwd* "__tmpfasl__"))
+   (,*src* (,*out* "share" "common-lisp" "fasl" :implementation ,*pname*))
    :inherit-configuration))
 
 (defvar *declared-systems* (uiop:split-string (uiop:getenv "systems")))
@@ -36,11 +41,15 @@
 ;; (defmethod asdf:operate :before (o c &key)
 ;;   (format t "[INFO] Checking... ~A ~A ~A ~A~%" o c *system* (asdf:output-files o c)))
 
-(defvar *out* (uiop:getenv "out"))
 
 (defun out-path-p (path)
   (or (uiop:string-prefix-p *pwd* (namestring path))
       (uiop:string-prefix-p *out* (namestring path))))
+
+(defmethod asdf:perform :before ((o asdf:prepare-op) (c asdf:file-component))
+  (let ((path (asdf:component-relative-pathname c))
+        (path2 (asdf:component-pathname c)))
+    (format t "FOOOOOOO: ~A >>> ~A~%" path path2)))
 
 (defmethod asdf:perform :before ((o asdf:compile-op) (c asdf:source-file))
   (let ((out (asdf:output-files o c)))

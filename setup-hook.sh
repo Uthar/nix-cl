@@ -6,24 +6,15 @@
 # How about nix-shell/dev shell? Is it fine to create files there, somewhere like /tmp?
 
 addAsdfSourceRegistry () {
-  if test -z "${CL_SOURCE_REGISTRY:-}"; then
-    export CL_SOURCE_REGISTRY="(:source-registry :ignore-inherited-configuration)"
-  fi
-  if test -d "$1/share/common-lisp/source-registry.conf.d/"; then
-    if [[ ! "$CL_SOURCE_REGISTRY" =~ "$1/share/common-lisp/source-registry.conf.d/" ]]; then
-      export CL_SOURCE_REGISTRY="(:source-registry :ignore-inherited-configuration (:include \"$1/share/common-lisp/source-registry.conf.d/\")${CL_SOURCE_REGISTRY:49}"
-    fi
+  if test -d "$1/share/common-lisp"; then
+    addToSearchPath CL_SOURCE_REGISTRY "$1/share/common-lisp/systems//"
   fi
 }
 
 addAsdfOutputTranslation () {
-  if test -z "${ASDF_OUTPUT_TRANSLATIONS:-}"; then
-    export ASDF_OUTPUT_TRANSLATIONS="(:output-translations :ignore-inherited-configuration)"
-  fi
-  if test -d "$1/share/common-lisp/asdf-output-translations.conf.d/"; then
-    if [[ ! "$ASDF_OUTPUT_TRANSLATIONS" =~ "$1/share/common-lisp/asdf-output-translations.conf.d/" ]]; then
-      export ASDF_OUTPUT_TRANSLATIONS="(:output-translations :ignore-inherited-configuration (:include \"$1/share/common-lisp/asdf-output-translations.conf.d/\")${ASDF_OUTPUT_TRANSLATIONS:53}"
-    fi
+  if test -d "$1/share/common-lisp"; then
+    addToSearchPath ASDF_OUTPUT_TRANSLATIONS "$1/share/common-lisp/systems/"
+    addToSearchPath ASDF_OUTPUT_TRANSLATIONS "$(find $1/share/common-lisp/fasl/ -mindepth 1 -maxdepth 1 -print -quit)/"
   fi
 }
 

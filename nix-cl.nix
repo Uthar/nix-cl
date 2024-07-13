@@ -212,28 +212,6 @@ let
             concatMapStringsSep "\\|" (replaceStrings ["." "+"] ["[.]" "[+]"]) systems;
         in
       ''
-        cat <<EOF | ${pkg}/bin/${program} ${flags}
-          (load "$asdfFasl")
-          (with-open-file (f "/tmp/implementation-identifier" :direction :output)
-            (format f "~a" (asdf:implementation-identifier)))
-        EOF
-        mkdir -pv $out/share/common-lisp/systems/
-        mkdir -pv $out/share/common-lisp/fasl/$(cat /tmp/implementation-identifier)/
-        mkdir -pv $out/share/common-lisp/asdf-output-translations.conf.d/
-        mkdir -pv $out/share/common-lisp/source-registry.conf.d/
-
-        cat > $out/share/common-lisp/asdf-output-translations.conf.d/10-${pname}.conf <<EOF
-        (("$out/share/common-lisp/systems/${pname}/")
-         ("$out/share/common-lisp/fasl/" :implementation "${pname}/"))
-        EOF
-
-        cat > $out/share/common-lisp/source-registry.conf.d/10-${pname}.conf <<EOF
-        (:tree "$out/share/common-lisp/systems/${pname}/")
-        EOF
-
-        mkdir -p __tmpfasl__
-        mv __tmpfasl__ $out/share/common-lisp/fasl/$(cat /tmp/implementation-identifier)/${pname}
-
         # TODO this is a hack at best. Fix osicat and others using cffi-grovel
         # by setting a different output translation for shared objects
         if [ -n "$(find $out -name '*.so' -print -quit)" ]; then
@@ -241,16 +219,10 @@ let
         fi
         find $out -name '*.so' -exec ln -s "{}" $out/lib \;
 
-        cp -r $(pwd) $out/share/common-lisp/systems/${pname}
-
-        declare -a asds
+        mkdir -pv $out/share/common-lisp/systems/
         for s in $systems; do
-          asds+="\"$(find -type f -name $s.asd)\""
+          ln -s $src $out/share/common-lisp/systems/$s
         done
-        # TODO assert equal number of systems to asds
-        cat <<EOF > $out/share/common-lisp/systems/${pname}/.cl-source-registry.cache
-        (:source-registry-cache $asds)
-        EOF
       '';
 
       dontPatchShebangs = true;
@@ -262,10 +234,20 @@ let
       setupHook = ./setup-hook.sh;
 
     } // (args // rec {
-      src = if builtins.length (args.patches or []) > 0
-            then pkgs.applyPatches { inherit (args) src patches; }
-            else args.src;
+      src = pkgs.applyPatches {
+        inherit (args) src;
+        systems = args.systems or [ args.pname ];
+        patches = args.patches or [];
+        postPatch = ''
+          declare -a asds=()
+          for s in $systems; do
+            asds+="\"$(find -name $s.asd -type f -print -quit)\""
+          done
+          echo "(:source-registry-cache ''${asds[@]})" > .cl-source-registry.cache
+        '' + args.postPatch or "";
+      };
       patches = [];
+      postPatch = "";
       propagatedBuildInputs = args.propagatedBuildInputs or []
           ++ lispLibs ++ javaLibs ++ nativeLibs;          
       propagatedUserEnvPkgs = propagatedBuildInputs;
@@ -324,7 +306,7 @@ let
           --add-flags "${o.flags}" \
           --set ASDF "${o.asdfFasl}" \
           --prefix CL_SOURCE_REGISTRY : "$CL_SOURCE_REGISTRY" \
-          --prefix ASDF_OUTPUT_TRANSLATIONS : "$(echo $CL_SOURCE_REGISTRY | sed s,//:,::,g):" \
+          --prefix ASDF_OUTPUT_TRANSLATIONS : "$ASDF_OUTPUT_TRANSLATIONS" \
           --prefix LD_LIBRARY_PATH : "$LD_LIBRARY_PATH" \
           --prefix DYLD_LIBRARY_PATH : "$DYLD_LIBRARY_PATH" \
           --prefix CLASSPATH : "$CLASSPATH" \
