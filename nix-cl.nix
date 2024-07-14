@@ -239,11 +239,12 @@ let
         systems = args.systems or [ args.pname ];
         patches = args.patches or [];
         postPatch = ''
-          declare -a asds=()
+          declare -A asds
           for s in $systems; do
-            asds+="\"$(find -name $s.asd -type f -print -quit)\""
+            local asd="\"$(find -name ''${s%%/*}.asd -type f -print -quit)\""
+            asds["$asd"]=1
           done
-          echo "(:source-registry-cache ''${asds[@]})" > .cl-source-registry.cache
+          echo "(:source-registry-cache ''${!asds[@]})" > .cl-source-registry.cache
         '' + args.postPatch or "";
       };
       patches = [];
