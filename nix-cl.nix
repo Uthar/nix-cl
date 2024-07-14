@@ -183,10 +183,6 @@ let
         asdf = "${asdfFasl}";
       };
 
-      postPatch = ''
-        find . -type f -name '*.asd' -and -not -name $pname.asd -delete
-      '';
-
       LISP = "${pkg}/bin/${program} ${flags}";
 
       # Build from $src so that go-to-definition works in SLIME/Sly.
