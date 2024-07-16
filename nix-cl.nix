@@ -183,7 +183,8 @@ let
       asdfFasl = buildAsdf { inherit asdf pkg program flags; };
 
       buildScript = pkgs.runCommand "builder.lisp" { inherit asdfFasl; } ''
-        substitute ${./builder.lisp} $out --replace @asdf@ $asdfFasl/*
+        substitute ${./builder.lisp} $out \
+          --replace @asdf@ "$(find $asdfFasl -mindepth 1 -print -quit)"
       '';
 
       LISP = "${pkg}/bin/${program} ${flags}";
