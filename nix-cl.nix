@@ -219,6 +219,11 @@ let
         for s in $systems; do
           ln -s $src $out/share/common-lisp/systems/$s
         done
+        local sys=''${systems%% *}
+        local fasl=$out/share/common-lisp/fasl/*
+        for s in ''${systems#* }; do
+          ln -s $fasl/$sys $fasl/$s
+        done
       '';
 
       dontPatchShebangs = true;

@@ -16,6 +16,7 @@
 (defvar *src* (namestring (uiop:getenv "src")))
 (defvar *out* (namestring (uiop:getenv "out")))
 (defvar *pname* (format nil "~a/" (uiop:getenv "pname")))
+(defvar *declared-systems* (uiop:split-string (uiop:getenv "systems")))
 
 (setf asdf:*resolve-symlinks* nil)
 
@@ -26,10 +27,8 @@
  `(:output-translations
    :disable-cache
    ("/nix/store/" "/nix/store/")
-   (,*src* (,*out* "share" "common-lisp" "fasl" :implementation ,*pname*))
+   (,*src* (,*out* "share" "common-lisp" "fasl" :implementation ,(first *declared-systems*)))
    :inherit-configuration))
-
-(defvar *declared-systems* (uiop:split-string (uiop:getenv "systems")))
 
 (defvar *system*)
 
