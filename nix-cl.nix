@@ -215,6 +215,7 @@ let
         fi
         find $out -name '*.so' -exec ln -s "{}" $out/lib \;
 
+        ln -s $asdfFasl $out/share/common-lisp/asdf/*
         mkdir -pv $out/share/common-lisp/systems/
         for s in $systems; do
           ln -s $src $out/share/common-lisp/systems/$s
@@ -288,34 +289,36 @@ let
   # packages - as argument and returns the list of packages to be
   # installed
   # TODO(kasper): assert each package has the same lisp and asdf?
-  lispWithPackagesInternal = clpkgs: packages:
-    let first = head (lib.attrValues clpkgs); in
-    (build-asdf-system {
-      inherit (first) pkg program flags asdf;
-      # See dontUnpack in build-asdf-system
-      src = null;
-      pname = first.pkg.pname;
-      version = "with-packages";
-      lispLibs = packages clpkgs;
-      systems = [];
-    }).overrideAttrs(o: {
+  lispWithPackagesInternal = spec: clpkgs: packages:
+    let
+      lisp = spec.pkg;
+      env = pkgs.buildEnv {
+        name = "${lisp.pname}-env";
+        paths = packages clpkgs;
+      };
+    in stdenv.mkDerivation {
+      inherit (lisp) pname;
+      version = "${lisp.version}+packages";
       nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
-      installPhase = ''
+      buildCommand = ''
         mkdir -pv $out/bin
+        local systems="$(echo ${env}/share/common-lisp/systems/)"
+        local asdf="$(echo ${env}/share/common-lisp/asdf/*/*)"
+        local fasl="$(find ${env}/share/common-lisp/fasl/ -mindepth 1 -maxdepth 1 -type d -print -quit)/"
+        local jars="$(find ${env}/share/java/ -name '*.jar' -print0 | tr '\0' ':')"
         makeWrapper \
-          ${o.pkg}/bin/${o.program} \
-          $out/bin/${o.program} \
-          --add-flags "${o.flags}" \
-          --set ASDF "${o.asdfFasl}" \
-          --prefix CL_SOURCE_REGISTRY : "$CL_SOURCE_REGISTRY" \
-          --prefix ASDF_OUTPUT_TRANSLATIONS : "$ASDF_OUTPUT_TRANSLATIONS" \
-          --prefix LD_LIBRARY_PATH : "$LD_LIBRARY_PATH" \
-          --prefix DYLD_LIBRARY_PATH : "$DYLD_LIBRARY_PATH" \
-          --prefix CLASSPATH : "$CLASSPATH" \
-          --prefix GI_TYPELIB_PATH : "$GI_TYPELIB_PATH" \
-          --prefix PATH : "${makeBinPath (o.propagatedBuildInputs or [])}"
+          ${lisp}/bin/${spec.program} \
+          $out/bin/${spec.program} \
+          --add-flags "${spec.flags}" \
+          --set ASDF "$asdf" \
+          --prefix CL_SOURCE_REGISTRY : "$systems/" \
+          --prefix ASDF_OUTPUT_TRANSLATIONS : "$systems:$fasl" \
+          --prefix LD_LIBRARY_PATH : ${env}/lib \
+          --prefix DYLD_LIBRARY_PATH : ${env}/lib \
+          --prefix CLASSPATH : "$jars" \
+          --prefix PATH : ${env}/bin
       '';
-    });
+    };
 
   makeLisp = lib.makeOverridable ({ packageOverlays ? (self: super: {}), spec }:
     let
@@ -323,7 +326,7 @@ let
     in spec.pkg // {
       inherit pkgs;
       inherit (spec) asdf;
-      withPackages = lispWithPackagesInternal pkgs;
+      withPackages = lispWithPackagesInternal spec pkgs;
       buildASDFSystem = args: build-asdf-system (args // spec);
     });
   

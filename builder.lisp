@@ -83,5 +83,9 @@
 
 (load-systems)
 
+(ensure-directories-exist
+ (uiop:subpathname (truename *out*)
+   (make-pathname :directory `(:relative "share" "common-lisp" "asdf" ,(asdf:implementation-identifier)))))
+
 (with-open-file (done ".lisp-build-done" :direction :output)
   (write-line "done" done))
