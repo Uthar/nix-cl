@@ -198,20 +198,7 @@ let
       '';
 
       # Copy compiled files to store
-      #
-      # Make sure to include '$' in regex to prevent skipping
-      # stuff like 'iolib.asdf.asd' for system 'iolib.asd'
-      #
-      # Same with '/': `local-time.asd` for system `cl-postgres+local-time.asd`
-
-      # TODO share source between implementations in nix profile
-      # around method for prepare-op on source-file?
-      installPhase =
-        let
-          mkSystemsRegex = systems:
-            concatMapStringsSep "\\|" (replaceStrings ["." "+"] ["[.]" "[+]"]) systems;
-        in
-      ''
+      installPhase = ''
         # TODO this is a hack at best. Fix osicat and others using cffi-grovel
         # by setting a different output translation for shared objects
         if [ -n "$(find $out -name '*.so' -print -quit)" ]; then
