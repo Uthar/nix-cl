@@ -19,23 +19,9 @@ addAsdfOutputTranslation () {
 }
 
 addLibToLibraryPath () {
-  if test -z "${LD_LIBRARY_PATH:-}"; then
-    export LD_LIBRARY_PATH=""
-  fi
-  if test -z "${DYLD_LIBRARY_PATH:-}"; then
-    export DYLD_LIBRARY_PATH=""
-  fi
   if test -d "$1/lib"; then
-    if test -n "$(find "$1/lib" -name '*.so' -print -quit)"; then
-      if [[ ! "$LD_LIBRARY_PATH" =~ "$1/lib" ]]; then
-        export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$1/lib"
-      fi
-    fi
-    if test -n "$(find "$1/lib" -name '*.dylib' -print -quit)"; then
-      if [[ ! "$DYLD_LIBRARY_PATH" =~ "$1/lib" ]]; then
-        export DYLD_LIBRARY_PATH="${DYLD_LIBRARY_PATH:+$DYLD_LIBRARY_PATH:}$1/lib"
-      fi
-    fi
+    addToSearchPath LD_LIBRARY_PATH "$1/lib"
+    addToSearchPath DYLD_LIBRARY_PATH "$1/lib"
   fi
 }
 
