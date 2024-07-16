@@ -86,6 +86,7 @@ let
       version = "${asdf.version}-${pkg.pname}";
       dontUnpack = true;
       dontInstall = true;
+      # Co z kilkoma różynmi wersjami ASDF w profilu?
       buildCommand = ''
         ${pkg}/bin/${program} ${flags} <<EOF
           (let* ((fasl (compile-file-pathname "asdf"))
