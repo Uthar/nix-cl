@@ -86,10 +86,13 @@ let
       version = "${asdf.version}-${pkg.pname}";
       dontUnpack = true;
       dontInstall = true;
-      buildPhase = ''
-        ${pkg}/bin/${program} \
-          ${flags} < \
-          <(echo "(compile-file \"${asdf}\" :output-file \"$out\")")
+      buildCommand = ''
+        ${pkg}/bin/${program} ${flags} <<EOF
+          (let* ((fasl (compile-file-pathname "asdf"))
+                 (out (merge-pathnames #P"$out/" fasl)))
+            (ensure-directories-exist #P"$out/")
+            (compile-file "${asdf}" :output-file out))
+        EOF
       '';
     };
 
@@ -178,10 +181,9 @@ let
       # TODO(kasper) portable quit
       asdfFasl = buildAsdf { inherit asdf pkg program flags; };
 
-      buildScript = substituteAll {
-        src = ./builder.lisp;
-        asdf = "${asdfFasl}";
-      };
+      buildScript = pkgs.runCommand "builder.lisp" { inherit asdfFasl; } ''
+        substitute ${./builder.lisp} $out --replace @asdf@ $asdfFasl/*
+      '';
 
       LISP = "${pkg}/bin/${program} ${flags}";
 
@@ -215,7 +217,7 @@ let
         fi
         find $out -name '*.so' -exec ln -s "{}" $out/lib \;
 
-        ln -s $asdfFasl $out/share/common-lisp/asdf/*
+        ln -s $asdfFasl/* $out/share/common-lisp/asdf/*
         mkdir -pv $out/share/common-lisp/systems/
         for s in $systems; do
           ln -s $src $out/share/common-lisp/systems/$s
