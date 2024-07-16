@@ -1,0 +1,48 @@
+--- a/build/dump.lisp
++++ b/build/dump.lisp
+@@ -105,11 +105,13 @@
+ writes to the file denoted by RELATIVE-PATH - a path relative to the
+ location of this source file.  Writes a Lisp header to the files
+ unless NO-HEADER-P is true."
+-  `(let ((pathname (merge-pathnames ,relative-path
++  `(let* ((pathname (merge-pathnames ,relative-path
+                                     (make-pathname :name nil
+                                                    :type nil
+                                                    :version nil
+-                                                   :defaults *this-file*))))
++                                                   :defaults *this-file*)))
++         (pathname (asdf:apply-output-translations pathname)))
++     (ensure-directories-exist pathname)
+      (when *compile-verbose*
+        (format t "~&;;; Writing source file ~A" (file-namestring pathname))
+        (force-output))
+--- a/cl-unicode.asd
++++ b/cl-unicode.asd
+@@ -48,6 +48,10 @@
+-  :output-files (load-op (o c) (values '("lists.lisp" "hash-tables.lisp" "methods.lisp") t))
++  :output-files (load-op (o c) '("lists.lisp" "hash-tables.lisp" "methods.lisp"))
+   :perform (load-op (o c) (symbol-call :cl-unicode '#:create-source-files)))
+ 
++(defclass generated-file (cl-source-file) ())
++(defmethod component-pathname ((component generated-file))
++  (apply-output-translations (call-next-method)))
++
+ (defsystem :cl-unicode
+   :version "0.1.6"
+   :serial t
+@@ -55,10 +59,10 @@
+   :depends-on (:cl-unicode/base)
+   :license "BSD-2-Clause"
+   :components ((:file "conditions")
+-               (:file "lists")
+-               (:file "hash-tables")
++               (:generated-file "lists")
++               (:generated-file "hash-tables")
+                (:file "api")
+-               (:file "methods")
++               (:generated-file "methods")
+                (:file "test-functions")
+                (:file "derived")
+                (:file "alias"))
+
+Diff finished.  Tue Jul 16 01:48:59 2024

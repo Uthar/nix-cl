@@ -90,6 +90,7 @@ let
       url = "https://github.com/edicl/cl-unicode/archive/refs/tags/v0.1.6.tar.gz";
       sha256 = "0ykx2s9lqfl74p1px0ik3l2izd1fc9jd1b4ra68s5x34rvjy0hza";
     };
+    patches = [ ./patches/cl-unicode-generated-sources-output-translations.patch ];
     systems = [ "cl-unicode" ];
     lispLibs = with super; [
       cl-ppcre
