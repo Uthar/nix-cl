@@ -17,6 +17,7 @@
 (defvar *out* (namestring (uiop:getenv "out")))
 (defvar *pname* (format nil "~a/" (uiop:getenv "pname")))
 (defvar *declared-systems* (uiop:split-string (uiop:getenv "systems")))
+(defvar *system*)
 
 (setf asdf:*resolve-symlinks* nil)
 
@@ -30,7 +31,6 @@
    (,*src* (,*out* "share" "common-lisp" "fasl" :implementation ,(first *declared-systems*)))
    :inherit-configuration))
 
-(defvar *system*)
 
 ;; (defmethod asdf/component:around-compile-hook :before ((c asdf:system))
 ;;   (format t "[INFO] Checking... ~A ~A" c *system*)
@@ -41,23 +41,23 @@
 ;;   (format t "[INFO] Checking... ~A ~A ~A ~A~%" o c *system* (asdf:output-files o c)))
 
 
-(defun out-path-p (path)
-  (or (uiop:string-prefix-p *pwd* (namestring path))
-      (uiop:string-prefix-p *out* (namestring path))))
+;; (defun out-path-p (path)
+;;   (or (uiop:string-prefix-p *pwd* (namestring path))
+;;       (uiop:string-prefix-p *out* (namestring path))))
 
-(defmethod asdf:perform :before ((o asdf:prepare-op) (c asdf:file-component))
-  (let ((path (asdf:component-relative-pathname c))
-        (path2 (asdf:component-pathname c)))
-    (format t "FOOOOOOO: ~A >>> ~A~%" path path2)))
+;; (defmethod asdf:perform :before ((o asdf:prepare-op) (c asdf:file-component))
+;;   (let ((path (asdf:component-relative-pathname c))
+;;         (path2 (asdf:component-pathname c)))
+;;     (format t "FOOOOOOO: ~A >>> ~A~%" path path2)))
 
-(defmethod asdf:perform :before ((o asdf:compile-op) (c asdf:source-file))
-  (let ((out (asdf:output-files o c)))
-    (format t "[INFO] [OUT] Checking... ~A ~A ~A ~A~%" o c *system* out)
-    ;; (let ((missing (find-if-not #'uiop:probe-file* out)))
-    (when (find-if-not #'out-path-p out)
-      (error "While loading '~A': Undeclared subsystem dependency on '~A' in '~A'." *system* (asdf:component-name (asdf:component-system c)) (asdf:primary-system-name c)))
-    ;; (uiop:ensure-all-directories-exist out)
-    ))
+;; (defmethod asdf:perform :before ((o asdf:compile-op) (c asdf:source-file))
+;;   (let ((out (asdf:output-files o c)))
+;;     (format t "[INFO] [OUT] Checking... ~A ~A ~A ~A~%" o c *system* out)
+;;     ;; (let ((missing (find-if-not #'uiop:probe-file* out)))
+;;     (when (find-if-not #'out-path-p out)
+;;       (error "While loading '~A': Undeclared subsystem dependency on '~A' in '~A'." *system* (asdf:component-name (asdf:component-system c)) (asdf:primary-system-name c)))
+;;     ;; (uiop:ensure-all-directories-exist out)
+;;     ))
 
 ;; (defmethod asdf:output-files :around ((o asdf:operation) (c asdf:component))
 ;;   (loop for file in (call-next-method)
