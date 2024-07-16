@@ -212,7 +212,8 @@ let
           ln -s $src $out/share/common-lisp/systems/$s
         done
         local sys=''${systems%% *}
-        local fasl=$out/share/common-lisp/fasl/*
+        local fasl="$(find "$out/share/common-lisp/fasl/" -mindepth 1 -maxdepth 1 -type d -print -quit)"
+        systems="$systems "
         for s in ''${systems#* }; do
           ln -s $fasl/$sys $fasl/$s
         done
