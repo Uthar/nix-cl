@@ -1,5 +1,15 @@
 --- a/output-translations.lisp
 +++ b/output-translations.lisp
+@@ -74,7 +74,7 @@
+         (and (consp directive)
+              (or (and (length=n-p directive 2)
+                       (or (and (eq (first directive) :include)
+-                               (typep (second directive) '(or string pathname null)))
++                               (location-designator-p (second directive)))
+                           (and (location-designator-p (first directive))
+                                (or (location-designator-p (second directive))
+                                    (location-function-p (second directive))))))
+
 @@ -146,6 +146,7 @@
      '(environment-output-translations
        user-output-translations-pathname
@@ -8,21 +18,30 @@
        system-output-translations-pathname
        system-output-translations-directory-pathname))
  
-@@ -184,6 +185,14 @@
+@@ -184,6 +185,13 @@
                           :direction direction))
    (defun environment-output-translations ()
      (getenv "ASDF_OUTPUT_TRANSLATIONS"))
-+  (defun nix-profile-output-translations ()
++  defun nix-profile-output-translations ()
 +    `(:output-translations
 +      ,@(loop :for profile :in (reverse (split-string (or (getenv "NIX_PROFILES") "")))
-+              :for share := (subpathname (ensure-directory-pathname profile) "share/")
-+              :for sysdir := (namestring (subpathname share "common-lisp/systems/"))
-+              :for fasldir := (namestring (subpathname share "common-lisp/fasl/"))
-+              :collect `(,sysdir (,fasldir :implementation)))
++              :for share := (subpathname (ensure-directory-pathname profile) "share/common-lisp/")
++              :for confd := (namestring (subpathname share "asdf-output-translations.conf.d/"))
++              :collect `(:include (,confd :implementation)))
 +      :inherit-configuration))
  
  
    ;;; Processing the configuration.
+
+@@ -209,7 +209,7 @@
+               (dst (second directive)))
+           (if (eq src :include)
+               (when dst
+-                (process-output-translations (pathname dst) :inherit nil :collect collect))
++                (process-output-translations (resolve-location dst :ensure-directory t) :inherit nil :collect collect))
+               (when src
+                 (let ((trusrc (or (eql src t)
+                                   (let ((loc (resolve-location src :ensure-directory t :wilden t)))
 
 --- a/source-registry.lisp
 +++ b/source-registry.lisp
@@ -34,7 +53,7 @@
        system-source-registry
        system-source-registry-directory
        default-system-source-registry)
-@@ -227,5 +228,11 @@
+@@ -227,6 +228,12 @@
                           :direction direction))
    (defun environment-source-registry ()
      (getenv "CL_SOURCE_REGISTRY"))
@@ -47,3 +66,4 @@
  
  
    ;;; Process the source-registry configuration
+
