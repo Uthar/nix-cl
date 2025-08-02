@@ -11,6 +11,7 @@
                :com.inuoe.jzon
                :org.lispbuilds.nix/api
                :org.lispbuilds.nix/repository/quicklisp
+               :org.lispbuilds.nix/repository/quicklisp-projects
                :org.lispbuilds.nix/database/sqlite
                ))
 
