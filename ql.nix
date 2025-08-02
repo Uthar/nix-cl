@@ -6,7 +6,7 @@ let
 
   overrides = (self: super: {
     cl_plus_ssl = super.cl_plus_ssl.overrideLispAttrs (o: {
-      nativeLibs = [ pkgs.openssl ];
+      nativeLibs = [ pkgs.openssl.out ];
     });
     cl-cffi-gtk-glib = super.cl-cffi-gtk-glib.overrideLispAttrs (o: {
       nativeLibs = [ pkgs.glib ];
@@ -148,12 +148,12 @@ let
       nativeLibs = [ pkgs.rdkafka ];
     });
     cl-async-ssl = super.cl-async-ssl.overrideLispAttrs (o: {
-      nativeLibs = [ pkgs.openssl ];
+      nativeLibs = [ pkgs.openssl.out ];
     });
     iolib = super.iolib.overrideLispAttrs (o: {
       nativeBuildInputs = [ pkgs.libfixposix ];
       nativeLibs = [ pkgs.libfixposix ];
-      systems = [ "iolib" "iolib/os" "iolib/pathnames" ];
+      systems = [ "iolib" ];
     });
     cl-ana_dot_hdf-cffi = super.cl-ana_dot_hdf-cffi.overrideLispAttrs (o: {
       nativeBuildInputs = [ pkgs.hdf5 ];
@@ -170,7 +170,7 @@ let
     cl-libxml2 = super.cl-libxml2.overrideLispAttrs (o: {
       nativeLibs = [ pkgs.libxml2 ];
     });
-    cl-readline = super.cl-readline.overrideLispAttrs (o: {
+    cl-readline = super.lc-readline.overrideLispAttrs (o: {
       nativeLibs = [ pkgs.readline ];
     });
     md5 = super.md5.overrideLispAttrs (o: {
@@ -204,6 +204,9 @@ let
     });
     cl-sat_dot_minisat = super.cl-sat_dot_minisat.overrideLispAttrs (o: {
       propagatedBuildInputs = [ pkgs.minisat ];
+    });
+    mssql = super.mssql.overrideLispAttrs (o: {
+      nativeLibs = [ pkgs.freetds ];
     });
   });
 

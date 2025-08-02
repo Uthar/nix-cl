@@ -86,10 +86,14 @@ let
       version = "${asdf.version}-${pkg.pname}";
       dontUnpack = true;
       dontInstall = true;
-      buildPhase = ''
-        ${pkg}/bin/${program} \
-          ${flags} < \
-          <(echo "(compile-file \"${asdf}\" :output-file \"$out\")")
+      # Co z kilkoma różynmi wersjami ASDF w profilu?
+      buildCommand = ''
+        ${pkg}/bin/${program} ${flags} <<EOF
+          (let* ((fasl (compile-file-pathname "asdf"))
+                 (out (merge-pathnames #P"$out/" fasl)))
+            (ensure-directories-exist #P"$out/")
+            (compile-file "${asdf}" :output-file out))
+        EOF
       '';
     };
 
@@ -178,44 +182,41 @@ let
       # TODO(kasper) portable quit
       asdfFasl = buildAsdf { inherit asdf pkg program flags; };
 
-      buildScript = substituteAll {
-        src = ./builder.lisp;
-        asdf = "${asdfFasl}";
-      };
-
-      preConfigure = ''
-        source ${./setup-hook.sh}
-        buildAsdfPath
+      buildScript = pkgs.runCommand "builder.lisp" { inherit asdfFasl; } ''
+        substitute ${./builder.lisp} $out \
+          --replace @asdf@ "$(find $asdfFasl -mindepth 1 -print -quit)"
       '';
+
+      LISP = "${pkg}/bin/${program} ${flags}";
 
       # Build from $src so that go-to-definition works in SLIME/Sly.
       # Can it be achieved while compiling from $PWD?
       # See SBCL's :SOURCE-NAMESTRING argument to WITH-COMPILATION-UNIT.
       buildPhase = optionalString (src != null) ''
-        export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$src//                  
-        export ASDF_OUTPUT_TRANSLATIONS="$src:$(pwd):${storeDir}:${storeDir}" 
-        ${pkg}/bin/${program} ${flags} < $buildScript
+        $LISP < $buildScript
+        test -f .lisp-build-done
       '';
 
       # Copy compiled files to store
-      #
-      # Make sure to include '$' in regex to prevent skipping
-      # stuff like 'iolib.asdf.asd' for system 'iolib.asd'
-      #
-      # Same with '/': `local-time.asd` for system `cl-postgres+local-time.asd`
-      installPhase =
-        let
-          mkSystemsRegex = systems:
-            concatMapStringsSep "\\|" (replaceStrings ["." "+"] ["[.]" "[+]"]) systems;
-        in
-      ''
-        mkdir -pv $out
-        cp -r * $out
+      installPhase = ''
+        # TODO this is a hack at best. Fix osicat and others using cffi-grovel
+        # by setting a different output translation for shared objects
+        if [ -n "$(find $out -name '*.so' -print -quit)" ]; then
+          mkdir -p $out/lib
+        fi
+        find $out -name '*.so' -exec ln -s "{}" $out/lib \;
 
-        # Remove all .asd files except for those in `systems`.
-        find $out -name "*.asd" \
-        | grep -v "/\(${mkSystemsRegex (systems ++ extraAsds)}\)\.asd$" \
-        | xargs rm -fv || true
+        ln -s $asdfFasl/* $out/share/common-lisp/asdf/*
+        mkdir -pv $out/share/common-lisp/systems/
+        for s in $systems; do
+          ln -s $src $out/share/common-lisp/systems/$s
+        done
+        local sys=''${systems%% *}
+        local fasl="$(find "$out/share/common-lisp/fasl/" -mindepth 1 -maxdepth 1 -type d -print -quit)"
+        systems="$systems "
+        for s in ''${systems#* }; do
+          ln -s $fasl/$sys $fasl/$s
+        done
       '';
 
       dontPatchShebangs = true;
@@ -224,13 +225,27 @@ let
       # save-lisp-and-die binaries in the past
       dontStrip = true;
 
-    } // (args // {
-      src = if builtins.length (args.patches or []) > 0
-            then pkgs.applyPatches { inherit (args) src patches; }
-            else args.src;
+      setupHook = ./setup-hook.sh;
+
+    } // (args // rec {
+      src = pkgs.applyPatches {
+        inherit (args) src;
+        systems = args.systems or [ args.pname ];
+        patches = args.patches or [];
+        postPatch = ''
+          declare -A asds
+          for s in $systems; do
+            local asd="\"$(find -name ''${s%%/*}.asd -type f -print -quit)\""
+            asds["$asd"]=1
+          done
+          echo "(:source-registry-cache ''${!asds[@]})" > .cl-source-registry.cache
+        '' + args.postPatch or "";
+      };
       patches = [];
+      postPatch = "";
       propagatedBuildInputs = args.propagatedBuildInputs or []
           ++ lispLibs ++ javaLibs ++ nativeLibs;          
+      propagatedUserEnvPkgs = propagatedBuildInputs;
     })));
 
   # Build the set of lisp packages using `lisp`
@@ -266,34 +281,36 @@ let
   # packages - as argument and returns the list of packages to be
   # installed
   # TODO(kasper): assert each package has the same lisp and asdf?
-  lispWithPackagesInternal = clpkgs: packages:
-    let first = head (lib.attrValues clpkgs); in
-    (build-asdf-system {
-      inherit (first) pkg program flags asdf;
-      # See dontUnpack in build-asdf-system
-      src = null;
-      pname = first.pkg.pname;
-      version = "with-packages";
-      lispLibs = packages clpkgs;
-      systems = [];
-    }).overrideAttrs(o: {
+  lispWithPackagesInternal = spec: clpkgs: packages:
+    let
+      lisp = spec.pkg;
+      env = pkgs.buildEnv {
+        name = "${lisp.pname}-env";
+        paths = packages clpkgs;
+      };
+    in stdenv.mkDerivation {
+      inherit (lisp) pname;
+      version = "${lisp.version}+packages";
       nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
-      installPhase = ''
+      buildCommand = ''
         mkdir -pv $out/bin
+        local systems="$(echo ${env}/share/common-lisp/systems/)"
+        local asdf="$(echo ${env}/share/common-lisp/asdf/*/*)"
+        local fasl="$(find ${env}/share/common-lisp/fasl/ -mindepth 1 -maxdepth 1 -type d -print -quit)/"
+        local jars="$(find ${env}/share/java/ -name '*.jar' -print0 | tr '\0' ':')"
         makeWrapper \
-          ${o.pkg}/bin/${o.program} \
-          $out/bin/${o.program} \
-          --add-flags "${o.flags}" \
-          --set ASDF "${o.asdfFasl}" \
-          --prefix CL_SOURCE_REGISTRY : "$CL_SOURCE_REGISTRY" \
-          --prefix ASDF_OUTPUT_TRANSLATIONS : "$(echo $CL_SOURCE_REGISTRY | sed s,//:,::,g):" \
-          --prefix LD_LIBRARY_PATH : "$LD_LIBRARY_PATH" \
-          --prefix DYLD_LIBRARY_PATH : "$DYLD_LIBRARY_PATH" \
-          --prefix CLASSPATH : "$CLASSPATH" \
-          --prefix GI_TYPELIB_PATH : "$GI_TYPELIB_PATH" \
-          --prefix PATH : "${makeBinPath (o.propagatedBuildInputs or [])}"
+          ${lisp}/bin/${spec.program} \
+          $out/bin/${spec.program} \
+          --add-flags "${spec.flags}" \
+          --set ASDF "$asdf" \
+          --prefix CL_SOURCE_REGISTRY : "$systems/" \
+          --prefix ASDF_OUTPUT_TRANSLATIONS : "$systems:$fasl" \
+          --prefix LD_LIBRARY_PATH : ${env}/lib \
+          --prefix DYLD_LIBRARY_PATH : ${env}/lib \
+          --prefix CLASSPATH : "$jars" \
+          --prefix PATH : ${env}/bin
       '';
-    });
+    };
 
   makeLisp = lib.makeOverridable ({ packageOverlays ? (self: super: {}), spec }:
     let
@@ -301,7 +318,7 @@ let
     in spec.pkg // {
       inherit pkgs;
       inherit (spec) asdf;
-      withPackages = lispWithPackagesInternal pkgs;
+      withPackages = lispWithPackagesInternal spec pkgs;
       buildASDFSystem = args: build-asdf-system (args // spec);
     });
   

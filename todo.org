@@ -134,3 +134,8 @@ output-files. (When the go-to-definition issue is handled by mass replace of
 
 wrapLisp looks unconventional in all-packages.nix. Emacs adds a pkgs attribute
 to passthru. Let's take another look at such a possibility for common lisps.
+
+* TODO build-time-only dependencies
+
+There is at least one system (cl-unicode) which only needs flexi-streams during
+build, but not on run-time. How to reflect that using ASDF?

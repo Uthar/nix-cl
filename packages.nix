@@ -21,27 +21,28 @@ let
   # source of the second run.
   #
   # E.g. cl-unicode creating .txt files during compilation
-  build-with-compile-into-pwd = args:
-    let
-      build = (build-asdf-system (args // { version = args.version + "-build"; }))
-        .overrideAttrs(o: {
-          buildPhase = with builtins; ''
-            mkdir __fasls
-            export ASDF_OUTPUT_TRANSLATIONS="$(pwd):$(pwd)/__fasls:${storeDir}:${storeDir}"
-            export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$(pwd)//
-            ${o.pkg}/bin/${o.program} ${o.flags or ""} < ${o.buildScript}
-          '';
-          installPhase = ''
-            mkdir -pv $out
-            rm -rf __fasls
-            cp -r * $out
-          '';
-        });
-    in build-asdf-system (args // {
-      # Patches are already applied in `build`
-      patches = [];
-      src = build;
-    });
+  build-with-compile-into-pwd = build-asdf-system # args:
+    # let
+    #   build = (build-asdf-system (args // { version = args.version + "-build"; }))
+    #     .overrideAttrs(o: {
+    #       buildPhase = with builtins; ''
+    #         mkdir __fasls
+    #         export ASDF_OUTPUT_TRANSLATIONS="$(pwd):$(pwd)/__fasls:${storeDir}:${storeDir}"
+    #         export CL_SOURCE_REGISTRY=$CL_SOURCE_REGISTRY:$(pwd)//
+    #         ${o.pkg}/bin/${o.program} ${o.flags or ""} < ${o.buildScript}
+    #       '';
+    #       installPhase = ''
+    #         mkdir -pv $out
+    #         rm -rf __fasls
+    #         cp -r * $out
+    #       '';
+    #     });
+    # in build-asdf-system (args // {
+    #   # Patches are already applied in `build`
+    #   patches = [];
+    #   src = build;
+    # });
+    ;
 
   # A little hacky
   isJVM = spec.pkg.pname == "abcl";
@@ -66,7 +67,7 @@ let
     };
     version = "0.24.1";
     pname = "cffi";
-    lispLibs = with super; [
+    lispLibs = with self; [
       alexandria
       babel
       trivial-features
@@ -82,13 +83,14 @@ let
     };
   };
 
-  cl-unicode = build-with-compile-into-pwd {
+  cl-unicode = build-asdf-system {
     pname = "cl-unicode";
     version = "0.1.6";
     src =  pkgs.fetchzip {
       url = "https://github.com/edicl/cl-unicode/archive/refs/tags/v0.1.6.tar.gz";
       sha256 = "0ykx2s9lqfl74p1px0ik3l2izd1fc9jd1b4ra68s5x34rvjy0hza";
     };
+    patches = [ ./patches/cl-unicode-generated-sources-output-translations.patch ];
     systems = [ "cl-unicode" ];
     lispLibs = with super; [
       cl-ppcre
@@ -261,56 +263,6 @@ let
     lispLibs = super.mathkit.lispLibs ++ [ super.sb-cga ];
   };
 
-  nyxt-gtk = build-asdf-system {
-    inherit (super.nyxt) pname;
-    version = "2.2.4";
-
-    lispLibs = super.nyxt.lispLibs ++ (with super; [
-      cl-cffi-gtk cl-webkit2 mk-string-metrics cl-css
-    ]);
-
-    src = pkgs.fetchzip {
-      url = "https://github.com/atlas-engineer/nyxt/archive/2.2.4.tar.gz";
-      sha256 = "12l7ir3q29v06jx0zng5cvlbmap7p709ka3ik6x29lw334qshm9b";
-    };
-
-    buildInputs = [
-      pkgs.makeWrapper
-
-      # needed for GSETTINGS_SCHEMAS_PATH
-      pkgs.gsettings-desktop-schemas pkgs.glib pkgs.gtk3
-
-      # needed for XDG_ICON_DIRS
-      pkgs.gnome.adwaita-icon-theme
-    ];
-
-    buildScript = pkgs.writeText "build-nyxt.lisp" ''
-      (load "${spec.asdf}")
-      (asdf:load-system :nyxt/gtk-application)
-      (sb-ext:save-lisp-and-die "nyxt" :executable t
-                                       #+sb-core-compression :compression
-                                       #+sb-core-compression t
-                                       :toplevel #'nyxt:entry-point)
-    '';
-
-    # Run with WEBKIT_FORCE_SANDBOX=0 if getting a runtime error
-    # See https://github.com/atlas-engineer/nyxt/issues/1781
-    # TODO(kasper): use wrapGAppsHook
-    installPhase = super.nyxt.installPhase + ''
-      rm -v $out/nyxt
-      mkdir -p $out/bin
-      cp -v nyxt $out/bin
-      wrapProgram $out/bin/nyxt \
-        --prefix LD_LIBRARY_PATH : $LD_LIBRARY_PATH \
-        --prefix XDG_DATA_DIRS : $XDG_ICON_DIRS \
-        --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
-        --prefix GIO_EXTRA_MODULES ":" ${pkgs.dconf.lib}/lib/gio/modules/ \
-        --prefix GIO_EXTRA_MODULES ":" ${pkgs.glib-networking}/lib/gio/modules/
-    '';
-  };
-
-  nyxt = self.nyxt-gtk;
-
   ltk = super.ltk.overrideLispAttrs (o: {
     src = pkgs.fetchzip {
       url = "https://github.com/uthar/ltk/archive/f19162e76d6c7c2f51bd289b811d9ba20dd6555e.tar.gz";
@@ -319,88 +271,15 @@ let
     version = "f19162e76";
   });
 
-  
-  qt = let
-    rev = "dffff3ee3dbd0686c85c323f579b8bbf4881e60e";
-  in build-with-compile-into-pwd rec {
-    pname = "commonqt";
-    version = builtins.substring 0 7 rev;
-    src = pkgs.fetchFromGitHub {
-      inherit rev;
-      owner = pname;
-      repo = pname;
-      hash = "sha256-GAgwT0D9mIkYPTHfCH/KxxIv7b6QGwcxwZE7ehH5xug=";
-    };
+  babel = super.babel.overrideLispAttrs (o: {
+    patches = [ ./babel-tmp.patch ];
+    postPatch = "echo '(defun foo () 42)' > bla.lisp";
+    # systems = o.systems ++ [ "babel/foo" ];
+  });
 
-    buildInputs = [ pkgs.qt4 ];
-    nativeBuildInputs = [ pkgs.smokegen pkgs.smokeqt ];
-    nativeLibs = [ pkgs.qt4 pkgs.smokegen pkgs.smokeqt ];
-
-    systems = [ "qt" ];
-
-    lispLibs = with super; [
-      cffi named-readtables cl-ppcre alexandria
-      closer-mop iterate trivial-garbage bordeaux-threads
-    ];
-  };
-
-  qt-libs = build-with-compile-into-pwd {
-    inherit (super.qt-libs) pname version src;
-    patches = [ ./patches/qt-libs-dont-download.patch ];
-    prePatch = ''
-      substituteInPlace systems/*.asd --replace ":qt+libs" ":qt"
-    '';
-    lispLibs = super.qt-libs.lispLibs ++ [ self.qt ];
-    systems = [
-      "qt-libs"
-      "commonqt"
-      # "phonon"
-      # "qimageblitz"
-      # "qsci"
-      "qt3support"
-      "qtcore"
-      "qtdbus"
-      "qtdeclarative"
-      "qtgui"
-      "qthelp"
-      "qtnetwork"
-      "qtopengl"
-      "qtscript"
-      "qtsql"
-      "qtsvg"
-      "qttest"
-      "qtuitools"
-      # "qtwebkit"
-      "qtxml"
-      "qtxmlpatterns"
-      # "qwt"
-      "smokebase"
-    ];
-  };
-
-  commonqt = self.qt-libs;
-  qt3support = self.qt-libs;
-  qtcore = self.qt-libs;
-  qtdbus = self.qt-libs;
-  qtdeclarative = self.qt-libs;
-  qtgui = self.qt-libs;
-  qthelp = self.qt-libs;
-  qtnetwork = self.qt-libs;
-  qtopengl = self.qt-libs;
-  qtscript = self.qt-libs;
-  qtsql = self.qt-libs;
-  qtsvg = self.qt-libs;
-  qttest = self.qt-libs;
-  qtuitools = self.qt-libs;
-  qtxml = self.qt-libs;
-  qtxmlpatterns = self.qt-libs;
-  smokebase = self.qt-libs;
-
-  qtools = build-with-compile-into-pwd {
-    inherit (super.qtools) pname version src nativeLibs;
-    lispLibs = [ self.qt ] ++ remove super.qt_plus_libs super.qtools.lispLibs ++ [ self.qt-libs ];
-    patches = [ ./patches/qtools-use-nix-libs.patch ];
-  };
+  cl-readline = super.cl-readline.overrideLispAttrs (o: {
+    patches = [ ./cl-readline-tmp.patch ];
+  });
 
   magicl = build-with-compile-into-pwd {
     inherit (super.magicl) pname version src lispLibs;
